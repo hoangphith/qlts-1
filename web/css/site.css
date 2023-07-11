@@ -1,3 +1,36 @@
+/*custom*/
+body .select2-container {
+  z-index: 9999 !important;
+}
+#ajaxCrudDatatable table .select2-container {
+    z-index: 0 !important;
+}
+.kv-table-header a{
+    text-decoration: none;
+}
+.alink{
+    text-decoration: none;
+}
+.blink{
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+.form-group .help-block{
+    color: red;
+}
+.has-error input{
+    border: 1px solid red;
+}
+.has-error label{
+    color: red;
+}
+#liveToast .toast-body{
+    color: #0D6EFD;
+}
+/*end custom*/
+
 main > .container {
     padding: 70px 15px 20px;
 }

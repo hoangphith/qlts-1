@@ -36,7 +36,7 @@ class SiteController extends Controller
                 ],
             ],
             'ghost-access'=> [
-                'class' => 'webvimark\modules\UserManagement\components\GhostAccessControl',
+                'class' => 'app\modules\user\components\GhostAccessControl',
             ],
         ];
     }
