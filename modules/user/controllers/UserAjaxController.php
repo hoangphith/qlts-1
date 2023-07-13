@@ -171,6 +171,8 @@ class UserAjaxController extends Controller
                                 Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
                 ];         
             }else if($model->load($request->post()) && $model->save()){
+                //create role for this user
+                
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
                     'title'=> "User",

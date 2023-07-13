@@ -96,8 +96,10 @@ $config = [
 
         'view' => [
             'theme' => [
-                'pathMap' => ['@app/views' => '@app/themes/adtheme'],
-                'baseUrl' => '@web/../themes/adtheme',
+                /* 'pathMap' => ['@app/views' => '@app/themes/adtheme'],
+                'baseUrl' => '@web/../themes/adtheme', */
+                'pathMap' => ['@app/views' => '@app/themes/main'],
+                'baseUrl' => '@web/../themes/main',
             ],
         ],
         
