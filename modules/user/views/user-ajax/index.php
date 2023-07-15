@@ -21,9 +21,14 @@ CrudAsset::register($this);
         <?=GridView::widget([
             'id'=>'crud-datatable',
             'dataProvider' => $dataProvider,
-            'filterModel' => $searchModel,
+            //'filterModel' => $searchModel,
             'pjax'=>true,
             'columns' => require(__DIR__.'/_columns.php'),
+            //'options'=>['class'=>'table-responsive border p-0 pt-3'],
+            'tableOptions' => [
+                //'id' => 'theDatatable',
+                'class'=>'table mg-b-0'
+            ],
             'toolbar'=> [
                 ['content'=>
                     Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i> Thêm mới', ['create'],
@@ -36,7 +41,10 @@ CrudAsset::register($this);
             ],          
             'striped' => true,
             'condensed' => true,
-            'responsive' => true,          
+            'responsive' => true,   
+            'panelHeadingTemplate'=>'{title}',
+            'panelFooterTemplate'=>'{summary}',
+            'summary'=>'Hiển thị dữ liệu {count}/{totalCount}, Trang {page}/{pageCount}',
             'panel' => [
                 //'type' => 'primary', 
                 'heading' => '<i class="fas fa fa-list" aria-hidden="true"></i> Danh sách',

@@ -45,7 +45,7 @@ ViboonAsset::register($this);
 	<?php $this->beginBody() ?>
 	<!-- Loader -->
 		<div id="global-loader">
-			<img src="../assets/images/svgs/loader.svg" alt="loader">
+			<img src="<?= Yii::getAlias('@web')  ?>/assets/images/svgs/loader.svg" alt="loader">
 		</div>
 		<!-- /Loader -->
 

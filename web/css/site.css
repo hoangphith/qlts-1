@@ -1,3 +1,10 @@
+/*an add*/
+@media (max-width: 991px){
+.main-header-left.horizontal .main-logo .desktop-logo {
+    max-width: 150px;
+}
+}
+
 /*custom*/
 body .select2-container {
   z-index: 9999 !important;

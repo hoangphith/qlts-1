@@ -10,21 +10,33 @@ use yii\bootstrap5\ActiveForm;
 use yii\helpers\Html;
 ?>
 
-<div class="container" id="login-wrapper">
-	<div class="row">
-		<div class="col-md-4 col-md-offset-4">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title"><?= UserModule::t('front', 'Authorization') ?></h3>
-				</div>
-				<div class="panel-body">
-
-					<?php $form = ActiveForm::begin([
-						'id'      => 'login-form',
+<h4 class="text-center">Đăng nhập phần mềm</h4>
+    <!-- <form>
+        <div class="form-group text-start">
+            <label>Tên tài khoản</label>
+            <input class="form-control" placeholder="Nhập tài khoản" type="text">
+        </div>
+        <div class="form-group text-start">
+            <label>Password</label>
+            <input class="form-control" placeholder="Nhập mật khẩu" type="password">
+        </div>
+        <a href="index.html" class="btn ripple btn-main-primary btn-block">Đăng nhập</a>
+    </form>-->
+    
+   <!--  <div class="mt-3 text-center">
+        <p class="mb-1"><a href="javascript:void(0);">Forgot password?</a></p>
+        <p class="mb-0">Don't have an account? <a href="signup.html" class="text-primary">Create an
+                Account</a></p>
+    </div> -->
+    
+    
+    <?php $form = ActiveForm::begin([
+						'id' => 'login-form',
 						'options'=>['autocomplete'=>'off'],
 						'validateOnBlur'=>false,
 						'fieldConfig' => [
-							'template'=>"{input}\n{error}",
+						    'options' => ['class' => 'form-group text-start'],
+							'template'=>"{label}\n{input}\n{error}",
 						],
 					]) ?>
 
@@ -34,14 +46,14 @@ use yii\helpers\Html;
 					<?= $form->field($model, 'password')
 						->passwordInput(['placeholder'=>$model->getAttributeLabel('password'), 'autocomplete'=>'off']) ?>
 
-					<?= (isset(Yii::$app->user->enableAutoLogin) && Yii::$app->user->enableAutoLogin) ? $form->field($model, 'rememberMe')->checkbox(['value'=>true]) : '' ?>
+					<!-- <?= (isset(Yii::$app->user->enableAutoLogin) && Yii::$app->user->enableAutoLogin) ? $form->field($model, 'rememberMe')->checkbox(['value'=>true]) : '' ?> -->
 
 					<?= Html::submitButton(
 						UserModule::t('front', 'Login'),
 						['class' => 'btn btn-lg btn-primary btn-block']
 					) ?>
 
-					<div class="row registration-block">
+					<!-- <div class="row registration-block">
 						<div class="col-sm-6">
 							<?= GhostHtml::a(
 								UserModule::t('front', "Registration"),
@@ -54,36 +66,9 @@ use yii\helpers\Html;
 								['/user-management/auth/password-recovery']
 							) ?>
 						</div>
-					</div>
+					</div> -->
 
 
 
 
 					<?php ActiveForm::end() ?>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<?php
-$css = <<<CSS
-html, body {
-	background: #eee;
-	-webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
-	box-shadow: inset 0 0 100px rgba(0,0,0,.5);
-	height: 100%;
-	min-height: 100%;
-	position: relative;
-}
-#login-wrapper {
-	position: relative;
-	top: 30%;
-}
-#login-wrapper .registration-block {
-	margin-top: 15px;
-}
-CSS;
-
-$this->registerCss($css);
-?>

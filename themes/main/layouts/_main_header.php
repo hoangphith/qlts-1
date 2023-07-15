@@ -7,9 +7,9 @@
 					</div>
 					<div class="main-header-left horizontal">
 						<a class="main-logo" href="index.html">
-							<img src="../assets/images/brand/logo.png" class="desktop-logo desktop-logo-dark"
+							<img src="<?= Yii::getAlias('@web') ?>/assets/images/brand/logo.png" class="desktop-logo desktop-logo-dark"
 								alt="viboonlogo">
-							<img src="../assets/images/brand/logo1.png" class="desktop-logo theme-logo" alt="viboonlogo">
+							<img src="<?= Yii::getAlias('@web') ?>/assets/images/brand/logo1.png" class="desktop-logo theme-logo" alt="viboonlogo">
 						</a>
 					</div>
 					<div class="">

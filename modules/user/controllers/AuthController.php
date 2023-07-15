@@ -40,6 +40,7 @@ class AuthController extends BaseController
 	 */
 	public function actionLogin()
 	{
+	    $this->layout = '/loginLayout';
 		if ( !Yii::$app->user->isGuest )
 		{
 			return $this->goHome();
