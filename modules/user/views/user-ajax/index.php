@@ -27,7 +27,7 @@ CrudAsset::register($this);
             //'options'=>['class'=>'table-responsive border p-0 pt-3'],
             'tableOptions' => [
                 //'id' => 'theDatatable',
-                'class'=>'table mg-b-0'
+                //'class'=>'table table-bordered mg-b-0'
             ],
             'toolbar'=> [
                 ['content'=>
@@ -39,7 +39,7 @@ CrudAsset::register($this);
                     '{export}'
                 ],
             ],          
-            'striped' => true,
+            'striped' => false,
             'condensed' => true,
             'responsive' => true,   
             'panelHeadingTemplate'=>'{title}',
@@ -48,6 +48,7 @@ CrudAsset::register($this);
             'panel' => [
                 //'type' => 'primary', 
                 'heading' => '<i class="fas fa fa-list" aria-hidden="true"></i> Danh sách',
+                'headingOptions' => ['class'=>'card-header'],
                 'before'=>'<em>* Danh sách Users</em>',
                 'after'=>BulkButtonWidget::widget([
                             'buttons'=>Html::a('<i class="fas fa fa-trash" aria-hidden="true"></i>&nbsp; Xóa đã chọn',
@@ -62,7 +63,14 @@ CrudAsset::register($this);
                                 ]),
                         ]).                        
                         '<div class="clearfix"></div>',
-            ]
+            ],
+            /* 'panelTemplate'=>'<div class="panel {type} card custom-card">
+                {panelHeading}
+                {panelBefore}
+                {items}
+                {panelAfter}
+                {panelFooter}
+            </div>' */
         ])?>
     </div>
 </div>

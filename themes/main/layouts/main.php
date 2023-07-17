@@ -56,11 +56,11 @@
 						<!-- Row -->
 						<div class="row sidemenu-height">
 							<div class="col-lg-12">
-								<div class="card custom-card">
-									<div class="card-body">
+								<!-- <div class="card custom-card"> -->
+									<!-- <div class="card-body">-->
 										<?= $content ?>
-									</div>
-								</div>
+									<!-- </div>-->
+								<!-- </div>-->
 							</div>
 						</div>
 						<!-- End Row -->
