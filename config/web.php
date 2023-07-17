@@ -16,6 +16,9 @@ $config = [
         'gridview' =>  [
             'class' => '\kartik\grid\Module'
         ],
+        'bophan' => [
+            'class' => 'app\modules\bophan\Module',
+        ],
         'user' => [
             'class' => 'app\modules\user\UserModule',
         ],
