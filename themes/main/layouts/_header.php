@@ -43,6 +43,9 @@ ViboonAsset::register($this);
 
 	<body class="app sidebar-mini">
 	<?php $this->beginBody() ?>
+	<!-- switcher -->
+	<?php // $this->render('_switcher') ?>
+	<!-- end switcher -->
 	<!-- Loader -->
 		<div id="global-loader">
 			<img src="<?= Yii::getAlias('@web')  ?>/assets/images/svgs/loader.svg" alt="loader">

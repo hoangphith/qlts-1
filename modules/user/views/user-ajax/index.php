@@ -71,19 +71,32 @@ CrudAsset::register($this);
     "id"=>"ajaxCrudModal",
     "tabindex" => false // important for Select2 to work properly
 ],
+    "dialogOptions"=>["class"=>"modal-lg"],
    "id"=>"ajaxCrudModal",
     "footer"=>"",// always need it for jquery plugin
 ])?>
 <?php Modal::end(); ?>
+
 <!-- /*send toast message */ -->
 <div class="toast-container position-fixed top-0 end-0 p-3">
   <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-header">
-      <strong class="me-auto">Thông báo</strong>
-      <small>Vừa xong</small>
+      <strong class="me-auto"><i class="typcn typcn-info-large"></i>Thông báo</strong>
+      <!-- <small>Vừa xong</small> -->
       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
     <div class="toast-body"></div>
   </div>
 </div>
+
+
+<!-- <div class="demo-static-toast pos-absolute t-10 r-10">
+	<div id="liveToast" aria-atomic="true" aria-live="assertive" class="toast fade show" role="alert" data-bs-autohide="true">
+		<div class="toast-header">
+			<h6 class="tx-14 mg-b-0 mg-e-auto">Thông báo</h6>
+			<small class="text-muted text-nowrap ms-1">Vừa xong</small> <button aria-label="Close" class="ms-2 mb-1 btn-close tx-normal" data-bs-dismiss="toast" type="button"><span aria-hidden="true">×</span></button>
+		</div>
+		<div class="toast-body"></div>
+	</div>
+</div> -->
 

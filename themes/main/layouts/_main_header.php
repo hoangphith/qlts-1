@@ -375,6 +375,11 @@
 								</ul>
 							</div>
 						</div>
+						
+						<!-- <div class="switcher-icon nav-link icon sidebar-right1  fe-spin">
+        					<i class="bi bi-gear  floating"></i>
+        				</div> -->
+				
 					</div>
 				</div>
 			</div>
