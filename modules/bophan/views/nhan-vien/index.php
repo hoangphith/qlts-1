@@ -1,5 +1,4 @@
 <?php
-use Yii;
 use yii\helpers\Url;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Modal;
