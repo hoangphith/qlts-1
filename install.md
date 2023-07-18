@@ -14,7 +14,3 @@
 - import newest db in folder db/
 
 - see theme in _temp/themeforest-wPZfyZxW-viboon-bootstrap-4-fully-responsive-admin-dashboard-html-template.zip
-
-The template contains the basic features including user login/logout and a contact page.
-It includes all commonly used configurations that would allow you to focus on adding new
-features to your application.
