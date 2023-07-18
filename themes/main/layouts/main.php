@@ -41,13 +41,16 @@
 									</div>
 								</div>
 								<div>
-									<a href="javascript:void(0);"
-										class="btn ripple btn-secondary navresponsive-toggler mb-0"
-										data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+									
+									<a id="btnFilter" href="javascript:void(0);"
+										class="btn ripple btn-secondary navresponsive-toggler mb-0 off-canvas"
+										data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
 										aria-expanded="false"
 										aria-label="Toggle navigation">
-										<i class="fe fe-filter me-1"></i> Filter
+										<i class="fe fe-filter me-1"></i> Tìm kiếm
 									</a>
+									
+									
 								</div>
 							</div>
 						</div>

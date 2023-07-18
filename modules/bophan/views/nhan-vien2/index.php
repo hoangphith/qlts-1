@@ -5,12 +5,11 @@ use yii\bootstrap5\Modal;
 use kartik\grid\GridView;
 use cangak\ajaxcrud\CrudAsset; 
 use cangak\ajaxcrud\BulkButtonWidget;
-use app\widgets\AutoToast;
 use yii\widgets\Pjax;
 use app\widgets\FilterFormWidget;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\modules\bophan\NhanVienSearch */
+/* @var $searchModel app\modules\bophan\models\NhanVien2Search */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Nhan Viens';
@@ -19,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 CrudAsset::register($this);
 
 ?>
-																
+
 <?php Pjax::begin([
     'id'=>'myGrid',
     'timeout' => 10000,
@@ -31,7 +30,7 @@ CrudAsset::register($this);
         <?=GridView::widget([
             'id'=>'crud-datatable',
             'dataProvider' => $dataProvider,
-            'filterModel' => $searchModel,
+            //'filterModel' => $searchModel,
             'pjax'=>true,
             'columns' => require(__DIR__.'/_columns.php'),
             'toolbar'=> [
@@ -46,10 +45,10 @@ CrudAsset::register($this);
             ],          
             'striped' => false,
             'condensed' => true,
-            'responsive' => true,     
+            'responsive' => true,
             'panelHeadingTemplate'=>'{title}',
             'panelFooterTemplate'=>'{summary}',
-            'summary'=>'Hiển thị dữ liệu {count}/{totalCount}, Trang {page}/{pageCount}',
+            'summary'=>'Hiển thị dữ liệu {count}/{totalCount}, Trang {page}/{pageCount}',          
             'panel' => [
                 //'type' => 'primary', 
                 'heading' => '<i class="fas fa fa-list" aria-hidden="true"></i> Danh sách',
@@ -58,8 +57,7 @@ CrudAsset::register($this);
                             'buttons'=>Html::a('<i class="fas fa fa-trash" aria-hidden="true"></i>&nbsp; Xóa đã chọn',
                                 ["bulkdelete"] ,
                                 [
-                                    //"class"=>"btn btn-sm btn-outline-danger",
-                                    'class'=>'btn ripple btn-secondary',
+                                    "class"=>"btn btn-sm btn-outline-danger",
                                     'role'=>'modal-remote-bulk',
                                     'data-confirm'=>false, 'data-method'=>false,// for overide yii data api
                                     'data-request-method'=>'post',
@@ -76,23 +74,19 @@ CrudAsset::register($this);
 <?php Pjax::end(); ?>
 
 <?php Modal::begin([
-   "options" => [
-        "id"=>"ajaxCrudModal",
-        "tabindex" => false // important for Select2 to work properly
-    ],
-    "dialogOptions"=>["class"=>"modal-lg"],
-    'closeButton'=>['label'=>'<span aria-hidden="true">×</span>'],
-    "id"=>"ajaxCrudModal",
-    "footer"=>"",// always need it for jquery plugin
+   'options' => [
+        'id'=>'ajaxCrudModal',
+        'tabindex' => false // important for Select2 to work properly
+   ],
+   'dialogOptions'=>['class'=>'modal-lg'],
+   'closeButton'=>['label'=>'<span aria-hidden=\'true\'>×</span>'],
+   'id'=>'ajaxCrudModal',
+    'footer'=>'',// always need it for jquery plugin
 ])?>
+
 <?php Modal::end(); ?>
 
-<!--Right Offcanvas-->
 <?php
-    $searchContent = $this->render('_search', ['model' => $searchModel]);
-    echo FilterFormWidget::widget(['content'=>$searchContent]) 
+    $searchContent = $this->render("_search", ["model" => $searchModel]);
+    echo FilterFormWidget::widget(["content"=>$searchContent]) 
 ?>
-<!--/Right Offcanvas-->
-
-
-

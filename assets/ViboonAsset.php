@@ -24,6 +24,19 @@ class ViboonAsset extends AssetBundle
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
     ];
     public $js = [
+        'assets/plugins/bootstrap/popper.min.js',
+        'assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js',
+        'assets/plugins/perfect-scrollbar/p-scroll-1.js',
+        'assets/plugins/sidemenu/sidemenu.js',
+        'assets/plugins/sidebar/sidebar.js',
+        'assets/js/sticky.js',
+        'assets/plugins/notify/js/jquery.growl.js',
+        'assets/plugins/notify/js/notifIt.js',
+        'assets/js/custom-switcher.js',
+        'assets/js/custom.js',
+        'js/custom.js',
+        'assets/switcher/js/switcher.js',
+        'assets/js/tooltip.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

@@ -38,6 +38,13 @@ body .select2-container {
 }
 /*end custom*/
 
+/*custom css for gridview*/
+#crud-datatable-filters{
+	display: none;
+}
+
+/*end custom css for gridview*/
+
 main > .container {
     padding: 70px 15px 20px;
 }
