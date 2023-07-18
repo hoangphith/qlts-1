@@ -4,7 +4,7 @@ namespace app\modules\bophan\controllers;
 
 use Yii;
 use app\modules\bophan\models\NhanVien;
-use app\modules\bophan\NhanVienSearch;
+use app\modules\bophan\models\NhanVienSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -48,7 +48,12 @@ class NhanVienController extends Controller
     public function actionIndex()
     {    
         $searchModel = new NhanVienSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if ($searchModel->load(Yii::$app->request->post())) {
+            $searchModel = new NhanVienSearch(); // "reset"
+            $dataProvider = $searchModel->search(Yii::$app->request->post());
+        } else {
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,

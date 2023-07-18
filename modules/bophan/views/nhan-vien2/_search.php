@@ -11,8 +11,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin([
         	'id'=>'myFilterForm',
-            'action' => ['index'],
-            'method' => 'get'
+            'method' => 'post'
       	]); ?>
 
     <?= $form->field($model, 'ma_nhan_vien')->textInput(['maxlength' => true]) ?>
@@ -41,6 +40,7 @@ use yii\widgets\ActiveForm;
 	<?php if (!Yii::$app->request->isAjax){ ?>
 	  	<div class="form-group">
 	        <?= Html::submitButton('Tìm kiếm',['class' => 'btn btn-primary']) ?>
+	        <?= Html::resetButton('Xóa tìm kiếm', ['class' => 'btn btn-outline-secondary']) ?>
 	    </div>
 	<?php } ?>
 

@@ -22,16 +22,9 @@ class NhanVien2Controller extends Controller
      */
     public function behaviors() {
 		return [
-			/*'access' => [
-				'class' => AccessControl::className(),
-				'rules' => [
-					[
-						'actions' => ['index', 'view', 'update','create','delete','bulkdelete'],
-						'allow' => true,
-						'roles' => ['admin'],
-					],
-				],
-			],*/
+			'ghost-access'=> [
+                'class'=>'app\modules\user\components\GhostAccessControl',
+            ],
 			'verbs' => [
 				'class' => VerbFilter::className(),
 				'actions' => [
@@ -48,8 +41,12 @@ class NhanVien2Controller extends Controller
     public function actionIndex()
     {    
         $searchModel = new NhanVien2Search();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+  		if ($searchModel->load(Yii::$app->request->post())) {
+            $searchModel = new NhanVien2Search(); // "reset"
+            $dataProvider = $searchModel->search(Yii::$app->request->post());
+        } else {
+        	$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		}
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

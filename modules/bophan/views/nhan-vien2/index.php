@@ -17,6 +17,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 CrudAsset::register($this);
 
+Yii::$app->params['showSearch'] = true;
+Yii::$app->params['showExport'] = true;
+
 ?>
 
 <?php Pjax::begin([
@@ -57,7 +60,7 @@ CrudAsset::register($this);
                             'buttons'=>Html::a('<i class="fas fa fa-trash" aria-hidden="true"></i>&nbsp; Xóa đã chọn',
                                 ["bulkdelete"] ,
                                 [
-                                    "class"=>"btn btn-sm btn-outline-danger",
+                                    'class'=>'btn ripple btn-secondary',
                                     'role'=>'modal-remote-bulk',
                                     'data-confirm'=>false, 'data-method'=>false,// for overide yii data api
                                     'data-request-method'=>'post',
@@ -88,5 +91,5 @@ CrudAsset::register($this);
 
 <?php
     $searchContent = $this->render("_search", ["model" => $searchModel]);
-    echo FilterFormWidget::widget(["content"=>$searchContent]) 
+    echo FilterFormWidget::widget(["content"=>$searchContent, "description"=>"Nhập thông tin tìm kiếm."]) 
 ?>

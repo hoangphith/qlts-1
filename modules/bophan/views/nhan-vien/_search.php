@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var app\modules\bophan\models\NhanVien3Search $model */
+/** @var app\modules\bophan\models\NhanVien2Search $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
@@ -12,8 +12,8 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin([
         'id'=>'myFilterForm',
-        'action' => ['index'],
-        'method' => 'get',
+        //'action' => ['index'],
+        'method' => 'post',
     ]); ?>
 
     <?= $form->field($model, 'id') ?>
@@ -41,8 +41,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'nguoi_tao') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton('Tìm kiếm', ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('Xóa tìm kiếm', ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
