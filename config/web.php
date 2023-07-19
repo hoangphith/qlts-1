@@ -13,14 +13,23 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'modules'=>[
-        'gridview' =>  [
-            'class' => '\kartik\grid\Module'
-        ],
         'bophan' => [
             'class' => 'app\modules\bophan\Module',
         ],
+        'taisan' => [
+            'class' => 'app\modules\taisan\Module',
+        ],
+        'kholuutru' => [
+            'class' => 'app\modules\kholuutru\Module',
+        ],
+        'baotri' => [
+            'class' => 'app\modules\baotri\Module',
+        ],
         'user' => [
             'class' => 'app\modules\user\UserModule',
+        ],
+        'dungchung' => [
+            'class' => 'app\modules\dungchung\Module',
         ],
         'user-management' => [
             'class' => 'webvimark\modules\UserManagement\UserManagementModule',
@@ -47,6 +56,9 @@ $config = [
                     $event->action->controller->layout = '\loginLayout.php';
                 };
             },
+         ],
+         'gridview' =>  [
+             'class' => '\kartik\grid\Module'
          ],
     ],
     'components' => [
