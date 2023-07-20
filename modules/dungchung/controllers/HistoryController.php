@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\bophan\controllers;
+namespace app\modules\dungchung\controllers;
 
 use Yii;
-use app\modules\bophan\models\NhanVien;
-use app\modules\bophan\models\NhanVienSearch;
+use app\modules\dungchung\models\History;
+use app\modules\dungchung\models\HistorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -13,25 +13,18 @@ use yii\helpers\Html;
 use yii\filters\AccessControl;
 
 /**
- * NhanVienController implements the CRUD actions for NhanVien model.
+ * HistoryController implements the CRUD actions for History model.
  */
-class NhanVienController extends Controller
+class HistoryController extends Controller
 {
     /**
      * @inheritdoc
      */
     public function behaviors() {
 		return [
-			/*'access' => [
-				'class' => AccessControl::className(),
-				'rules' => [
-					[
-						'actions' => ['index', 'view', 'update','create','delete','bulkdelete'],
-						'allow' => true,
-						'roles' => ['admin'],
-					],
-				],
-			],*/
+			'ghost-access'=> [
+                'class'=>'app\modules\user\components\GhostAccessControl',
+            ],
 			'verbs' => [
 				'class' => VerbFilter::className(),
 				'actions' => [
@@ -40,28 +33,20 @@ class NhanVienController extends Controller
 			],
 		];
 	}
-	
-	public function beforeAction($action)
-	{
-	    Yii::$app->params['moduleID'] = 'Module Quản lý bộ phận';
-	    Yii::$app->params['modelID'] = 'Quản lý nhân viên';
-	    return true;
-	}
 
     /**
-     * Lists all NhanVien models.
+     * Lists all History models.
      * @return mixed
      */
     public function actionIndex()
     {    
-        $searchModel = new NhanVienSearch();
-        if ($searchModel->load(Yii::$app->request->post())) {
-            $searchModel = new NhanVienSearch(); // "reset"
+        $searchModel = new HistorySearch();
+  		if ($searchModel->load(Yii::$app->request->post())) {
+            $searchModel = new NhanVien2Search(); // "reset"
             $dataProvider = $searchModel->search(Yii::$app->request->post());
         } else {
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        }
-
+        	$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		}
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -70,7 +55,7 @@ class NhanVienController extends Controller
 
 
     /**
-     * Displays a single NhanVien model.
+     * Displays a single History model.
      * @param integer $id
      * @return mixed
      */
@@ -80,7 +65,7 @@ class NhanVienController extends Controller
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "NhanVien",
+                    'title'=> "History",
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
@@ -95,7 +80,7 @@ class NhanVienController extends Controller
     }
 
     /**
-     * Creates a new NhanVien model.
+     * Creates a new History model.
      * For ajax request will return json object
      * and for non-ajax request if creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -103,7 +88,7 @@ class NhanVienController extends Controller
     public function actionCreate()
     {
         $request = Yii::$app->request;
-        $model = new NhanVien();  
+        $model = new History();  
 
         if($request->isAjax){
             /*
@@ -112,7 +97,7 @@ class NhanVienController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Thêm mới NhanVien",
+                    'title'=> "Thêm mới History",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -123,7 +108,7 @@ class NhanVienController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Thêm mới NhanVien",
+                    'title'=> "Thêm mới History",
                     'content'=>'<span class="text-success">Thêm mới thành công</span>',
                     'tcontent'=>'Thêm mới thành công!',
                     'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
@@ -132,7 +117,7 @@ class NhanVienController extends Controller
                 ];         
             }else{           
                 return [
-                    'title'=> "Thêm mới NhanVien",
+                    'title'=> "Thêm mới History",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -157,7 +142,7 @@ class NhanVienController extends Controller
     }
 
     /**
-     * Updates an existing NhanVien model.
+     * Updates an existing History model.
      * For ajax request will return json object
      * and for non-ajax request if update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -175,7 +160,7 @@ class NhanVienController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Cập nhật NhanVien",
+                    'title'=> "Cập nhật History",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -185,7 +170,7 @@ class NhanVienController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "NhanVien",
+                    'title'=> "History",
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
@@ -195,7 +180,7 @@ class NhanVienController extends Controller
                 ];    
             }else{
                  return [
-                    'title'=> "Cập nhật NhanVien",
+                    'title'=> "Cập nhật History",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -218,7 +203,7 @@ class NhanVienController extends Controller
     }
 
     /**
-     * Delete an existing NhanVien model.
+     * Delete an existing History model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -246,7 +231,7 @@ class NhanVienController extends Controller
     }
 
      /**
-     * Delete multiple existing NhanVien model.
+     * Delete multiple existing History model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -286,15 +271,15 @@ class NhanVienController extends Controller
     }
 
     /**
-     * Finds the NhanVien model based on its primary key value.
+     * Finds the History model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return NhanVien the loaded model
+     * @return History the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = NhanVien::findOne($id)) !== null) {
+        if (($model = History::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

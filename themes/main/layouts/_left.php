@@ -4,12 +4,12 @@
 	<aside class="app-sidebar ps horizontal-main">
 		<div class="app-sidebar__header">
 			<a class="main-logo" href="index.html">
-				<img src="../assets/images/brand/logo.png" class="desktop-logo desktop-logo-dark"
+				<img src="<?= Yii::getAlias('@web') ?>/assets/images/brand/logo.png" class="desktop-logo desktop-logo-dark"
 					alt="viboonlogo">
-				<img src="../assets/images/brand/logo1.png" class="desktop-logo" alt="viboonlogo">
-				<img src="../assets/images/brand/favicon.png" class="mobile-logo mobile-logo-dark"
+				<img src="<?= Yii::getAlias('@web') ?>/assets/images/brand/logo1.png" class="desktop-logo" alt="viboonlogo">
+				<img src="<?= Yii::getAlias('@web') ?>/assets/images/brand/favicon.png" class="mobile-logo mobile-logo-dark"
 					alt="viboonlogo">
-				<img src="../assets/images/brand/favicon-1.png" class="mobile-logo" alt="viboonlogo">
+				<img src="<?= Yii::getAlias('@web') ?>/assets/images/brand/favicon-1.png" class="mobile-logo" alt="viboonlogo">
 			</a>
 		</div>
 		<div class="main-sidemenu">
@@ -107,7 +107,7 @@
 													<div class="d-flex align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/male/2.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/2.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -122,7 +122,7 @@
 													<div class="d-flex align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/female/11.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/11.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -137,7 +137,7 @@
 													<div class="d-flex align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/female/5.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -155,7 +155,7 @@
 									<div class="tab-pane" id="side2">
 										<h5 class="mt-3 text-defeult">Activity</h5>
 										<div class="activity mt-3">
-											<img src="../assets/images/users/female/1.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/1.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -164,7 +164,7 @@
 													<small class="text-muted ">30 mins ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/male/1.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/1.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -173,7 +173,7 @@
 													<small class="text-muted ">1 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/10.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/10.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -182,7 +182,7 @@
 													<small class="text-muted ">3 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/4.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/4.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -191,7 +191,7 @@
 													<small class="text-muted ">5 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/male/5.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/5.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -200,7 +200,7 @@
 													<small class="text-muted ">30 mins ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/6.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/6.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -209,7 +209,7 @@
 													<small class="text-muted ">1 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/7.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/7.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -218,7 +218,7 @@
 													<small class="text-muted ">3 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/8.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/8.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -340,7 +340,7 @@
 													<div class="d-flex align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/male/2.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/2.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -355,7 +355,7 @@
 													<div class="d-flex align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/female/11.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/11.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -370,7 +370,7 @@
 													<div class="d-flex align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/female/5.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -388,7 +388,7 @@
 									<div class="tab-pane" id="side4">
 										<h5 class="mt-3 text-defeult">Activity</h5>
 										<div class="activity mt-3">
-											<img src="../assets/images/users/female/1.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/1.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -397,7 +397,7 @@
 													<small class="text-muted ">30 mins ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/male/1.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/1.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -406,7 +406,7 @@
 													<small class="text-muted ">1 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/10.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/10.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -415,7 +415,7 @@
 													<small class="text-muted ">3 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/4.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/4.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -424,7 +424,7 @@
 													<small class="text-muted ">5 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/male/5.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/5.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -433,7 +433,7 @@
 													<small class="text-muted ">30 mins ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/6.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/6.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -442,7 +442,7 @@
 													<small class="text-muted ">1 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/7.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/7.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -451,7 +451,7 @@
 													<small class="text-muted ">3 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/8.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/8.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -555,7 +555,7 @@
 													<div class="d-flex align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/male/2.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/2.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -570,7 +570,7 @@
 													<div class="d-flex align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/female/11.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/11.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -585,7 +585,7 @@
 													<div class="d-flex align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/female/5.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -603,7 +603,7 @@
 									<div class="tab-pane" id="side6">
 										<h5 class="my-4 px-1 text-defeult">Activity</h5>
 										<div class="activity mt-3">
-											<img src="../assets/images/users/female/1.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/1.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -612,7 +612,7 @@
 													<small class="text-muted ">30 mins ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/2.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/2.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -621,7 +621,7 @@
 													<small class="text-muted ">1 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/3.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/3.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -630,7 +630,7 @@
 													<small class="text-muted ">3 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/4.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/4.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -639,7 +639,7 @@
 													<small class="text-muted ">5 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/5.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -648,7 +648,7 @@
 													<small class="text-muted ">30 mins ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/6.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/6.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -657,7 +657,7 @@
 													<small class="text-muted ">1 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/7.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/7.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -666,7 +666,7 @@
 													<small class="text-muted ">3 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/8.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/8.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -800,7 +800,7 @@
 													<div class="d-flex align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/male/2.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/2.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -815,7 +815,7 @@
 													<div class="d-flex align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/female/11.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/11.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -830,7 +830,7 @@
 													<div class="d-flex align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/female/5.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -848,7 +848,7 @@
 									<div class="tab-pane" id="side8">
 										<h5 class="my-4 px-1 text-defeult">Activity</h5>
 										<div class="activity mt-3">
-											<img src="../assets/images/users/female/1.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/1.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -857,7 +857,7 @@
 													<small class="text-muted ">30 mins ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/2.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/2.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -866,7 +866,7 @@
 													<small class="text-muted ">1 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/3.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/3.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -875,7 +875,7 @@
 													<small class="text-muted ">3 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/4.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/4.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -884,7 +884,7 @@
 													<small class="text-muted ">5 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/5.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -893,7 +893,7 @@
 													<small class="text-muted ">30 mins ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/6.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/6.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -902,7 +902,7 @@
 													<small class="text-muted ">1 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/7.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/7.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -911,7 +911,7 @@
 													<small class="text-muted ">3 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/8.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/8.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1152,7 +1152,7 @@
 													<div class="d-flex  align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/male/2.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/2.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -1167,7 +1167,7 @@
 													<div class="d-flex  align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/female/11.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/11.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -1182,7 +1182,7 @@
 													<div class="d-flex  align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/female/5.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -1200,7 +1200,7 @@
 									<div class="tab-pane" id="side10">
 										<h5 class="my-4 px-1 text-defeult">Activity</h5>
 										<div class="activity mt-3">
-											<img src="../assets/images/users/female/1.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/1.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1209,7 +1209,7 @@
 													<small class="text-muted ">30 mins ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/2.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/2.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1218,7 +1218,7 @@
 													<small class="text-muted ">1 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/3.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/3.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1227,7 +1227,7 @@
 													<small class="text-muted ">3 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/4.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/4.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1236,7 +1236,7 @@
 													<small class="text-muted ">5 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/5.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1245,7 +1245,7 @@
 													<small class="text-muted ">30 mins ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/6.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/6.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1254,7 +1254,7 @@
 													<small class="text-muted ">1 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/7.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/7.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1263,7 +1263,7 @@
 													<small class="text-muted ">3 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/8.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/8.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1384,7 +1384,7 @@
 													<div class="d-flex  align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/male/2.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/2.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -1398,7 +1398,7 @@
 													<div class="d-flex  align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/female/11.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/11.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -1413,7 +1413,7 @@
 													<div class="d-flex  align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/female/5.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -1431,7 +1431,7 @@
 									<div class="tab-pane" id="side12">
 										<h5 class="my-4 px-1 text-defeult">Activity</h5>
 										<div class="activity mt-3">
-											<img src="../assets/images/users/female/1.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/1.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1440,7 +1440,7 @@
 													<small class="text-muted ">30 mins ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/2.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/2.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1449,7 +1449,7 @@
 													<small class="text-muted ">1 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/3.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/3.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1458,7 +1458,7 @@
 													<small class="text-muted ">3 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/4.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/4.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1467,7 +1467,7 @@
 													<small class="text-muted ">5 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/5.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1476,7 +1476,7 @@
 													<small class="text-muted ">30 mins ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/6.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/6.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1485,7 +1485,7 @@
 													<small class="text-muted ">1 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/7.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/7.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1494,7 +1494,7 @@
 													<small class="text-muted ">3 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/8.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/8.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1621,7 +1621,7 @@
 													<div class="d-flex  align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/male/2.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/2.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -1635,7 +1635,7 @@
 													<div class="d-flex  align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/female/11.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/11.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -1650,7 +1650,7 @@
 													<div class="d-flex  align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/female/5.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -1668,7 +1668,7 @@
 									<div class="tab-pane" id="side14">
 										<h5 class="my-4 px-1 text-defeult">Activity</h5>
 										<div class="activity mt-3">
-											<img src="../assets/images/users/female/1.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/1.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1677,7 +1677,7 @@
 													<small class="text-muted ">30 mins ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/2.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/2.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1686,7 +1686,7 @@
 													<small class="text-muted ">1 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/3.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/3.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1695,7 +1695,7 @@
 													<small class="text-muted ">3 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/4.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/4.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1704,7 +1704,7 @@
 													<small class="text-muted ">5 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/5.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1713,7 +1713,7 @@
 													<small class="text-muted ">30 mins ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/6.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/6.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1722,7 +1722,7 @@
 													<small class="text-muted ">1 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/7.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/7.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1731,7 +1731,7 @@
 													<small class="text-muted ">3 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/8.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/8.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1867,7 +1867,7 @@
 													<div class="d-flex  align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/male/2.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/2.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -1881,7 +1881,7 @@
 													<div class="d-flex  align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/female/11.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/11.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -1896,7 +1896,7 @@
 													<div class="d-flex  align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/female/5.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -1914,7 +1914,7 @@
 									<div class="tab-pane" id="side16">
 										<h5 class="my-4 px-1 text-defeult">Activity</h5>
 										<div class="activity mt-3">
-											<img src="../assets/images/users/female/1.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/1.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1923,7 +1923,7 @@
 													<small class="text-muted ">30 mins ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/2.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/2.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1932,7 +1932,7 @@
 													<small class="text-muted ">1 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/3.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/3.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1941,7 +1941,7 @@
 													<small class="text-muted ">3 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/4.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/4.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1950,7 +1950,7 @@
 													<small class="text-muted ">5 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/5.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1959,7 +1959,7 @@
 													<small class="text-muted ">30 mins ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/6.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/6.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1968,7 +1968,7 @@
 													<small class="text-muted ">1 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/7.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/7.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -1977,7 +1977,7 @@
 													<small class="text-muted ">3 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/8.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/8.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -2092,7 +2092,7 @@
 													<div class="d-flex  align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/male/2.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/2.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -2106,7 +2106,7 @@
 													<div class="d-flex  align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/female/11.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/11.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -2121,7 +2121,7 @@
 													<div class="d-flex  align-items-center border-bottom-0">
 														<div class="me-3 mb-2">
 															<span class="avatar rounded-circle cover-image"
-																data-bs-image-src="../assets/images/users/female/5.jpg">
+																data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg">
 																<span class="avatar-status bg-green"></span>
 															</span>
 														</div>
@@ -2139,7 +2139,7 @@
 									<div class="tab-pane" id="side18">
 										<h5 class="my-4 px-1 text-defeult">Activity</h5>
 										<div class="activity mt-3">
-											<img src="../assets/images/users/female/1.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/1.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -2148,7 +2148,7 @@
 													<small class="text-muted ">30 mins ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/2.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/2.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -2157,7 +2157,7 @@
 													<small class="text-muted ">1 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/3.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/3.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -2166,7 +2166,7 @@
 													<small class="text-muted ">3 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/4.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/4.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -2175,7 +2175,7 @@
 													<small class="text-muted ">5 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/5.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -2184,7 +2184,7 @@
 													<small class="text-muted ">30 mins ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/6.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/6.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -2193,7 +2193,7 @@
 													<small class="text-muted ">1 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/7.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/7.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">
@@ -2202,7 +2202,7 @@
 													<small class="text-muted ">3 days ago</small>
 												</div>
 											</div>
-											<img src="../assets/images/users/female/8.jpg" alt=""
+											<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/8.jpg" alt=""
 												class="img-activity">
 											<div class="time-activity">
 												<div class="item-activity">

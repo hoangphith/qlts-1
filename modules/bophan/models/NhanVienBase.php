@@ -4,9 +4,11 @@ namespace app\modules\bophan\models;
 
 use Yii;
 use app\models\TsNhanVien as NhanVienModel;
+use app\modules\dungchung\models\History;
 
 class NhanVienBase extends NhanVienModel
 {
+    const MODEL_ID = 'nhanvien';
     /**
      * {@inheritdoc}
      */
@@ -31,17 +33,17 @@ class NhanVienBase extends NhanVienModel
     {
         return [
             'id' => 'ID',
-            'ma_nhan_vien' => 'Ma Nhan Vien',
-            'ten_nhan_vien' => 'Ten Nhan Vien',
-            'ngay_sinh' => 'Ngay Sinh',
-            'gioi_tinh' => 'Gioi Tinh',
-            'ten_truy_cap' => 'Ten Truy Cap',
-            'da_thoi_viec' => 'Da Thoi Viec',
-            'dien_thoai' => 'Dien Thoai',
+            'ma_nhan_vien' => 'Mã nhân viên',
+            'ten_nhan_vien' => 'Tên nhân viên',
+            'ngay_sinh' => 'Ngày sinh',
+            'gioi_tinh' => 'Giới tính',
+            'ten_truy_cap' => 'Tên truy cập',
+            'da_thoi_viec' => 'Đã thôi việc',
+            'dien_thoai' => 'Điện thoại',
             'email' => 'Email',
-            'dia_chi' => 'Dia Chi',
-            'thoi_gian_tao' => 'Thoi Gian Tao',
-            'nguoi_tao' => 'Nguoi Tao',
+            'dia_chi' => 'Địa chỉ',
+            'thoi_gian_tao' => 'Thời gian tạo',
+            'nguoi_tao' => 'Người tạo',
         ];
     }
     /**
@@ -53,5 +55,17 @@ class NhanVienBase extends NhanVienModel
             $this->nguoi_tao = Yii::$app->user->isGuest ? '' : Yii::$app->user->id;
         }
         return parent::beforeSave($insert);
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function afterSave( $insert, $changedAttributes ){
+        parent::afterSave($insert, $changedAttributes);
+        $isNew = true;
+        if(!$insert){
+            $isNew = false;
+        }
+        History::addNewHistory($this::MODEL_ID, $changedAttributes, $this, $isNew);
     }
 }

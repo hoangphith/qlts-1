@@ -29,7 +29,7 @@
 											class="d-flex align-items-center flex-grow-1 overflow-hidden position-relative">
 											<a href="javascript:void(0);" class="stretched-link"></a>
 											<div class="me-2 min-w-fit-content">
-												<img src="../assets/images/users/female/5.jpg" alt="img"
+												<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg" alt="img"
 													class="avatar avatar-sm main-img-user cover-image">
 											</div>
 											<div class="flex-grow-1">
@@ -50,7 +50,7 @@
 											class="d-flex align-items-center flex-grow-1 overflow-hidden position-relative">
 											<a href="javascript:void(0);" class="stretched-link"></a>
 											<div class="me-2 min-w-fit-content">
-												<img src="../assets/images/users/male/12.jpg" alt="img"
+												<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/12.jpg" alt="img"
 													class="avatar avatar-sm main-img-user cover-image">
 											</div>
 											<div class="flex-grow-1">
@@ -71,7 +71,7 @@
 											class="d-flex align-items-center flex-grow-1 overflow-hidden position-relative">
 											<a href="javascript:void(0);" class="stretched-link"></a>
 											<div class="me-2 min-w-fit-content">
-												<img src="../assets/images/users/female/10.jpg" alt="img"
+												<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/10.jpg" alt="img"
 													class="avatar avatar-sm main-img-user cover-image">
 											</div>
 											<div class="flex-grow-1">
@@ -92,7 +92,7 @@
 											class="d-flex align-items-center flex-grow-1 overflow-hidden position-relative">
 											<a href="javascript:void(0);" class="stretched-link"></a>
 											<div class="me-2 min-w-fit-content">
-												<img src="../assets/images/users/male/17.jpg" alt="img"
+												<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/17.jpg" alt="img"
 													class="avatar avatar-sm main-img-user cover-image">
 											</div>
 											<div class="flex-grow-1">
@@ -113,7 +113,7 @@
 											class="d-flex align-items-center flex-grow-1 overflow-hidden position-relative">
 											<a href="javascript:void(0);" class="stretched-link"></a>
 											<div class="me-2 min-w-fit-content">
-												<img src="../assets/images/users/male/9.jpg" alt="img"
+												<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/9.jpg" alt="img"
 													class="avatar avatar-sm main-img-user cover-image">
 											</div>
 											<div class="flex-grow-1">
@@ -133,7 +133,7 @@
 											class="d-flex align-items-center flex-grow-1 overflow-hidden position-relative">
 											<a href="javascript:void(0);" class="stretched-link"></a>
 											<div class="me-2 min-w-fit-content">
-												<img src="../assets/images/users/male/1.jpg" alt="img"
+												<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/1.jpg" alt="img"
 													class="avatar avatar-sm main-img-user cover-image">
 											</div>
 											<div class="flex-grow-1">
@@ -154,7 +154,7 @@
 											class="d-flex align-items-center flex-grow-1 overflow-hidden position-relative">
 											<a href="javascript:void(0);" class="stretched-link"></a>
 											<div class="me-2 min-w-fit-content">
-												<img src="../assets/images/users/male/12.jpg" alt="img"
+												<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/12.jpg" alt="img"
 													class="avatar avatar-sm main-img-user cover-image">
 											</div>
 											<div class="flex-grow-1">
@@ -175,7 +175,7 @@
 											class="d-flex align-items-center flex-grow-1 overflow-hidden position-relative">
 											<a href="javascript:void(0);" class="stretched-link"></a>
 											<div class="me-2 min-w-fit-content">
-												<img src="../assets/images/users/female/10.jpg" alt="img"
+												<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/10.jpg" alt="img"
 													class="avatar avatar-sm main-img-user cover-image">
 											</div>
 											<div class="flex-grow-1">
@@ -196,7 +196,7 @@
 											class="d-flex align-items-center flex-grow-1 overflow-hidden position-relative">
 											<a href="javascript:void(0);" class="stretched-link"></a>
 											<div class="me-2 min-w-fit-content">
-												<img src="../assets/images/users/male/4.jpg" alt="img"
+												<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/4.jpg" alt="img"
 													class="avatar avatar-sm main-img-user cover-image">
 											</div>
 											<div class="flex-grow-1">
@@ -217,7 +217,7 @@
 											class="d-flex align-items-center flex-grow-1 overflow-hidden position-relative">
 											<a href="javascript:void(0);" class="stretched-link"></a>
 											<div class="me-2 min-w-fit-content">
-												<img src="../assets/images/users/female/6.jpg" alt="img"
+												<img src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/6.jpg" alt="img"
 													class="avatar avatar-sm main-img-user cover-image">
 											</div>
 											<div class="flex-grow-1">
@@ -240,7 +240,7 @@
 							<div class="d-flex px-0 py-2">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/female/1.jpg"><span
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/1.jpg"><span
 											class="avatar-status"></span></span>
 								</div>
 								<div class="">
@@ -257,7 +257,7 @@
 							<div class="d-flex px-0 py-2">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/female/27.jpg"><span
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/27.jpg"><span
 											class="avatar-status bg-success"></span></span>
 								</div>
 								<div class="">
@@ -274,7 +274,7 @@
 							<div class="d-flex px-0 py-2">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/male/27.jpg"><span
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/27.jpg"><span
 											class="avatar-status"></span></span>
 								</div>
 								<div class="">
@@ -292,7 +292,7 @@
 							<div class="d-flex px-0 py-2">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/female/28.jpg"><span
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/28.jpg"><span
 											class="avatar-status"></span></span>
 								</div>
 								<div class="">
@@ -308,7 +308,7 @@
 							<div class="d-flex px-0 py-2">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/male/4.jpg"><span
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/4.jpg"><span
 											class="avatar-status bg-success"></span></span>
 								</div>
 								<div class="">
@@ -325,7 +325,7 @@
 							<div class="d-flex px-0 py-2">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/female/5.jpg"><span
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg"><span
 											class="avatar-status bg-success"></span></span>
 								</div>
 								<div class="">
@@ -343,7 +343,7 @@
 							<div class="d-flex px-0 py-2">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/male/6.jpg"><span
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/6.jpg"><span
 											class="avatar-status"></span></span>
 								</div>
 								<div class="">
@@ -360,7 +360,7 @@
 							<div class="d-flex px-0 py-2">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/female/7.jpg"><span
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/7.jpg"><span
 											class="avatar-status bg-success"></span></span>
 								</div>
 								<div class="">
@@ -376,7 +376,7 @@
 							<div class="d-flex px-0 py-2">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/male/8.jpg"><span
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/8.jpg"><span
 											class="avatar-status bg-success"></span></span>
 								</div>
 								<div class="">
@@ -394,7 +394,7 @@
 							<div class="d-flex px-0 py-2">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/female/9.jpg"><span
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/9.jpg"><span
 											class="avatar-status bg-success"></span></span>
 								</div>
 								<div class="">
@@ -410,7 +410,7 @@
 							<div class="d-flex px-0 py-2">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/male/10.jpg"><span
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/10.jpg"><span
 											class="avatar-status"></span></span>
 								</div>
 								<div class="">
@@ -428,7 +428,7 @@
 							<div class="d-flex px-0 py-2">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/female/11.jpg"><span
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/11.jpg"><span
 											class="avatar-status bg-success"></span></span>
 								</div>
 								<div class="">
@@ -445,7 +445,7 @@
 							<div class="d-flex px-0 py-2">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/male/12.jpg"><span
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/12.jpg"><span
 											class="avatar-status"></span></span>
 								</div>
 								<div class="">
@@ -461,7 +461,7 @@
 							<div class="d-flex px-0 py-2">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/male/1.jpg"><span
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/1.jpg"><span
 											class="avatar-status bg-success"></span></span>
 								</div>
 								<div class="">
@@ -481,7 +481,7 @@
 							<div class="d-flex px-0 py-2 ">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/female/1.jpg"></span>
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/1.jpg"></span>
 								</div>
 								<div class="">
 									<a href="chat.html">
@@ -495,7 +495,7 @@
 							<div class="d-flex px-0 py-2 ">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/female/12.jpg"></span>
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/12.jpg"></span>
 								</div>
 								<div class="">
 									<a href="chat.html">
@@ -510,7 +510,7 @@
 							<div class="d-flex px-0 py-2 ">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/male/2.jpg"></span>
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/2.jpg"></span>
 								</div>
 								<div class="">
 									<a href="chat.html">
@@ -524,7 +524,7 @@
 							<div class="d-flex px-0 py-2 ">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/female/11.jpg"></span>
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/11.jpg"></span>
 								</div>
 								<div class="">
 									<a href="chat.html">
@@ -539,7 +539,7 @@
 							<div class="d-flex px-0 py-2 ">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/male/27.jpg"></span>
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/27.jpg"></span>
 								</div>
 								<div class="">
 									<a href="chat.html">
@@ -553,7 +553,7 @@
 							<div class="d-flex px-0 py-2 ">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/female/10.jpg"></span>
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/10.jpg"></span>
 								</div>
 								<div class="">
 									<a href="chat.html">
@@ -568,7 +568,7 @@
 							<div class="d-flex px-0 py-2 ">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/male/4.jpg"></span>
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/4.jpg"></span>
 								</div>
 								<div class="">
 									<a href="chat.html">
@@ -582,7 +582,7 @@
 							<div class="d-flex px-0 py-2 ">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/female/9.jpg"></span>
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/9.jpg"></span>
 								</div>
 								<div class="">
 									<a href="chat.html">
@@ -597,7 +597,7 @@
 							<div class="d-flex px-0 py-2 ">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/female/5.jpg"></span>
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg"></span>
 								</div>
 								<div class="">
 									<a href="chat.html">
@@ -612,7 +612,7 @@
 							<div class="d-flex px-0 py-2 ">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/male/8.jpg"></span>
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/8.jpg"></span>
 								</div>
 								<div class="">
 									<a href="chat.html">
@@ -626,7 +626,7 @@
 							<div class="d-flex px-0 py-2 ">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/female/6.jpg"></span>
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/6.jpg"></span>
 								</div>
 								<div class="">
 									<a href="chat.html">
@@ -640,7 +640,7 @@
 							<div class="d-flex px-0 py-2 ">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/male/7.jpg"></span>
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/7.jpg"></span>
 								</div>
 								<div class="">
 									<a href="chat.html">
@@ -655,7 +655,7 @@
 							<div class="d-flex px-0 py-2 ">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/female/4.jpg"></span>
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/4.jpg"></span>
 								</div>
 								<div class="">
 									<a href="chat.html">
@@ -670,7 +670,7 @@
 							<div class="d-flex px-0 py-2 ">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/female/10.jpg"></span>
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/10.jpg"></span>
 								</div>
 								<div class="">
 									<a href="chat.html">
@@ -685,7 +685,7 @@
 							<div class="d-flex px-0 py-2 ">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/male/27.jpg"></span>
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/27.jpg"></span>
 								</div>
 								<div class="">
 									<a href="chat.html">
@@ -700,7 +700,7 @@
 							<div class="d-flex px-0 py-2 ">
 								<div class="me-2">
 									<span class="avatar avatar-sm main-img-user cover-image"
-										data-bs-image-src="../assets/images/users/female/5.jpg"></span>
+										data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg"></span>
 								</div>
 								<div class="">
 									<a href="chat.html">

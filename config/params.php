@@ -7,4 +7,6 @@ return [
     'bsVersion' => '5.x',
     'showSearch' => false,
     'showExport' => false,
+    'moduleID' => '',
+    'modelID' =>''
 ];

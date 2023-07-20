@@ -50,10 +50,10 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             			<!-- Page Header -->
             			<div class="page-header">
             				<div>
-            					<h2 class="main-content-title tx-20 mg-b-5">Empty Page</h2>
+            					<h2 class="main-content-title tx-20 mg-b-5"><?= $this->title ?></h2>
             					<ol class="breadcrumb">
-            						<li class="breadcrumb-item"><a href="javascript:void(0);">Pages</a></li>
-            						<li class="breadcrumb-item active" aria-current="page">Empty Page</li>
+            						<li class="breadcrumb-item"><a href="javascript:void(0);"><?= Yii::$app->params['moduleID'] ?></a></li>
+            						<li class="breadcrumb-item active" aria-current="page"><?= Yii::$app->params['modelID'] ?></li>
             					</ol>
             				</div>
             				<div class="d-flex">

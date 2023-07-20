@@ -110,7 +110,7 @@
 										<a href="product-cart.html" class="cart-link"></a>
 										<div>
 											<span class="avatar br-5 align-self-center cover-image"
-												data-bs-image-src="../assets/images/products/3.jpg"></span>
+												data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/products/3.jpg"></span>
 										</div>
 										<div class="ms-3">
 											<p class="mb-0 tx-14 text-dark fw-medium">Flower Pot</p>
@@ -128,7 +128,7 @@
 										<a href="product-cart.html" class="cart-link"></a>
 										<div>
 											<span class="avatar br-5 align-self-center cover-image"
-												data-bs-image-src="../assets/images/products/5.jpg"></span>
+												data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/products/5.jpg"></span>
 										</div>
 										<div class="ms-3">
 											<p class="mb-0 tx-14 text-dark fw-medium">Digital Camera </p>
@@ -147,7 +147,7 @@
 										<a href="product-cart.html" class="cart-link"></a>
 										<div>
 											<span class="avatar br-5 align-self-center cover-image"
-												data-bs-image-src="../assets/images/products/1.jpg"></span>
+												data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/products/1.jpg"></span>
 										</div>
 										<div class="ms-3">
 											<p class="mb-0 tx-14 text-dark fw-medium">Women Party Wear Dress
@@ -167,7 +167,7 @@
 										<a href="product-cart.html" class="cart-link"></a>
 										<div>
 											<span class="avatar br-5 align-self-center cover-image"
-												data-bs-image-src="../assets/images/products/7.jpg"></span>
+												data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/products/7.jpg"></span>
 										</div>
 										<div class="ms-3">
 											<p class="mb-0 tx-14 text-dark fw-medium">Stylish Ear Pods</p>
@@ -185,7 +185,7 @@
 										<a href="product-cart.html" class="cart-link"></a>
 										<div>
 											<span class="avatar br-5 align-self-center cover-image"
-												data-bs-image-src="../assets/images/products/4.jpg"></span>
+												data-bs-image-src="<?= Yii::getAlias('@web') ?>/assets/images/products/4.jpg"></span>
 										</div>
 										<div class="ms-3">
 											<p class="mb-0 tx-14 text-dark fw-medium">Men's Shirt</p>
@@ -232,7 +232,7 @@
 								<div class="header-dropdown-list notification-list">
 									<a href="view-mail.html" class="dropdown-item d-flex border-bottom pb-1">
 										<div class="main-img-user online"><img alt="avatar"
-												src="../assets/images/users/female/5.jpg">
+												src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg">
 										</div>
 										<div class="media-body ms-2">
 											<p class="mb-1">Congratulate <strong>Olivia James</strong> For
@@ -242,7 +242,7 @@
 									</a>
 									<a href="view-mail.html" class="dropdown-item d-flex border-bottom pb-1">
 										<div class="main-img-user online"><img alt="avatar"
-												src="../assets/images/users/male/12.jpg">
+												src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/12.jpg">
 										</div>
 										<div class="media-body ms-2">
 											<p class="mb-1"><strong>Joshua Gray</strong> New Message
@@ -252,7 +252,7 @@
 									</a>
 									<a href="view-mail.html" class="dropdown-item d-flex border-bottom pb-1">
 										<div class="main-img-user online"><img alt="avatar"
-												src="../assets/images/users/female/8.jpg">
+												src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/8.jpg">
 										</div>
 										<div class="media-body ms-2">
 											<p class="mb-1"><strong>Elizabeth Lewis</strong> added new
@@ -262,7 +262,7 @@
 									</a>
 									<a href="view-mail.html" class="dropdown-item d-flex border-bottom pb-1">
 										<div class="main-img-user online"><img alt="avatar"
-												src="../assets/images/users/male/4.jpg">
+												src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/4.jpg">
 										</div>
 										<div class="media-body ms-2">
 											<p class="mb-1"><strong>Sonia Fraser</strong> Nemo enim
@@ -272,7 +272,7 @@
 									</a>
 									<a href="view-mail.html" class="dropdown-item d-flex pb-1">
 										<div class="main-img-user online"><img alt="avatar"
-												src="../assets/images/users/male/8.jpg">
+												src="<?= Yii::getAlias('@web') ?>/assets/images/users/male/8.jpg">
 										</div>
 										<div class="media-body ms-2">
 											<p class="mb-1"><strong>Kevin James</strong> simply dummy text
@@ -346,7 +346,7 @@
 
 							<a class="main-img-user d-flex" href="javascript:void(0);"
 								data-bs-toggle="dropdown">
-								<img alt="avatar" src="../assets/images/users/female/1.jpg">
+								<img alt="avatar" src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/1.jpg">
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-arrow">
