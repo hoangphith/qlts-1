@@ -66,6 +66,6 @@ class NhanVienBase extends NhanVienModel
         if(!$insert){
             $isNew = false;
         }
-        History::addNewHistory($this::MODEL_ID, $changedAttributes, $this, $isNew);
+        History::addHistory($this::MODEL_ID, $changedAttributes, $this, $isNew);
     }
 }

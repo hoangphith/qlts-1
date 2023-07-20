@@ -18,8 +18,8 @@ class NhanVien2Search extends NhanVien
     public function rules()
     {
         return [
-            [['id', 'nguoi_tao'], 'integer'],
-            [['ma_nhan_vien', 'ten_nhan_vien', 'ngay_sinh', 'gioi_tinh', 'ten_truy_cap', 'da_thoi_viec', 'dien_thoai', 'email', 'dia_chi', 'thoi_gian_tao'], 'safe'],
+            [['id', 'id_bo_phan', 'nguoi_tao'], 'integer'],
+            [['ma_nhan_vien', 'ten_nhan_vien', 'ngay_sinh', 'gioi_tinh', 'ten_truy_cap', 'ngay_vao_lam', 'da_thoi_viec', 'dien_thoai', 'email', 'dia_chi', 'thoi_gian_tao'], 'safe'],
         ];
     }
 
@@ -57,6 +57,8 @@ class NhanVien2Search extends NhanVien
 
         $query->andFilterWhere([
             'id' => $this->id,
+            'id_bo_phan' => $this->id_bo_phan,
+            'ngay_vao_lam' => $this->ngay_vao_lam,
             'thoi_gian_tao' => $this->thoi_gian_tao,
             'nguoi_tao' => $this->nguoi_tao,
         ]);

@@ -9,7 +9,7 @@ class History extends HistoryBase
     /**
      * save history
      */
-    public static function addNewHistory($type, $atr, $mod, $isNew){
+    public static function addHistory($type, $atr, $mod, $isNew){
         $noiDung = '';
         if($isNew == false){
             foreach ($atr as $key=>$value){

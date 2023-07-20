@@ -1,4 +1,8 @@
-   
+/**
+ * ham hien thi notify
+ * tham so truyen vao: text can hien thi
+ * [su dung trong ajax crud]
+ */
 function showNotif(mess){
     return $.growl({
         style: "notice",
@@ -7,4 +11,31 @@ function showNotif(mess){
         message: mess           
     });
 }
+
+/**
+ * xu ly user khong co hanh dong nao trong khoang thoi gian
+ */
+/*function debounce(callback, timeout, _this) {
+    var timer;
+    return function(e) {
+        var _that = this;
+        if (timer)
+            clearTimeout(timer);
+        timer = setTimeout(function() { 
+            callback.call(_this || _that, e);
+        }, timeout);
+    }
+}
+
+// we'll attach the function created by "debounce" to each of the target
+// user input events; this function only fires once 2 seconds have passed
+// with no additional input; it can be attached to any number of desired
+// events
+var userAction = debounce(function(e) {
+    console.log("silence");
+}, 2000);
+
+document.addEventListener("mousemove", userAction, false);
+document.addEventListener("click", userAction, false);
+document.addEventListener("scroll", userAction, false);*/
 

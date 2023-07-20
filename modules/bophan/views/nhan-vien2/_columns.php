@@ -16,6 +16,10 @@ return [
     // ],
     [
         'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'id_bo_phan',
+    ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'ma_nhan_vien',
     ],
     [
@@ -30,10 +34,14 @@ return [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'gioi_tinh',
     ],
-    [
-        'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'ten_truy_cap',
-    ],
+    // [
+        // 'class'=>'\kartik\grid\DataColumn',
+        // 'attribute'=>'ten_truy_cap',
+    // ],
+    // [
+        // 'class'=>'\kartik\grid\DataColumn',
+        // 'attribute'=>'ngay_vao_lam',
+    // ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',
         // 'attribute'=>'da_thoi_viec',

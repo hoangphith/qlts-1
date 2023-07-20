@@ -28,51 +28,59 @@ Yii::$app->params['showExport'] = true;
     'formSelector' => '#myFilterForm'
 ]); ?>
 
-<div class="nhan-vien-index">
-    <div id="ajaxCrudDatatable">
-        <?=GridView::widget([
-            'id'=>'crud-datatable',
-            'dataProvider' => $dataProvider,
-            'filterModel' => $searchModel,
-            'pjax'=>true,
-            'columns' => require(__DIR__.'/_columns.php'),
-            'toolbar'=> [
-                ['content'=>
-                    Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i> Thêm mới', ['create'],
-                    ['role'=>'modal-remote','title'=> 'Thêm mới Nhân viên','class'=>'btn btn-outline-primary']).
-                    Html::a('<i class="fas fa fa-sync" aria-hidden="true"></i> Tải lại', [''],
-                    ['data-pjax'=>1, 'class'=>'btn btn-outline-primary', 'title'=>'Tải lại']).
-                    //'{toggleData}'.
-                    '{export}'
-                ],
-            ],          
-            'striped' => false,
-            'condensed' => true,
-            'responsive' => true,     
-            'panelHeadingTemplate'=>'{title}',
-            'panelFooterTemplate'=>'{summary}',
-            'summary'=>'Hiển thị dữ liệu {count}/{totalCount}, Trang {page}/{pageCount}',
-            'panel' => [
-                //'type' => 'primary', 
-                'heading' => '<i class="fas fa fa-list" aria-hidden="true"></i> Danh sách',
-                'before'=>'<em>* Danh sách nhân viên</em>',
-                'after'=>BulkButtonWidget::widget([
-                            'buttons'=>Html::a('<i class="fas fa fa-trash" aria-hidden="true"></i>&nbsp; Xóa đã chọn',
-                                ["bulkdelete"] ,
-                                [
-                                    //"class"=>"btn btn-sm btn-outline-danger",
-                                    'class'=>'btn ripple btn-secondary',
-                                    'role'=>'modal-remote-bulk',
-                                    'data-confirm'=>false, 'data-method'=>false,// for overide yii data api
-                                    'data-request-method'=>'post',
-                                    'data-confirm-title'=>'Xác nhận xóa?',
-                                    'data-confirm-message'=>'Bạn có chắc muốn xóa?'
-                                ]),
-                        ]).                        
-                        '<div class="clearfix"></div>',
-            ]
-        ])?>
-    </div>
+<div class="nhan-vien-index container-fluid">
+	<div class="row">
+        <div class="col-12">
+            <div id="ajaxCrudDatatable">
+                <?=GridView::widget([
+                    'id'=>'crud-datatable',
+                    'dataProvider' => $dataProvider,
+                    //'filterModel' => $searchModel,
+                    /* 'filterPosition'=>'footer',*/
+                    //'showFooter'=>true,  
+                    'pjax'=>true,
+                    'columns' => require(__DIR__.'/_columns.php'),
+                    'toolbar'=> [
+                        ['content'=>
+                            Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i> Thêm mới', ['create'],
+                            ['role'=>'modal-remote','title'=> 'Thêm mới Nhân viên','class'=>'btn btn-outline-primary']).
+                            Html::a('<i class="fas fa fa-sync" aria-hidden="true"></i> Tải lại', [''],
+                            ['data-pjax'=>1, 'class'=>'btn btn-outline-primary', 'title'=>'Tải lại']).
+                            //'{toggleData}'.
+                            '{export}'
+                        ],
+                    ],          
+                    'striped' => false,
+                    'condensed' => true,
+                    'responsive' => true,     
+                    'panelHeadingTemplate'=>'{title}',
+                    'panelFooterTemplate'=>'{summary}',
+                    'summary'=>'Hiển thị dữ liệu {count}/{totalCount}, Trang {page}/{pageCount}',
+                    'panel' => [
+                        //'type' => 'primary', 
+                        'heading' => '<i class="fas fa fa-list" aria-hidden="true"></i> Danh sách',
+                        'before'=>'<em>* Danh sách nhân viên</em>',
+                        'after'=>BulkButtonWidget::widget([
+                                    'buttons'=>Html::a('<i class="fas fa fa-trash" aria-hidden="true"></i>&nbsp; Xóa đã chọn',
+                                        ["bulkdelete"] ,
+                                        [
+                                            //"class"=>"btn btn-sm btn-outline-danger",
+                                            'class'=>'btn ripple btn-secondary',
+                                            'role'=>'modal-remote-bulk',
+                                            'data-confirm'=>false, 'data-method'=>false,// for overide yii data api
+                                            'data-request-method'=>'post',
+                                            'data-confirm-title'=>'Xác nhận xóa?',
+                                            'data-confirm-message'=>'Bạn có chắc muốn xóa?'
+                                        ]),
+                                ]).                        
+                                '<div class="clearfix"></div>',
+                    ]
+                ])?>
+            </div>
+        </div>
+        <div class="col-2">                                            
+    	</div>
+	</div>
 </div>
 
 <?php Pjax::end(); ?>

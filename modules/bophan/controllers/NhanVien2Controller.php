@@ -23,7 +23,7 @@ class NhanVien2Controller extends Controller
     public function behaviors() {
 		return [
 			'ghost-access'=> [
-			    'class' => 'webvimark\modules\UserManagement\components\GhostAccessControl',
+                'class'=>'app\modules\user\components\GhostAccessControl',
             ],
 			'verbs' => [
 				'class' => VerbFilter::className(),
