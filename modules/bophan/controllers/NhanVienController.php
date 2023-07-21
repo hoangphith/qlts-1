@@ -55,15 +55,15 @@ class NhanVienController extends Controller
     public function actionIndex()
     {    
         $searchModel = new NhanVienSearch();
-        if ($searchModel->load(Yii::$app->request->post())) {
+        
+        if(isset($_POST['search']) && $_POST['search'] != null){
+            $dataProvider = $searchModel->search(Yii::$app->request->post(), $_POST['search']);
+        } else if ($searchModel->load(Yii::$app->request->post())) {
             $searchModel = new NhanVienSearch(); // "reset"
-            if(isset(Yii::$app->request->post()['search'])){
-                $dataProvider = $searchModel->search(Yii::$app->request->post(), Yii::$app->request->post()['search']);
-            }
             $dataProvider = $searchModel->search(Yii::$app->request->post());
         } else {
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        }
+        }       
 
         return $this->render('index', [
             'searchModel' => $searchModel,

@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
 						<i class="fe fe-search"></i>
 					</span>
 				</div>
-				<input name="search" type="search" class="form-control header-search" placeholder="Search&hellip;"
+				<input name="search" type="search" class="form-control header-search" placeholder="Tìm kiếm&hellip;"
 					tabindex="1">
 			</form>
 		</div>

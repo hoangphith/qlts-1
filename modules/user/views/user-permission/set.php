@@ -29,13 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="row">
 	<div class="col-sm-4">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<strong>
-					<span class="glyphicon glyphicon-th"></span> Nhóm quyền
-				</strong>
+		<div class="expanel expanel-default">
+			<div class="expanel-heading">
+				<h3 class="expanel-title"><span class="glyphicon glyphicon-th"></span> Nhóm quyền</h3>
 			</div>
-			<div class="panel-body">
+			<div class="expanel-body">
 
 				<?= Html::beginForm(['set-roles', 'id'=>$user->id]) ?>
 
@@ -83,11 +81,9 @@ $this->params['breadcrumbs'][] = $this->title;
 	</div>
 
 	<div class="col-sm-8">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<strong>
-					<span class="glyphicon glyphicon-th"></span> Các hành động có thể thực hiện
-				</strong>
+		<div class="expanel expanel-default"">
+			<div class="expanel-heading">
+				<h3 class="expanel-title"><span class="glyphicon glyphicon-th"></span> Các hành động có thể thực hiện</h3>
 			</div>
 			<div class="panel-body">
 

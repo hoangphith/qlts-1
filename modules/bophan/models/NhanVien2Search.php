@@ -39,7 +39,7 @@ class NhanVien2Search extends NhanVien
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $cusomSearch=NULL)
     {
         $query = NhanVien::find();
 
@@ -54,8 +54,19 @@ class NhanVien2Search extends NhanVien
             // $query->where('0=1');
             return $dataProvider;
         }
-
-        $query->andFilterWhere([
+		if($cusomSearch != NULL){
+			$query->andFilterWhere ( [ 'OR' ,['like', 'ma_nhan_vien', $cusomSearch],
+            ['like', 'ten_nhan_vien', $cusomSearch],
+            ['like', 'ngay_sinh', $cusomSearch],
+            ['like', 'gioi_tinh', $cusomSearch],
+            ['like', 'ten_truy_cap', $cusomSearch],
+            ['like', 'da_thoi_viec', $cusomSearch],
+            ['like', 'dien_thoai', $cusomSearch],
+            ['like', 'email', $cusomSearch],
+            ['like', 'dia_chi', $cusomSearch]] );
+ 
+		} else {
+        	$query->andFilterWhere([
             'id' => $this->id,
             'id_bo_phan' => $this->id_bo_phan,
             'ngay_vao_lam' => $this->ngay_vao_lam,
@@ -72,7 +83,7 @@ class NhanVien2Search extends NhanVien
             ->andFilterWhere(['like', 'dien_thoai', $this->dien_thoai])
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'dia_chi', $this->dia_chi]);
-
+		}
         return $dataProvider;
     }
 }

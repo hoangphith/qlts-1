@@ -11,7 +11,10 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin([
         	'id'=>'myFilterForm',
-            'method' => 'post'
+            'method' => 'post',
+            'options' => [
+                'class' => 'myFilterForm'
+            ]
       	]); ?>
 
     <?= $form->field($model, 'id_bo_phan')->textInput() ?>
