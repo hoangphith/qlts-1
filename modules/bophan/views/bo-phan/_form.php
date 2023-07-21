@@ -5,6 +5,9 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\modules\bophan\models\BoPhan */
 /* @var $form yii\widgets\ActiveForm */
+
+//echo \yii\helpers\StringHelper::basename(get_class($model));
+//echo (new ReflectionClass($model))->getShortName();
 ?>
 
 <div class="bo-phan-form">
@@ -20,19 +23,54 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'truc_thuoc')->textInput() ?>
 
-    <?= $form->field($model, 'la_dv_quan_ly')->textInput() ?>
+    <?php // $form->field($model, 'la_dv_quan_ly')->textInput() ?>
+	
+	<?= \app\widgets\forms\SwitchWidget::widget([
+	    'model'=>$model,
+	    'attr'=>'la_dv_quan_ly'
+	]) ?>
+	
+	<?= \app\widgets\forms\SwitchWidget::widget([
+	    'model'=>$model,
+	    'attr'=>'la_dv_su_dung'
+	]) ?>
+	
+	<?= \app\widgets\forms\SwitchWidget::widget([
+	    'model'=>$model,
+	    'attr'=>'la_dv_bao_tri'
+	]) ?>
+	
+	<?= \app\widgets\forms\SwitchWidget::widget([
+	    'model'=>$model,
+	    'attr'=>'la_dv_van_tai'
+	]) ?>
+	
+	<?= \app\widgets\forms\SwitchWidget::widget([
+	    'model'=>$model,
+	    'attr'=>'la_dv_mua_hang'
+	]) ?>
+	
+	<?= \app\widgets\forms\SwitchWidget::widget([
+	    'model'=>$model,
+	    'attr'=>'la_dv_quan_ly_kho'
+	]) ?>
+	
+	<?= \app\widgets\forms\SwitchWidget::widget([
+	    'model'=>$model,
+	    'attr'=>'la_trung_tam_chi_phi'
+	]) ?>
 
-    <?= $form->field($model, 'la_dv_su_dung')->textInput() ?>
+    <?php // $form->field($model, 'la_dv_su_dung')->textInput() ?>
 
-    <?= $form->field($model, 'la_dv_bao_tri')->textInput() ?>
+   <?php // $form->field($model, 'la_dv_bao_tri')->textInput() ?>
 
-    <?= $form->field($model, 'la_dv_van_tai')->textInput() ?>
+   <?php //$form->field($model, 'la_dv_van_tai')->textInput() ?>
 
-    <?= $form->field($model, 'la_dv_mua_hang')->textInput() ?>
+  <?php // $form->field($model, 'la_dv_mua_hang')->textInput() ?>
 
-    <?= $form->field($model, 'la_dv_quan_ly_kho')->textInput() ?>
+  <?php // $form->field($model, 'la_dv_quan_ly_kho')->textInput() ?>
 
-    <?= $form->field($model, 'la_trung_tam_chi_phi')->textInput() ?>
+   <?php // $form->field($model, 'la_trung_tam_chi_phi')->textInput() ?>
 
     <?= $form->field($model, 'id_kho_vat_tu')->textInput() ?>
 

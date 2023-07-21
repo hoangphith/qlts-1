@@ -19,6 +19,7 @@ class BoPhanBase extends \app\models\TsBoPhan
             [['thoi_gian_tao'], 'safe'],
             [['ma_bo_phan'], 'string', 'max' => 20],
             [['ten_bo_phan'], 'string', 'max' => 255],
+            [['ma_bo_phan'], 'unique'],
         ];
     }
 
@@ -84,6 +85,8 @@ class BoPhanBase extends \app\models\TsBoPhan
         if ($this->isNewRecord) {
             $this->thoi_gian_tao = date('Y-m-d H:i:s');
             $this->nguoi_tao = Yii::$app->user->isGuest ? '' : Yii::$app->user->id;
+            if($this->truc_thuoc == null)
+                $this->truc_thuoc = 0;
         }
         return parent::beforeSave($insert);
     }

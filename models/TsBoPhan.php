@@ -49,6 +49,7 @@ class TsBoPhan extends \yii\db\ActiveRecord
             [['thoi_gian_tao'], 'safe'],
             [['ma_bo_phan'], 'string', 'max' => 20],
             [['ten_bo_phan'], 'string', 'max' => 255],
+            [['ma_bo_phan'], 'unique'],
         ];
     }
 
