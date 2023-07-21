@@ -22,9 +22,9 @@ class HistoryController extends Controller
      */
     public function behaviors() {
 		return [
-			'ghost-access'=> [
-                'class'=>'app\modules\user\components\GhostAccessControl',
-            ],
+		    'ghost-access'=> [
+		        'class' => 'webvimark\modules\UserManagement\components\GhostAccessControl',
+		    ],
 			'verbs' => [
 				'class' => VerbFilter::className(),
 				'actions' => [
