@@ -1,3 +1,6 @@
+<?php
+use yii\widgets\ActiveForm;
+?>
 <!--Main Header -->
 <div class="main-header side-header sticky">
 	<div class="container-fluid main-container">
@@ -13,13 +16,13 @@
 			</a>
 		</div>
 		<div class="">
-			<form class="input-icon">
+			<form class="myFilterForm input-icon" method="post">
 				<div class="input-icon-addon">
 					<span class="header-serach-btn">
 						<i class="fe fe-search"></i>
 					</span>
 				</div>
-				<input type="search" class="form-control header-search" placeholder="Search&hellip;"
+				<input name="search" type="search" class="form-control header-search" placeholder="Search&hellip;"
 					tabindex="1">
 			</form>
 		</div>

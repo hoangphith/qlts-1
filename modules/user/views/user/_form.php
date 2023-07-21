@@ -9,7 +9,7 @@ use webvimark\extensions\BootstrapSwitch\BootstrapSwitch;
 /**
  * @var yii\web\View $this
  * @var webvimark\modules\UserManagement\models\User $model
- * @var yii\bootstrap\ActiveForm $form
+ * @var yii\bootstrap5\ActiveForm $form
  */
 ?>
 

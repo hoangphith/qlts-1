@@ -13,13 +13,13 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 BootstrapPluginAsset::register($this);
-$this->title = UserModule::t('back', 'Roles and permissions for user:') . ' ' . $user->username;
+$this->title = UserModule::t('back', 'Phân quyền cho tài khoản:') . ' ' . $user->username;
 
 $this->params['breadcrumbs'][] = ['label' => UserModule::t('back', 'Users'), 'url' => ['/user/user/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<h2 class="lte-hide-title"><?= $this->title ?></h2>
+<p class="text-primary"><?= $this->title ?></p>
 
 <?php if ( Yii::$app->session->hasFlash('success') ): ?>
 	<div class="alert alert-success text-center">
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<strong>
-					<span class="glyphicon glyphicon-th"></span> <?= UserModule::t('back', 'Roles') ?>
+					<span class="glyphicon glyphicon-th"></span> Nhóm quyền
 				</strong>
 			</div>
 			<div class="panel-body">
@@ -64,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 				<br/>
 
-				<?php if ( Yii::$app->user->isSuperadmin OR Yii::$app->user->id != $user->id ): ?>
+				<?php /*if ( Yii::$app->user->isSuperadmin OR Yii::$app->user->id != $user->id ): ?>
 
 					<?= Html::submitButton(
 						'<span class="glyphicon glyphicon-ok"></span> ' . UserModule::t('back', 'Save'),
@@ -74,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
 					<div class="alert alert-warning well-sm text-center">
 						<?= UserModule::t('back', 'You can not change own permissions') ?>
 					</div>
-				<?php endif; ?>
+				<?php endif; */ ?>
 
 
 				<?= Html::endForm() ?>
@@ -86,7 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<strong>
-					<span class="glyphicon glyphicon-th"></span> <?= UserModule::t('back', 'Permissions') ?>
+					<span class="glyphicon glyphicon-th"></span> Các hành động có thể thực hiện
 				</strong>
 			</div>
 			<div class="panel-body">

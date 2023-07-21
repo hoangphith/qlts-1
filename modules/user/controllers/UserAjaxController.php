@@ -22,16 +22,9 @@ class UserAjaxController extends Controller
      */
     public function behaviors() {
 		return [
-			/*'access' => [
-				'class' => AccessControl::className(),
-				'rules' => [
-					[
-						'actions' => ['index', 'view', 'update','create','delete','bulkdelete'],
-						'allow' => true,
-						'roles' => ['admin'],
-					],
-				],
-			],*/
+			'ghost-access'=> [
+                'class'=>'app\modules\user\components\GhostAccessControl',
+            ],
 			'verbs' => [
 				'class' => VerbFilter::className(),
 				'actions' => [
@@ -39,6 +32,13 @@ class UserAjaxController extends Controller
 				],
 			],
 		];
+	}
+	
+	public function beforeAction($action)
+	{
+	    Yii::$app->params['moduleID'] = 'Module Quản lý người dùng';
+	    Yii::$app->params['modelID'] = 'Quản lý tài khoản';
+	    return true;
 	}
 
     /**
@@ -91,7 +91,7 @@ class UserAjaxController extends Controller
     public function actionCreate()
     {
         $request = Yii::$app->request;
-        $model = new User();  
+        $model = new User(['scenario'=>'newUser']);  
 
         if($request->isAjax){
             /*
@@ -142,6 +142,56 @@ class UserAjaxController extends Controller
             }
         }
        
+    }
+    
+    /**
+     * @param int $id User ID
+     *
+     * @throws \yii\web\NotFoundHttpException
+     * @return string
+     */
+    public function actionChangePassword($id)
+    {
+        $request = Yii::$app->request;
+        if($request->isAjax){
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            $model = User::findOne($id);
+            
+            if ( !$model )
+            {
+                throw new NotFoundHttpException('User not found');
+            }
+            
+            $model->scenario = 'changePassword';
+            
+            if($request->isGet){
+                return [
+                    'title'=> "Thay đổi mật khẩu",
+                    'content'=>$this->renderAjax('change-password', compact('model')),
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                    Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
+                    
+                ];
+            }else if($model->load($request->post()) && $model->save()){
+                return [
+                    'forceReload'=>'#crud-datatable-pjax',
+                    'title'=> "Thay đổi mật khẩu",
+                    'content'=>'<span class="text-success">Thay đổi mật khẩu thành công!</span>',
+                    'tcontent'=>'Thêm mới thành công!',
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"])
+                    
+                ];
+            }else{
+                return [
+                    'title'=> "Thay đổi mật khẩu",
+                    'content'=>$this->renderAjax('change-password', compact('model')),
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                    Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
+                    
+                ];
+            }
+         
+        }
     }
 
     /**

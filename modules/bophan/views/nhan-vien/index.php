@@ -25,7 +25,7 @@ Yii::$app->params['showExport'] = true;
 <?php Pjax::begin([
     'id'=>'myGrid',
     'timeout' => 10000,
-    'formSelector' => '#myFilterForm'
+    'formSelector' => '.myFilterForm'
 ]); ?>
 
 <div class="nhan-vien-index container-fluid">

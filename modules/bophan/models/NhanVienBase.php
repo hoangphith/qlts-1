@@ -15,7 +15,7 @@ class NhanVienBase extends NhanVienModel
     public function rules()
     {
         return [
-            [['ten_nhan_vien'], 'required'],
+            [['ten_nhan_vien', 'id_bo_phan'], 'required'],
             [['gioi_tinh', 'da_thoi_viec', 'nguoi_tao'], 'integer'],
             [['dia_chi'], 'string'],
             [['thoi_gian_tao'], 'safe'],
@@ -23,6 +23,7 @@ class NhanVienBase extends NhanVienModel
             [['ten_nhan_vien'], 'string', 'max' => 100],
             [['ngay_sinh'], 'string', 'max' => 10],
             [['ten_truy_cap', 'email'], 'string', 'max' => 200],
+            [['id_bo_phan'], 'exist', 'skipOnError' => true, 'targetClass' => BoPhan::class, 'targetAttribute' => ['id_bo_phan' => 'id']],
         ];
     }
 
@@ -33,6 +34,7 @@ class NhanVienBase extends NhanVienModel
     {
         return [
             'id' => 'ID',
+            'id_bo_phan'=>'Thuộc bộ phận',
             'ma_nhan_vien' => 'Mã nhân viên',
             'ten_nhan_vien' => 'Tên nhân viên',
             'ngay_sinh' => 'Ngày sinh',
@@ -62,10 +64,6 @@ class NhanVienBase extends NhanVienModel
      */
     public function afterSave( $insert, $changedAttributes ){
         parent::afterSave($insert, $changedAttributes);
-        $isNew = true;
-        if(!$insert){
-            $isNew = false;
-        }
-        History::addHistory($this::MODEL_ID, $changedAttributes, $this, $isNew);
+        History::addHistory($this::MODEL_ID, $changedAttributes, $this, $insert);
     }
 }

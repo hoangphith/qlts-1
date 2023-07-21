@@ -13,7 +13,8 @@ use yii\widgets\ActiveForm;
     
       <div class="row">
         <div class="col-8">
-        
+        	<?= $form->field($model, 'id_bo_phan')->textInput() ?>
+        	
 			<?= $form->field($model, 'ma_nhan_vien')->textInput() ?>
 
             <?= $form->field($model, 'ten_nhan_vien')->textInput() ?>

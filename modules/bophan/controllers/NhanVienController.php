@@ -57,6 +57,9 @@ class NhanVienController extends Controller
         $searchModel = new NhanVienSearch();
         if ($searchModel->load(Yii::$app->request->post())) {
             $searchModel = new NhanVienSearch(); // "reset"
+            if(isset(Yii::$app->request->post()['search'])){
+                $dataProvider = $searchModel->search(Yii::$app->request->post(), Yii::$app->request->post()['search']);
+            }
             $dataProvider = $searchModel->search(Yii::$app->request->post());
         } else {
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);

@@ -74,13 +74,15 @@ CrudAsset::register($this);
         ])?>
     </div>
 </div>
+
 <?php Modal::begin([
    "options" => [
+        "id"=>"ajaxCrudModal",
+        "tabindex" => false // important for Select2 to work properly
+    ],
+    "dialogOptions"=>["class"=>"modal-xl"],
+    'closeButton'=>['label'=>'<span aria-hidden="true">×</span>'],
     "id"=>"ajaxCrudModal",
-    "tabindex" => false // important for Select2 to work properly
-],
-    "dialogOptions"=>["class"=>"modal-lg"],
-   "id"=>"ajaxCrudModal",
     "footer"=>"",// always need it for jquery plugin
 ])?>
 <?php Modal::end(); ?>

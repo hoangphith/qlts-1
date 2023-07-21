@@ -36,6 +36,9 @@ use yii\widgets\ActiveForm;
                         'id'=>'myFilterForm',
                         //'action' => ['index'],
                         'method' => 'post',
+                        'options' => [
+                            'class' => 'myFilterForm'
+                        ]
                     ]); ?>
                 
                     <?= $form->field($model, 'id') ?>

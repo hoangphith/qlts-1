@@ -39,7 +39,7 @@ class NhanVienSearch extends NhanVien
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $cusomSearch=NULL)
     {
         $query = NhanVien::find();
 
@@ -53,6 +53,19 @@ class NhanVienSearch extends NhanVien
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
+        }
+        
+        if($cusomSearch != NULL){
+            $query->andFilterWhere ( [ 'OR' ,
+                ['like', 'ma_nhan_vien', $this->ma_nhan_vien],
+                ['like', 'ten_nhan_vien', $this->ten_nhan_vien],
+                ['like', 'ngay_sinh', $this->ngay_sinh],
+                ['like', 'gioi_tinh', $this->gioi_tinh],
+                ['like', 'ten_truy_cap', $this->ten_truy_cap],
+                ['like', 'dien_thoai', $this->dien_thoai],
+                ['like', 'email', $this->email],
+                ['like', 'dia_chi', $this->dia_chi]
+            ] );
         }
 
         $query->andFilterWhere([

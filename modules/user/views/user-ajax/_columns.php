@@ -75,7 +75,7 @@ return [
                 return GhostHtml::a(
                     UserModule::t('back', 'Change password'),
                     ['change-password', 'id'=>$model->id],
-                    ['class'=>'btn btn-sm btn-default', 'data-pjax'=>0]);
+                    ['class'=>'btn btn-sm btn-default', 'data-pjax'=>1, 'role'=>'modal-remote']);
             },
         'format'=>'raw',
         'options'=>[
