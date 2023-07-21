@@ -3,8 +3,8 @@
 namespace app\modules\bophan\controllers;
 
 use Yii;
-use app\modules\bophan\models\NhanVien;
-use app\modules\bophan\models\NhanVienSearch;
+use app\modules\bophan\models\BoPhan;
+use app\modules\bophan\models\BoPhanSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -13,16 +13,16 @@ use yii\helpers\Html;
 use yii\filters\AccessControl;
 
 /**
- * NhanVienController implements the CRUD actions for NhanVien model.
+ * BoPhanController implements the CRUD actions for BoPhan model.
  */
-class NhanVienController extends Controller
+class BoPhanController extends Controller
 {
     /**
      * @inheritdoc
      */
     public function behaviors() {
-		return [
-			'ghost-access'=> [
+    	return [
+    		'ghost-access'=> [
     			'class' => 'webvimark\modules\UserManagement\components\GhostAccessControl',
     		],
 			'verbs' => [
@@ -37,27 +37,25 @@ class NhanVienController extends Controller
 	public function beforeAction($action)
 	{
 	    Yii::$app->params['moduleID'] = 'Module Quản lý bộ phận';
-	    Yii::$app->params['modelID'] = 'Quản lý nhân viên';
+	    Yii::$app->params['modelID'] = 'Quản lý Phòng ban - Bộ phận';
 	    return true;
 	}
 
     /**
-     * Lists all NhanVien models.
+     * Lists all BoPhan models.
      * @return mixed
      */
     public function actionIndex()
     {    
-        $searchModel = new NhanVienSearch();
-        
-        if(isset($_POST['search']) && $_POST['search'] != null){
+        $searchModel = new BoPhanSearch();
+  		if(isset($_POST['search']) && $_POST['search'] != null){
             $dataProvider = $searchModel->search(Yii::$app->request->post(), $_POST['search']);
         } else if ($searchModel->load(Yii::$app->request->post())) {
-            $searchModel = new NhanVienSearch(); // "reset"
+            $searchModel = new BoPhanSearch(); // "reset"
             $dataProvider = $searchModel->search(Yii::$app->request->post());
         } else {
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        }       
-
+        }    
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -66,7 +64,7 @@ class NhanVienController extends Controller
 
 
     /**
-     * Displays a single NhanVien model.
+     * Displays a single BoPhan model.
      * @param integer $id
      * @return mixed
      */
@@ -76,7 +74,7 @@ class NhanVienController extends Controller
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "NhanVien",
+                    'title'=> "BoPhan",
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
@@ -89,9 +87,34 @@ class NhanVienController extends Controller
             ]);
         }
     }
+    
+    /**
+     * Displays a single BoPhan model.
+     * @param integer $id
+     * @return mixed
+     */
+  /*   public function actionViewTest($id)
+    {
+        $request = Yii::$app->request;
+        if($request->isAjax){
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return [
+                'title'=> "BoPhan",
+                'content'=>$this->renderAjax('view', [
+                    'model' => $this->findModel($id),
+                ]),
+                'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal2"]).
+                Html::a('Sửa',['update-test','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote-2'])
+            ];
+        }else{
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        }
+    } */
 
     /**
-     * Creates a new NhanVien model.
+     * Creates a new BoPhan model.
      * For ajax request will return json object
      * and for non-ajax request if creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -99,7 +122,7 @@ class NhanVienController extends Controller
     public function actionCreate()
     {
         $request = Yii::$app->request;
-        $model = new NhanVien();  
+        $model = new BoPhan();  
 
         if($request->isAjax){
             /*
@@ -108,7 +131,7 @@ class NhanVienController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Thêm mới NhanVien",
+                    'title'=> "Thêm mới BoPhan",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -119,7 +142,7 @@ class NhanVienController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Thêm mới NhanVien",
+                    'title'=> "Thêm mới BoPhan",
                     'content'=>'<span class="text-success">Thêm mới thành công</span>',
                     'tcontent'=>'Thêm mới thành công!',
                     'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
@@ -128,7 +151,7 @@ class NhanVienController extends Controller
                 ];         
             }else{           
                 return [
-                    'title'=> "Thêm mới NhanVien",
+                    'title'=> "Thêm mới BoPhan",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -153,7 +176,7 @@ class NhanVienController extends Controller
     }
 
     /**
-     * Updates an existing NhanVien model.
+     * Updates an existing BoPhan model.
      * For ajax request will return json object
      * and for non-ajax request if update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -165,13 +188,11 @@ class NhanVienController extends Controller
         $model = $this->findModel($id);       
 
         if($request->isAjax){
-            /*
-            *   Process for ajax request
-            */
+            
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Cập nhật NhanVien",
+                    'title'=> "Cập nhật BoPhan",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -181,7 +202,7 @@ class NhanVienController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "NhanVien",
+                    'title'=> "BoPhan",
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
@@ -191,7 +212,7 @@ class NhanVienController extends Controller
                 ];    
             }else{
                  return [
-                    'title'=> "Cập nhật NhanVien",
+                    'title'=> "Cập nhật BoPhan",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -200,9 +221,7 @@ class NhanVienController extends Controller
                 ];        
             }
         }else{
-            /*
-            *   Process for non-ajax request
-            */
+            
             if ($model->load($request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
@@ -212,9 +231,57 @@ class NhanVienController extends Controller
             }
         }
     }
+    
+    /* public function actionUpdateTest($id)
+    {
+        $request = Yii::$app->request;
+        $model = $this->findModel($id);
+        
+        if($request->isAjax){
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            if($request->isGet){
+                return [
+                    'title'=> "Cập nhật BoPhan",
+                    'content'=>$this->renderAjax('update', [
+                        'model' => $model,
+                    ]),
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal2"]).
+                    Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
+                ];
+            }else if($model->load($request->post()) && $model->save()){
+                return [
+                    'forceReload'=>'#crud-datatable-pjax',
+                    'title'=> "BoPhan",
+                    'content'=>$this->renderAjax('view', [
+                        'model' => $model,
+                    ]),
+                    'tcontent'=>'Cập nhật thành công!',
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal2"]).
+                    Html::a('Sửa',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote-2'])
+                ];
+            }else{
+                return [
+                    'title'=> "Cập nhật BoPhan",
+                    'content'=>$this->renderAjax('update', [
+                        'model' => $model,
+                    ]),
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal2"]).
+                    Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
+                ];
+            }
+        }else{
+            if ($model->load($request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }
+        }
+    } */
 
     /**
-     * Delete an existing NhanVien model.
+     * Delete an existing BoPhan model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -242,7 +309,7 @@ class NhanVienController extends Controller
     }
 
      /**
-     * Delete multiple existing NhanVien model.
+     * Delete multiple existing BoPhan model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -282,15 +349,15 @@ class NhanVienController extends Controller
     }
 
     /**
-     * Finds the NhanVien model based on its primary key value.
+     * Finds the BoPhan model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return NhanVien the loaded model
+     * @return BoPhan the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = NhanVien::findOne($id)) !== null) {
+        if (($model = BoPhan::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

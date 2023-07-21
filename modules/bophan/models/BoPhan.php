@@ -4,7 +4,7 @@ namespace app\modules\bophan\models;
 
 use Yii;
 
-class BoPhan extends \app\modules\bophan\models\BoPhanBase
+class BoPhan extends BoPhanBase
 {
     
 }
