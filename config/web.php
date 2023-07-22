@@ -118,6 +118,11 @@ $config = [
             ],
         ],
         
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'nullDisplay' => '-',
+        ],
+        
     ],
     'params' => $params,
 ];
