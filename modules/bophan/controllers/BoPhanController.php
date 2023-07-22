@@ -74,7 +74,7 @@ class BoPhanController extends Controller
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "BoPhan",
+                    'title'=> "Phòng ban - Bộ phận",
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
@@ -131,7 +131,7 @@ class BoPhanController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Thêm mới BoPhan",
+                    'title'=> "Thêm mới Phòng ban - Bộ phận",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -142,7 +142,7 @@ class BoPhanController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Thêm mới BoPhan",
+                    'title'=> "Thêm mới Phòng ban - Bộ phận",
                     'content'=>'<span class="text-success">Thêm mới thành công</span>',
                     'tcontent'=>'Thêm mới thành công!',
                     'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
@@ -151,7 +151,7 @@ class BoPhanController extends Controller
                 ];         
             }else{           
                 return [
-                    'title'=> "Thêm mới BoPhan",
+                    'title'=> "Thêm mới Phòng ban - Bộ phận",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -192,7 +192,7 @@ class BoPhanController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Cập nhật BoPhan",
+                    'title'=> "Cập nhật Phòng ban - Bộ phận",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -202,7 +202,7 @@ class BoPhanController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "BoPhan",
+                    'title'=> "Phòng ban - Bộ phận",
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
@@ -212,7 +212,7 @@ class BoPhanController extends Controller
                 ];    
             }else{
                  return [
-                    'title'=> "Cập nhật BoPhan",
+                    'title'=> "Cập nhật Phòng ban - Bộ phận",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),

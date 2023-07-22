@@ -40,9 +40,9 @@ class BoPhanBase extends \app\models\TsBoPhan
             'la_dv_mua_hang' => 'Là đơn vị mua hàng',
             'la_dv_quan_ly_kho' => 'Là đơn vị quản lý kho',
             'la_trung_tam_chi_phi' => 'Là trung tâm chi phí',
-            'id_kho_vat_tu' => 'ID Kho vật tư',
-            'id_kho_phe_lieu' => 'ID Kho phế liệu',
-            'id_kho_thanh_pham' => 'ID Kho thành phẩm',
+            'id_kho_vat_tu' => 'Kho vật tư',
+            'id_kho_phe_lieu' => 'Kho phế liệu',
+            'id_kho_thanh_pham' => 'Kho thành phẩm',
             'thoi_gian_tao' => 'Thời gian tạo',
             'nguoi_tao' => 'Người tạo',
         ];

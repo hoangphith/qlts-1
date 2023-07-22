@@ -21,13 +21,14 @@ use app\modules\kholuutru\models\KhoLuuTru;
     <div class="row">
     <!-- <?= Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i> Thêm mới', ['view-test?id=1'],
                     ['role'=>'modal-remote-2','title'=> 'Thêm mới Bộ phận','class'=>'btn btn-outline-primary']) ?>-->
-	<div class="col-md-6">
+	<div class="col-md-12">
 	<div class="card custom-card">
     	<div class="card-body pd-20 pd-md-40 border shadow-none">
-    	
-    	
-    	
-    	<h5 class="card-title mg-b-20">Thông tin bộ phận</h5>
+    	<div class="container-fluid">
+    	<div class="row">
+    	<div class="col-md-6">
+    	<div class="card card-body pd-20 pd-md-40 border shadow-none">
+    	<h5 class="card-title mg-b-20 text-primary">Thông tin bộ phận</h5>
     	<p class="text-muted card-sub-title mt-1">
     		Thông tin của Phòng ban - Bộ phận thuộc công ty. Nếu là đơn vị trực thuộc Phòng ban vui lòng chọn mục trực thuộc
     		tương ứng.
@@ -45,67 +46,56 @@ use app\modules\kholuutru\models\KhoLuuTru;
     		     ],
     		 ]);
     	 ?>
-    	
-        
-        
-	 
-	 </div>
-	 
-	 
         </div>
-    </div>
-    
-    
-    <div class="col-md-6">
-	<div class="card custom-card">
-    	<div class="card-body pd-20 pd-md-40 border shadow-none">
-    	
-    	
-    	
-    	<h5 class="card-title mg-b-20">Thông tin kho lưu trữ bộ phận</h5>
+        </div>
+        </div>
+        
+        <div class="col-md-6">
+         <div class="card card-body pd-20 pd-md-40 border shadow-none">
+    	<h5 class="card-title mg-b-20 text-primary">Thông tin kho lưu trữ bộ phận</h5>
     	<p class="text-muted card-sub-title mt-1">
     		Thông tin kho thuộc quản lý của Phòng ban/Bộ phận, có thể để trống nếu không có.
     	</p>
-        <?= $form->field($model, 'id_kho_vat_tu')->widget(Select2::classname(), [
-    		     'data' => KhoLuuTru::getList(),
-    		     'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('id_kho_vat_tu') .'...'],
-    		     'pluginOptions' => [
-    		         'allowClear' => true,
-    		         'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'), 
-    		     ],
-    		 ]);
-    	 ?>
-    	 
-    	  <?= $form->field($model, 'id_kho_phe_lieu')->widget(Select2::classname(), [
-    	      'data' => KhoLuuTru::getList(),
-    	      'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('id_kho_phe_lieu') .'...'],
-    		     'pluginOptions' => [
-    		         'allowClear' => true,
-    		         'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'), 
-    		     ],
-    		 ]);
-    	 ?>
-    	 
-    	  <?= $form->field($model, 'id_kho_thanh_pham')->widget(Select2::classname(), [
-    	      'data' => KhoLuuTru::getList(),
-    	      'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('id_kho_thanh_pham') .'...'],
-    		     'pluginOptions' => [
-    		         'allowClear' => true,
-    		         'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'), 
-    		     ],
-    		 ]);
-    	 ?>
-    	
-        
-        
+     <?= $form->field($model, 'id_kho_vat_tu')->widget(Select2::classname(), [
+		     'data' => KhoLuuTru::getList(),
+		     'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('id_kho_vat_tu') .'...'],
+		     'pluginOptions' => [
+		         'allowClear' => true,
+		         'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'), 
+		     ],
+		 ]);
+	 ?>
+	 
+	  <?= $form->field($model, 'id_kho_phe_lieu')->widget(Select2::classname(), [
+	      'data' => KhoLuuTru::getList(),
+	      'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('id_kho_phe_lieu') .'...'],
+		     'pluginOptions' => [
+		         'allowClear' => true,
+		         'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'), 
+		     ],
+		 ]);
+	 ?>
+	 
+	  <?= $form->field($model, 'id_kho_thanh_pham')->widget(Select2::classname(), [
+	      'data' => KhoLuuTru::getList(),
+	      'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('id_kho_thanh_pham') .'...'],
+		     'pluginOptions' => [
+		         'allowClear' => true,
+		         'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'), 
+		     ],
+		 ]);
+	 ?>
+	 </div>
+	 
+	 </div>
+	 
+	 </div>
 	 
 	 </div>
 	 
 	 
         </div>
     </div>
-    
-    
     <!-- <div class="col-md-12">
     <div class="card custom-card">
     <div class="card card-body pd-20 pd-md-40 border shadow-none">
@@ -153,7 +143,7 @@ use app\modules\kholuutru\models\KhoLuuTru;
 	 <div class="col-md-12">
 	 <div class="card custom-card">
     <div class="card card-body pd-20 pd-md-40 border shadow-none">
-    	<h5 class="card-title mg-b-20">Thông tin kho lưu trữ bộ phận</h5>
+    	<h5 class="card-title mg-b-20 text-primary"">Thông tin kho lưu trữ bộ phận</h5>
     	<p class="text-muted card-sub-title mt-1">
     		Bật các chức năng hoạt động của Phòng ban/Bộ phận tương ứng để liên kết với các chức năng quản lý khác.
     	</p>

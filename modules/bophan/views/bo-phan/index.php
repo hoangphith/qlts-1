@@ -82,6 +82,8 @@ Yii::$app->params['showExport'] = true;
         'tabindex' => false // important for Select2 to work properly
    ],
    'dialogOptions'=>['class'=>'modal-lg'],
+   'headerOptions'=>['class'=>'text-primary'],
+   'titleOptions'=>['class'=>'text-primary'],
    'closeButton'=>['label'=>'<span aria-hidden=\'true\'>×</span>'],
    'id'=>'ajaxCrudModal',
    'footer'=>'',// always need it for jquery plugin
@@ -89,7 +91,7 @@ Yii::$app->params['showExport'] = true;
 
 <?php Modal::end(); ?>
 
-<?php Modal::begin([
+<?php /* Modal::begin([
    'options' => [
         'id'=>'ajaxCrudModal2',
         'tabindex' => false // important for Select2 to work properly
@@ -98,9 +100,9 @@ Yii::$app->params['showExport'] = true;
    'closeButton'=>['label'=>'<span aria-hidden=\'true\'>×</span>'],
    'id'=>'ajaxCrudModal2',
    'footer'=>'',// always need it for jquery plugin
-])?>
+]) */?>
 
-<?php Modal::end(); ?>
+<?php /* Modal::end(); */ ?>
 
 <?php
     $searchContent = $this->render("_search", ["model" => $searchModel]);
