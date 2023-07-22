@@ -33,8 +33,38 @@ use app\modules\kholuutru\models\KhoLuuTru;
 		     ],
 		 ]);
 	 ?>
-	
-	<?= \app\widgets\forms\SwitchWidget::widget([
+    
+     <?= $form->field($model, 'id_kho_vat_tu')->widget(Select2::classname(), [
+		     'data' => KhoLuuTru::getList(),
+		     'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('id_kho_vat_tu') .'...'],
+		     'pluginOptions' => [
+		         'allowClear' => true,
+		         'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'), 
+		     ],
+		 ]);
+	 ?>
+	 
+	  <?= $form->field($model, 'id_kho_phe_lieu')->widget(Select2::classname(), [
+	      'data' => KhoLuuTru::getList(),
+	      'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('id_kho_phe_lieu') .'...'],
+		     'pluginOptions' => [
+		         'allowClear' => true,
+		         'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'), 
+		     ],
+		 ]);
+	 ?>
+	 
+	  <?= $form->field($model, 'id_kho_thanh_pham')->widget(Select2::classname(), [
+	      'data' => KhoLuuTru::getList(),
+	      'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('id_kho_thanh_pham') .'...'],
+		     'pluginOptions' => [
+		         'allowClear' => true,
+		         'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'), 
+		     ],
+		 ]);
+	 ?>
+	 
+	 <?= \app\widgets\forms\SwitchWidget::widget([
 	    'model'=>$model,
 	    'attr'=>'la_dv_quan_ly'
 	]) ?>
@@ -68,36 +98,6 @@ use app\modules\kholuutru\models\KhoLuuTru;
 	    'model'=>$model,
 	    'attr'=>'la_trung_tam_chi_phi'
 	]) ?>
-    
-     <?= $form->field($model, 'id_kho_vat_tu')->widget(Select2::classname(), [
-		     'data' => KhoLuuTru::getList(),
-		     'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('id_kho_vat_tu') .'...'],
-		     'pluginOptions' => [
-		         'allowClear' => true,
-		         'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'), 
-		     ],
-		 ]);
-	 ?>
-	 
-	  <?= $form->field($model, 'id_kho_phe_lieu')->widget(Select2::classname(), [
-	      'data' => KhoLuuTru::getList(),
-	      'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('id_kho_phe_lieu') .'...'],
-		     'pluginOptions' => [
-		         'allowClear' => true,
-		         'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'), 
-		     ],
-		 ]);
-	 ?>
-	 
-	  <?= $form->field($model, 'id_kho_thanh_pham')->widget(Select2::classname(), [
-	      'data' => KhoLuuTru::getList(),
-	      'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('id_kho_thanh_pham') .'...'],
-		     'pluginOptions' => [
-		         'allowClear' => true,
-		         'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'), 
-		     ],
-		 ]);
-	 ?>
 
   
 	<?php if (!Yii::$app->request->isAjax){ ?>
