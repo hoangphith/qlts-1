@@ -25,15 +25,18 @@ return [
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'truc_thuoc',
+        'value'=>function($model){
+            return $model->trucThuoc;
+        }
     ],
-    [
+    /* [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'la_dv_quan_ly',
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'la_dv_su_dung',
-    ],
+    ], */
     // [
         // 'class'=>'\kartik\grid\DataColumn',
         // 'attribute'=>'la_dv_bao_tri',

@@ -1,6 +1,10 @@
 <?php
 use yii\bootstrap5\Html;
 use yii\widgets\ActiveForm;
+use app\widgets\forms\SwitchWidget;
+use kartik\select2\Select2;
+use app\modules\bophan\models\BoPhan;
+//use kartik\form\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\bophan\models\BoPhan */
@@ -14,30 +18,68 @@ use yii\widgets\ActiveForm;
             'method' => 'post',
             'options' => [
                 'class' => 'myFilterForm'
-            ]
+            ],
+            //'layout' => 'horizontal',
+            //'class' => 'form-vertical',
       	]); ?>
 
     <?= $form->field($model, 'ma_bo_phan')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'ten_bo_phan')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'truc_thuoc')->textInput() ?>
+     <?= $form->field($model, 'truc_thuoc')->widget(Select2::classname(), [
+    		    // 'data' => BoPhan::getList(),
+                'data' => (new BoPhan())->getListTree(false),
+    		     'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('truc_thuoc') .'...'],
+    		     'pluginOptions' => [
+    		         'allowClear' => true
+    		     ],
+    		 ]);
+    	 ?>
 
-    <?= $form->field($model, 'la_dv_quan_ly')->textInput() ?>
+	<?= SwitchWidget::widget([
+	    'model'=>$model,
+	    'attr'=>'la_dv_quan_ly',
+	    'inForm'=>false
+	]) ?>
+	
+	<?= SwitchWidget::widget([
+	    'model'=>$model,
+	    'attr'=>'la_dv_su_dung',
+	    'inForm'=>false
+	]) ?>
+	
+	<?= SwitchWidget::widget([
+	    'model'=>$model,
+	    'attr'=>'la_dv_bao_tri',
+	    'inForm'=>false
+	]) ?>
+	
+	<?= SwitchWidget::widget([
+	    'model'=>$model,
+	    'attr'=>'la_dv_van_tai',
+	    'inForm'=>false
+	]) ?>
+	
+	<?= SwitchWidget::widget([
+	    'model'=>$model,
+	    'attr'=>'la_dv_mua_hang',
+	    'inForm'=>false
+	]) ?>
+	
+	<?= SwitchWidget::widget([
+	    'model'=>$model,
+	    'attr'=>'la_dv_quan_ly_kho',
+	    'inForm'=>false
+	]) ?>
+	
+	<?= SwitchWidget::widget([
+	    'model'=>$model,
+	    'attr'=>'la_trung_tam_chi_phi',
+	    'inForm'=>false
+	]) ?>
 
-    <?= $form->field($model, 'la_dv_su_dung')->textInput() ?>
-
-    <?= $form->field($model, 'la_dv_bao_tri')->textInput() ?>
-
-    <?= $form->field($model, 'la_dv_van_tai')->textInput() ?>
-
-    <?= $form->field($model, 'la_dv_mua_hang')->textInput() ?>
-
-    <?= $form->field($model, 'la_dv_quan_ly_kho')->textInput() ?>
-
-    <?= $form->field($model, 'la_trung_tam_chi_phi')->textInput() ?>
-
-    <?= $form->field($model, 'id_kho_vat_tu')->textInput() ?>
+   <!-- <?= $form->field($model, 'id_kho_vat_tu')->textInput() ?>
 
     <?= $form->field($model, 'id_kho_phe_lieu')->textInput() ?>
 
@@ -45,7 +87,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'thoi_gian_tao')->textInput() ?>
 
-    <?= $form->field($model, 'nguoi_tao')->textInput() ?>
+    <?= $form->field($model, 'nguoi_tao')->textInput() ?> -->
 
   
 	<?php if (!Yii::$app->request->isAjax){ ?>

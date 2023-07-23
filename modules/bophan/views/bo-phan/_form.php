@@ -2,6 +2,7 @@
 use yii\bootstrap5\Html;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
+use app\widgets\forms\SwitchWidget;
 use app\modules\bophan\models\BoPhan;
 use app\modules\kholuutru\models\KhoLuuTru;
 
@@ -37,7 +38,8 @@ use app\modules\kholuutru\models\KhoLuuTru;
         <?= $form->field($model, 'ten_bo_phan')->textInput(['maxlength' => true]) ?>
         
         <?= $form->field($model, 'truc_thuoc')->widget(Select2::classname(), [
-    		     'data' => BoPhan::getList(),
+    		     //'data' => BoPhan::getListTree(),
+                'data' => (new BoPhan())->getListTree(),
     		     'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('truc_thuoc') .'...'],
     		     'pluginOptions' => [
     		         'allowClear' => true,
@@ -157,37 +159,37 @@ use app\modules\kholuutru\models\KhoLuuTru;
     	<p class="text-muted card-sub-title mt-1">
     		Bật các chức năng hoạt động của Phòng ban/Bộ phận tương ứng để liên kết với các chức năng quản lý khác.
     	</p>
-	 <?= \app\widgets\forms\SwitchWidget::widget([
+	 <?= SwitchWidget::widget([
 	    'model'=>$model,
 	    'attr'=>'la_dv_quan_ly'
 	]) ?>
 	
-	<?= \app\widgets\forms\SwitchWidget::widget([
+	<?= SwitchWidget::widget([
 	    'model'=>$model,
 	    'attr'=>'la_dv_su_dung'
 	]) ?>
 	
-	<?= \app\widgets\forms\SwitchWidget::widget([
+	<?= SwitchWidget::widget([
 	    'model'=>$model,
 	    'attr'=>'la_dv_bao_tri'
 	]) ?>
 	
-	<?= \app\widgets\forms\SwitchWidget::widget([
+	<?= SwitchWidget::widget([
 	    'model'=>$model,
 	    'attr'=>'la_dv_van_tai'
 	]) ?>
 	
-	<?= \app\widgets\forms\SwitchWidget::widget([
+	<?= SwitchWidget::widget([
 	    'model'=>$model,
 	    'attr'=>'la_dv_mua_hang'
 	]) ?>
 	
-	<?= \app\widgets\forms\SwitchWidget::widget([
+	<?= SwitchWidget::widget([
 	    'model'=>$model,
 	    'attr'=>'la_dv_quan_ly_kho'
 	]) ?>
 	
-	<?= \app\widgets\forms\SwitchWidget::widget([
+	<?= SwitchWidget::widget([
 	    'model'=>$model,
 	    'attr'=>'la_trung_tam_chi_phi'
 	]) ?>

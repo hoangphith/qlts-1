@@ -37,11 +37,13 @@ class ViboonAsset extends AssetBundle
         'assets/js/sticky.js',
         'assets/plugins/notify/js/jquery.growl.js',
         'assets/plugins/notify/js/notifIt.js',
-        'assets/js/custom-switcher.js',
         'assets/js/custom.js',
         'js/custom.js',
         'assets/switcher/js/switcher.js',
-        'assets/js/tooltip.js'
+        'assets/js/custom-switcher.js',
+        'assets/js/tooltip.js',
+        //'assets/plugins/tabs/jquery.multipurpose_tabcontent.js',
+        //'assets/plugins/tabs/tab-content.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

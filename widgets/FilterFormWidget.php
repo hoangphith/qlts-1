@@ -16,7 +16,7 @@ class FilterFormWidget extends Widget{
         return '
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
         	aria-labelledby="offcanvasRightLabel">
-        	<div class="offcanvas-header">
+        	<div class="offcanvas-header text-primary">
         		<h5 id="offcanvasRightLabel">'.
         		($this->title!=null?$this->title:'Tìm kiếm')
         		.'</h5>

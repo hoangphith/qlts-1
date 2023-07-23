@@ -43,7 +43,7 @@ Yii::$app->params['showExport'] = true;
                     Html::a('<i class="fas fa fa-sync" aria-hidden="true"></i> Tải lại', [''],
                     ['data-pjax'=>1, 'class'=>'btn btn-outline-primary', 'title'=>'Tải lại']).
                     //'{toggleData}'.
-                    '{export}'
+                    (Yii::$app->params['showExport']==true?'{export}':'')
                 ],
             ],          
             'striped' => false,
