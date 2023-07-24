@@ -4,10 +4,13 @@ namespace app\modules\bophan\models;
 
 use Yii;
 use app\modules\dungchung\models\History;
+use app\modules\kholuutru\models\KhoLuuTru;
 
 class BoPhanBase extends \app\models\TsBoPhan
 {
+    //set id cho model (dung de luu dung chung)
     const MODEL_ID = 'bophan';
+    
     /**
      * {@inheritdoc}
      */
@@ -97,5 +100,41 @@ class BoPhanBase extends \app\models\TsBoPhan
     public function afterSave( $insert, $changedAttributes ){
         parent::afterSave($insert, $changedAttributes);
         History::addHistory($this::MODEL_ID, $changedAttributes, $this, $insert);
+    }
+    
+    /**
+     * Gets query for [[BoPhan]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDonViTrucThuoc(){
+        return $this->truc_thuoc!=NULL?$this->hasOne(BoPhan::class, ['id' => 'truc_thuoc'])/* ->andOnCondition('truc_thuoc IS NOT NULL') */:NULL;
+    }
+    
+    /**
+     * Gets query for [[KhoLuuTru]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdKhoVatTu(){
+        return $this->id_kho_vat_tu!=NULL ? $this->hasOne(KhoLuuTru::class, ['id' => 'id_kho_vat_tu']) : NULL;
+    }
+    
+    /**
+     * Gets query for [[KhoLuuTru]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdKhoPheLieu(){
+        return $this->id_kho_phe_lieu!=NULL ? $this->hasOne(KhoLuuTru::class, ['id' => 'id_kho_phe_lieu']) : NULL;
+    }
+    
+    /**
+     * Gets query for [[BoPhan]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdKhoThanhPham(){
+        return $this->id_kho_thanh_pham!=NULL ? $this->hasOne(KhoLuuTru::class, ['id' => 'id_kho_thanh_pham']) : NULL;
     }
 }

@@ -54,6 +54,7 @@ class BoPhanSearch extends BoPhan
             // $query->where('0=1');
             return $dataProvider;
         }
+        
 		if($cusomSearch != NULL){
 			$query->andFilterWhere ( [ 'OR' ,['like', 'ma_bo_phan', $cusomSearch],
             ['like', 'ten_bo_phan', $cusomSearch],

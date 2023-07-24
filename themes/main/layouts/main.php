@@ -57,7 +57,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             					</ol>
             				</div>
             				<div class="d-flex">
-            					<?php if(Yii::$app->params['showExport'] == true) {?>
+            					<?php /* if(Yii::$app->params['showExport'] == true) {?>
             					<div class="me-2">
             						<a class="btn ripple btn-primary dropdown-toggle mb-0" href="javascript:void(0);"
             							data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -75,7 +75,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             								Excel</a>
             						</div>
             					</div>
-            					<?php } ?>
+            					<?php }*/ ?>
             					
             					<?php if(Yii::$app->params['showSearch'] == true) {?>
             					<div>            						

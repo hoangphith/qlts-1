@@ -2,84 +2,59 @@
 
 namespace app\modules\bophan\models;
 
-use Yii;
-use yii\helpers\ArrayHelper;
-use app\modules\kholuutru\models\KhoLuuTru;
-
 class BoPhan extends BoPhanBase
 {
-    /**
-     * ---------virtual varible ---------
-     */
-    public $arr;
-    public $parr;
+    public $arr;//use in getListTree
+    public $parr;//use in getListTree
     
-    public static function getList(){
+    /**
+     * lay danh sach tat ca bo phan (khong phan nhanh)
+     * @return array|unknown[]|mixed|unknown
+     */
+    /* public static function getList(){
         $list = BoPhan::find()->all();
         return ArrayHelper::map($list, 'id', 'ten_bo_phan');
-    }
+    } */
     
     /**
-     * Gets query for [[BoPhan]].
-     *
-     * @return \yii\db\ActiveQuery
+     * lay thong tin ten don vi truc thuoc
+     * @return string
      */
-    public function getDonViTrucThuoc(){
-        return $this->truc_thuoc!=NULL?$this->hasOne(BoPhan::class, ['id' => 'truc_thuoc'])/* ->andOnCondition('truc_thuoc IS NOT NULL') */:NULL;
-    }
-    
     public function getTrucThuoc(){
         return $this->donViTrucThuoc!=null?$this->donViTrucThuoc->ten_bo_phan:'';
-    }
-    
+    }    
+       
     /**
-     * Gets query for [[BoPhan]].
-     *
-     * @return \yii\db\ActiveQuery
+     * lay thong tin ten kho vat tu
+     * @return string
      */
-    public function getIdKhoVatTu(){
-        return $this->id_kho_vat_tu!=NULL ? $this->hasOne(KhoLuuTru::class, ['id' => 'id_kho_vat_tu']) : NULL;
-    }
-    
     public function getKhoVatTu(){
         return $this->idKhoVatTu!=NULL?$this->idKhoVatTu->ten_kho:'';
-    }
+    }    
     
     /**
-     * Gets query for [[BoPhan]].
-     *
-     * @return \yii\db\ActiveQuery
+     * lay thong tin ten kho phe lieu
+     * @return string
      */
-    public function getIdKhoPheLieu(){
-        return $this->id_kho_phe_lieu!=NULL ? $this->hasOne(KhoLuuTru::class, ['id' => 'id_kho_phe_lieu']) : NULL;
-    }
     public function getKhoPheLieu(){
         return $this->idKhoPheLieu!=null?$this->idKhoPheLieu->ten_kho:'';
     }
     
     /**
-     * Gets query for [[BoPhan]].
-     *
-     * @return \yii\db\ActiveQuery
+     * lay thong tin ten kho thanh pham
+     * @return string
      */
-    public function getIdKhoThanhPham(){
-        return $this->id_kho_thanh_pham!=NULL ? $this->hasOne(KhoLuuTru::class, ['id' => 'id_kho_thanh_pham']) : NULL;
-    }
-    
     public function getKhoThanhPham(){
         return $this->idKhoThanhPham!=null?$this->idKhoThanhPham->ten_kho:'';
     }
     
     /**
-     * get list index is id
+     * ham de quy lay danh sach bo phan con truc thuoc (xu ly cho getListTree)
+     * @param array $arr
+     * @param int $pid
+     * @param int $level
      */
-    /**
-     *
-     * @param unknown $arr
-     * @param unknown $pid
-     * @param unknown $level
-     */
-    public function getChild($arr, $pid, $level){
+    private function getChild($arr, $pid, $level){
         $left = $level . '---';
         $listChildCatalogs = $this::find()->where(['truc_thuoc'=>$pid])->all();
         if($listChildCatalogs != null){
@@ -91,8 +66,9 @@ class BoPhan extends BoPhanBase
     }
     
     /**
-     *
-     * @return unknown
+     * hien thi danh sach bo phan theo phan cap cha-con
+     * @param boolean $withGroup
+     * @return array
      */
     public function getListTree($withGroup=true)
     {
@@ -101,7 +77,7 @@ class BoPhan extends BoPhanBase
         $this->arr = array();
         //lay ds catalog parent
         $parentCatalogs = $this::find()->where('truc_thuoc IS NULL OR truc_thuoc = 0')->all();
-        foreach ($parentCatalogs as $i=>$catalog){
+        foreach ($parentCatalogs as $indexCatalog=>$catalog){
             if($withGroup==true)
                 $this->arr = array();
             $this->arr[$catalog->id] = $catalog->ten_bo_phan;

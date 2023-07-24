@@ -1,6 +1,6 @@
 <?php
 use yii\bootstrap5\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap5\ActiveForm;
 use app\widgets\forms\SwitchWidget;
 use kartik\select2\Select2;
 use app\modules\bophan\models\BoPhan;
@@ -17,10 +17,13 @@ use app\modules\bophan\models\BoPhan;
         	'id'=>'myFilterForm',
             'method' => 'post',
             'options' => [
-                'class' => 'myFilterForm'
+                'class' => 'myFilterForm form-horizontal'
             ],
-            //'layout' => 'horizontal',
-            //'class' => 'form-vertical',
+            'layout' => 'horizontal',
+            'fieldConfig' => [
+                'template' => '<div class="col-sm-4">{label}</div><div class="col-sm-8">{input}{error}</div>',
+                'labelOptions' => ['class' => 'col-md-12 control-label'],
+            ],
       	]); ?>
 
     <?= $form->field($model, 'ma_bo_phan')->textInput(['maxlength' => true]) ?>
@@ -78,17 +81,6 @@ use app\modules\bophan\models\BoPhan;
 	    'attr'=>'la_trung_tam_chi_phi',
 	    'inForm'=>false
 	]) ?>
-
-   <!-- <?= $form->field($model, 'id_kho_vat_tu')->textInput() ?>
-
-    <?= $form->field($model, 'id_kho_phe_lieu')->textInput() ?>
-
-    <?= $form->field($model, 'id_kho_thanh_pham')->textInput() ?>
-
-    <?= $form->field($model, 'thoi_gian_tao')->textInput() ?>
-
-    <?= $form->field($model, 'nguoi_tao')->textInput() ?> -->
-
   
 	<?php if (!Yii::$app->request->isAjax){ ?>
 	  	<div class="form-group">

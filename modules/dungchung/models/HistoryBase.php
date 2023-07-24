@@ -47,7 +47,13 @@ class HistoryBase extends \app\models\TsHistory
     }
     
     /**
-     * save history
+     * luu lich su thay doi cho model goi trong aftersave
+     * use(in aftersave): History::addHistory($this::MODEL_ID, $changedAttributes, $this, $insert);
+     * tham so:
+     * - $type>string:truyen truc tiep hoac qua hang so Model::MODEL_ID
+     * - $attr:tham so $changedAttributes cua aftersave
+     * - $mod:activerecord: model thong qua findOne(hoac goi $this trong aftersave)
+     * - $isNew:tham so $insert cua aftersave
      */
     public static function addHistory($type, $atr, $mod, $isNew){
         $noiDung = '';

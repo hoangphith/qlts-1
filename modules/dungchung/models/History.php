@@ -11,7 +11,7 @@ class History extends HistoryBase
         $his = History::find()->where([
             'loai'=>$modelID,
             'id_tham_chieu'=>$thamChieuID
-        ])->all();
+        ])->orderBy('id DESC')->all();
         echo HistoryWidget::widget([
             'data'=>$his
         ]);
