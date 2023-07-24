@@ -32,7 +32,7 @@ use app\modules\bophan\models\BoPhan;
 
      <?= $form->field($model, 'truc_thuoc')->widget(Select2::classname(), [
     		    // 'data' => BoPhan::getList(),
-                'data' => (new BoPhan())->getListTree(false),
+                'data' => (new BoPhan())->getListTree(),
     		     'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('truc_thuoc') .'...'],
     		     'pluginOptions' => [
     		         'allowClear' => true

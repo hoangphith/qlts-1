@@ -24,7 +24,7 @@ class FilterFormWidget extends Widget{
         			aria-label="Close"><i class="fe fe-x fs-18"></i></button>
         	</div>
         	<div class="offcanvas-body">
-        		<p>'.
+        		<p class="text-muted card-sub-title mt-1">'.
         		($this->description!=null?$this->description:'')
         		.'</p>        			
         			

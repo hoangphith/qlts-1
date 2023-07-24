@@ -21,10 +21,10 @@ class NhanVien2Controller extends Controller
      * @inheritdoc
      */
     public function behaviors() {
-		return [
-			'ghost-access'=> [
-                'class'=>'app\modules\user\components\GhostAccessControl',
-            ],
+    		return [
+    			'ghost-access'=> [
+    			'class' => 'webvimark\modules\UserManagement\components\GhostAccessControl',
+    		],
 			'verbs' => [
 				'class' => VerbFilter::className(),
 				'actions' => [
@@ -32,6 +32,13 @@ class NhanVien2Controller extends Controller
 				],
 			],
 		];
+	}
+	
+	public function beforeAction($action)
+	{
+	    Yii::$app->params['moduleID'] = 'Module Quản lý bộ phận';
+	    Yii::$app->params['modelID'] = 'Quản lý nhân viên';
+	    return true;
 	}
 
     /**
@@ -67,7 +74,7 @@ class NhanVien2Controller extends Controller
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "NhanVien",
+                    'title'=> "Nhân viên",
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
@@ -99,7 +106,7 @@ class NhanVien2Controller extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Thêm mới NhanVien",
+                    'title'=> "Thêm mới Nhân viên",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -110,7 +117,7 @@ class NhanVien2Controller extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Thêm mới NhanVien",
+                    'title'=> "Thêm mới Nhân viên",
                     'content'=>'<span class="text-success">Thêm mới thành công</span>',
                     'tcontent'=>'Thêm mới thành công!',
                     'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
@@ -119,7 +126,7 @@ class NhanVien2Controller extends Controller
                 ];         
             }else{           
                 return [
-                    'title'=> "Thêm mới NhanVien",
+                    'title'=> "Thêm mới Nhân viên",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -162,7 +169,7 @@ class NhanVien2Controller extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Cập nhật NhanVien",
+                    'title'=> "Cập nhật Nhân viên",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -172,7 +179,7 @@ class NhanVien2Controller extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "NhanVien",
+                    'title'=> "Nhân viên",
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
@@ -182,7 +189,7 @@ class NhanVien2Controller extends Controller
                 ];    
             }else{
                  return [
-                    'title'=> "Cập nhật NhanVien",
+                    'title'=> "Cập nhật Nhân viên",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -284,7 +291,7 @@ class NhanVien2Controller extends Controller
         if (($model = NhanVien::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('Trang được yêu cầu không tìm thấy.');
         }
     }
 }
