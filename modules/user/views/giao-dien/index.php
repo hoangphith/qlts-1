@@ -9,6 +9,7 @@ $this->title = 'Tùy chỉnh giao diện';
 				<div class="">
 					<div class="card form_holder sidebar-right1">
 						<div class="card-body row">
+						<h1>TÙY CHỈNH GIAO DIỆN CHO THIẾT BỊ</h1>
 							<div class="predefined_styles">
 								<!-- <div class="swichermainleft text-center">
 									<h6>LTR AND RTL VERSIONS</h6>
@@ -72,7 +73,7 @@ $this->title = 'Tùy chỉnh giao diện';
 									</div>
 								</div>
 								<div class="swichermainleft">
-									<h6>Theme Style</h6>
+									<h6>Phong cách trang</h6>
 									<div class="skin-body">
 										<div class="switch_section">
 											<div class="switch-toggle d-flex">
@@ -97,11 +98,11 @@ $this->title = 'Tùy chỉnh giao diện';
 									</div>
 								</div>
 								<div class="swichermainleft">
-									<h6>Theme-colors</h6>
+									<h6>Màu sắc</h6>
 									<div class="skin-body">
 										<div class="switch_section">
 											<div class="switch-toggle d-flex">
-												<span class="me-auto">Theme Primary</span>
+												<span class="me-auto">Màu chính</span>
 												<div class="">
 													<input
 														class="wd-30 h-30 input-color-picker color-primary-light"
@@ -114,7 +115,7 @@ $this->title = 'Tùy chỉnh giao diện';
 												</div>
 											</div>
 											<div class="switch-toggle d-flex mt-2">
-												<span class="me-auto">Theme Background</span>
+												<span class="me-auto">Màu nền</span>
 												<div class="">
 													<input
 														class="wd-30 h-30 input-transparent-color-picker color-bg-transparent"
@@ -129,7 +130,7 @@ $this->title = 'Tùy chỉnh giao diện';
 									</div>
 								</div>
 								<div class="swichermainleft leftmenu-styles">
-									<h6>Menu Styles</h6>
+									<h6>Phong cách menu trái</h6>
 									<div class="skin-body">
 										<div class="switch_section">
 											<div class="switch-toggle d-flex">
@@ -173,7 +174,7 @@ $this->title = 'Tùy chỉnh giao diện';
 									</div>
 								</div>
 								<div class="swichermainleft header-styles">
-									<h6>Header Styles</h6>
+									<h6>Phong cách menu top</h6>
 									<div class="skin-body">
 										<div class="switch_section">
 											<div class="switch-toggle d-flex">
@@ -220,7 +221,7 @@ $this->title = 'Tùy chỉnh giao diện';
 									</div>
 								</div>
 								<div class="swichermainleft">
-									<h6>Skin Modes</h6>
+									<h6>Chế độ Shadow</h6>
 									<div class="switch_section">
 										<div class="switch-toggle d-flex">
 											<span class="me-auto">Shadow</span>
@@ -243,7 +244,7 @@ $this->title = 'Tùy chỉnh giao diện';
 									</div>
 								</div>
 								<div class="swichermainleft">
-									<h6>Layout Width Styles</h6>
+									<h6>Định dạng layout</h6>
 									<div class="skin-body">
 										<div class="switch_section">
 											<div class="switch-toggle d-flex">
@@ -294,7 +295,7 @@ $this->title = 'Tùy chỉnh giao diện';
 									</div>
 								</div>
 								<div class="swichermainleft vertical-switcher">
-									<h6>Sidemenu layout Styles</h6>
+									<h6>Định dạng menu trái</h6>
 									<div class="skin-body">
 										<div class="switch_section">
 											<div class="switch-toggle d-flex">
@@ -379,7 +380,7 @@ $this->title = 'Tùy chỉnh giao diện';
 									</div>
 								</div>
 								<div class="swichermainleft">
-									<h6>Reset All Styles</h6>
+									<h6>Phục hồi mặc định</h6>
 									<div class="skin-body mb-0">
 										<div class="switch_section my-2">
 											<div class="d-grid">
@@ -387,7 +388,7 @@ $this->title = 'Tùy chỉnh giao diện';
 													onclick="localStorage.clear();
 														document.querySelector('html').style = '';
 														names() ;
-														resetData()" type="button">Reset All
+														resetData()" type="button">Phụ hồi cấu hình mặc định
 												</button>
 											</div>
 										</div>

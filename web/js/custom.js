@@ -39,3 +39,15 @@ document.addEventListener("mousemove", userAction, false);
 document.addEventListener("click", userAction, false);
 document.addEventListener("scroll", userAction, false);*/
 
+
+function setMenuActive(){
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	const dataMenu = urlParams.get('menu');
+	//console.log(dataMenu);
+	const parentMenu = dataMenu.substring(0,dataMenu.length - 1);
+	//console.log(parentMenu);
+	$("a[data-menu='"+dataMenu+"']").addClass('active');
+	$("ul[data-menu='"+parentMenu+"']").css({ display: "block" });
+}
+setMenuActive();

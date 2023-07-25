@@ -3,7 +3,7 @@
 	<div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
 	<aside class="app-sidebar ps horizontal-main">
 		<div class="app-sidebar__header">
-			<a class="main-logo" href="index.html">
+			<a class="main-logo" href="<?= Yii::getAlias('@web/') ?>">
 				<img src="<?= Yii::getAlias('@web') ?>/assets/images/brand/logo.png" class="desktop-logo desktop-logo-dark"
 					alt="viboonlogo">
 				<img src="<?= Yii::getAlias('@web') ?>/assets/images/brand/logo1.png" class="desktop-logo" alt="viboonlogo">

@@ -8,5 +8,6 @@ return [
     'showSearch' => false,
     'showExport' => false,
     'moduleID' => '',
-    'modelID' =>''
+    'modelID' =>'',
+    'siteUrl'=>'http://localhost:8888'
 ];
