@@ -14,6 +14,18 @@ class CustomFunc
     }
     
     public function convertYMDHISToDMYHID($date_string){
-        return date("d/m/Y(H:i:s)", strtotime($date_string));
+        return $date_string!=null ? date("d/m/Y(H:i:s)", strtotime($date_string)) : '';
+    }
+    
+    public function convertYMDToDMY($date_string){
+        return $date_string!=null ? date("d/m/Y", strtotime($date_string)) : '';
+    }
+    
+    public function convertDMYToYMD($date_string){
+        if($date_string != null){
+            $date_string = str_replace('/', '-', $date_string);
+            return date("Y-m-d", strtotime($date_string));
+        } else 
+            return '';
     }
 }

@@ -1,6 +1,8 @@
 <?php
 use yii\bootstrap5\Html;
 use yii\widgets\ActiveForm;
+use kartik\select2\Select2;
+use app\modules\bophan\models\BoPhan;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\bophan\models\NhanVien */
@@ -17,7 +19,15 @@ use yii\widgets\ActiveForm;
             ]
       	]); ?>
 
-    <?= $form->field($model, 'id_bo_phan')->textInput() ?>
+    <?= $form->field($model, 'id_bo_phan')->widget(Select2::classname(), [
+    		    // 'data' => BoPhan::getList(),
+                'data' => (new BoPhan())->getListTree(),
+    		     'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('id_bo_phan') .'...'],
+    		     'pluginOptions' => [
+    		         'allowClear' => true
+    		     ],
+    		 ]);
+    	 ?>
 
     <?= $form->field($model, 'ma_nhan_vien')->textInput(['maxlength' => true]) ?>
 

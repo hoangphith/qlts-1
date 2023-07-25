@@ -23,14 +23,14 @@ class NhanVien2Controller extends Controller
     public function behaviors() {
     		return [
     			'ghost-access'=> [
-    			'class' => 'webvimark\modules\UserManagement\components\GhostAccessControl',
-    		],
-			'verbs' => [
-				'class' => VerbFilter::className(),
-				'actions' => [
-					'delete' => ['POST'],
-				],
-			],
+        			'class' => 'webvimark\modules\UserManagement\components\GhostAccessControl',
+        		],
+    			'verbs' => [
+    				'class' => VerbFilter::className(),
+    				'actions' => [
+    					'delete' => ['POST'],
+    				],
+    			],
 		];
 	}
 	
@@ -38,7 +38,7 @@ class NhanVien2Controller extends Controller
 	{
 	    Yii::$app->params['moduleID'] = 'Module Quản lý bộ phận';
 	    Yii::$app->params['modelID'] = 'Quản lý nhân viên';
-	    return true;
+	    return parent::beforeAction($action);
 	}
 
     /**

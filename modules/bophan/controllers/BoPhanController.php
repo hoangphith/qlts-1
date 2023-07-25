@@ -38,7 +38,7 @@ class BoPhanController extends Controller
 	{
 	    Yii::$app->params['moduleID'] = 'Module Quản lý bộ phận';
 	    Yii::$app->params['modelID'] = 'Quản lý Phòng ban - Bộ phận';
-	    return true;
+	    return parent::beforeAction($action);
 	}
 
     /**

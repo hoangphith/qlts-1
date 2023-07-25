@@ -41,7 +41,7 @@ class HistoryBase extends \app\models\TsHistory
     public function beforeSave($insert) {
         if ($this->isNewRecord) {
             $this->thoi_gian_tao = date('Y-m-d H:i:s');
-            $this->nguoi_tao = Yii::$app->user->isGuest ? '' : Yii::$app->user->id;
+            $this->nguoi_tao = Yii::$app->user->id;
         }
         return parent::beforeSave($insert);
     }

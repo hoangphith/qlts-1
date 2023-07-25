@@ -69,6 +69,12 @@ body .select2-container {
     color: #fff !important;
     background-color: #17b794 !important;
 }
+.select2-container--krajee-bs5 .select2-results__group {
+    color: #17b794 !important;
+}
+.select2-container--krajee-bs5 li.select2-results__option {
+    background: none !important;
+}
 /*end custom select2*/
 
 /*form control*/
@@ -78,6 +84,15 @@ body .select2-container {
 }
 textarea.form-control {
 	height: auto !important;
+}
+
+.datepicker-dropdown{
+	min-width: 20rem !important;
+}
+
+.custom-inline-radio{
+	display: inline-block;
+	margin-right:10px;
 }
 
 /*end form control*/

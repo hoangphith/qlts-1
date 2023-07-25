@@ -5,6 +5,7 @@ namespace app\modules\bophan\models;
 use Yii;
 use app\models\TsNhanVien as NhanVienModel;
 use app\modules\dungchung\models\History;
+use app\modules\dungchung\models\CustomFunc;
 
 class NhanVienBase extends NhanVienModel
 {
@@ -18,11 +19,12 @@ class NhanVienBase extends NhanVienModel
             [['ten_nhan_vien', 'id_bo_phan'], 'required'],
             [['gioi_tinh', 'da_thoi_viec', 'nguoi_tao'], 'integer'],
             [['dia_chi'], 'string'],
-            [['thoi_gian_tao'], 'safe'],
+            [['thoi_gian_tao', 'ngay_vao_lam'], 'safe'],
             [['ma_nhan_vien', 'dien_thoai'], 'string', 'max' => 20],
             [['ten_nhan_vien'], 'string', 'max' => 100],
             [['ngay_sinh'], 'string', 'max' => 10],
             [['ten_truy_cap', 'email'], 'string', 'max' => 200],
+            [['ma_nhan_vien'], 'unique'],
             [['id_bo_phan'], 'exist', 'skipOnError' => true, 'targetClass' => BoPhan::class, 'targetAttribute' => ['id_bo_phan' => 'id']],
         ];
     }
@@ -40,6 +42,7 @@ class NhanVienBase extends NhanVienModel
             'ngay_sinh' => 'Ngày sinh',
             'gioi_tinh' => 'Giới tính',
             'ten_truy_cap' => 'Tên truy cập',
+            'ngay_vao_lam' => 'Ngày vào làm',
             'da_thoi_viec' => 'Đã thôi việc',
             'dien_thoai' => 'Điện thoại',
             'email' => 'Email',
@@ -56,6 +59,9 @@ class NhanVienBase extends NhanVienModel
             $this->thoi_gian_tao = date('Y-m-d H:i:s');
             $this->nguoi_tao = Yii::$app->user->isGuest ? '' : Yii::$app->user->id;
         }
+        $cus = new CustomFunc();
+        if($this->ngay_vao_lam != null)
+            $this->ngay_vao_lam = $cus->convertDMYToYMD($this->ngay_vao_lam);
         return parent::beforeSave($insert);
     }
     
@@ -65,5 +71,15 @@ class NhanVienBase extends NhanVienModel
     public function afterSave( $insert, $changedAttributes ){
         parent::afterSave($insert, $changedAttributes);
         History::addHistory($this::MODEL_ID, $changedAttributes, $this, $insert);
+    }
+    
+    /**
+     * Gets query for [[BoPhan]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBoPhan()
+    {
+        return $this->hasOne(BoPhan::class, ['id' => 'id_bo_phan']);
     }
 }
