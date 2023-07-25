@@ -1,6 +1,6 @@
 <li class="slide">
 	<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
-		<span class="side-menu__icon"><i class="bi bi-pin-map side_menu_img"></i></span>
+		<span class="side-menu__icon"><i class="fe fe-users side_menu_img"></i></span>
 		<span class="side-menu__label">Tài khoản - Phân quyền</span><i class="angle fe fe-chevron-right"></i>
 	</a>
 	<ul class="slide-menu" data-menu="tk">

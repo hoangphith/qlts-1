@@ -44,7 +44,7 @@
 				
 				<li class="side-item side-item-category">Tùy chỉnh</li>
 				<li>
-					<a class="side-menu__item help-support" href="<?= Yii::getAlias('@web/user/giao-dien') ?>">
+					<a class="side-menu__item help-support" href="<?= Yii::getAlias('@web/user/giao-dien?menu=gdtb') ?>" data-menu="gdtb">
 						<span class="side-menu__icon">
 							<i class="bi bi-gear side_menu_img"></i>
 						</span>
