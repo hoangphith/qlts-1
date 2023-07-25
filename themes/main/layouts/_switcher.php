@@ -4,7 +4,7 @@
 			<div class="form_holder sidebar-right1">
 				<div class="row">
 					<div class="predefined_styles">
-						<!-- <div class="swichermainleft text-center">
+						<div class="swichermainleft text-center">
 							<div class="p-3 d-grid gap-2">
 								<a class="btn ripple btn-primary " data-bs-target=".buynow-btn" data-bs-toggle="modal"
 									href="">Buy Now</a>
@@ -13,7 +13,7 @@
 								<a href="https://spruko.com/licenses.html" target="_blank"
 									class="btn ripple btn-success ">Licenses</a>
 							</div>
-						</div> -->
+						</div>
 						<div class="swichermainleft text-center">
 							<h4>LTR AND RTL VERSIONS</h4>
 							<div class="skin-body">

@@ -30,17 +30,32 @@ class HinhAnhBase extends \app\models\TsHinhAnh
     {
         return [
             'id' => 'ID',
-            'loai' => 'Loai',
-            'id_tham_chieu' => 'Id Tham Chieu',
-            'ten_hien_thi' => 'Ten Hien Thi',
-            'duong_dan' => 'Duong Dan',
-            'ten_file_luu' => 'Ten File Luu',
-            'img_extension' => 'Img Extension',
-            'img_size' => 'Img Size',
-            'img_wh' => 'Img Wh',
-            'ghi_chu' => 'Ghi Chu',
-            'thoi_gian_tao' => 'Thoi Gian Tao',
-            'nguoi_tao' => 'Nguoi Tao',
+            'loai' => 'Loại',
+            'id_tham_chieu' => 'ID Tham chiếu',
+            'ten_hien_thi' => 'Tên hiển thị',
+            'duong_dan' => 'Đường dẫn',
+            'ten_file_luu' => 'Tên file lưu',
+            'img_extension' => 'Đuôi ảnh',
+            'img_size' => 'Dung lượng ảnh',
+            'img_wh' => 'Kích thước ảnh',
+            'ghi_chu' => 'Ghi chú',
+            'thoi_gian_tao' => 'Thời gian tạo',
+            'nguoi_tao' => 'Người tạo',
         ];
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function beforeSave($insert) {
+        if ($this->isNewRecord) {
+            $this->thoi_gian_tao = date('Y-m-d H:i:s');
+            $this->nguoi_tao = Yii::$app->user->id;
+        }
+        return parent::beforeSave($insert);
+    }
+    
+    public static function addImage($type, $atr, $mod, $isNew){
+        
     }
 }

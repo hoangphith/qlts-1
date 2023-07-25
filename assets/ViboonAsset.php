@@ -39,8 +39,8 @@ class ViboonAsset extends AssetBundle
         'assets/plugins/notify/js/notifIt.js',
         'assets/js/custom.js',
         'js/custom.js',
-        'assets/switcher/js/switcher.js',
         'assets/js/custom-switcher.js',
+        'assets/switcher/js/switcher.js',        
         'assets/js/tooltip.js',
         //'assets/plugins/tabs/jquery.multipurpose_tabcontent.js',
         //'assets/plugins/tabs/tab-content.js'

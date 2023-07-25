@@ -8,6 +8,36 @@ use app\modules\dungchung\models\History;
 class KhoLuuTruBase extends \app\models\TsKhoLuuTru
 {
     const MODEL_ID = 'kholuutru';
+
+    /**
+     * Danh muc Loai Kho luu tru
+     * @return string[]
+     */
+    public static function getDmLoaiKho(){
+        return [
+            1=>'Sản xuất', 
+            2=>'Vật tư',
+            3=>'Phế liệu'
+        ];
+    }
+    
+    /**
+     * Danh muc Loai Kho luu tru label
+     * @param int $val
+     * @return string
+     */
+    public static function getLoaiKhoLabel($val){
+        $label = '';
+        if($val == 1){
+            $label = 'Sản xuất';
+        }else if($val == 2){
+            $label = 'Vật tư';
+        }else if($val == 3){
+            $label = 'Phế liệu';
+        }
+        return $label;
+    }
+    
    /**
      * {@inheritdoc}
      */
@@ -29,16 +59,16 @@ class KhoLuuTruBase extends \app\models\TsKhoLuuTru
     {
         return [
             'id' => 'ID',
-            'ma_kho' => 'Ma Kho',
-            'ten_kho' => 'Ten Kho',
-            'loai_kho' => 'Loai Kho',
-            'id_nguoi_quan_ly' => 'Id Nguoi Quan Ly',
-            'id_bo_phan_quan_ly' => 'Id Bo Phan Quan Ly',
-            'gia_tri_toi_da' => 'Gia Tri Toi Da',
-            'dien_thoai' => 'Dien Thoai',
+            'ma_kho' => 'Mã Kho',
+            'ten_kho' => 'Tên Kho',
+            'loai_kho' => 'Loại Kho',
+            'id_nguoi_quan_ly' => 'Người quản lý',
+            'id_bo_phan_quan_ly' => 'Bộ phận quản lý',
+            'gia_tri_toi_da' => 'Giá trị tối đa',
+            'dien_thoai' => 'Điện thoại',
             'email' => 'Email',
-            'thoi_gian_tao' => 'Thoi Gian Tao',
-            'nguoi_tao' => 'Nguoi Tao',
+            'thoi_gian_tao' => 'Thời gian tạo',
+            'nguoi_tao' => 'Người tạo',
         ];
     }
 

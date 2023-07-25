@@ -16,49 +16,39 @@ return [
     // ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'id_bo_phan',
-        'value'=>'tenBoPhan'
+        'attribute'=>'loai',
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'ma_nhan_vien',
+        'attribute'=>'id_tham_chieu',
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'ten_nhan_vien',
+        'attribute'=>'ten_hien_thi',
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'ngay_sinh',
+        'attribute'=>'duong_dan',
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'gioi_tinh',
-        'value'=>'gioiTinh'
+        'attribute'=>'ten_file_luu',
     ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'ten_truy_cap',
+        // 'attribute'=>'img_extension',
     // ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'ngay_vao_lam',
+        // 'attribute'=>'img_size',
     // ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'da_thoi_viec',
+        // 'attribute'=>'img_wh',
     // ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'dien_thoai',
-    // ],
-    // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'email',
-    // ],
-    // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'dia_chi',
+        // 'attribute'=>'ghi_chu',
     // ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',

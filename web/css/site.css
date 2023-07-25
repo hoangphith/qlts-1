@@ -5,6 +5,11 @@
 }
 }
 
+.main-logo img{
+	max-width: 142px;
+	max-height: 35px;
+}
+
 /*form*/
 .formInput .card-title{
 	text-transform: uppercase;

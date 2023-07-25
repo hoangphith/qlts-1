@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\kholuutru\controllers;
+namespace app\modules\dungchung\controllers;
 
 use Yii;
-use app\modules\kholuutru\models\KhoLuuTru;
-use app\modules\kholuutru\models\KhoLuuTruSearch;
+use app\modules\dungchung\models\HinhAnh;
+use app\modules\dungchung\models\HinhAnhSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -13,9 +13,9 @@ use yii\helpers\Html;
 use yii\filters\AccessControl;
 
 /**
- * KhoController implements the CRUD actions for KhoLuuTru model.
+ * HinhAnhController implements the CRUD actions for HinhAnh model.
  */
-class KhoController extends Controller
+class HinhAnhController extends Controller
 {
     /**
      * @inheritdoc
@@ -23,35 +23,28 @@ class KhoController extends Controller
     public function behaviors() {
     		return [
     			'ghost-access'=> [
-        			'class' => 'webvimark\modules\UserManagement\components\GhostAccessControl',
-        		],
-    			'verbs' => [
-    				'class' => VerbFilter::className(),
-    				'actions' => [
-    					'delete' => ['POST'],
-    				],
-    			],
+    			'class' => 'webvimark\modules\UserManagement\components\GhostAccessControl',
+    		],
+			'verbs' => [
+				'class' => VerbFilter::className(),
+				'actions' => [
+					'delete' => ['POST'],
+				],
+			],
 		];
-	}
-	
-	public function beforeAction($action)
-	{
-	    Yii::$app->params['moduleID'] = 'Module Quản lý Kho lưu trữ';
-	    Yii::$app->params['modelID'] = 'Quản lý Kho';
-	    return parent::beforeAction($action);
 	}
 
     /**
-     * Lists all KhoLuuTru models.
+     * Lists all HinhAnh models.
      * @return mixed
      */
     public function actionIndex()
     {    
-        $searchModel = new KhoLuuTruSearch();
+        $searchModel = new HinhAnhSearch();
   		if(isset($_POST['search']) && $_POST['search'] != null){
             $dataProvider = $searchModel->search(Yii::$app->request->post(), $_POST['search']);
         } else if ($searchModel->load(Yii::$app->request->post())) {
-            $searchModel = new KhoLuuTruSearch(); // "reset"
+            $searchModel = new HinhAnhSearch(); // "reset"
             $dataProvider = $searchModel->search(Yii::$app->request->post());
         } else {
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -64,7 +57,7 @@ class KhoController extends Controller
 
 
     /**
-     * Displays a single KhoLuuTru model.
+     * Displays a single HinhAnh model.
      * @param integer $id
      * @return mixed
      */
@@ -74,7 +67,7 @@ class KhoController extends Controller
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "Kho lưu trữ",
+                    'title'=> "HinhAnh",
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
@@ -89,7 +82,7 @@ class KhoController extends Controller
     }
 
     /**
-     * Creates a new KhoLuuTru model.
+     * Creates a new HinhAnh model.
      * For ajax request will return json object
      * and for non-ajax request if creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -97,7 +90,7 @@ class KhoController extends Controller
     public function actionCreate()
     {
         $request = Yii::$app->request;
-        $model = new KhoLuuTru();  
+        $model = new HinhAnh();  
 
         if($request->isAjax){
             /*
@@ -106,7 +99,7 @@ class KhoController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Thêm mới Kho lưu trữ",
+                    'title'=> "Thêm mới HinhAnh",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -117,7 +110,7 @@ class KhoController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Thêm mới Kho lưu trữ",
+                    'title'=> "Thêm mới HinhAnh",
                     'content'=>'<span class="text-success">Thêm mới thành công</span>',
                     'tcontent'=>'Thêm mới thành công!',
                     'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
@@ -126,7 +119,7 @@ class KhoController extends Controller
                 ];         
             }else{           
                 return [
-                    'title'=> "Thêm mới Kho lưu trữ",
+                    'title'=> "Thêm mới HinhAnh",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -151,7 +144,7 @@ class KhoController extends Controller
     }
 
     /**
-     * Updates an existing KhoLuuTru model.
+     * Updates an existing HinhAnh model.
      * For ajax request will return json object
      * and for non-ajax request if update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -169,7 +162,7 @@ class KhoController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Cập nhật Kho lưu trữ",
+                    'title'=> "Cập nhật HinhAnh",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -179,7 +172,7 @@ class KhoController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Kho lưu trữ",
+                    'title'=> "HinhAnh",
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
@@ -189,7 +182,7 @@ class KhoController extends Controller
                 ];    
             }else{
                  return [
-                    'title'=> "Cập nhật Kho lưu trữ",
+                    'title'=> "Cập nhật HinhAnh",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -212,7 +205,7 @@ class KhoController extends Controller
     }
 
     /**
-     * Delete an existing KhoLuuTru model.
+     * Delete an existing HinhAnh model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -240,7 +233,7 @@ class KhoController extends Controller
     }
 
      /**
-     * Delete multiple existing KhoLuuTru model.
+     * Delete multiple existing HinhAnh model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -280,15 +273,15 @@ class KhoController extends Controller
     }
 
     /**
-     * Finds the KhoLuuTru model based on its primary key value.
+     * Finds the HinhAnh model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return KhoLuuTru the loaded model
+     * @return HinhAnh the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = KhoLuuTru::findOne($id)) !== null) {
+        if (($model = HinhAnh::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

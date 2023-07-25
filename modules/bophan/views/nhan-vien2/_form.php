@@ -8,6 +8,7 @@ use app\modules\bophan\models\BoPhan;
 use app\modules\user\models\User;
 use kartik\date\DatePicker;
 use app\modules\dungchung\models\CustomFunc;
+use app\modules\bophan\models\NhanVien;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\bophan\models\NhanVien */
@@ -53,7 +54,7 @@ if($model->ngay_vao_lam != null){
                             	<?= RadioWidget::widget([
                             	    'model'=>$model,
                             	    'attr'=>'gioi_tinh',
-                                	'list'=>[0=>'Nam', 1=>'Nữ']
+                                	'list'=>NhanVien::getDmGioiTinh()
                             	]) ?>
                         	<div class="invalid-feedback "></div></div>
                             </div>
@@ -112,6 +113,19 @@ if($model->ngay_vao_lam != null){
                         	    'attr'=>'da_thoi_viec'
                         	]) ?><div class="invalid-feedback "></div></div>
                             </div>
+                            
+                            <div id="dNgayThoiViec" <?= $model->da_thoi_viec==0?' style="display:none"': '' ?> >
+                            <?= $form->field($model, 'ngay_thoi_viec')->widget(DatePicker::classname(), [
+                                        'options' => [
+                                            'placeholder' => 'Chọn ngày...',
+                                            'id'=>'txtNgayThoiViec'
+                                        ],
+                                        'pluginOptions' => [
+                                            'autoclose' => true,
+                                            'format' => 'dd/mm/yyyy'
+                                        ] ]);
+                        	?>
+                        	</div>
                              
                     	</div><!-- card-body -->
 					</div><!-- col-md-6 -->
@@ -133,3 +147,13 @@ if($model->ngay_vao_lam != null){
     <?php ActiveForm::end(); ?>
     
 </div>
+
+<script>
+$('input[name="NhanVien[da_thoi_viec]"]').change(function () {
+    if(this.checked){
+    	$('#dNgayThoiViec').show();
+    } else {
+    	$('#dNgayThoiViec').hide();
+    }
+});
+</script>

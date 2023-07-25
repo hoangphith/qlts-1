@@ -1,8 +1,9 @@
 <?php
 use yii\bootstrap5\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap5\ActiveForm;
 use kartik\select2\Select2;
 use app\modules\bophan\models\BoPhan;
+use app\widgets\forms\SwitchWidget;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\bophan\models\NhanVien */
@@ -12,19 +13,24 @@ use app\modules\bophan\models\BoPhan;
 <div class="nhan-vien-search">
 
     <?php $form = ActiveForm::begin([
-        	'id'=>'myFilterForm',
+            'id'=>'myFilterForm',
             'method' => 'post',
             'options' => [
-                'class' => 'myFilterForm'
-            ]
+                'class' => 'myFilterForm form-horizontal'
+            ],
+            'layout' => 'horizontal',
+            'fieldConfig' => [
+                'template' => '<div class="col-sm-4">{label}</div><div class="col-sm-8">{input}{error}</div>',
+                'labelOptions' => ['class' => 'col-md-12 control-label'],
+            ],
       	]); ?>
 
     <?= $form->field($model, 'id_bo_phan')->widget(Select2::classname(), [
-    		    // 'data' => BoPhan::getList(),
                 'data' => (new BoPhan())->getListTree(),
     		     'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('id_bo_phan') .'...'],
     		     'pluginOptions' => [
-    		         'allowClear' => true
+    		         'allowClear' => true,
+    		         //'dropdownParent' => new yii\web\JsExpression('$("#offcanvasRight")'), 
     		     ],
     		 ]);
     	 ?>
@@ -33,25 +39,24 @@ use app\modules\bophan\models\BoPhan;
 
     <?= $form->field($model, 'ten_nhan_vien')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'ngay_sinh')->textInput(['maxlength' => true]) ?>
+    <?php // $form->field($model, 'ngay_sinh')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'gioi_tinh')->textInput() ?>
+    <?php // $form->field($model, 'gioi_tinh')->textInput() ?>
 
     <?= $form->field($model, 'ten_truy_cap')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'da_thoi_viec')->textInput() ?>
-
+    <?= SwitchWidget::widget([
+	    'model'=>$model,
+	    'attr'=>'da_thoi_viec',
+	    'inForm'=>false
+	]) ?>
+	
     <?= $form->field($model, 'dien_thoai')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'dia_chi')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'thoi_gian_tao')->textInput() ?>
-
-    <?= $form->field($model, 'nguoi_tao')->textInput() ?>
-
-  
+    <?php // $form->field($model, 'dia_chi')->textarea(['rows' => 6]) ?>
+    
 	<?php if (!Yii::$app->request->isAjax){ ?>
 	  	<div class="form-group">
 	        <?= Html::submitButton('Tìm kiếm',['class' => 'btn btn-primary']) ?>

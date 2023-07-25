@@ -16,6 +16,7 @@ use Yii;
  * @property string|null $ten_truy_cap
  * @property string|null $ngay_vao_lam
  * @property int|null $da_thoi_viec
+ * @property string|null $ngay_thoi_viec
  * @property string|null $dien_thoai
  * @property string|null $email
  * @property string|null $dia_chi
@@ -45,7 +46,7 @@ class TsNhanVien extends \yii\db\ActiveRecord
         return [
             [['id_bo_phan', 'ten_nhan_vien'], 'required'],
             [['id_bo_phan', 'gioi_tinh', 'da_thoi_viec', 'nguoi_tao'], 'integer'],
-            [['ngay_vao_lam', 'thoi_gian_tao'], 'safe'],
+            [['ngay_vao_lam', 'ngay_thoi_viec', 'thoi_gian_tao'], 'safe'],
             [['dia_chi'], 'string'],
             [['ma_nhan_vien', 'dien_thoai'], 'string', 'max' => 20],
             [['ten_nhan_vien'], 'string', 'max' => 100],
@@ -70,6 +71,7 @@ class TsNhanVien extends \yii\db\ActiveRecord
             'ten_truy_cap' => 'Ten Truy Cap',
             'ngay_vao_lam' => 'Ngay Vao Lam',
             'da_thoi_viec' => 'Da Thoi Viec',
+            'ngay_thoi_viec' => 'Ngay Thoi Viec',
             'dien_thoai' => 'Dien Thoai',
             'email' => 'Email',
             'dia_chi' => 'Dia Chi',

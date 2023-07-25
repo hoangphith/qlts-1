@@ -109,11 +109,13 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             </div>
             <!-- End Main Content-->      		
     
-    		<?= $this->render('_slidebar') ?>			
+    		<?= $this->render('_slidebar') ?>		
     
     		<?= $this->render('_footer') ?>
     		
 		</div>
+		<!-- Back to top -->
+		<a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 		
 		<?php $this->endBody() ?>
 		

@@ -62,6 +62,10 @@ use app\modules\bophan\models\NhanVien;
                                 'type'=>'VIEW'
                             ])
                         ],
+                        'ngay_thoi_viec'=>[
+                            'attribute' => 'ngay_thoi_viec',
+                            'value' => $model->getNgayThoiViec()
+                        ],
                         'dien_thoai',
                         'email:email',
                         'dia_chi:ntext',
