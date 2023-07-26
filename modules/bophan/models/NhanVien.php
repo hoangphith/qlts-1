@@ -58,5 +58,13 @@ class NhanVien extends \app\modules\bophan\models\NhanVienBase
         }
         return $arr;
     } */
+    
+    /**
+     * lay lien ket xem nhan vien tren modal tu modules khac
+     * @return string
+     */
+    public function getShowLink(){
+        return Yii::getAlias('@web/bophan/nhan-vien2/view?id=' . $this->id);
+    }
   
 }

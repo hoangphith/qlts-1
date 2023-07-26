@@ -13,8 +13,8 @@ use yii\web\Response;
 class DepdropController extends Controller
 {
     /**
-     * Renders the index view for the module
-     * @return string
+     * Tra danh sach nhan vien theo dinh dang cua Depdrop
+     * @return array
      */
     public function actionGetNhanVien()
     {

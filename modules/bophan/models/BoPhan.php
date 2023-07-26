@@ -1,6 +1,7 @@
 <?php
 
 namespace app\modules\bophan\models;
+use Yii;
 
 class BoPhan extends BoPhanBase
 {
@@ -89,5 +90,13 @@ class BoPhan extends BoPhanBase
             return $this->parr;
         else 
             return $this->arr;
+    }
+    
+    /**
+     * lay lien ket xem bo phan tren modal tu modules khac
+     * @return string
+     */
+    public function getShowLink(){
+        return Yii::getAlias('@web/bophan/bo-phan/view?id=' . $this->id);
     }
 }

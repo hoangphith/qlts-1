@@ -23,7 +23,7 @@ class UserAjaxController extends Controller
     public function behaviors() {
 		return [
 			'ghost-access'=> [
-                'class'=>'app\modules\user\components\GhostAccessControl',
+			    'class' => 'webvimark\modules\UserManagement\components\GhostAccessControl',
             ],
 			'verbs' => [
 				'class' => VerbFilter::className(),
@@ -48,7 +48,15 @@ class UserAjaxController extends Controller
     public function actionIndex()
     {    
         $searchModel = new UserAjaxSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        if(isset($_POST['search']) && $_POST['search'] != null){
+            $dataProvider = $searchModel->search(Yii::$app->request->post(), $_POST['search']);
+        } else if ($searchModel->load(Yii::$app->request->post())) {
+            $searchModel = new UserAjaxSearch(); // "reset"
+            $dataProvider = $searchModel->search(Yii::$app->request->post());
+        } else {
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        }    
 
         return $this->render('index', [
             'searchModel' => $searchModel,

@@ -84,7 +84,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             							data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
             							aria-expanded="false"
             							aria-label="Toggle navigation">
-            							<i class="fe fe-filter me-1"></i> Tìm kiếm
+            							<i class="fe fe-filter me-1"></i> Tìm kiếm nâng cao
             						</a>
             					</div>
             					<?php } ?>

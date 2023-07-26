@@ -101,6 +101,17 @@ textarea.form-control {
 }
 
 /*end form control*/
+
+/*gridview*/
+.btn-open-link{
+	color: #17b794;
+}
+.btn-open-link:hover{
+	text-decoration: underline;
+	color: #17b794;
+}
+
+/*gridview*/
 main > .container {
     padding: 70px 15px 20px;
 }

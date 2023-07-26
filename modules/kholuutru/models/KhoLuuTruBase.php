@@ -5,6 +5,7 @@ namespace app\modules\kholuutru\models;
 use Yii;
 use app\modules\dungchung\models\History;
 use app\modules\bophan\models\NhanVien;
+use app\modules\bophan\models\BoPhan;
 
 class KhoLuuTruBase extends \app\models\TsKhoLuuTru
 {
@@ -101,9 +102,18 @@ class KhoLuuTruBase extends \app\models\TsKhoLuuTru
         parent::afterSave($insert, $changedAttributes);
         History::addHistory($this::MODEL_ID, $changedAttributes, $this, $insert);
     }
-    
     /**
      * Gets query for [[BoPhan]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBoPhanQuanLy()
+    {
+        return $this->hasOne(BoPhan::class, ['id' => 'id_bo_phan_quan_ly']);
+    }
+    
+    /**
+     * Gets query for [[NhanVien]].
      *
      * @return \yii\db\ActiveQuery
      */

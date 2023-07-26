@@ -4,11 +4,11 @@ $this->title = 'Tùy chỉnh giao diện';
 <!--Row-->
 <div class="container">
 	<div class="row row-sm">
-		<div class="col-xl-6 m-auto">
+		<div class="col-xl-8 m-auto">
 			<div class="switcher-wrapper">
 				<div class="">
 					<div class="card form_holder sidebar-right1">
-						<div class="card-body row">
+						<div class="card-body row text-center">
 						<h1>TÙY CHỈNH GIAO DIỆN CHO THIẾT BỊ</h1>
 							<div class="predefined_styles">
 								<!-- <div class="swichermainleft text-center">

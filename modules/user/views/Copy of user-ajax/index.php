@@ -5,8 +5,6 @@ use yii\bootstrap5\Modal;
 use kartik\grid\GridView;
 use cangak\ajaxcrud\CrudAsset; 
 use cangak\ajaxcrud\BulkButtonWidget;
-use app\widgets\FilterFormWidget;
-use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\user\models\UserAjaxSearch */
@@ -17,17 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 CrudAsset::register($this);
 
-Yii::$app->params['showSearch'] = true;
-Yii::$app->params['showExport'] = true;
-
 ?>
-
-<?php Pjax::begin([
-    'id'=>'myGrid',
-    'timeout' => 10000,
-    'formSelector' => '.myFilterForm'
-]); ?>
-
 <div class="user-index">
     <div id="ajaxCrudDatatable">
         <?=GridView::widget([
@@ -87,8 +75,6 @@ Yii::$app->params['showExport'] = true;
     </div>
 </div>
 
-<?php Pjax::end(); ?>
-
 <?php Modal::begin([
    "options" => [
         "id"=>"ajaxCrudModal",
@@ -101,8 +87,26 @@ Yii::$app->params['showExport'] = true;
 ])?>
 <?php Modal::end(); ?>
 
-<?php
-    $searchContent = $this->render("_search", ["model" => $searchModel]);
-    echo FilterFormWidget::widget(["content"=>$searchContent, "description"=>"Nhập thông tin tìm kiếm."]) 
-?>
+<!-- /*send toast message */ -->
+<div class="toast-container position-fixed top-0 end-0 p-3">
+  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <strong class="me-auto"><i class="typcn typcn-info-large"></i>Thông báo</strong>
+      <!-- <small>Vừa xong</small> -->
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body"></div>
+  </div>
+</div>
+
+
+<!-- <div class="demo-static-toast pos-absolute t-10 r-10">
+	<div id="liveToast" aria-atomic="true" aria-live="assertive" class="toast fade show" role="alert" data-bs-autohide="true">
+		<div class="toast-header">
+			<h6 class="tx-14 mg-b-0 mg-e-auto">Thông báo</h6>
+			<small class="text-muted text-nowrap ms-1">Vừa xong</small> <button aria-label="Close" class="ms-2 mb-1 btn-close tx-normal" data-bs-dismiss="toast" type="button"><span aria-hidden="true">×</span></button>
+		</div>
+		<div class="toast-body"></div>
+	</div>
+</div> -->
 

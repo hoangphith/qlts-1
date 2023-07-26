@@ -39,7 +39,7 @@ class UserAjaxSearch extends User
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $cusomSearch=NULL)
     {
         $query = User::find();
 
@@ -54,23 +54,29 @@ class UserAjaxSearch extends User
             // $query->where('0=1');
             return $dataProvider;
         }
-
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'status' => $this->status,
-            'superadmin' => $this->superadmin,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'email_confirmed' => $this->email_confirmed,
-        ]);
-
-        $query->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'auth_key', $this->auth_key])
-            ->andFilterWhere(['like', 'password_hash', $this->password_hash])
-            ->andFilterWhere(['like', 'confirmation_token', $this->confirmation_token])
-            ->andFilterWhere(['like', 'registration_ip', $this->registration_ip])
-            ->andFilterWhere(['like', 'bind_to_ip', $this->bind_to_ip])
-            ->andFilterWhere(['like', 'email', $this->email]);
+        if($cusomSearch != NULL){
+            $query->andFilterWhere ( [ 'OR' ,['like', 'username', $cusomSearch],
+                ['like', 'email', $cusomSearch]                
+            ]);
+            
+        } else {
+            $query->andFilterWhere([
+                'id' => $this->id,
+                'status' => $this->status,
+                'superadmin' => $this->superadmin,
+                'created_at' => $this->created_at,
+                'updated_at' => $this->updated_at,
+                'email_confirmed' => $this->email_confirmed,
+            ]);
+    
+            $query->andFilterWhere(['like', 'username', $this->username])
+                ->andFilterWhere(['like', 'auth_key', $this->auth_key])
+                ->andFilterWhere(['like', 'password_hash', $this->password_hash])
+                ->andFilterWhere(['like', 'confirmation_token', $this->confirmation_token])
+                ->andFilterWhere(['like', 'registration_ip', $this->registration_ip])
+                ->andFilterWhere(['like', 'bind_to_ip', $this->bind_to_ip])
+                ->andFilterWhere(['like', 'email', $this->email]);
+        }
 
         return $dataProvider;
     }

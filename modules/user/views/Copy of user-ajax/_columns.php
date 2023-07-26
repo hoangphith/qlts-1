@@ -21,32 +21,6 @@ return [
         // 'attribute'=>'id',
     // ],
     [
-        'value'=>function(User $model){
-            return GhostHtml::a(
-                UserModule::t('back', '<i class="pe-7s-config"></i>'),
-                //['/user/user-permission/set', 'id'=>$model->id],
-                ['/user/user-permission/set', 'id'=>$model->id],
-                ['class'=>'btn btn-sm btn-primary', 'data-pjax'=>1, 'role'=>'modal-remote', 'title'=>'Phân quyền tài khoản']);
-        },
-        'format'=>'raw',
-        'visible'=>User::canRoute('/user/user-permission/set'),
-        'options'=>[
-            'width'=>'10px',
-        ],
-    ],
-    [
-        'value'=>function(User $model){
-            return GhostHtml::a(
-                UserModule::t('back', '<i class="pe-7s-lock"></i>'),
-                ['change-password', 'id'=>$model->id],
-                ['class'=>'btn btn-sm btn-default', 'data-pjax'=>1, 'role'=>'modal-remote', 'title'=>'Thay đổi mật khẩu']);
-        },
-        'format'=>'raw',
-        'options'=>[
-            'width'=>'10px',
-        ],
-    ],
-    [
         'class'=>'webvimark\components\StatusColumn',
         'attribute'=>'superadmin',
         'visible'=>Yii::$app->user->isSuperadmin,
@@ -60,11 +34,11 @@ return [
         'format'=>'raw',
         'visible'=>User::hasPermission('viewUserEmail'),
     ],
-    /* [
+    [
         'class'=>'webvimark\components\StatusColumn',
         'attribute'=>'email_confirmed',
         'visible'=>User::hasPermission('viewUserEmail'),
-    ], */
+    ],
    [
         'attribute'=>'gridRoleSearch',
         'filter'=>ArrayHelper::map(Role::getAvailableRoles(Yii::$app->user->isSuperAdmin),'name', 'description'),
@@ -83,6 +57,32 @@ return [
         'visible'=>User::hasPermission('viewRegistrationIp'),
     ],
     [
+        'value'=>function(User $model){
+                return GhostHtml::a(
+                    UserModule::t('back', 'Roles and permissions'),
+                    //['/user/user-permission/set', 'id'=>$model->id],
+                    ['/user/user-permission/set', 'id'=>$model->id],
+                    ['class'=>'btn btn-sm btn-primary', 'data-pjax'=>1, 'role'=>'modal-remote']);
+            },
+        'format'=>'raw',
+        'visible'=>User::canRoute('/user/user-permission/set'),
+        'options'=>[
+            'width'=>'10px',
+        ],
+    ],
+    [
+        'value'=>function(User $model){
+                return GhostHtml::a(
+                    UserModule::t('back', 'Change password'),
+                    ['change-password', 'id'=>$model->id],
+                    ['class'=>'btn btn-sm btn-default', 'data-pjax'=>1, 'role'=>'modal-remote']);
+            },
+        'format'=>'raw',
+        'options'=>[
+            'width'=>'10px',
+        ],
+    ],
+    [
         'class'=>'webvimark\components\StatusColumn',
         'attribute'=>'status',
         'optionsArray'=>[
@@ -96,27 +96,17 @@ return [
         'class' => 'kartik\grid\ActionColumn',
         'dropdown' => false,
         'vAlign'=>'middle',
-        'width' => '200px',
-        'urlCreator' => function($action, $model, $key, $index) {
-            return Url::to([$action,'id'=>$key]);
+        'urlCreator' => function($action, $model, $key, $index) { 
+                return Url::to([$action,'id'=>$key]);
         },
-        'viewOptions'=>['role'=>'modal-remote','title'=>'View','title'=>'Xem thông tin',
-            'class'=>'btn ripple btn-primary btn-sm',
-            'data-bs-placement'=>'top',
-            'data-bs-toggle'=>'tooltip-primary'],
-        'updateOptions'=>['role'=>'modal-remote','title'=>'Cập nhật dữ liệu',
-            'class'=>'btn ripple btn-info btn-sm',
-            'data-bs-placement'=>'top',
-            'data-bs-toggle'=>'tooltip-info'],
-        'deleteOptions'=>['role'=>'modal-remote','title'=>'Xóa dữ liệu này',
-            'data-confirm'=>false, 'data-method'=>false,// for overide yii data api
-            'data-request-method'=>'post',
-            'data-toggle'=>'tooltip',
-            'data-confirm-title'=>'Xác nhận xóa dữ liệu?',
-            'data-confirm-message'=>'Bạn có chắc chắn thực hiện hành động này?',
-            'class'=>'btn ripple btn-secondary btn-sm',
-            'data-bs-placement'=>'top',
-            'data-bs-toggle'=>'tooltip-secondary'], 
+        'viewOptions'=>['role'=>'modal-remote','title'=>'View','data-toggle'=>'tooltip'],
+        'updateOptions'=>['role'=>'modal-remote','title'=>'Update', 'data-toggle'=>'tooltip'],
+        'deleteOptions'=>['role'=>'modal-remote','title'=>'Delete', 
+                          'data-confirm'=>false, 'data-method'=>false,// for overide yii data api
+                          'data-request-method'=>'post',
+                          'data-toggle'=>'tooltip',
+                          'data-confirm-title'=>'Confirm delete?',
+                          'data-confirm-message'=>'Are you sure delete?'], 
     ],
 
 ];   

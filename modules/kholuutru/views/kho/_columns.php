@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Url;
+use app\widgets\LinkToModalWidget;
 
 return [
     [
@@ -25,14 +26,31 @@ return [
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'loai_kho',
+        'value'=>'tenLoaiKho'
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'id_nguoi_quan_ly',
+        //'value'=>'tenNguoiQuanLy',
+        'format'=>'raw',
+        'value'=>function($model){
+            return LinkToModalWidget::widget([
+                'label'=>$model->tenNguoiQuanLy, 
+                'link'=>$model->nguoiQuanLy->showLink
+            ]);
+        }
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'id_bo_phan_quan_ly',
+        //'value'=>'tenBoPhanQuanLy',
+        'format'=>'raw',
+        'value'=>function($model){
+            return LinkToModalWidget::widget([
+                'label'=>$model->tenBoPhanQuanLy,
+                'link'=>$model->boPhanQuanLy->showLink
+            ]);
+        }
     ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',
