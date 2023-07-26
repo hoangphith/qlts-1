@@ -18,6 +18,9 @@ $cus = new CustomFunc();
 if($model->ngay_vao_lam != null){
     $model->ngay_vao_lam = $cus->convertYMDToDMY($model->ngay_vao_lam);
 }
+if($model->ngay_thoi_viec != null){
+    $model->ngay_thoi_viec = $cus->convertYMDToDMY($model->ngay_thoi_viec);
+}
 ?>
 
 <div class="bo-phan-form container-fluid formInput">

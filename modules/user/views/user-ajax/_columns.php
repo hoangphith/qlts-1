@@ -6,6 +6,7 @@ use app\modules\user\UserModule;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use webvimark\modules\UserManagement\components\GhostHtml;
+use app\widgets\LinkToModalWidget;
 
 return [
     [
@@ -54,6 +55,19 @@ return [
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'username',
+    ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'username',
+        'label'=>'Nhân viên',
+        //'value'=>'tenNhanVien',
+        'format'=>'raw',
+        'value'=>function($model){
+            return LinkToModalWidget::widget([
+                'label'=>$model->tenNhanVien,
+                'link'=>$model->showLinkNhanVien
+            ]);
+        }
     ],
     [
         'attribute'=>'email',
