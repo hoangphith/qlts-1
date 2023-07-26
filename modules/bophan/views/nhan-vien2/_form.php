@@ -6,9 +6,10 @@ use app\widgets\forms\SwitchWidget;
 use app\widgets\forms\RadioWidget;
 use app\modules\bophan\models\BoPhan;
 use app\modules\user\models\User;
-use kartik\date\DatePicker;
+
 use app\modules\dungchung\models\CustomFunc;
 use app\modules\bophan\models\NhanVien;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\bophan\models\NhanVien */
