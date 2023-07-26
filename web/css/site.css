@@ -85,7 +85,7 @@ body .select2-container {
 /*form control*/
 .form-control {
     height: calc(1.5em + 0.75rem) !important;
-    padding: 10px !important;
+    /*padding: 10px !important;*/
 }
 textarea.form-control {
 	height: auto !important;

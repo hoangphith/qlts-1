@@ -24,6 +24,7 @@
         "kartik-v/yii2-widget-switchinput": "dev-master",
         "kartik-v/yii2-widget-datepicker": "dev-master",
         "kartik-v/yii2-widget-select2": "dev-master",
+        "kartik-v/dependent-dropdown": "dev-master",
         "kartik-v/yii2-widget-depdrop": "dev-master"
     },
     "require-dev": {

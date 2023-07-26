@@ -45,9 +45,11 @@ function setMenuActive(){
 	const urlParams = new URLSearchParams(queryString);
 	const dataMenu = urlParams.get('menu');
 	//console.log(dataMenu);
-	const parentMenu = dataMenu.substring(0,dataMenu.length - 1);
-	//console.log(parentMenu);
-	$("a[data-menu='"+dataMenu+"']").addClass('active');
-	$("ul[data-menu='"+parentMenu+"']").css({ display: "block" });
+	if(dataMenu != null){
+		const parentMenu = dataMenu.substring(0,dataMenu.length - 1);
+		//console.log(parentMenu);
+		$("a[data-menu='"+dataMenu+"']").addClass('active');
+		$("ul[data-menu='"+parentMenu+"']").css({ display: "block" });
+	}
 }
 setMenuActive();
