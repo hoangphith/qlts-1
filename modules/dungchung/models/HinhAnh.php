@@ -24,6 +24,6 @@ class HinhAnh extends HinhAnhBase
      * @return string
      */
     public function getHinhAnhUrl(){
-        return Yii::getAlias('@web') . $this::FOLDER_IMAGES . $this->ten_file_luu;
+        return Yii::getAlias('@web') . $this::FOLDER_IMAGES . $this->duong_dan;
     }
 }

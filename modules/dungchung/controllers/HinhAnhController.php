@@ -177,10 +177,11 @@ class HinhAnhController extends Controller
                     $model->ten_file_luu = $file->name;
                     $model->img_extension = $file->extension;
                     $model->img_size = $file->size;
+                    $model->duong_dan = md5(Yii::$app->user->id . date('Y-m-d H:i:s')) . '.' . $model->img_extension;
                 }
                 if($model->save()){
                     if (!empty($file))
-                        $file->saveAs( Yii::getAlias('@webroot') .'/uploads/' . $file);
+                        $file->saveAs( Yii::getAlias('@webroot') . HinhAnh::FOLDER_IMAGES .  $model->duong_dan);
                     return [
                         #'forceReload'=>'#hinh-anh-pjax',
                         'forceClose'=>true,
@@ -188,7 +189,6 @@ class HinhAnhController extends Controller
                         'content'=>'<span class="text-success">Thêm mới thành công</span>',
                         'tcontent'=>'Thêm mới thành công!', */
                         'dungChungType'=>'hinhAnh',
-                        //'dungChungContent'=>$this->renderAjax('_imagesByID', []),
                         'dungChungContent'=>ImageGridWidget::widget([
                             'loai' => $loai,
                             'id_tham_chieu' => $thamchieu

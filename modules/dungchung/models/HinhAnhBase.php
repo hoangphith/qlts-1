@@ -64,15 +64,10 @@ class HinhAnhBase extends \app\models\TsHinhAnh
      */
     public function beforeDelete()
     {
-        //$filePath = Yii::getAlias('@webroot') . $this::FOLDER_IMAGES . $this->id . '.' . $this->doc_ext;
-        $filePath = Yii::getAlias('@webroot') . $this::FOLDER_IMAGES . $this->ten_file_luu;
+        $filePath = Yii::getAlias('@webroot') . $this::FOLDER_IMAGES . $this->duong_dan;
         if(file_exists($filePath)){
             unlink($filePath);
         }
         return parent::beforeDelete();
-    }
-    
-    public static function addImage($type, $atr, $mod, $isNew){
-        
     }
 }
