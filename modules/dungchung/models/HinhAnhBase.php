@@ -6,6 +6,8 @@ use Yii;
 
 class HinhAnhBase extends \app\models\TsHinhAnh
 {
+
+    public $file;
     /**
      * {@inheritdoc}
      */
@@ -20,6 +22,7 @@ class HinhAnhBase extends \app\models\TsHinhAnh
             [['loai', 'img_wh'], 'string', 'max' => 20],
             [['ten_hien_thi', 'duong_dan', 'ten_file_luu'], 'string', 'max' => 255],
             [['img_extension'], 'string', 'max' => 10],
+            [['file'], 'file'],
         ];
     }
 

@@ -7,6 +7,7 @@ use cangak\ajaxcrud\CrudAsset;
 use cangak\ajaxcrud\BulkButtonWidget;
 use yii\widgets\Pjax;
 use app\widgets\FilterFormWidget;
+use app\modules\dungchung\models\HinhAnh;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\bophan\models\NhanVien2Search */
@@ -76,6 +77,16 @@ Yii::$app->params['showExport'] = true;
 
 <?php Pjax::end(); ?>
 
+<?php Pjax::begin([
+    'id'=>'hinh-anh-pjax',
+    'timeout' => 10000,
+    //'formSelector' => '#img-form'
+]); ?>
+<?php 
+    echo '<h1>' . HinhAnh::find()->count() . '</h1>';
+?>
+<?php Pjax::end(); ?>
+
 <?php Modal::begin([
    'options' => [
         'id'=>'ajaxCrudModal',
@@ -83,9 +94,24 @@ Yii::$app->params['showExport'] = true;
    ],
    'dialogOptions'=>['class'=>'modal-xl'],
    'closeButton'=>['label'=>'<span aria-hidden=\'true\'>×</span>'],
+   'clientOptions' => ['backdrop' => false],
    'id'=>'ajaxCrudModal',
     'footer'=>'',// always need it for jquery plugin
 ])?>
+
+<?php Modal::end(); ?>
+
+
+<?php Modal::begin([
+   'options' => [
+        'id'=>'ajaxCrudModal2',
+        'tabindex' => false // important for Select2 to work properly
+   ],
+   'dialogOptions'=>['class'=>'modal-lg'],
+   'closeButton'=>['label'=>'<span aria-hidden=\'true\'>×</span>'],
+   'id'=>'ajaxCrudModal2',
+   'footer'=>'',// always need it for jquery plugin
+]) ?>
 
 <?php Modal::end(); ?>
 

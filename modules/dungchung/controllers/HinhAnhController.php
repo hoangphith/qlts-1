@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use \yii\web\Response;
 use yii\helpers\Html;
 use yii\filters\AccessControl;
+use yii\web\UploadedFile;
 
 /**
  * HinhAnhController implements the CRUD actions for HinhAnh model.
@@ -141,6 +142,76 @@ class HinhAnhController extends Controller
             }
         }
        
+    }
+    
+    /**
+     * Creates a new HinhAnh model from other modules.
+     * For ajax request will return json object
+     * and for non-ajax request if creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreateOuter($loai, $thamchieu)
+    {
+        $request = Yii::$app->request;
+        $model = new HinhAnh();
+        
+        if($request->isAjax){
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            if($request->isGet){
+                return [
+                    'title'=> "Thêm mới Hình ảnh",
+                    'content'=>$this->renderAjax('create-outer', [
+                        'model' => $model,
+                    ]),
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                    Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
+                    
+                ];
+            }else if($model->load($request->post())){
+                $file = UploadedFile::getInstance($model, 'file');
+                $model->loai = $loai;
+                $model->id_tham_chieu = $thamchieu;
+                if (!empty($file)){
+                    $model->ten_file_luu = $file->name;
+                    $model->img_extension = $file->extension;
+                    $model->img_size = $file->size;
+                }
+                if($model->save()){
+                    if (!empty($file))
+                        $file->saveAs( Yii::getAlias('@webroot') .'/uploads/' . $file);
+                    return [
+                        'forceReload'=>'#hinh-anh-pjax',
+                        'title'=> "Thêm mới Hình ảnh",
+                        'content'=>'<span class="text-success">Thêm mới thành công</span>',
+                        'tcontent'=>'Thêm mới thành công!',
+                        'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal2"]).
+                        Html::a('Tiếp tục thêm',['create'],['class'=>'btn btn-primary','role'=>'modal-remote-2'])
+                        
+                    ];
+                } else {
+                    return [
+                        'title'=> "Thêm mới Hình ảnh",
+                        'content'=>$this->renderAjax('create', [
+                            'model' => $model,
+                        ]),
+                        'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                        Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
+                        
+                    ];
+                }
+            }else{
+                return [
+                    'title'=> "Thêm mới Hình ảnh",
+                    'content'=>$this->renderAjax('create', [
+                        'model' => $model,
+                    ]),
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                    Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
+                    
+                ];
+            }
+        }
+        
     }
 
     /**
