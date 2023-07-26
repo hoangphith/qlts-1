@@ -1,5 +1,4 @@
 <?php
-use yii\helpers\Url;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Modal;
 use kartik\grid\GridView;
@@ -7,7 +6,6 @@ use cangak\ajaxcrud\CrudAsset;
 use cangak\ajaxcrud\BulkButtonWidget;
 use yii\widgets\Pjax;
 use app\widgets\FilterFormWidget;
-use app\modules\dungchung\models\HinhAnh;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\bophan\models\NhanVien2Search */
@@ -75,16 +73,6 @@ Yii::$app->params['showExport'] = true;
     </div>
 </div>
 
-<?php Pjax::end(); ?>
-
-<?php Pjax::begin([
-    'id'=>'hinh-anh-pjax',
-    'timeout' => 10000,
-    //'formSelector' => '#img-form'
-]); ?>
-<?php 
-    echo '<h1>' . HinhAnh::find()->count() . '</h1>';
-?>
 <?php Pjax::end(); ?>
 
 <?php Modal::begin([

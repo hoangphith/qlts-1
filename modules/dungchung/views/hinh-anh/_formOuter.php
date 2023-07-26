@@ -22,7 +22,7 @@ use yii\bootstrap5\ActiveForm;
         ],
     ]); ?>
     
-    <?= $form->field($model, 'file')->fileInput() ?>
+    <?= $model->isNewRecord ? $form->field($model, 'file')->fileInput() : '' ?>
 
     <?= $form->field($model, 'ten_hien_thi')->textInput(['maxlength' => true]) ?>
 

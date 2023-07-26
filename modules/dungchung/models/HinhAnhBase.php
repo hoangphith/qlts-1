@@ -6,7 +6,7 @@ use Yii;
 
 class HinhAnhBase extends \app\models\TsHinhAnh
 {
-
+    CONST FOLDER_IMAGES = '/uploads/';
     public $file;
     /**
      * {@inheritdoc}
@@ -56,6 +56,20 @@ class HinhAnhBase extends \app\models\TsHinhAnh
             $this->nguoi_tao = Yii::$app->user->id;
         }
         return parent::beforeSave($insert);
+    }
+    
+    /**
+     * {@inheritdoc}
+     * xoa file anh
+     */
+    public function beforeDelete()
+    {
+        //$filePath = Yii::getAlias('@webroot') . $this::FOLDER_IMAGES . $this->id . '.' . $this->doc_ext;
+        $filePath = Yii::getAlias('@webroot') . $this::FOLDER_IMAGES . $this->ten_file_luu;
+        if(file_exists($filePath)){
+            unlink($filePath);
+        }
+        return parent::beforeDelete();
     }
     
     public static function addImage($type, $atr, $mod, $isNew){

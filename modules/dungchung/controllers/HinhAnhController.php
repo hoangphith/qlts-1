@@ -12,6 +12,7 @@ use \yii\web\Response;
 use yii\helpers\Html;
 use yii\filters\AccessControl;
 use yii\web\UploadedFile;
+use app\widgets\views\ImageGridWidget;
 
 /**
  * HinhAnhController implements the CRUD actions for HinhAnh model.
@@ -30,6 +31,7 @@ class HinhAnhController extends Controller
 				'class' => VerbFilter::className(),
 				'actions' => [
 					'delete' => ['POST'],
+				    'delete-outer' => ['POST'],
 				],
 			],
 		];
@@ -180,10 +182,17 @@ class HinhAnhController extends Controller
                     if (!empty($file))
                         $file->saveAs( Yii::getAlias('@webroot') .'/uploads/' . $file);
                     return [
-                        'forceReload'=>'#hinh-anh-pjax',
-                        'title'=> "Thêm mới Hình ảnh",
+                        #'forceReload'=>'#hinh-anh-pjax',
+                        'forceClose'=>true,
+                       /*  'title'=> "Thêm mới Hình ảnh",
                         'content'=>'<span class="text-success">Thêm mới thành công</span>',
-                        'tcontent'=>'Thêm mới thành công!',
+                        'tcontent'=>'Thêm mới thành công!', */
+                        'dungChungType'=>'hinhAnh',
+                        //'dungChungContent'=>$this->renderAjax('_imagesByID', []),
+                        'dungChungContent'=>ImageGridWidget::widget([
+                            'loai' => $loai,
+                            'id_tham_chieu' => $thamchieu
+                        ]),
                         'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal2"]).
                         Html::a('Tiếp tục thêm',['create'],['class'=>'btn btn-primary','role'=>'modal-remote-2'])
                         
@@ -242,7 +251,7 @@ class HinhAnhController extends Controller
                 ];         
             }else if($model->load($request->post()) && $model->save()){
                 return [
-                    'forceReload'=>'#crud-datatable-pjax',
+                    #'forceReload'=>'#crud-datatable-pjax',
                     'title'=> "HinhAnh",
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
@@ -269,6 +278,74 @@ class HinhAnhController extends Controller
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }
+        }
+    }
+    
+    /**
+     * Updates an existing HinhAnh model from other modules.
+     * For ajax request will return json object
+     * and for non-ajax request if update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionUpdateOuter($id)
+    {
+        $request = Yii::$app->request;
+        $model = $this->findModel($id);
+        
+        if($request->isAjax){
+            /*
+             *   Process for ajax request
+             */
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            if($request->isGet){
+                return [
+                    'title'=> "Cập nhật HinhAnh",
+                    'content'=>$this->renderAjax('update-outer', [
+                        'model' => $model,
+                    ]),
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                    Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
+                ];
+            }else if($model->load($request->post()) && $model->save()){
+                return [
+                    #'forceClose'=>true,
+                    #'forceReload'=>'#crud-datatable-pjax',
+                    'title'=> "HinhAnh",
+                    'content'=>$this->renderAjax('view', [
+                        'model' => $model,
+                    ]),
+                    'tcontent'=>'Cập nhật thành công!',
+                    'dungChungType'=>'hinhAnh',
+                    //'dungChungContent'=>$this->renderAjax('_imagesByID', []),
+                    'dungChungContent'=>ImageGridWidget::widget([
+                        'loai' => $model->loai,
+                        'id_tham_chieu' => $model->id_tham_chieu
+                    ]),
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                    Html::a('Sửa',['update-outer','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                ];
+            }else{
+                return [
+                    'title'=> "Cập nhật HinhAnh",
+                    'content'=>$this->renderAjax('update-outer', [
+                        'model' => $model,
+                    ]),
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                    Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
+                ];
+            }
+        }else{
+            /*
+             *   Process for non-ajax request
+             */
+            if ($model->load($request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('update-outer', [
                     'model' => $model,
                 ]);
             }
@@ -301,6 +378,36 @@ class HinhAnhController extends Controller
         }
 
 
+    }
+    
+    public function actionDeleteOuter($id)
+    {
+        $request = Yii::$app->request;
+        $model = $this->findModel($id);
+        $loai = $model->loai;
+        $thamchieu = $model->id_tham_chieu;
+        $model->delete();
+        
+        if($request->isAjax){
+            /*
+             *   Process for ajax request
+             */
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ['forceClose'=>true,/* 'forceReload'=>'#crud-datatable-pjax',  */ 
+                'dungChungType'=>'hinhAnh',
+                'dungChungContent'=>ImageGridWidget::widget([
+                    'loai' => $loai,
+                    'id_tham_chieu' => $thamchieu
+                ]),
+            ];
+        }else{
+            /*
+             *   Process for non-ajax request
+             */
+            return $this->redirect(['index']);
+        }
+        
+        
     }
 
      /**

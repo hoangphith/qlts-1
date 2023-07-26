@@ -42,7 +42,7 @@ class HistoryController extends Controller
     {    
         $searchModel = new HistorySearch();
   		if ($searchModel->load(Yii::$app->request->post())) {
-            $searchModel = new NhanVien2Search(); // "reset"
+  		    $searchModel = new HistorySearch(); // "reset"
             $dataProvider = $searchModel->search(Yii::$app->request->post());
         } else {
         	$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
