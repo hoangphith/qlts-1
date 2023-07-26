@@ -17,8 +17,8 @@ if($model->isNewRecord){
     if($model->id_nguoi_quan_ly != null){
         $nv = NhanVien::findOne($model->id_nguoi_quan_ly);
         if($nv != null){
-            $newArr = [$model->id_nguoi_quan_ly => $nv->ten_nhan_vien];
-            //$newArr = NhanVien::getListThuocBoPhan($model->id_nguoi_quan_ly);
+            //$newArr = [$model->id_nguoi_quan_ly => $nv->ten_nhan_vien];
+            $newArr = NhanVien::getListThuocBoPhan($model->id_nguoi_quan_ly);
         }
     }
 }
@@ -67,8 +67,8 @@ if($model->isNewRecord){
         //echo Html::hiddenInput('input-type-2', $model->id_nguoi_quan_ly, ['id' => 'input-type-2']);
         echo $form->field($model, 'id_nguoi_quan_ly')->widget(DepDrop::classname(), [
             'options'=>['id'=>'id-nhan-vien','placeholder' => 'Select ...'],
-            'data' => $model->isNewRecord?$newArr:[$model->id_nguoi_quan_ly=>$model->nguoiQuanLy->ten_nhan_vien],
-            //'data' => $model->isNewRecord?$newArr:NhanVien::getListThuocBoPhan($model->id_nguoi_quan_ly),
+           // 'data' => $model->isNewRecord?$newArr:[$model->id_nguoi_quan_ly=>$model->nguoiQuanLy->ten_nhan_vien],
+        'data' => $model->isNewRecord?$newArr:NhanVien::getListThuocBoPhan($model->id_nguoi_quan_ly),
             'type'=>DepDrop::TYPE_SELECT2,
             'select2Options'=>[
                 'pluginOptions' => [

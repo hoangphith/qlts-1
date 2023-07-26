@@ -56,7 +56,7 @@
 						<span class="side-menu__icon">
 							<i class="bi bi-question-octagon side_menu_img"></i>
 						</span>
-						<span class="side-menu__label">Help & Support #</span></a>
+						<span class="side-menu__label">Trợ giúp #</span></a>
 				</li>
 			</ul>
 			<div class="slide-right" id="slide-right">

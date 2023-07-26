@@ -4,6 +4,7 @@ namespace app\modules\bophan\models;
 
 use Yii;
 use app\modules\dungchung\models\CustomFunc;
+use yii\helpers\ArrayHelper;
 
 class NhanVien extends \app\modules\bophan\models\NhanVienBase
 {
@@ -40,4 +41,22 @@ class NhanVien extends \app\modules\bophan\models\NhanVienBase
     public function getGioiTinh(){
         return $this::getGioiTinhLabel($this->gioi_tinh);
     }
+    
+   /*  public static function getListThuocBoPhan($pid=NULL){
+        //var_dump($pid);
+        $list = null;
+        $arr = array();
+        if($pid != null){
+            $list = NhanVien::find()->where(['id_bo_phan'=>$pid])->all();
+        } else {
+            $list = NhanVien::find()->all();
+        }
+        //return ArrayHelper::map($list, 'id', 'ten_nhan_vien');
+        
+        foreach ($list as $i=>$val){
+            $arr[] = [$val->id, $val->ten_nhan_vien];
+        }
+        return $arr;
+    } */
+  
 }
