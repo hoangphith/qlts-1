@@ -25,17 +25,33 @@ class TaiLieu extends TaiLieuBase
      * @param int $idthamchieu
      */
     public static function xoaTaiLieuThamChieu($loai, $idthamchieu){
-        $models = HinhAnh::getTaiLieuThamChieu($loai, $idthamchieu);
+        $models = TaiLieu::getTaiLieuThamChieu($loai, $idthamchieu);
         foreach ($models as $indexMod=>$model){
             $model->delete();
         }
     }
     
     /**
-     * get tai lieu url
+     * get tai lieu ext url image
      * @return string
      */
     public function getExtUrl(){
         return Yii::getAlias('@web') . $this::FOLDER_DOCUMENTS_ICONS . $this->file_extension . '.' . 'png';
+    }
+    
+    /**
+     * get tai lieu url
+     * @return string
+     */
+    public function getFileUrl(){
+        return Yii::getAlias('@web') . $this::FOLDER_DOCUMENTS . $this->duong_dan;
+    }
+    
+    /**
+     * file size by KB
+     * @return string
+     */
+    public function getSizeKB(){
+        return ceil($this->file_size/1024) . ' KB';
     }
 }

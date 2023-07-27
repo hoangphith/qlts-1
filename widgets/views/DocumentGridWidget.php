@@ -26,7 +26,8 @@ class DocumentGridWidget extends Widget{
 	<a class="badge rounded-pill avatar-icons bg-secondary" 
 		role="modal-remote-2" href="'. Yii::getAlias('@web/dungchung/tai-lieu/delete-outer?id='. $val->id) . '" aria-label="Xóa" data-pjax="0" data-request-method="post" data-toggle="tooltip" data-confirm-title="Xác nhận xóa tài liệu?" data-confirm-message="Bạn có chắc chắn thực hiện hành động này?" data-bs-placement="top" data-bs-toggle="tooltip-secondary" data-bs-original-title="Xóa tài liệu này">
 		<i class="fe fe-x fs-12 d-flex"></i></a>
-</div>';
+</div>'; 
+            
         }
         
         $maHtml .= '</div>';

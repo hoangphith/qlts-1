@@ -31,6 +31,7 @@ class TaiLieuController extends Controller
     				'class' => VerbFilter::className(),
     				'actions' => [
     					'delete' => ['POST'],
+    				    'delete-outer' => ['POST'],
     				],
     			],
 		];
@@ -202,7 +203,7 @@ class TaiLieuController extends Controller
                 }else{
                     return [
                         'title'=> "Thêm mới Tài liệu",
-                        'content'=>$this->renderAjax('create', [
+                        'content'=>$this->renderAjax('create-outer', [
                             'model' => $model,
                         ]),
                         'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
@@ -390,6 +391,43 @@ class TaiLieuController extends Controller
         }
 
 
+    }
+    
+    /**
+     * Delete an existing TaiLieu model.
+     * For ajax request will return json object
+     * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDeleteOuter($id)
+    {
+        $request = Yii::$app->request;
+        $model = $this->findModel($id);
+        $loai = $model->loai;
+        $thamchieu = $model->id_tham_chieu;
+        $model->delete();
+        
+        if($request->isAjax){
+            /*
+             *   Process for ajax request
+             */
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ['forceClose'=>true,/* 'forceReload'=>'#crud-datatable-pjax',  */
+                'dungChungType'=>'taiLieu',
+                'dungChungContent'=>DocumentGridWidget::widget([
+                    'loai' => $loai,
+                    'id_tham_chieu' => $thamchieu
+                ]),
+            ];
+        }else{
+            /*
+             *   Process for non-ajax request
+             */
+            return $this->redirect(['index']);
+        }
+        
+        
     }
 
      /**
