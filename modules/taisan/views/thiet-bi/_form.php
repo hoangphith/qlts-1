@@ -11,6 +11,8 @@ use app\modules\taisan\models\ViTri;
 use app\modules\taisan\models\BoPhan;
 use app\modules\bophan\models\NhanVien;
 use app\modules\taisan\models\LopHuHong;
+use app\widgets\forms\ImageWidget;
+use app\widgets\forms\DocumentWidget;
 /* @var $this yii\web\View */
 /* @var $model app\models\TsThietBi */
 /* @var $form yii\widgets\ActiveForm */
@@ -245,6 +247,18 @@ use app\modules\taisan\models\LopHuHong;
                 </div>
             </div>
             </fieldset><!--End thoi gian trang thai-->
+            <fieldset class="border p-2"><!--Hinh anh -->
+                <div class="row">
+                    <div class="row-6">
+                    <?php if(!$model->isNewRecord): ?>
+                            <?= ImageWidget::widget([
+                                'loai' => ThietBi::MODEL_ID,
+                                'id_tham_chieu' => $model->id
+                            ]) ?>
+                    <?php endif; ?>
+                    </div>
+                </div>
+            </fieldset>
         </div>
     </div>
 

@@ -28,4 +28,4 @@ class ImageWidget extends Widget{
         return $maHtml;
     }
 }
-?>
+?>  
