@@ -1,4 +1,5 @@
 <?php
+use yii\helpers\Url;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Modal;
 use kartik\grid\GridView;
@@ -8,10 +9,10 @@ use yii\widgets\Pjax;
 use app\widgets\FilterFormWidget;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\modules\bophan\models\NhanVien2Search */
+/* @var $searchModel app\modules\dungchung\models\TaiLieuSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Nhân viên';
+$this->title = 'Tai Lieus';
 $this->params['breadcrumbs'][] = $this->title;
 
 CrudAsset::register($this);
@@ -27,7 +28,7 @@ Yii::$app->params['showExport'] = true;
     'formSelector' => '.myFilterForm'
 ]); ?>
 
-<div class="nhan-vien-index">
+<div class="tai-lieu-index">
     <div id="ajaxCrudDatatable">
         <?=GridView::widget([
             'id'=>'crud-datatable',
@@ -38,7 +39,7 @@ Yii::$app->params['showExport'] = true;
             'toolbar'=> [
                 ['content'=>
                     Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i> Thêm mới', ['create'],
-                    ['role'=>'modal-remote','title'=> 'Thêm mới Nhân viên','class'=>'btn btn-outline-primary']).
+                    ['role'=>'modal-remote','title'=> 'Thêm mới Tai Lieus','class'=>'btn btn-outline-primary']).
                     Html::a('<i class="fas fa fa-sync" aria-hidden="true"></i> Tải lại', [''],
                     ['data-pjax'=>1, 'class'=>'btn btn-outline-primary', 'title'=>'Tải lại']).
                     //'{toggleData}'.
@@ -54,7 +55,7 @@ Yii::$app->params['showExport'] = true;
             'panel' => [
                 //'type' => 'primary', 
                 'heading' => '<i class="fas fa fa-list" aria-hidden="true"></i> Danh sách',
-                'before'=>'<em>* Danh sách nhân viên</em>',
+                'before'=>'<em>* Danh sách Tai Lieus</em>',
                 'after'=>BulkButtonWidget::widget([
                             'buttons'=>Html::a('<i class="fas fa fa-trash" aria-hidden="true"></i>&nbsp; Xóa đã chọn',
                                 ["bulkdelete"] ,
@@ -80,26 +81,11 @@ Yii::$app->params['showExport'] = true;
         'id'=>'ajaxCrudModal',
         'tabindex' => false // important for Select2 to work properly
    ],
-   'dialogOptions'=>['class'=>'modal-xl'],
+   'dialogOptions'=>['class'=>'modal-lg'],
    'closeButton'=>['label'=>'<span aria-hidden=\'true\'>×</span>'],
-   'clientOptions' => ['backdrop' => false],
    'id'=>'ajaxCrudModal',
     'footer'=>'',// always need it for jquery plugin
 ])?>
-
-<?php Modal::end(); ?>
-
-
-<?php Modal::begin([
-   'options' => [
-        'id'=>'ajaxCrudModal2',
-        'tabindex' => false // important for Select2 to work properly
-   ],
-   'dialogOptions'=>['class'=>'modal-lg'],
-   'closeButton'=>['label'=>'<span aria-hidden=\'true\'>×</span>'],
-   'id'=>'ajaxCrudModal2',
-   'footer'=>'',// always need it for jquery plugin
-]) ?>
 
 <?php Modal::end(); ?>
 

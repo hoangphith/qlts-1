@@ -3,21 +3,21 @@
 namespace app\modules\dungchung\controllers;
 
 use Yii;
-use app\modules\dungchung\models\HinhAnh;
-use app\modules\dungchung\models\HinhAnhSearch;
+use app\modules\dungchung\models\TaiLieu;
+use app\modules\dungchung\models\TaiLieuSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use \yii\web\Response;
 use yii\helpers\Html;
 use yii\filters\AccessControl;
+use app\widgets\views\DocumentGridWidget;
 use yii\web\UploadedFile;
-use app\widgets\views\ImageGridWidget;
 
 /**
- * HinhAnhController implements the CRUD actions for HinhAnh model.
+ * TaiLieuController implements the CRUD actions for TaiLieu model.
  */
-class HinhAnhController extends Controller
+class TaiLieuController extends Controller
 {
     /**
      * @inheritdoc
@@ -26,28 +26,28 @@ class HinhAnhController extends Controller
     		return [
     			'ghost-access'=> [
     			'class' => 'webvimark\modules\UserManagement\components\GhostAccessControl',
-    		],
-			'verbs' => [
-				'class' => VerbFilter::className(),
-				'actions' => [
-					'delete' => ['POST'],
-				    'delete-outer' => ['POST'],
-				],
-			],
+        		],
+    			'verbs' => [
+    				'class' => VerbFilter::className(),
+    				'actions' => [
+    					'delete' => ['POST'],
+    				    'delete-outer' => ['POST'],
+    				],
+    			],
 		];
 	}
 
     /**
-     * Lists all HinhAnh models.
+     * Lists all TaiLieu models.
      * @return mixed
      */
     public function actionIndex()
     {    
-        $searchModel = new HinhAnhSearch();
+        $searchModel = new TaiLieuSearch();
   		if(isset($_POST['search']) && $_POST['search'] != null){
             $dataProvider = $searchModel->search(Yii::$app->request->post(), $_POST['search']);
         } else if ($searchModel->load(Yii::$app->request->post())) {
-            $searchModel = new HinhAnhSearch(); // "reset"
+            $searchModel = new TaiLieuSearch(); // "reset"
             $dataProvider = $searchModel->search(Yii::$app->request->post());
         } else {
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -60,7 +60,7 @@ class HinhAnhController extends Controller
 
 
     /**
-     * Displays a single HinhAnh model.
+     * Displays a single TaiLieu model.
      * @param integer $id
      * @return mixed
      */
@@ -70,7 +70,7 @@ class HinhAnhController extends Controller
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "HinhAnh",
+                    'title'=> "TaiLieu",
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
@@ -85,7 +85,7 @@ class HinhAnhController extends Controller
     }
 
     /**
-     * Creates a new HinhAnh model.
+     * Creates a new TaiLieu model.
      * For ajax request will return json object
      * and for non-ajax request if creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -93,7 +93,7 @@ class HinhAnhController extends Controller
     public function actionCreate()
     {
         $request = Yii::$app->request;
-        $model = new HinhAnh();  
+        $model = new TaiLieu();  
 
         if($request->isAjax){
             /*
@@ -102,7 +102,7 @@ class HinhAnhController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Thêm mới HinhAnh",
+                    'title'=> "Thêm mới TaiLieu",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -113,7 +113,7 @@ class HinhAnhController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Thêm mới HinhAnh",
+                    'title'=> "Thêm mới TaiLieu",
                     'content'=>'<span class="text-success">Thêm mới thành công</span>',
                     'tcontent'=>'Thêm mới thành công!',
                     'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
@@ -122,7 +122,7 @@ class HinhAnhController extends Controller
                 ];         
             }else{           
                 return [
-                    'title'=> "Thêm mới HinhAnh",
+                    'title'=> "Thêm mới TaiLieu",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -147,7 +147,7 @@ class HinhAnhController extends Controller
     }
     
     /**
-     * Creates a new HinhAnh model from other modules.
+     * Creates a new TaiLieu model from other modules.
      * For ajax request will return json object
      * and for non-ajax request if creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -155,13 +155,16 @@ class HinhAnhController extends Controller
     public function actionCreateOuter($loai, $thamchieu)
     {
         $request = Yii::$app->request;
-        $model = new HinhAnh();
+        $model = new TaiLieu();
         
         if($request->isAjax){
+            /*
+             *   Process for ajax request
+             */
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Thêm mới Hình ảnh",
+                    'title'=> "Thêm mới Tài liệu",
                     'content'=>$this->renderAjax('create-outer', [
                         'model' => $model,
                     ]),
@@ -175,21 +178,21 @@ class HinhAnhController extends Controller
                 $model->id_tham_chieu = $thamchieu;
                 if (!empty($file)){
                     $model->ten_file_luu = $file->name;
-                    $model->img_extension = $file->extension;
-                    $model->img_size = $file->size;
-                    $model->duong_dan = md5(Yii::$app->user->id . date('Y-m-d H:i:s')) . '.' . $model->img_extension;
+                    $model->file_extension = $file->extension;
+                    $model->file_size = $file->size;
+                    $model->duong_dan = md5(Yii::$app->user->id . date('Y-m-d H:i:s')) . '.' . $model->file_extension;
                 }
                 if($model->save()){
                     if (!empty($file))
-                        $file->saveAs( Yii::getAlias('@webroot') . HinhAnh::FOLDER_IMAGES .  $model->duong_dan);
+                        $file->saveAs( Yii::getAlias('@webroot') . TaiLieu::FOLDER_DOCUMENTS .  $model->duong_dan);
                     return [
-                        #'forceReload'=>'#hinh-anh-pjax',
+                        //'forceReload'=>'#crud-datatable-pjax',
                         'forceClose'=>true,
-                       /*  'title'=> "Thêm mới Hình ảnh",
+                       /* 'title'=> "Thêm mới TaiLieu",
                         'content'=>'<span class="text-success">Thêm mới thành công</span>',
-                        'tcontent'=>'Thêm mới thành công!', */
-                        'dungChungType'=>'hinhAnh',
-                        'dungChungContent'=>ImageGridWidget::widget([
+                        'tcontent'=>'Thêm mới thành công!',*/
+                        'dungChungType'=>'taiLieu',
+                        'dungChungContent'=>DocumentGridWidget::widget([
                             'loai' => $loai,
                             'id_tham_chieu' => $thamchieu
                         ]),
@@ -197,10 +200,10 @@ class HinhAnhController extends Controller
                         Html::a('Tiếp tục thêm',['create'],['class'=>'btn btn-primary','role'=>'modal-remote-2'])
                         
                     ];
-                } else {
+                }else{
                     return [
-                        'title'=> "Thêm mới Hình ảnh",
-                        'content'=>$this->renderAjax('create', [
+                        'title'=> "Thêm mới Tài liệu",
+                        'content'=>$this->renderAjax('create-outer', [
                             'model' => $model,
                         ]),
                         'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
@@ -210,7 +213,7 @@ class HinhAnhController extends Controller
                 }
             }else{
                 return [
-                    'title'=> "Thêm mới Hình ảnh",
+                    'title'=> "Thêm mới Tài liệu",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -219,12 +222,23 @@ class HinhAnhController extends Controller
                     
                 ];
             }
+        }else{
+            /*
+             *   Process for non-ajax request
+             */
+            if ($model->load($request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }
         }
         
     }
 
     /**
-     * Updates an existing HinhAnh model.
+     * Updates an existing TaiLieu model.
      * For ajax request will return json object
      * and for non-ajax request if update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -242,7 +256,7 @@ class HinhAnhController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Cập nhật HinhAnh",
+                    'title'=> "Cập nhật TaiLieu",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -251,8 +265,8 @@ class HinhAnhController extends Controller
                 ];         
             }else if($model->load($request->post()) && $model->save()){
                 return [
-                    #'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "HinhAnh",
+                    'forceReload'=>'#crud-datatable-pjax',
+                    'title'=> "TaiLieu",
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
@@ -262,7 +276,7 @@ class HinhAnhController extends Controller
                 ];    
             }else{
                  return [
-                    'title'=> "Cập nhật HinhAnh",
+                    'title'=> "Cập nhật TaiLieu",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -285,7 +299,7 @@ class HinhAnhController extends Controller
     }
     
     /**
-     * Updates an existing HinhAnh model from other modules.
+     * Updates an existing TaiLieu model form other modules.
      * For ajax request will return json object
      * and for non-ajax request if update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -303,7 +317,7 @@ class HinhAnhController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Cập nhật HinhAnh",
+                    'title'=> "Cập nhật Tài liệu",
                     'content'=>$this->renderAjax('update-outer', [
                         'model' => $model,
                     ]),
@@ -312,16 +326,15 @@ class HinhAnhController extends Controller
                 ];
             }else if($model->load($request->post()) && $model->save()){
                 return [
-                    #'forceClose'=>true,
-                    #'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Hình ảnh",
+                    //'forceReload'=>'#crud-datatable-pjax',
+                    'title'=> "Tài liệu",
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
                     'tcontent'=>'Cập nhật thành công!',
-                    'dungChungType'=>'hinhAnh',
+                    'dungChungType'=>'taiLieu',
                     //'dungChungContent'=>$this->renderAjax('_imagesByID', []),
-                    'dungChungContent'=>ImageGridWidget::widget([
+                    'dungChungContent'=>DocumentGridWidget::widget([
                         'loai' => $model->loai,
                         'id_tham_chieu' => $model->id_tham_chieu
                     ]),
@@ -330,7 +343,7 @@ class HinhAnhController extends Controller
                 ];
             }else{
                 return [
-                    'title'=> "Cập nhật HinhAnh",
+                    'title'=> "Cập nhật Tài liệu",
                     'content'=>$this->renderAjax('update-outer', [
                         'model' => $model,
                     ]),
@@ -353,7 +366,7 @@ class HinhAnhController extends Controller
     }
 
     /**
-     * Delete an existing HinhAnh model.
+     * Delete an existing TaiLieu model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -380,6 +393,13 @@ class HinhAnhController extends Controller
 
     }
     
+    /**
+     * Delete an existing TaiLieu model.
+     * For ajax request will return json object
+     * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     */
     public function actionDeleteOuter($id)
     {
         $request = Yii::$app->request;
@@ -393,9 +413,9 @@ class HinhAnhController extends Controller
              *   Process for ajax request
              */
             Yii::$app->response->format = Response::FORMAT_JSON;
-            return ['forceClose'=>true,/* 'forceReload'=>'#crud-datatable-pjax',  */ 
-                'dungChungType'=>'hinhAnh',
-                'dungChungContent'=>ImageGridWidget::widget([
+            return ['forceClose'=>true,/* 'forceReload'=>'#crud-datatable-pjax',  */
+                'dungChungType'=>'taiLieu',
+                'dungChungContent'=>DocumentGridWidget::widget([
                     'loai' => $loai,
                     'id_tham_chieu' => $thamchieu
                 ]),
@@ -411,7 +431,7 @@ class HinhAnhController extends Controller
     }
 
      /**
-     * Delete multiple existing HinhAnh model.
+     * Delete multiple existing TaiLieu model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -451,15 +471,15 @@ class HinhAnhController extends Controller
     }
 
     /**
-     * Finds the HinhAnh model based on its primary key value.
+     * Finds the TaiLieu model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return HinhAnh the loaded model
+     * @return TaiLieu the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = HinhAnh::findOne($id)) !== null) {
+        if (($model = TaiLieu::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
