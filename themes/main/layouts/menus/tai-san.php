@@ -24,11 +24,11 @@
 					<div class="tab-pane active" id="side3">
 					<ul class="sidemenu-list">
 							<li class="side-menu__label1"><a href="javascript:void(0)">Danh mục chức năng</a></li>
-							<li><a href="/taisan/thiet-bi" class="slide-item" data-menu="ts1">Quản lý thiết bị/tài sản</a></li>
-							<li><a href="/taisan/loai-thiet-bi" class="slide-item" data-menu="ts2">Loại thiết bị/tài sản</a></li>
-							<li><a href="/taisan/he-thong" class="slide-item" data-menu="ts3" >Hệ thống</a></li>
-							<li><a href="/taisan/vi-tri" class="slide-item" data-menu="ts4">Vị trí </a></li>
-							<li><a href="/taisan/lop-hu-hong" class="slide-item" data-menu="ts5">Lớp hư hỏng</a></li>
+							<li><a href="/taisan/thiet-bi?menu=ts1" class="slide-item" data-menu="ts1">Quản lý thiết bị/tài sản</a></li>
+							<li><a href="/taisan/loai-thiet-bi?menu=ts2" class="slide-item" data-menu="ts2">Loại thiết bị/tài sản</a></li>
+							<li><a href="/taisan/he-thong?menu=ts3" class="slide-item" data-menu="ts3" >Hệ thống</a></li>
+							<li><a href="/taisan/vi-tri?menu=ts4" class="slide-item" data-menu="ts4">Vị trí </a></li>
+							<li><a href="/taisan/lop-hu-hong?menu=ts5" class="slide-item" data-menu="ts5">Lớp hư hỏng</a></li>
 						</ul>
 						<div class="menutabs-content px-0">
 						  <!-- menu tab here -->

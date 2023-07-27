@@ -22,7 +22,7 @@ class DocumentListWidget extends Widget{
             foreach ($data as $key=>$val){
                 $maHtml .= '<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">';
                 $maHtml .= '<div class="card overflow-hidden custom-card">';
-                $maHtml .= '<a href="'. $val->fileUrl .'" class="mx-auto my-4"><img src="'. $val->extUrl .'" alt="img"></a>';
+                $maHtml .= '<a href="'. $val->fileUrl .'" class="mx-auto my-4" target="_blank"><img src="'. $val->extUrl .'" alt="img"></a>';
                 $maHtml .= '<div class="card-footer py-2 px-3">';
                 $maHtml .= '<div class="d-flex">';
                 $maHtml .= '<div class="d-flex text-break">';

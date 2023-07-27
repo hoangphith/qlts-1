@@ -2,15 +2,14 @@
 
 namespace app\modules\taisan\controllers;
 
-use Yii;
 use app\modules\taisan\models\ThietBi;
 use app\modules\taisan\models\ThietBiSearch;
+use Yii;
+use yii\filters\VerbFilter;
+use yii\helpers\Html;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use \yii\web\Response;
-use yii\helpers\Html;
-use yii\filters\AccessControl;
+use yii\web\Response;
 
 /**
  * ThietBiController implements the CRUD actions for ThietBi model.
@@ -22,16 +21,9 @@ class ThietBiController extends Controller
      */
     public function behaviors() {
 		return [
-			// 'access' => [
-			// 	'class' => AccessControl::className(),
-			// 	'rules' => [
-			// 		[
-			// 			'actions' => ['index', 'view', 'update','create','delete','bulkdelete'],
-			// 			'allow' => true,
-			// 			'roles' => ['admin'],
-			// 		],
-			// 	],
-			// ],
+		    'ghost-access'=> [
+		        'class' => 'webvimark\modules\UserManagement\components\GhostAccessControl',
+		    ],
 			'verbs' => [
 				'class' => VerbFilter::className(),
 				'actions' => [
@@ -39,6 +31,13 @@ class ThietBiController extends Controller
 				],
 			],
 		];
+	}
+	
+	public function beforeAction($action)
+	{
+	    Yii::$app->params['moduleID'] = 'Module Quản lý tài sản';
+	    Yii::$app->params['modelID'] = 'Quản lý Thiết bị';
+	    return parent::beforeAction($action);
 	}
 
     /**
@@ -48,7 +47,14 @@ class ThietBiController extends Controller
     public function actionIndex()
     {    
         $searchModel = new ThietBiSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if(isset($_POST['search']) && $_POST['search'] != null){
+            $dataProvider = $searchModel->search(Yii::$app->request->post(), $_POST['search']);
+        } else if ($searchModel->load(Yii::$app->request->post())) {
+            $searchModel = new ThietBiSearch(); // "reset"
+            $dataProvider = $searchModel->search(Yii::$app->request->post());
+        } else {
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        }    
 
         return $this->render('index', [
             'searchModel' => $searchModel,
