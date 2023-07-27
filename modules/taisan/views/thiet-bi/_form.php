@@ -29,13 +29,14 @@ use app\widgets\forms\DocumentWidget;
 </style>
 
 <div class="ts-thiet-bi-form">
-
+    <div class="card custom-card">
+    <div class="card-body shadow-none">
     <?php $form = ActiveForm::begin(['options' => ['class' => 'form-horizontal'],]); ?>
-
-    <div class="row">
     
-        <div class="col-6">
-            <fieldset class="border p-2"><!--Thông tin chung -->
+    <div class="row">
+
+        <div class="col-5">
+            <fieldset class="border p-2" style="margin:3px"><!--Thông tin chung -->
             <legend class="legend"><p>Thông tin chung</p></legend>
             <div class="row">
                 <div class="col-3">
@@ -101,7 +102,7 @@ use app\widgets\forms\DocumentWidget;
             </div>
             </fieldset>
 
-            <fieldset class="border p-2"><!--Đặc tính kỹ thuật -->
+            <fieldset class="border p-2" style="margin:3px"><!--Đặc tính kỹ thuật -->
             <legend class="legend"><p>Thông tin kỹ thuật</p></legend>
             <div class="row">
                 <div class="col">
@@ -146,8 +147,8 @@ use app\widgets\forms\DocumentWidget;
             </fieldset>
         </div>
         <!--Cột thứ 2-->
-        <div class="col-6">
-            <fieldset class="border p-2"><!--phụ trách -->
+        <div class="col-5">
+            <fieldset class="border p-2" style="margin:3px"><!--phụ trách -->
             <legend class="legend"><p>Phụ trách</p></legend>
             <div class="row">
                 <div class="col">
@@ -183,7 +184,7 @@ use app\widgets\forms\DocumentWidget;
             </div>
             </fieldset><!--end phụ trách-->
 
-            <fieldset class="border p-2"><!--Thời gian và trạng thái -->
+            <fieldset class="border p-2" style="margin:3px"><!--Thời gian và trạng thái -->
             <legend class="legend"><p>Thời gian và trạng thái</p></legend>
             <div class="row">
                 <div class="col">
@@ -243,13 +244,31 @@ use app\widgets\forms\DocumentWidget;
             </div>
             <div class="row">
                 <div class="col">
-                    <?= $form->field($model, 'ghi_chu')->textarea(['rows' => 6]) ?>
+                    <?= $form->field($model, 'ghi_chu')->textarea(['rows' => 3]) ?>
                 </div>
             </div>
             </fieldset><!--End thoi gian trang thai-->
-            <fieldset class="border p-2"><!--Hinh anh -->
+            
+           
+        </div>
+        <div class="col-2">
+            <fieldset class="border p-2" style="margin:3px"><!--Tai lieu -->
                 <div class="row">
-                    <div class="row-6">
+                    <div class="row-10">
+                    <?= '<label class="form-label" style="font-weight:bold">Tài liệu</label>';?>
+                    <?php if(!$model->isNewRecord): ?>
+                        <?= DocumentWidget::widget([
+                            'loai' => ThietBi::MODEL_ID,
+                            'id_tham_chieu' => $model->id
+                        ]) ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </fieldset>   
+            <fieldset class="border p-2" style="margin:3px"><!--Hinh anh -->
+                <div class="row">
+                    <div class="row-10">
+                    <?= '<label class="form-label" style="font-weight:bold">Hình ảnh</label>';?>
                     <?php if(!$model->isNewRecord): ?>
                             <?= ImageWidget::widget([
                                 'loai' => ThietBi::MODEL_ID,
@@ -258,7 +277,7 @@ use app\widgets\forms\DocumentWidget;
                     <?php endif; ?>
                     </div>
                 </div>
-            </fieldset>
+            </fieldset>              
         </div>
     </div>
 
@@ -273,7 +292,9 @@ use app\widgets\forms\DocumentWidget;
             </div>
         <?php } ?>
 
-    <?php ActiveForm::end(); ?>
+        <?php ActiveForm::end(); ?>
+    </div>
+    </div>
 </div>
 
    

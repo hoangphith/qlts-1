@@ -33,7 +33,6 @@ use app\widgets\views\DocumentListWidget;
  	<div class="panel-body tabs-menu-body ps">
 		<div class="tab-content">
 			<div class="tab-pane  active show" id="tab1" role="tabpanel">
-			
 				<div class="row">
 				<div class="col-md-8">
                 <?= DetailView::widget([

@@ -149,14 +149,26 @@ return [
         'urlCreator' => function($action, $model, $key, $index) { 
                 return Url::to([$action,'id'=>$key]);
         },
-        'viewOptions'=>['role'=>'modal-remote','title'=>'Lihat','data-toggle'=>'tooltip'],
-        'updateOptions'=>['role'=>'modal-remote','title'=>'Update', 'data-toggle'=>'tooltip'],
-        'deleteOptions'=>['role'=>'modal-remote','title'=>'Hapus', 
+        'viewOptions'=>['role'=>'modal-remote','title'=>'Xem chi tiết',
+        'data-toggle'=>'tooltip', 
+        'class'=>'btn ripple btn-primary btn-sm',
+        'data-bs-placement'=>'top',
+        'data-bs-toggle'=>'tooltip-primary'],
+        'updateOptions'=>['role'=>'modal-remote','title'=>'Cập nhật', 'data-toggle'=>'tooltip',
+        'class'=>'btn ripple btn-info btn-sm',
+        'data-bs-placement'=>'top',
+        'data-bs-toggle'=>'tooltip-info'
+        ],
+        'deleteOptions'=>['role'=>'modal-remote','title'=>'Xoá', 
                           'data-confirm'=>false, 'data-method'=>false,// for overide yii data api
                           'data-request-method'=>'post',
                           'data-toggle'=>'tooltip',
                           'data-confirm-title'=>'Thông báo',
-                          'data-confirm-message'=>'Bạn có chắc xoá dòng chọn không'], 
+                          'data-confirm-message'=>'Bạn có chắc xoá dòng chọn không',
+                          'class'=>'btn ripple btn-secondary btn-sm',
+                          'data-bs-placement'=>'top',
+                          'data-bs-toggle'=>'tooltip-secondary'
+                        ], 
     ],
 
 ];   
