@@ -6,6 +6,7 @@ use app\widgets\forms\RadioWidget;
 use app\modules\dungchung\models\History;
 use app\modules\bophan\models\NhanVien;
 use app\widgets\views\ImageListWidget;
+use app\widgets\views\DocumentListWidget;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\bophan\models\NhanVien */
@@ -18,7 +19,9 @@ use app\widgets\views\ImageListWidget;
 				<li><a href="#tab1" class="active" data-bs-toggle="tab" aria-selected="false" role="tab" tabindex="-1">
 					Thông tin chung
 				</a></li>
-				
+				<li><a href="#tab3" data-bs-toggle="tab" aria-selected="false" role="tab" tabindex="-1">
+					Tài liệu
+				</a></li>
 				<li><a href="#tab2" data-bs-toggle="tab" aria-selected="true" role="tab">
 					Lịch sử thay đổi
 				</a></li>
@@ -91,6 +94,15 @@ use app\widgets\views\ImageListWidget;
                      </div>
                 </div><!-- col 6 -->
                 </div><!-- row -->
+			</div>
+			
+			<div class="tab-pane" id="tab3" role="tabpanel">
+				<?php /* DocumentListWidget::widget([
+            	    'loai' => NhanVien::MODEL_ID,
+            	    'id_tham_chieu' => $model->id
+            	]) */ ?>
+            	
+            	<?= $this->render('_taiLieu', ['model'=>$model]) ?>
 			</div>
 			
 			<div class="tab-pane" id="tab2" role="tabpanel">

@@ -3,9 +3,9 @@ namespace app\widgets\views;
 
 use Yii;
 use yii\base\Widget;
-use app\modules\dungchung\models\HinhAnh;
+use app\modules\dungchung\models\TaiLieu;
 
-class ImageListWidget extends Widget{
+class DocumentListWidget extends Widget{
     public $loai;
     public $id_tham_chieu;
     
@@ -14,9 +14,9 @@ class ImageListWidget extends Widget{
     }
     
     public function run(){
-        $data = HinhAnh::getHinhAnhThamChieu($this->loai, $this->id_tham_chieu);
+        $data = TaiLieu::getTaiLieuThamChieu($this->loai, $this->id_tham_chieu);
         if($data==null){
-            $maHtml = 'Chưa có hình ảnh.';
+            $maHtml = 'Chưa có tài liệu.';
         } else {
         
         $maHtml = '<div class="carousel-slider">';

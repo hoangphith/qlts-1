@@ -6,7 +6,7 @@ use Yii;
 
 class HinhAnhBase extends \app\models\TsHinhAnh
 {
-    CONST FOLDER_IMAGES = '/uploads/';
+    CONST FOLDER_IMAGES = '/uploads/images/';
     public $file;
     /**
      * {@inheritdoc}

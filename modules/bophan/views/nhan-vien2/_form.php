@@ -10,6 +10,7 @@ use app\modules\dungchung\models\CustomFunc;
 use app\modules\bophan\models\NhanVien;
 use kartik\date\DatePicker;
 use app\widgets\forms\ImageWidget;
+use app\widgets\forms\DocumentWidget;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\bophan\models\NhanVien */
@@ -141,12 +142,29 @@ if($model->ngay_thoi_viec != null){
             			<div class="card-body pd-20 pd-md-40 shadow-none">
                         	<h5 class="card-title mg-b-20">Hình ảnh</h5>
                         	<p class="text-muted card-sub-title mt-1">
-                        		<?= $model->isNewRecord ? 'Vui lòng lưu thông tin trước để tải ảnh lên':'Chọn file hình ảnh.' ?>
+                        		<?= $model->isNewRecord ? 'Vui lòng bấm lưu lại để tải ảnh lên':'Chọn file hình ảnh.' ?>
                         	</p>
                         	
                         	<?php if(!$model->isNewRecord): ?>
                             
                             <?= ImageWidget::widget([
+                                'loai' => NhanVien::MODEL_ID,
+                                'id_tham_chieu' => $model->id
+                            ]) ?>
+                            
+                            <?php endif; ?>
+                            
+                        	</div><!-- card-body -->
+                        	
+                        	<div class="card-body pd-20 pd-md-40 shadow-none">
+                        	<h5 class="card-title mg-b-20">Tài liệu</h5>
+                        	<p class="text-muted card-sub-title mt-1">
+                        		<?= $model->isNewRecord ? 'Vui lòng bấm lưu lại để tải tài liệu lên':'Chọn file tài liệu.' ?>
+                        	</p>
+                        	
+                        	<?php if(!$model->isNewRecord): ?>
+                            
+                            <?= DocumentWidget::widget([
                                 'loai' => NhanVien::MODEL_ID,
                                 'id_tham_chieu' => $model->id
                             ]) ?>

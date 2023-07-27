@@ -18,7 +18,7 @@ class ImageWidget extends Widget{
     public function run(){
         
         $maHtml = Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i> Thêm hình',
-            [Yii::getAlias('@web').'/dungchung/hinh-anh/create-outer?loai='.$this->loai.'&thamchieu='.$this->id_tham_chieu],['role'=>'modal-remote-2','title'=> 'Thêm mới Bộ phận','class'=>'btn btn-outline-primary']);
+            [Yii::getAlias('@web').'/dungchung/hinh-anh/create-outer?loai='.$this->loai.'&thamchieu='.$this->id_tham_chieu],['role'=>'modal-remote-2','title'=> 'Thêm mới hình ảnh','class'=>'btn btn-outline-primary']);
         
         $maHtml .= ImageGridWidget::widget([
             'loai' => $this->loai,

@@ -111,19 +111,39 @@ class NhanVien2Controller extends Controller
                         'model' => $model,
                     ]),
                     'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                                Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
+                                Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit", 'value'=>'luuTam'])
         
                 ];         
             }else if($model->load($request->post()) && $model->save()){
-                return [
-                    'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Thêm mới Nhân viên",
-                    'content'=>'<span class="text-success">Thêm mới thành công</span>',
-                    'tcontent'=>'Thêm mới thành công!',
-                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                            Html::a('Tiếp tục thêm',['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
-        
-                ];         
+                //xu ly luu tam cho du lieu can luu hinh anh va tai lieu
+                $submitType = isset($request->post()['submitType'])?$request->post()['submitType']:'';
+                if($submitType == 'luuTam'){
+                    return [
+                        'forceReload'=>'#crud-datatable-pjax',
+                        'title'=> "Cập nhật nhân viên",
+                        'content'=>$this->renderAjax('update', [
+                            'model' => $model,
+                        ]),
+                        'tcontent'=>'Đã lưu tạm thông tin, vui lòng thêm hình ảnh (nếu có)!',
+                        'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                        Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
+                        
+                    ];   
+                } else {
+                    return [
+                        'forceReload'=>'#crud-datatable-pjax',
+                        //'title'=> "Thêm mới Nhân viên",
+                        //'content'=>'<span class="text-success">Thêm mới thành công</span>',
+                        'title'=>'Nhân viên',
+                        'content'=>$this->renderAjax( ('view'), [
+                            'model' => $model,
+                        ]),
+                        'tcontent'=>'Thêm mới thành công!',
+                        'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                                Html::a('Tiếp tục thêm',['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
+            
+                    ];         
+                }
             }else{           
                 return [
                     'title'=> "Thêm mới Nhân viên",
@@ -131,7 +151,7 @@ class NhanVien2Controller extends Controller
                         'model' => $model,
                     ]),
                     'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                                Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
+                                Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit",'value'=>'luuTam'])
         
                 ];         
             }
@@ -179,13 +199,13 @@ class NhanVien2Controller extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Nhân viên",
-                    'content'=>$this->renderAjax('view', [
+                    'title'=>'Nhân viên',
+                    'content'=>$this->renderAjax( ('view'), [
                         'model' => $model,
                     ]),
                     'tcontent'=>'Cập nhật thành công!',
                     'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                            Html::a('Sửa',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                           Html::a('Sửa',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
                 ];    
             }else{
                  return [
@@ -194,7 +214,7 @@ class NhanVien2Controller extends Controller
                         'model' => $model,
                     ]),
                     'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                                Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
+                     Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
                 ];        
             }
         }else{

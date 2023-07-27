@@ -20,6 +20,18 @@ class HinhAnh extends HinhAnhBase
     }
     
     /**
+     * xoa tat ca hinh anh thuoc id tham chieu(khi xoa tham chieu)
+     * @param string $loai
+     * @param int $idthamchieu
+     */
+    public static function xoaHinhAnhThamChieu($loai, $idthamchieu){
+        $models = HinhAnh::getHinhAnhThamChieu($loai, $idthamchieu);
+        foreach ($models as $indexMod=>$model){
+            $model->delete();
+        }
+    }
+    
+    /**
      * get hinh anh url
      * @return string
      */
