@@ -18,48 +18,25 @@ class DocumentListWidget extends Widget{
         if($data==null){
             $maHtml = 'Chưa có tài liệu.';
         } else {
-        
-        $maHtml = '<div class="carousel-slider">';
-        $maHtml .= '<div id="carousel" class="carousel slide" data-bs-ride="carousel">';
-        $maHtml .= '<div class="carousel-inner">';
-        
+            $maHtml = '';
             foreach ($data as $key=>$val){
-                $maHtml .= '<div class="carousel-item ' . ($key==0?'active':'') . '"><img src="' . $val->hinhAnhUrl . '" alt="img"> </div>';
-            }
-            
-            $maHtml .= '</div>';
-            $maHtml .= '<a class="carousel-control-prev" href="#carousel" role="button" data-bs-slide="prev">
-    					<i class="fa fa-angle-left fs-30" aria-hidden="true"></i>
-    				</a>
-    				<a class="carousel-control-next" href="#carousel" role="button" data-bs-slide="next">
-    					<i class="fa fa-angle-right fs-30" aria-hidden="true"></i>
-    				</a>';
-        $maHtml .= '</div>';
-        
-        
-        $maHtml .= '<div class="clearfix">';
-            $maHtml .= '<div id="thumbcarousel" class="carousel slide" data-bs-interval="false">';
-                $maHtml .= '<div class="carousel-inner">';
-                    $maHtml .= '<div class="carousel-item active text-nowrap">';
-                        foreach ($data as $key=>$val){                            
-                            $maHtml .= '<div data-bs-target="#carousel" data-bs-slide-to="'.$key.'" class="thumb mt-2"><img src="' . $val->hinhAnhUrl . '" alt="img" class="br-3"></div>';
-                        }
-                    $maHtml .= '</div>';
+                $maHtml .= '<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">';
+                $maHtml .= '<div class="card overflow-hidden custom-card">';
+                $maHtml .= '<a href="'. $val->fileUrl .'" class="mx-auto my-4"><img src="'. $val->extUrl .'" alt="img"></a>';
+                $maHtml .= '<div class="card-footer py-2 px-3">';
+                $maHtml .= '<div class="d-flex">';
+                $maHtml .= '<div class="d-flex text-break">';
+                $maHtml .= '<i class="mdi mdi-file-pdf tx-20 text-danger me-1"></i>';
+                $maHtml .= '<h6 class="mb-0 mt-2 text-muted">'.$val->ten_file_luu.'</h6>';
                 $maHtml .= '</div>';
-                $maHtml .= '<a class="carousel-control-prev" href="#thumbcarousel" role="button" data-bs-slide="prev">
-						<i class="fa fa-angle-left fs-20" aria-hidden="true"></i>
-					</a>
-					<a class="carousel-control-next" href="#thumbcarousel" role="button" data-bs-slide="next">
-						<i class="fa fa-angle-right fs-20" aria-hidden="true"></i>
-					</a>';
-                
-            $maHtml .= '</div>';
-        $maHtml .= '</div>';
-        
-        
-        
-        
-        $maHtml .= '</div>';
+               /*  $maHtml .= '<div class="ms-auto mt-2">';
+                $maHtml .= '<h6 class="text-muted">'. $val->sizeKB .'</h6>';
+                $maHtml .= '</div>'; */
+                $maHtml .= '</div>';
+                $maHtml .= '</div>';
+                $maHtml .= '</div>';
+                $maHtml .= '</div>';
+            }
         }
         return $maHtml;
     }

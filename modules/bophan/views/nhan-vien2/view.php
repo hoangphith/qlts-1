@@ -97,12 +97,13 @@ use app\widgets\views\DocumentListWidget;
 			</div>
 			
 			<div class="tab-pane" id="tab3" role="tabpanel">
-				<?php /* DocumentListWidget::widget([
+				<div class="row">
+				<?=  DocumentListWidget::widget([
             	    'loai' => NhanVien::MODEL_ID,
             	    'id_tham_chieu' => $model->id
-            	]) */ ?>
-            	
-            	<?= $this->render('_taiLieu', ['model'=>$model]) ?>
+            	])  ?>
+            	</div>
+            	<?php // $this->render('_taiLieu', ['model'=>$model]) ?>
 			</div>
 			
 			<div class="tab-pane" id="tab2" role="tabpanel">
