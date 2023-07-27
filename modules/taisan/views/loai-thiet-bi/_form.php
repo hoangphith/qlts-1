@@ -11,31 +11,53 @@ use app\modules\taisan\models\LoaiThietBi;
 ?>
 
 <div class="loai-thiet-bi-form">
-
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'ma_loai')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <div class="col-3">
+            <?= $form->field($model, 'ma_loai')->textInput(['maxlength' => true, 'style'=>'background-color: #ffda9a']) ?>
+        </div>
+        <div class="col-9">
+            <?= $form->field($model, 'ten_loai')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'loai_thiet_bi')
+                    ->dropDownList(
+                        ['1'=>'Machine', '2'=>'Vehicle', '3'=>'Tool'],           // Flat array ('id'=>'label')
+                        ['prompt'=>'']    // options
+                    );
+            ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'truc_thuoc')->widget(Select2::classname(), [
+                'data' => ArrayHelper::map(LoaiThietBi::find()->all(), 'id', 'ten_loai'),
+                'language' => 'vi',
+                'options' => ['placeholder' => 'Chọn trực thuộc...'],
+                'pluginOptions' => [
+                    'allowClear' => true,
+                    'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'),
+                ],
+            ]);?>
+        </div>
+    </div>
+    <div>
+        <div class="col">
+            <?= $form->field($model, 'don_vi_tinh')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'ghi_chu')->textarea(['rows' => 3]) ?>
+        </div>
+    </div>
+   
 
-    <?= $form->field($model, 'ten_loai')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'don_vi_tinh')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'truc_thuoc')->widget(Select2::classname(), [
-        'data' => ArrayHelper::map(LoaiThietBi::find()->all(), 'id', 'ten_loai'),
-        'language' => 'vi',
-        'options' => ['placeholder' => 'Chọn trực thuộc...'],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ]);?>
-
-    <?= $form->field($model, 'loai_thiet_bi')
-        ->dropDownList(
-            ['1'=>'Machine', '2'=>'Vehicle', '3'=>'Tool'],           // Flat array ('id'=>'label')
-            ['prompt'=>'']    // options
-        );
-    ?>
-    <?= $form->field($model, 'ghi_chu')->textarea(['rows' => 3]) ?>
+    
+    
 
     <!-- <?= $form->field($model, 'thoi_gian_tao')->textInput() ?>
 

@@ -36,10 +36,10 @@ use app\modules\taisan\models\LopHuHong;
             <fieldset class="border p-2"><!--Thông tin chung -->
             <legend class="legend"><p>Thông tin chung</p></legend>
             <div class="row">
-                <div class="col">
+                <div class="col-3">
                     <?= $form->field($model, 'ma_thiet_bi')->textInput(['maxlength' => true]) ?>
                 </div>
-                <div class="col">
+                <div class="col-9">
                     <?= $form->field($model, 'ten_thiet_bi')->textInput(['maxlength' => true]) ?>
                 </div>
             </div>
@@ -75,7 +75,8 @@ use app\modules\taisan\models\LopHuHong;
                         'language' => 'vi',
                         'options' => ['placeholder' => 'Chọn vị trí...'],
                         'pluginOptions' => [
-                            'allowClear' => true
+                            'allowClear' => true,
+                            'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'),
                         ],
                     ]);?>
                 </div>
@@ -85,7 +86,8 @@ use app\modules\taisan\models\LopHuHong;
                     'language' => 'vi',
                     'options' => ['placeholder' => 'Chọn hệ thống...'],
                     'pluginOptions' => [
-                        'allowClear' => true
+                        'allowClear' => true,
+                        'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'),
                     ],
                 ]);?>
                 </div>
@@ -133,7 +135,8 @@ use app\modules\taisan\models\LopHuHong;
                             'language' => 'vi',
                             'options' => ['placeholder' => 'Chọn lớp...'],
                             'pluginOptions' => [
-                                'allowClear' => true
+                                'allowClear' => true,
+                                'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'),
                             ],
                     ]);?>
                 </div>
@@ -154,7 +157,8 @@ use app\modules\taisan\models\LopHuHong;
                             'language' => 'vi',
                             'options' => ['placeholder' => 'Chọn người quản lý...'],
                             'pluginOptions' => [
-                                'allowClear' => true
+                                'allowClear' => true,
+                                'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'),
                             ],
                     ]);?>
                 </div>
@@ -169,7 +173,8 @@ use app\modules\taisan\models\LopHuHong;
                         'language' => 'vi',
                         'options' => ['placeholder' => 'Chọn bộ phận quản lý...'],
                         'pluginOptions' => [
-                            'allowClear' => true
+                            'allowClear' => true,
+                            'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'),
                         ],
                     ]);?>
                 </div>

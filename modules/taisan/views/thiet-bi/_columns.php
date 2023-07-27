@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Url;
-
+use yii\helpers\ArrayHelper;
+use app\modules\taisan\models\LoaiThietBi;
 return [
     [
         'class' => 'kartik\grid\CheckboxColumn',
@@ -18,6 +19,7 @@ return [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'ma_thiet_bi',
         'width'=> '10%',
+        
     ],
       [
         'class'=>'\kartik\grid\DataColumn',
@@ -29,12 +31,15 @@ return [
         'attribute'=>'id_vi_tri',
         'value'=>'viTri.ten_vi_tri',
         'width'=> '20%',
+        
+        
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'id_loai_thiet_bi',
         'value'=>'loaiThietBi.ten_loai',
         'width'=> '20%',
+        //'filter'=>ArrayHelper::map(LoaiThietBi::find()->asArray()->all(), 'id', 'ten_loai'),
     ],
     [
         'class'=>'\kartik\grid\DataColumn',

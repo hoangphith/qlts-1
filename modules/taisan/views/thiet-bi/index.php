@@ -5,6 +5,8 @@ use yii\bootstrap5\Modal;
 use kartik\grid\GridView;
 use cangak\ajaxcrud\CrudAsset; 
 use cangak\ajaxcrud\BulkButtonWidget;
+use app\widgets\FilterFormWidget;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TsThietBiSearch */
@@ -17,12 +19,19 @@ CrudAsset::register($this);
 Yii::$app->params['showSearch'] = true;
 Yii::$app->params['showExport'] = true;
 ?>
+
+<?php Pjax::begin([
+    'id'=>'myGrid',
+    'timeout' => 10000,
+    'formSelector' => '.myFilterForm'
+]); ?>
+
 <div class="ts-thiet-bi-index">
     <div id="ajaxCrudDatatable">
         <?=GridView::widget([
             'id'=>'crud-datatable',
             'dataProvider' => $dataProvider,
-            'filterModel' => $searchModel,
+            //'filterModel' => $searchModel,
             'pjax'=>true,
             'columns' => require(__DIR__.'/_columns.php'),
             'toolbar'=> [
@@ -59,6 +68,7 @@ Yii::$app->params['showExport'] = true;
         ])?>
     </div>
 </div>
+<?php Pjax::end(); ?>
 <?php Modal::begin([
    "options" => [
     "id"=>"ajaxCrudModal",
@@ -66,6 +76,12 @@ Yii::$app->params['showExport'] = true;
 ],
    "id"=>"ajaxCrudModal",
    "dialogOptions"=>["class"=>"modal-xl"],
+   'closeButton'=>['label'=>'<span aria-hidden="true">×</span>'],
     "footer"=>"",// always need it for jquery plugin
 ])?>
 <?php Modal::end(); ?>
+
+<?php
+    $searchContent = $this->render("_search", ["model" => $searchModel]);
+    echo FilterFormWidget::widget(["content"=>$searchContent, "description"=>"Nhập thông tin tìm kiếm."]) 
+?>
