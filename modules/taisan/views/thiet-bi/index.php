@@ -36,10 +36,10 @@ Yii::$app->params['showExport'] = true;
             'columns' => require(__DIR__.'/_columns.php'),
             'toolbar'=> [
                 ['content'=>
-                    Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i>', ['create'],
-                    ['role'=>'modal-remote','title'=> 'Thêm thiết bị/tài sản','class'=>'btn btn-default']).
-                    Html::a('<i class="fas fa fa-sync" aria-hidden="true"></i>', [''],
-                    ['data-pjax'=>1, 'class'=>'btn btn-default', 'title'=>'Reset Grid']).
+                    Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i> Thêm mới', ['create'],
+                    ['role'=>'modal-remote','title'=> 'Thêm thiết bị/tài sản','class'=>'btn btn-primary']).
+                    Html::a('<i class="fas fa fa-sync" aria-hidden="true"></i> Tải lại', [''],
+                    ['data-pjax'=>1, 'class'=>'btn btn-danger', 'title'=>'Reset Grid']).
                     '{toggleData}'.
                     '{export}'
                 ],

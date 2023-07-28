@@ -128,22 +128,6 @@ use app\widgets\forms\DocumentWidget;
                     <?= $form->field($model, 'id_nhien_lieu')->textInput() ?>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <?= $form->field($model, 'dac_tinh_ky_thuat')->textarea(['rows' => 1]) ?>
-                </div>
-                <div class="col">
-                    <?= $form->field($model, 'id_lop_hu_hong')->widget(Select2::classname(), [
-                            'data' => ArrayHelper::map(LopHuHong::find()->all(), 'id', 'ten_lop'),
-                            'language' => 'vi',
-                            'options' => ['placeholder' => 'Chọn lớp...'],
-                            'pluginOptions' => [
-                                'allowClear' => true,
-                                'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'),
-                            ],
-                    ]);?>
-                </div>
-            </div>
             </fieldset>
         </div>
         <!--Cột thứ 2-->

@@ -44,7 +44,10 @@ use app\modules\dungchung\models\History;
                         'loaiThietBi.ten_loai',
                         'boPhanQuanLy.ten_bo_phan',
                         'ten_thiet_bi',
-                        'id_thiet_bi_cha',
+                        [
+                            'label'=>'Thiết bị cha ',
+                            'value'=>$model->thietBiCha->ten_thiet_bi,
+                        ],
                         'id_layout',
                         'nam_san_xuat',
                         'serial',
@@ -53,14 +56,28 @@ use app\modules\dungchung\models\History;
                         'id_hang_bao_hanh',
                         'id_nhien_lieu',
                         'dac_tinh_ky_thuat:ntext',
-                        'id_lop_hu_hong',
+                        //'id_lop_hu_hong',
                         'id_trung_tam_chi_phi',
                         'id_don_vi_bao_tri',
                         'id_nguoi_quan_ly',
                         'ngay_mua',
                         'han_bao_hanh',
                         'ngay_dua_vao_su_dung',
-                        'trang_thai',
+                        [
+                            //'1'=>'Hoạt động', '2'=>'Thanh lý', '3'=>'Mất', '4'=>'Hỏng'],   
+                            'label'=>'Trang thai',
+                            'value'=>function($data){
+                            switch ($data->trang_thai){
+                                case "1": return "Hoạt "; break;
+                                case "2": return  "Thanh lý "; break;
+                                case "3": return  "Mất "; break;
+                                default: return "Hỏng";
+                            }
+                                if($data->trang_thai=="1") return 'Hoạt động ';
+                                else return "Ngưng ";
+                            }
+                        ],
+                        //'trang_thai',
                         'ngay_ngung_hoat_dong',
                         'ghi_chu:ntext',
                         // 'thoi_gian_tao',

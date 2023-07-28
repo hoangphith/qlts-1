@@ -1,8 +1,10 @@
 <?php
 use yii\helpers\Url;
+use yii\widgets\Pjax;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Modal;
 use kartik\grid\GridView;
+use app\widgets\FilterFormWidget;
 use cangak\ajaxcrud\CrudAsset; 
 use cangak\ajaxcrud\BulkButtonWidget;
 
@@ -14,22 +16,28 @@ $this->title = 'Loại thiết bị';
 $this->params['breadcrumbs'][] = $this->title;
 
 CrudAsset::register($this);
-
+Yii::$app->params['showSearch'] = true;
+Yii::$app->params['showExport'] = true;
 ?>
+<?php Pjax::begin([
+    'id'=>'myGrid',
+    'timeout' => 10000,
+    'formSelector' => '.myFilterForm'
+]); ?>
 <div class="loai-thiet-bi-index">
     <div id="ajaxCrudDatatable">
         <?=GridView::widget([
             'id'=>'crud-datatable',
             'dataProvider' => $dataProvider,
-            'filterModel' => $searchModel,
+            //'filterModel' => $searchModel,
             'pjax'=>true,
             'columns' => require(__DIR__.'/_columns.php'),
             'toolbar'=> [
                 ['content'=>
-                    Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i>', ['create'],
-                    ['role'=>'modal-remote','title'=> 'Loại thiết bị','class'=>'btn btn-default']).
-                    Html::a('<i class="fas fa fa-sync" aria-hidden="true"></i>', [''],
-                    ['data-pjax'=>1, 'class'=>'btn btn-default', 'title'=>'Tải danh sách']).
+                    Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i> Thêm mới', ['create'],
+                    ['role'=>'modal-remote','title'=> 'Loại thiết bị','class'=>'btn btn-primary']).
+                    Html::a('<i class="fas fa fa-sync" aria-hidden="true"></i> Tải lại', [''],
+                    ['data-pjax'=>1, 'class'=>'btn btn-info', 'title'=>'Tải danh sách']).
                     '{toggleData}'.
                     '{export}'
                 ],
@@ -58,6 +66,7 @@ CrudAsset::register($this);
         ])?>
     </div>
 </div>
+<?php Pjax::end(); ?>
 <?php Modal::begin([
    "options" => [
     "id"=>"ajaxCrudModal",
@@ -68,3 +77,7 @@ CrudAsset::register($this);
     "footer"=>"",// always need it for jquery plugin
 ])?>
 <?php Modal::end(); ?>
+<?php
+    $searchContent = $this->render("_search", ["model" => $searchModel]);
+    echo FilterFormWidget::widget(["content"=>$searchContent, "description"=>"Nhập thông tin tìm kiếm."]) 
+?>

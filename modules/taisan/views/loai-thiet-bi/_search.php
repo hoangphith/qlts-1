@@ -13,6 +13,9 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
+        'options' => [
+            'class' => 'myFilterForm form-horizontal'
+        ],
     ]); ?>
 
     <?= $form->field($model, 'id') ?>

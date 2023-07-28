@@ -4,6 +4,7 @@ namespace app\modules\taisan\models;
 
 use app\modules\bophan\models\NhanVien;
 use app\modules\dungchung\models\History;
+use app\modules\dungchung\models\DungChung;
 use Yii;
 
 class ThietBiBase extends \app\models\TsThietBi
@@ -119,6 +120,11 @@ class ThietBiBase extends \app\models\TsThietBi
     public function getTsKeHoachBaoTris()
     {
         return $this->hasMany(KeHoachBaoTri::class, ['id_thiet_bi' => 'id']);
+    }
+    
+    public function getThietBiCha()
+    {
+        return $this->hasOne(ThietBi::class, ['id' => 'id_thiet_bi_cha']);
     }
 
     /**
