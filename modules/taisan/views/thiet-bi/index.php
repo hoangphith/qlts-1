@@ -37,13 +37,13 @@ Yii::$app->params['showExport'] = true;
             'toolbar'=> [
                 ['content'=>
                     Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i>', ['create'],
-                    ['role'=>'modal-remote','title'=> 'Tambah Ts Thiet Bis','class'=>'btn btn-default']).
+                    ['role'=>'modal-remote','title'=> 'Thêm thiết bị/tài sản','class'=>'btn btn-default']).
                     Html::a('<i class="fas fa fa-sync" aria-hidden="true"></i>', [''],
                     ['data-pjax'=>1, 'class'=>'btn btn-default', 'title'=>'Reset Grid']).
                     '{toggleData}'.
                     '{export}'
                 ],
-            ],          
+            ], 
             'striped' => true,
             'condensed' => true,
             'responsive' => true,          

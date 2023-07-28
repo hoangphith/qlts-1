@@ -1,6 +1,5 @@
 <?php 
 use app\modules\dungchung\models\HinhAnh;
-use app\modules\bophan\models\NhanVien;
 use app\modules\taisan\models\ThietBi;
 
 $hinhs = HinhAnh::getHinhAnhThamChieu(ThietBi::MODEL_ID, $model->id);

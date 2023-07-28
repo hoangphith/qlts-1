@@ -50,7 +50,7 @@ if($model->ngay_thoi_viec != null){
                         	<p class="text-muted card-sub-title mt-1">
                         		Thông tin nhân viên
                         	</p>
-                        	 
+   	
                             <?= $form->field($model, 'ten_nhan_vien')->textInput(['maxlength' => true]) ?>
                         
                             <?= $form->field($model, 'ngay_sinh')->textInput(['maxlength' => true]) ?>

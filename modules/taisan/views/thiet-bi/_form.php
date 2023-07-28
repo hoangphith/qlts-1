@@ -32,11 +32,11 @@ use app\widgets\forms\DocumentWidget;
     <div class="card custom-card">
     <div class="card-body shadow-none">
     <?php $form = ActiveForm::begin(['options' => ['class' => 'form-horizontal'],]); ?>
-    
+
     <div class="row">
 
         <div class="col-5">
-            <fieldset class="border p-2" style="margin:3px"><!--Thông tin chung -->
+            <fieldset class="border p-2" style="margin:3px;"><!--Thông tin chung -->
             <legend class="legend"><p>Thông tin chung</p></legend>
             <div class="row">
                 <div class="col-3">
@@ -193,31 +193,57 @@ use app\widgets\forms\DocumentWidget;
                     'name' => 'ngay_mua', 
                     'value' => date('d-m-Y'),
                     'options' => ['placeholder' => 'Chọn ngày mua....'],
+                    'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                    'pickerIcon' => '<i class="fas fa-calendar-alt text-primary"></i>',
+                    'removeIcon' => '<i class="fas fa-trash text-danger"></i>',
                     'pluginOptions' => [
                         'format' => 'dd-mm-yyyy',
                         'todayHighlight' => true
-                    ]
+                    ],
+                    // 'options' => [
+                    //     'style'=>'background-color: green'
+                    // ]
+                        
                 ]);
                     ?>
                 </div>
                 <div class="col">
-                    <?= $form->field($model, 'han_bao_hanh')->textInput() ?>
+                <?= '<label class="form-label">Ngày đưa vào sử dụng</label>';?>
+                <?=  DatePicker::widget([
+                            'name' => 'ngay_dua_vao_su_dung', 
+                            'value' => date('d-m-Y'),
+                            'options' => ['placeholder' => 'Chọn ngày ....'],
+                            'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                            'pickerIcon' => '<i class="fas fa-calendar-alt text-infor"></i>',
+                            'removeIcon' => '<i class="fas fa-trash text-danger"></i>',
+                            'pluginOptions' => [
+                                'format' => 'dd-mm-yyyy',
+                                'todayHighlight' => true
+                            ]
+                        ]);
+                    ?>
+
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                <?= '<label class="form-label">Ngày đưa vào sử dụng</label>';?>
-                <?=  DatePicker::widget([
-                    'name' => 'ngay_dua_vao_su_dung', 
-                    'value' => date('d-m-Y'),
-                    'options' => ['placeholder' => 'Chọn ngày ....'],
-                    'pluginOptions' => [
-                        'format' => 'dd-mm-yyyy',
-                        'todayHighlight' => true
-                    ]
-                ]);
+                    <?= '<label class="form-label">Ngày đưa vào sử dụng</label>';?>
+                    <?=  DatePicker::widget([
+                            'name' => 'han_bao_hanh', 
+                            'value' => date('d-m-Y'),
+                            'options' => ['placeholder' => 'Chọn ngày ....'],
+                            'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                            'pickerIcon' => '<i class="fas fa-calendar-alt text-infor"></i>',
+                            'removeIcon' => '<i class="fas fa-trash text-danger"></i>',
+                            'pluginOptions' => [
+                                'format' => 'dd-mm-yyyy',
+                                'todayHighlight' => true
+                            ]
+                        ]); 
                     ?>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col">
                     <?= $form->field($model, 'trang_thai')
                         ->dropDownList(
@@ -234,6 +260,9 @@ use app\widgets\forms\DocumentWidget;
                     'name' => 'ngay_ngung_hoat_dong', 
                     'value' => date('d-m-Y'),
                     'options' => ['placeholder' => 'Chọn ngày....'],
+                    'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                    'pickerIcon' => '<i class="fas fa-calendar-alt text-primary"></i>',
+                    'removeIcon' => '<i class="fas fa-trash text-danger"></i>',
                     'pluginOptions' => [
                         'format' => 'dd-mm-yyyy',
                         'todayHighlight' => true
@@ -244,7 +273,7 @@ use app\widgets\forms\DocumentWidget;
             </div>
             <div class="row">
                 <div class="col">
-                    <?= $form->field($model, 'ghi_chu')->textarea(['rows' => 3]) ?>
+                    <?= $form->field($model, 'ghi_chu')->textarea(['rows' => 5  ]) ?>
                 </div>
             </div>
             </fieldset><!--End thoi gian trang thai-->

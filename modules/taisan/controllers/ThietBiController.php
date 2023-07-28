@@ -74,12 +74,12 @@ class ThietBiController extends Controller
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "ThietBi #".$id,
+                    'title'=> "Thiết bị/tài sản #".$id,
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                            Html::a('Edit',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                    'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                            Html::a('Sửa',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
                 ];    
         }else{
             return $this->render('view', [
@@ -110,27 +110,54 @@ class ThietBiController extends Controller
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                                Html::button('Lưu',['class'=>'btn btn-primary','type'=>"submit"])
-        
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                                Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit", 'value'=>'luuTam'])
                 ];         
             }else if($model->load($request->post()) && $model->save()){
-                return [
-                    'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Create new ThietBi",
-                    'content'=>'<span class="text-success">Create ThietBi success</span>',
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                            Html::a('Create More',['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
-        
-                ];         
+                $submitType = isset($request->post()['submitType'])?$request->post()['submitType']:'';
+                if($submitType == 'luuTam'){
+                    return [
+                        'forceReload'=>'#crud-datatable-pjax',
+                        'title'=> "Cập nhật nhân viên",
+                        'content'=>$this->renderAjax('update', [
+                            'model' => $model,
+                        ]),
+                        'tcontent'=>'Đã lưu tạm thông tin, vui lòng thêm hình ảnh (nếu có)!',
+                        'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                        Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
+                        
+                    ];   
+                }
+                else{
+                    return [
+                        'forceReload'=>'#crud-datatable-pjax',
+                        //'title'=> "Thêm mới Nhân viên",
+                        //'content'=>'<span class="text-success">Thêm mới thành công</span>',
+                        'title'=>'Tài sản/Thiết bị',
+                        'content'=>$this->renderAjax( ('view'), [
+                            'model' => $model,
+                        ]),
+                        'tcontent'=>'Thêm mới thành công!',
+                        'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                                Html::a('Tiếp tục thêm',['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
+            
+                    ];
+                }
+                // return [
+                //     'forceReload'=>'#crud-datatable-pjax',
+                //     'title'=> "Thêm mới tài sản/thiết bị",
+                //     'content'=>'<span class="text-success">Thêm tài sản/thiết bị thành công</span>',
+                //     'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                //             Html::a('Thêm tiếp',['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                // ];         
             }else{           
                 return [
                     'title'=> "Thêm mới thiết bị",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                                Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
+                    'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                                Html::button('Lưu',['class'=>'btn btn-primary','type'=>"submit"])
         
                 ];         
             }
@@ -173,7 +200,7 @@ class ThietBiController extends Controller
                         'model' => $model,
                     ]),
                     'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                                Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
+                                Html::button('Lưu',['class'=>'btn btn-primary','type'=>"submit"])
                 ];         
             }else if($model->load($request->post()) && $model->save()){
                 return [

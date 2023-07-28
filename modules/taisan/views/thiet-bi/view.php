@@ -37,7 +37,7 @@ use app\modules\dungchung\models\History;
                 <?= DetailView::widget([
                     'model' => $model,
                     'attributes' => [
-                        'id',
+                       // 'id',
                         'ma_thiet_bi',
                         'viTri.ten_vi_tri',
                         'heThong.ten_he_thong',
