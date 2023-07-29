@@ -40,6 +40,8 @@ Yii::$app->params['showExport'] = true;
                     ['role'=>'modal-remote','title'=> 'Thêm thiết bị/tài sản','class'=>'btn btn-primary']).
                     Html::a('<i class="fas fa fa-sync" aria-hidden="true"></i> Tải lại', [''],
                     ['data-pjax'=>1, 'class'=>'btn btn-danger', 'title'=>'Reset Grid']).
+                    Html::a('<i class="fa fa-qrcode" aria-hidden="true"></i>', ['qr-scan'],
+                        ['role'=>'modal-remote','title'=> 'Quét QRcode','class'=>'btn btn-default']).
                     '{toggleData}'.
                     '{export}'
                 ],

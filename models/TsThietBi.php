@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "ts_thiet_bi".
  *
  * @property int $id
+ * @property string|null $autoid
  * @property string $ma_thiet_bi
  * @property int|null $id_vi_tri
  * @property int|null $id_he_thong
@@ -62,7 +63,7 @@ class TsThietBi extends \yii\db\ActiveRecord
             [['dac_tinh_ky_thuat', 'ghi_chu'], 'string'],
             [['ngay_mua', 'han_bao_hanh', 'ngay_dua_vao_su_dung', 'ngay_ngung_hoat_dong', 'thoi_gian_tao'], 'safe'],
             [['ma_thiet_bi', 'nam_san_xuat', 'trang_thai'], 'string', 'max' => 20],
-            [['ten_thiet_bi', 'serial', 'model'], 'string', 'max' => 255],
+            [['autoid', 'ten_thiet_bi', 'serial', 'model'], 'string', 'max' => 255],
             [['xuat_xu'], 'string', 'max' => 100],
             [['id_loai_thiet_bi'], 'exist', 'skipOnError' => true, 'targetClass' => TsLoaiThietBi::class, 'targetAttribute' => ['id_loai_thiet_bi' => 'id']],
             [['id_bo_phan_quan_ly'], 'exist', 'skipOnError' => true, 'targetClass' => TsBoPhan::class, 'targetAttribute' => ['id_bo_phan_quan_ly' => 'id']],
@@ -77,6 +78,7 @@ class TsThietBi extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'autoid' => 'Autoid',
             'ma_thiet_bi' => 'Ma Thiet Bi',
             'id_vi_tri' => 'Id Vi Tri',
             'id_he_thong' => 'Id He Thong',

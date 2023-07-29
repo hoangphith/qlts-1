@@ -6,6 +6,8 @@ use app\widgets\views\DocumentListWidget;
 use app\modules\taisan\models\LoaiThietBi;
 use app\modules\taisan\models\ThietBi;
 use app\modules\dungchung\models\History;
+use yii\helpers\Html;
+use app\widgets\views\ImageWithButtonWidget;
 /* @var $this yii\web\View */
 /* @var $model app\models\TsThietBi */
 ?>
@@ -46,7 +48,7 @@ use app\modules\dungchung\models\History;
                         'ten_thiet_bi',
                         [
                             'label'=>'Thiết bị cha ',
-                            'value'=>$model->thietBiCha->ten_thiet_bi,
+                            'value'=>$model->thietBiCha!=null ? $model->thietBiCha->ten_thiet_bi : '',
                         ],
                         'id_layout',
                         'nam_san_xuat',
@@ -86,6 +88,20 @@ use app\modules\dungchung\models\History;
                 ]) ?>
                 </div>
                 <div class="col-md-4">
+                	<div class="card custom-card">
+                    	<div class="card-body h-100 text-center">
+                    		<div>
+                    			<h6 class="card-title mb-1">QR CODE</h6>
+                    		</div>
+                        	<div id="print">
+                        		<?= Html::img($model->qrCode, ['width'=>200]) ?> 
+                        	</div>
+                        	<div style="margin-top:20px">
+                        	<button type="button" onClick="printQr()" class="btn ripple btn-success btn-sm btn-block">In Mã QR</button>
+							</div>
+                        </div>
+                     </div>
+                     
                 	<div class="card custom-card">
                     	<div class="card-body h-100">
                     		<div>

@@ -10,6 +10,17 @@
 	max-height: 35px;
 }
 
+/**qr code**/
+.text-qr{
+	border:0px !important;
+}
+
+.text-qr:focus {
+	border:0px !important;
+	color: white !important;
+}
+/**qr code*/
+
 /*form*/
 .formInput .card-title{
 	text-transform: uppercase;
@@ -63,7 +74,7 @@ body .select2-container {
     padding: 5px 1rem 5px 5px !important;
 }
 .select2-container--krajee-bs5 .select2-selection--single .select2-selection__clear, .select2-container--krajee-bs5 .select2-selection--multiple .select2-selection__clear {
-    padding-left: 10px !important;
+    padding-left: 20px !important;
 }
 .select2-container--krajee-bs5 .select2-results__option--highlighted[aria-selected] {
     background-color: #17b794 !important;

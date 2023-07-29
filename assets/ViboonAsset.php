@@ -44,6 +44,7 @@ class ViboonAsset extends AssetBundle
         'assets/plugins/owl-carousel/owl.carousel.js',
         'assets/plugins/multislider/multislider.js',
         'assets/js/carousel.js',
+        'js/print-this/printThis.js',
         'js/custom.js',
         //'assets/plugins/tabs/jquery.multipurpose_tabcontent.js',
         //'assets/plugins/tabs/tab-content.js'

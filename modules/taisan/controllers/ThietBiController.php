@@ -61,6 +61,43 @@ class ThietBiController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+    
+    /**
+     * quet qrcode in thiet bi index page
+     */
+    public function actionQrScan(){
+        $request = Yii::$app->request;
+        if($request->isAjax){
+            $model = new ThietBi();
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            if($request->isGet){
+                return [
+                    'title'=> "QR Scan",
+                    'content'=>$this->renderAjax('qr-scan', compact('model')),
+                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                    Html::button('Tìm thiết bị',['class'=>'btn btn-primary','type'=>"submit"])
+                ];
+            }else{
+                $model->load($request->post());
+                $model2 = ThietBi::findOne(['autoid'=>$model->autoid]);
+                if( $model2 !=null){
+                    return [
+                        'title'=> "Thiết bị #".$model2->id,
+                        'content'=>$this->renderAjax('view', ['model'=>$model2]),
+                        'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                        Html::a('Edit',['update','id'=>$model2->id],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                    ];
+                } else {
+                    return [
+                        'title'=> "QR Scan",
+                        'content'=>$this->renderAjax('qr-scan',compact('model')),
+                        'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                        Html::button('Tìm thiết bị',['class'=>'btn btn-primary','type'=>"submit"])
+                    ];
+                }
+            }
+        }
+    }
 
 
     /**

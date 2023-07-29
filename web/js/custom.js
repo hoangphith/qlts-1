@@ -11,6 +11,19 @@ function showNotif(mess){
         message: mess           
     });
 }
+/**
+ * in html tu 1 div
+ * [them id #print cho div parent]
+ */
+function printQr(){
+	$('#print').printThis({
+		 //debug: false,               // show the iframe for debugging
+		 importCSS: false,            // import parent page css
+		 //loadCSS: [opts.printCss],
+		 //printDelay: 333,
+    });
+}
+
 
 /**
  * xu ly user khong co hanh dong nao trong khoang thoi gian

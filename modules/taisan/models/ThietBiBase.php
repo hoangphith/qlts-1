@@ -10,6 +10,9 @@ use Yii;
 class ThietBiBase extends \app\models\TsThietBi
 {
     const MODEL_ID = 'thietbi';
+    
+    const QR_FOLDER = '/uploads/qrlibs/';
+    
     public function rules()
     {
         return [
@@ -18,8 +21,9 @@ class ThietBiBase extends \app\models\TsThietBi
             [['dac_tinh_ky_thuat', 'ghi_chu'], 'string'],
             [['ngay_mua', 'han_bao_hanh', 'ngay_dua_vao_su_dung', 'ngay_ngung_hoat_dong', 'thoi_gian_tao'], 'safe'],
             [['ma_thiet_bi', 'nam_san_xuat', 'trang_thai'], 'string', 'max' => 20],
-            [['ten_thiet_bi', 'serial', 'model'], 'string', 'max' => 255],
+            [['autoid', 'ten_thiet_bi', 'serial', 'model'], 'string', 'max' => 255],
             [['xuat_xu'], 'string', 'max' => 100],
+            [['autoid'], 'unique'],
             [['id_loai_thiet_bi'], 'exist', 'skipOnError' => true, 'targetClass' => LoaiThietBi::class, 'targetAttribute' => ['id_loai_thiet_bi' => 'id']],
             [['id_bo_phan_quan_ly'], 'exist', 'skipOnError' => true, 'targetClass' => BoPhan::class, 'targetAttribute' => ['id_bo_phan_quan_ly' => 'id']],
             [['id_nguoi_quan_ly'], 'exist', 'skipOnError' => true, 'targetClass' => NhanVien::class, 'targetAttribute' => ['id_nguoi_quan_ly' => 'id']],
@@ -33,6 +37,7 @@ class ThietBiBase extends \app\models\TsThietBi
     {
         return [
             'id' => 'ID',
+            'autoid'=>'Mã tự động',
             'ma_thiet_bi' => 'Mã thiết bị',
             'id_vi_tri' => 'Vị trí',
             'id_he_thong' => 'Hệ thống',
@@ -133,7 +138,12 @@ class ThietBiBase extends \app\models\TsThietBi
     public function beforeSave($insert) {
         if ($this->isNewRecord) {
             $this->thoi_gian_tao = date('Y-m-d H:i:s');
-            $this->nguoi_tao = Yii::$app->user->isGuest ? '' : Yii::$app->user->id;
+            $this->nguoi_tao = Yii::$app->user->id;
+        }
+        //neu la record moi hoac du lieu cu chua co autoid
+        if($this->autoid == null){
+            //$this->autoid = md5(Yii::$app->user->id . date('Y-m-d H:i:s'));
+            $this->autoid = chr(rand(97,122)) . Yii::$app->user->id . strtotime(date('Y-m-d H:i:s'));
         }
         return parent::beforeSave($insert);
     }
@@ -143,7 +153,20 @@ class ThietBiBase extends \app\models\TsThietBi
      */
     public function afterSave( $insert, $changedAttributes ){
         parent::afterSave($insert, $changedAttributes);
+        //create qr code
+        DungChung::createQRcode($this::QR_FOLDER, $this->autoid);
+        //create history
         History::addHistory($this::MODEL_ID, $changedAttributes, $this, $insert);
+    }
+    
+    /**
+     * xoa file QR code
+     */
+    private function deleleQr(){
+        $filePath = Yii::getAlias('@webroot') . $this::QR_FOLDER . $this->autoid . '.png';
+        if(file_exists($filePath)){
+            unlink($filePath);
+        }
     }
      /**
      * {@inheritdoc}
@@ -151,7 +174,11 @@ class ThietBiBase extends \app\models\TsThietBi
      */
     public function afterDelete()
     {
+        //xoa tham chieu
         DungChung::xoaThamChieu($this::MODEL_ID, $this->id);
+        //xoa qr
+        $this->deleleQr();
+        
         return parent::afterDelete();
     }
 }
