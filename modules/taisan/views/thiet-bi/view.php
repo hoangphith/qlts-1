@@ -93,7 +93,7 @@ use app\widgets\views\ImageWithButtonWidget;
                     		<div>
                     			<h6 class="card-title mb-1">QR CODE</h6>
                     		</div>
-                        	<div id="print">
+                        	<div>
                         		<?= Html::img($model->qrCode, ['width'=>200]) ?> 
                         	</div>
                         	<div style="margin-top:20px">
@@ -133,7 +133,11 @@ use app\widgets\views\ImageWithButtonWidget;
 		</div>
 	</div>
 </div>
- 	
-    
+
+<div style="display:none">
+<div id="print">
+<?= $this->render('../qr/_print_qr', compact('model')) ?>
+</div>
+</div>
 
 </div>

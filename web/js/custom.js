@@ -19,7 +19,7 @@ function printQr(){
 	$('#print').printThis({
 		 //debug: false,               // show the iframe for debugging
 		 importCSS: false,            // import parent page css
-		 //loadCSS: [opts.printCss],
+		 loadCSS: ['/css/print-single.css?v=25'],
 		 //printDelay: 333,
     });
 }

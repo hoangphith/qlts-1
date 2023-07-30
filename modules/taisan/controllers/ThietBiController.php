@@ -75,7 +75,7 @@ class ThietBiController extends Controller
                     'title'=> "QR Scan",
                     'content'=>$this->renderAjax('qr-scan', compact('model')),
                     'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                    Html::button('Tìm thiết bị',['class'=>'btn btn-primary','type'=>"submit"])
+                    Html::button('Tìm thiết bị',['class'=>'btn btn-primary','type'=>"submit", 'id'=>'btnLuu'])
                 ];
             }else{
                 $model->load($request->post());
@@ -92,7 +92,7 @@ class ThietBiController extends Controller
                         'title'=> "QR Scan",
                         'content'=>$this->renderAjax('qr-scan',compact('model')),
                         'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                        Html::button('Tìm thiết bị',['class'=>'btn btn-primary','type'=>"submit"])
+                        Html::button('Tìm thiết bị',['class'=>'btn btn-primary','type'=>"submit", 'id'=>'btnLuu'])
                     ];
                 }
             }
@@ -297,8 +297,6 @@ class ThietBiController extends Controller
             */
             return $this->redirect(['index']);
         }
-
-
     }
 
      /**
