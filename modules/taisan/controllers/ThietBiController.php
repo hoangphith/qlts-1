@@ -75,7 +75,7 @@ class ThietBiController extends Controller
                     'title'=> "QR Scan",
                     'content'=>$this->renderAjax('qr-scan', compact('model')),
                     'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                    Html::button('Tìm thiết bị',['class'=>'btn btn-primary','type'=>"submit"])
+                    Html::button('Tìm thiết bị',['class'=>'btn btn-primary','type'=>"submit", 'id'=>'btnLuu'])
                 ];
             }else{
                 $model->load($request->post());
@@ -92,7 +92,7 @@ class ThietBiController extends Controller
                         'title'=> "QR Scan",
                         'content'=>$this->renderAjax('qr-scan',compact('model')),
                         'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                        Html::button('Tìm thiết bị',['class'=>'btn btn-primary','type'=>"submit"])
+                        Html::button('Tìm thiết bị',['class'=>'btn btn-primary','type'=>"submit", 'id'=>'btnLuu'])
                     ];
                 }
             }
@@ -299,6 +299,30 @@ class ThietBiController extends Controller
         }
 
 
+    }
+    
+    /**
+     * In QR cho nhieu thiet bi
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionInQrs()
+    {
+        $request = Yii::$app->request;
+        //var_dump($request->post( 'pks' ));
+        //$pks = explode(',', $request->post( 'pks' )); // Array or selected records primary keys
+        $models = ThietBi::find()->where('id IN ('. $request->post( 'pks' ) . ')')->all();
+        $request = Yii::$app->request;
+        if($request->isAjax){
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return [
+                'title'=> "In QR nhiều thiết bị",
+                'content'=>$this->renderAjax('_print_qrs', compact('models')),
+                'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                Html::button('Print',['class'=>'btn btn-primary pull-right', 'onClick'=>'printQr()'])
+            ];
+        }
+        
     }
 
      /**

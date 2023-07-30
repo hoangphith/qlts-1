@@ -64,7 +64,19 @@ Yii::$app->params['showExport'] = true;
                                     'data-confirm-title'=>'Thông báo',
                                     'data-confirm-message'=>'Bạn có chắc xoá dòng được chọn không?'
                                 ]),
-                        ]).                        
+                ]).  BulkButtonWidget::widget([
+                    'buttons'=>Html::a('<i class="fas fa fa-print" aria-hidden="true"></i>&nbsp; In tem',
+                        ["in-qrs"] ,
+                        [
+                            "class"=>"btn btn-default btn-xs",
+                            'style'=>'margin-left:20px;',
+                            'role'=>'modal-remote-bulk',
+                            'data-confirm'=>false, 'data-method'=>false,// for overide yii data api
+                            'data-request-method'=>'post',
+                            'data-confirm-title'=>'Thông báo',
+                            'data-confirm-message'=>'Bạn có chắc in dòng được chọn không?'
+                        ]),
+                ]).
                         '<div class="clearfix"></div>',
             ]
         ])?>
