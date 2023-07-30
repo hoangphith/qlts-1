@@ -17,7 +17,7 @@ class DocumentListWidget extends Widget{
 
         $data = TaiLieu::getTaiLieuThamChieu($this->loai, $this->id_tham_chieu);
         if($data==null){
-            $maHtml = $this->loai. ' Chưa có tài liệu.'. $this->id_tham_chieu;
+            $maHtml = ' Chưa có tài liệu.';
         } else {
             $maHtml = '';
             foreach ($data as $key=>$val){

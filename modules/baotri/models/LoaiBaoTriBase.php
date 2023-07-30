@@ -1,20 +1,33 @@
 <?php
 
-namespace app\modules\taisan\models;
+namespace app\modules\baotri\models;
+
 use app\modules\dungchung\models\History;
 use Yii;
 
-class LoaiThietBiBase extends \app\models\TsLoaiThietBi { 
-    const MODEL_ID = 'loaithietbi';
+/**
+ * This is the model class for table "ts_loai_bao_tri".
+ *
+ * @property int $id
+ * @property string $ten
+ * @property string|null $ghi_chu
+ * @property string|null $thoi_gian_tao
+ * @property int|null $nguoi_tao
+ *
+ * @property TsKeHoachBaoTri[] $tsKeHoachBaoTris
+ */
+class LoaiBaoTriBase extends \app\models\TsLoaiBaoTri
+{
+  
+    const MODEL_ID = "loaibaotri";
     public function rules()
     {
         return [
-            [['ma_loai', 'ten_loai', 'loai_thiet_bi'], 'required'],
-            [['truc_thuoc', 'nguoi_tao'], 'integer'],
+            [['ten'], 'required'],
             [['ghi_chu'], 'string'],
             [['thoi_gian_tao'], 'safe'],
-            [['ma_loai', 'don_vi_tinh', 'loai_thiet_bi'], 'string', 'max' => 20],
-            [['ten_loai'], 'string', 'max' => 255],
+            [['nguoi_tao'], 'integer'],
+            [['ten'], 'string', 'max' => 255],
         ];
     }
 
@@ -25,11 +38,7 @@ class LoaiThietBiBase extends \app\models\TsLoaiThietBi {
     {
         return [
             'id' => 'ID',
-            'ma_loai' => 'Mã loại',
-            'ten_loai' => 'Tên loại',
-            'don_vi_tinh' => 'Đơn vị tính',
-            'truc_thuoc' => 'Trực thuộc',
-            'loai_thiet_bi' => 'Loại thiết bị',
+            'ten' => 'Tên',
             'ghi_chu' => 'Ghi chú',
             'thoi_gian_tao' => 'Thời gian tạo',
             'nguoi_tao' => 'Người tạo',
@@ -37,19 +46,15 @@ class LoaiThietBiBase extends \app\models\TsLoaiThietBi {
     }
 
     /**
-     * Gets query for [[TsThietBis]].
+     * Gets query for [[TsKeHoachBaoTris]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getTsThietBis()
+    public function getTsKeHoachBaoTris()
     {
-        return $this->hasMany(ThietBi::class, ['id_loai_thiet_bi' => 'id']);
+        return $this->hasMany(KeHoachBaoTri::class, ['id_loai_bao_tri' => 'id']);
     }
-    public function getLoaiThietBi()
-    {
-        return $this->hasOne(LoaiThietBi::class, ['id' => 'truc_thuoc']);
-    }
-
+    
     /**
      * {@inheritdoc}
      */

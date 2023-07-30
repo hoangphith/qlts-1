@@ -28,10 +28,14 @@ use app\widgets\forms\DocumentWidget;
     }
 </style>
 
-<div class="ts-thiet-bi-form">
-    <div class="card custom-card">
-    <div class="card-body shadow-none">
-    <?php $form = ActiveForm::begin(['options' => ['class' => 'form-horizontal'],]); ?>
+<div class="ts-thiet-bi-form container-fluid formInput">
+    <?php $form = ActiveForm::begin(
+            ['options' => ['class' => 'form-horizontal'],
+            'fieldConfig' => [
+                'template' => '<div class="col-sm-12">{label}</div><div class="col-sm-12">{input}{error}</div>',
+                'labelOptions' => ['class' => 'col-md-12 control-label'],
+            ],
+        ]); ?>
 
     <div class="row">
 
@@ -73,17 +77,6 @@ use app\widgets\forms\DocumentWidget;
             </div>
             <div class="row">
                 <div class="col">
-                    <?= $form->field($model, 'id_vi_tri')->widget(Select2::classname(), [
-                        'data' => ArrayHelper::map(ViTri::find()->all(), 'id', 'ten_vi_tri'),
-                        'language' => 'vi',
-                        'options' => ['placeholder' => 'Chọn vị trí...'],
-                        'pluginOptions' => [
-                            'allowClear' => true,
-                            'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'),
-                        ],
-                    ]);?>
-                </div>
-                <div class="col">
                 <?= $form->field($model, 'id_he_thong')->widget(Select2::classname(), [
                     'data' => ArrayHelper::map(HeThong::find()->all(), 'id', 'ten_he_thong'),
                     'language' => 'vi',
@@ -93,6 +86,17 @@ use app\widgets\forms\DocumentWidget;
                         'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'),
                     ],
                 ]);?>
+                </div>
+                 <div class="col">
+                    <?= $form->field($model, 'id_vi_tri')->widget(Select2::classname(), [
+                        'data' => ArrayHelper::map(ViTri::find()->all(), 'id', 'ten_vi_tri'),
+                        'language' => 'vi',
+                        'options' => ['placeholder' => 'Chọ vị tri...'],
+                        'pluginOptions' => [
+                            'allowClear' => true,
+                            'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'),
+                        ],
+                    ]);?>
                 </div>
             </div>
             <div class="row">
@@ -306,8 +310,6 @@ use app\widgets\forms\DocumentWidget;
         <?php } ?>
 
         <?php ActiveForm::end(); ?>
-    </div>
-    </div>
 </div>
 
    

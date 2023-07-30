@@ -2,6 +2,7 @@
 
 namespace app\modules\taisan\models;
 
+use app\modules\baotri\models\KeHoachBaoTri;
 use app\modules\bophan\models\NhanVien;
 use app\modules\dungchung\models\History;
 use app\modules\dungchung\models\DungChung;
