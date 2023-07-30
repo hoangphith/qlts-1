@@ -4,7 +4,8 @@ use yii\helpers\Html;
 <link href="/css/print-display.css" rel="stylesheet">
 <div class="row text-center">
     <div class="col-md-12">    
-    <h3 class="text-primary">DANH SÁCH MÃ CHỌN IN</h3>
+    <h3 class="text-primary">DANH SÁCH IN TEM</h3>
+    <h4>(<?= $tieuDe ?>)</h4>
         <div id="print">        
             <?php 
             $count = count($models);

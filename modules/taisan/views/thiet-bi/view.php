@@ -136,7 +136,7 @@ use app\widgets\views\ImageWithButtonWidget;
 
 <div style="display:none">
 <div id="print">
-<?= $this->render('_print_qr', compact('model')) ?>
+<?= $this->render('../qr/_print_qr', compact('model')) ?>
 </div>
 </div>
 
