@@ -27,6 +27,11 @@ class Import extends Model
         ];
     }
     
+    /**
+     * kiem tra file tam upload con ton tai khong
+     * @param string $file
+     * @return boolean
+     */
     public static function checkFileExist($file){
         $fxls = Yii::getAlias('@webroot') . Import::FOLDER_EXCEL_UP . $file;
         if(file_exists($fxls)){
@@ -36,6 +41,10 @@ class Import extends Model
         }
     }
     
+    /**
+     * xoa file excel tam sau khi kiem tra loi hoac import thanh cong
+     * @param string $file
+     */
     public static function deleteFileTemp($file){
         $fxls = Yii::getAlias('@webroot') . Import::FOLDER_EXCEL_UP . $file;
         if(file_exists($fxls)){
@@ -43,6 +52,11 @@ class Import extends Model
         }
     }
     
+    /**
+     * doc file excel va tra ve $spreadsheet
+     * @param string $file: ten file
+     * @return \PhpOffice\PhpSpreadsheet\Spreadsheet
+     */
     public static function readExcel($file){
         $fxls = Yii::getAlias('@webroot') . Import::FOLDER_EXCEL_UP . $file;
         $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($fxls);
@@ -50,11 +64,22 @@ class Import extends Model
         return $spreadsheet;
     }
     
+    /**
+     * lay mang du lieu tu file excel
+     * @param string $file: ten file
+     * @return array|mixed|string
+     */
     public static function readExcelToArr($file){
         $spreadsheet = Import::readExcel($file);
         return $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
     }
     
+    /**
+     * lay du lieu cot excel theo mot range
+     * @param string $file
+     * @param string $range, ex: B1:B8
+     * @return array|mixed|string
+     */
     public static function readExcelColsToArr($file, $range){
         $spreadsheet = Import::readExcel($file);
         return $spreadsheet->getActiveSheet()->rangeToArray($range);

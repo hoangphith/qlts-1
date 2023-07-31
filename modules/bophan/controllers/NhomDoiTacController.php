@@ -1,51 +1,54 @@
 <?php
 
-namespace app\modules\dungchung\controllers;
+namespace app\modules\bophan\controllers;
 
-use app\modules\dungchung\models\History;
-use app\modules\dungchung\models\HistorySearch;
 use Yii;
-use yii\filters\VerbFilter;
-use yii\helpers\Html;
+use app\modules\bophan\models\NhomDoiTac;
+use app\modules\bophan\models\NhomDoiTacSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\web\Response;
+use yii\filters\VerbFilter;
+use \yii\web\Response;
+use yii\helpers\Html;
+use yii\filters\AccessControl;
 
 /**
- * HistoryController implements the CRUD actions for History model.
+ * NhomDoiTacController implements the CRUD actions for NhomDoiTac model.
  */
-class HistoryController extends Controller
+class NhomDoiTacController extends Controller
 {
     /**
      * @inheritdoc
      */
     public function behaviors() {
-		return [
-		    'ghost-access'=> [
-		        'class' => 'webvimark\modules\UserManagement\components\GhostAccessControl',
-		    ],
-			'verbs' => [
-				'class' => VerbFilter::className(),
-				'actions' => [
-					'delete' => ['POST'],
-				],
-			],
+    		return [
+    			'ghost-access'=> [
+    			'class' => 'webvimark\modules\UserManagement\components\GhostAccessControl',
+        		],
+    			'verbs' => [
+    				'class' => VerbFilter::className(),
+    				'actions' => [
+    					'delete' => ['POST'],
+    				],
+    			],
 		];
 	}
 
     /**
-     * Lists all History models.
+     * Lists all NhomDoiTac models.
      * @return mixed
      */
     public function actionIndex()
     {    
-        $searchModel = new HistorySearch();
-  		if ($searchModel->load(Yii::$app->request->post())) {
-  		    $searchModel = new HistorySearch(); // "reset"
+        $searchModel = new NhomDoiTacSearch();
+  		if(isset($_POST['search']) && $_POST['search'] != null){
+            $dataProvider = $searchModel->search(Yii::$app->request->post(), $_POST['search']);
+        } else if ($searchModel->load(Yii::$app->request->post())) {
+            $searchModel = new NhomDoiTacSearch(); // "reset"
             $dataProvider = $searchModel->search(Yii::$app->request->post());
         } else {
-        	$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-		}
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        }    
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -54,7 +57,7 @@ class HistoryController extends Controller
 
 
     /**
-     * Displays a single History model.
+     * Displays a single NhomDoiTac model.
      * @param integer $id
      * @return mixed
      */
@@ -64,7 +67,7 @@ class HistoryController extends Controller
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "History",
+                    'title'=> "NhomDoiTac",
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
@@ -79,7 +82,7 @@ class HistoryController extends Controller
     }
 
     /**
-     * Creates a new History model.
+     * Creates a new NhomDoiTac model.
      * For ajax request will return json object
      * and for non-ajax request if creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -87,7 +90,7 @@ class HistoryController extends Controller
     public function actionCreate()
     {
         $request = Yii::$app->request;
-        $model = new History();  
+        $model = new NhomDoiTac();  
 
         if($request->isAjax){
             /*
@@ -96,7 +99,7 @@ class HistoryController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Thêm mới History",
+                    'title'=> "Thêm mới NhomDoiTac",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -107,7 +110,7 @@ class HistoryController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Thêm mới History",
+                    'title'=> "Thêm mới NhomDoiTac",
                     'content'=>'<span class="text-success">Thêm mới thành công</span>',
                     'tcontent'=>'Thêm mới thành công!',
                     'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
@@ -116,7 +119,7 @@ class HistoryController extends Controller
                 ];         
             }else{           
                 return [
-                    'title'=> "Thêm mới History",
+                    'title'=> "Thêm mới NhomDoiTac",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -141,7 +144,7 @@ class HistoryController extends Controller
     }
 
     /**
-     * Updates an existing History model.
+     * Updates an existing NhomDoiTac model.
      * For ajax request will return json object
      * and for non-ajax request if update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -159,7 +162,7 @@ class HistoryController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Cập nhật History",
+                    'title'=> "Cập nhật NhomDoiTac",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -169,7 +172,7 @@ class HistoryController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "History",
+                    'title'=> "NhomDoiTac",
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
@@ -179,7 +182,7 @@ class HistoryController extends Controller
                 ];    
             }else{
                  return [
-                    'title'=> "Cập nhật History",
+                    'title'=> "Cập nhật NhomDoiTac",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -202,7 +205,7 @@ class HistoryController extends Controller
     }
 
     /**
-     * Delete an existing History model.
+     * Delete an existing NhomDoiTac model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -230,7 +233,7 @@ class HistoryController extends Controller
     }
 
      /**
-     * Delete multiple existing History model.
+     * Delete multiple existing NhomDoiTac model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -270,15 +273,15 @@ class HistoryController extends Controller
     }
 
     /**
-     * Finds the History model based on its primary key value.
+     * Finds the NhomDoiTac model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return History the loaded model
+     * @return NhomDoiTac the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = History::findOne($id)) !== null) {
+        if (($model = NhomDoiTac::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

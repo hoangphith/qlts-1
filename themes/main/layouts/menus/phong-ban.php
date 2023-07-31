@@ -27,6 +27,10 @@
 							<li><a href="<?= Yii::getAlias('@web/bophan/bo-phan?menu=pbbp1') ?>" class="slide-item" data-menu="pbbp1">Phòng ban - Bộ phận</a>
 							</li>
 							<li class=""><a href="<?= Yii::getAlias('@web/bophan/nhan-vien2?menu=pbbp2') ?>" class="slide-item" data-menu="pbbp2">Danh sách nhân viên</a>
+							<li class=""><a href="<?= Yii::getAlias('@web/bophan/doi-tac?menu=pbbp3') ?>" class="slide-item" data-menu="pbbp3">Danh sách Đối tác</a>
+							</li>
+							</li>
+							<li class=""><a href="<?= Yii::getAlias('@web/bophan/nhom-doi-tac?menu=pbbp4') ?>" class="slide-item" data-menu="pbbp4">Nhóm Đối tác</a>
 							</li>
 						</ul>
 						<div class="menutabs-content px-0">

@@ -2,16 +2,15 @@
 
 namespace app\modules\dungchung\controllers;
 
-use Yii;
 use app\modules\dungchung\models\TaiLieu;
 use app\modules\dungchung\models\TaiLieuSearch;
+use app\widgets\views\DocumentGridWidget;
+use Yii;
+use yii\filters\VerbFilter;
+use yii\helpers\Html;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use \yii\web\Response;
-use yii\helpers\Html;
-use yii\filters\AccessControl;
-use app\widgets\views\DocumentGridWidget;
+use yii\web\Response;
 use yii\web\UploadedFile;
 
 /**

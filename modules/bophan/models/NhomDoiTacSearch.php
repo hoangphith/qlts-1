@@ -1,14 +1,16 @@
 <?php
 
-namespace app\modules\dungchung\models;
+namespace app\modules\bophan\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use app\modules\bophan\models\NhomDoiTac;
 
 /**
- * HistorySearch represents the model behind the search form about `app\modules\dungchung\models\History`.
+ * NhomDoiTacSearch represents the model behind the search form about `app\modules\bophan\models\NhomDoiTac`.
  */
-class HistorySearch extends History
+class NhomDoiTacSearch extends NhomDoiTac
 {
     /**
      * @inheritdoc
@@ -16,8 +18,8 @@ class HistorySearch extends History
     public function rules()
     {
         return [
-            [['id', 'id_tham_chieu', 'nguoi_tao'], 'integer'],
-            [['loai', 'noi_dung', 'thoi_gian_tao'], 'safe'],
+            [['id', 'nguoi_tao'], 'integer'],
+            [['ma_nhom', 'ten_nhom', 'thoi_gian_tao'], 'safe'],
         ];
     }
 
@@ -37,9 +39,9 @@ class HistorySearch extends History
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $cusomSearch=NULL)
     {
-        $query = History::find();
+        $query = NhomDoiTac::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -52,17 +54,20 @@ class HistorySearch extends History
             // $query->where('0=1');
             return $dataProvider;
         }
-
-        $query->andFilterWhere([
+		if($cusomSearch != NULL){
+			$query->andFilterWhere ( [ 'OR' ,['like', 'ma_nhom', $cusomSearch],
+            ['like', 'ten_nhom', $cusomSearch]] );
+ 
+		} else {
+        	$query->andFilterWhere([
             'id' => $this->id,
-            'id_tham_chieu' => $this->id_tham_chieu,
             'thoi_gian_tao' => $this->thoi_gian_tao,
             'nguoi_tao' => $this->nguoi_tao,
         ]);
 
-        $query->andFilterWhere(['like', 'loai', $this->loai])
-            ->andFilterWhere(['like', 'noi_dung', $this->noi_dung]);
-
+        $query->andFilterWhere(['like', 'ma_nhom', $this->ma_nhom])
+            ->andFilterWhere(['like', 'ten_nhom', $this->ten_nhom]);
+		}
         return $dataProvider;
     }
 }

@@ -45,20 +45,8 @@ class ImportController extends Controller
             }else if($model->load($request->post())){
                 $file = UploadedFile::getInstance($model, 'file');
                 if (!empty($file)){
-                    /* $model->ten_file_luu = $file->name;
-                    $model->file_extension = $file->extension;
-                    $model->file_size = $file->size; */
                     $fileName = md5(Yii::$app->user->id . date('Y-m-d H:i:s')) . '.' . $file->extension;
                     $file->saveAs(Yii::getAlias('@webroot') . Import::FOLDER_EXCEL_UP .  $fileName);
-                
-                    /* return [
-                        'title'=> "Test file dữ liệu",
-                        'content'=>'<span class="text-success">Upload thành công!</span>',
-                        'tcontent'=>'Upload thành công! Vui lòng kiểm tra dữ liệu',
-                        'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                        Html::a('Kiểm tra dữ liệu',['check?type='.$type.'&file=' . $fileName],['class'=>'btn btn-primary','role'=>'modal-remote'])
-                        
-                    ]; */
                     
                     //checkfile
                     if($type==ThietBi::MODEL_ID){
@@ -88,7 +76,7 @@ class ImportController extends Controller
                             'title'=> "Test file dữ liệu",
                             'content'=>$this->renderAjax('error', compact('rt')),
                             //'content'=>'<span class="text-success">File lỗi! ' .print_r($rt). '</span>',
-                            //'tcontent'=>'Upload thành công! Vui lòng kiểm tra dữ liệu',
+                            'tcontent'=>'File có lỗi! Vui lòng kiểm tra dữ liệu',
                             'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"])
                             
                         ];
@@ -100,6 +88,12 @@ class ImportController extends Controller
         }
     }
     
+    /**
+     * import file was checked to db
+     * @param string $type
+     * @param string $file
+     * @return string[]
+     */
     public function actionImport($type, $file){
         $request = Yii::$app->request;
         
@@ -133,40 +127,5 @@ class ImportController extends Controller
             }
         }
     }
-    
-    
-    /**
-     * check file to import
-     * @param string $file
-     * @return mixed
-     */
-    /* public function actionCheck($type,$file)
-    {    
-        Yii::$app->response->format = Response::FORMAT_JSON;        
-        
-        $rt = ImportBoPhan::checkFile($type, $file);
-        
-        $status = false;
-        if(empty($rt)){
-            $status = true;
-        }
-        if($status == true){
-            return [
-                'title'=> "Test file dữ liệu",
-                'content'=>'<span class="text-success">Kiểm tra ok!!</span>',
-                //'tcontent'=>'Upload thành công! Vui lòng kiểm tra dữ liệu',
-                'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                Html::a('Tiến hành upload',['upload?type='.$type.'&file=' . $file],['class'=>'btn btn-primary','role'=>'modal-remote'])
-                
-            ];
-        } else {
-            return [
-                'title'=> "Test file dữ liệu",
-                'content'=>'<span class="text-success">File lỗi! ' .print_r($rt). '</span>',
-                //'tcontent'=>'Upload thành công! Vui lòng kiểm tra dữ liệu',
-                'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"])
-                
-            ];
-        }
-    } */
+
 }

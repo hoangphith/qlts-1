@@ -2,17 +2,16 @@
 
 namespace app\modules\dungchung\controllers;
 
-use Yii;
 use app\modules\dungchung\models\HinhAnh;
 use app\modules\dungchung\models\HinhAnhSearch;
+use app\widgets\views\ImageGridWidget;
+use Yii;
+use yii\filters\VerbFilter;
+use yii\helpers\Html;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use \yii\web\Response;
-use yii\helpers\Html;
-use yii\filters\AccessControl;
+use yii\web\Response;
 use yii\web\UploadedFile;
-use app\widgets\views\ImageGridWidget;
 
 /**
  * HinhAnhController implements the CRUD actions for HinhAnh model.

@@ -2,10 +2,8 @@
 
 namespace app\modules\dungchung\models;
 
-use Yii;
-use yii\helpers\ArrayHelper;
-use app\modules\user\models\User;
 use Da\QrCode\QrCode;
+use Yii;
 
 class DungChung
 {

@@ -1,5 +1,4 @@
 <?php
-use yii\bootstrap5\Html;
 use yii\bootstrap5\ActiveForm;
 
 /* @var $this yii\web\View */

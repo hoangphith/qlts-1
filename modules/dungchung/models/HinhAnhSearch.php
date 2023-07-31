@@ -2,10 +2,8 @@
 
 namespace app\modules\dungchung\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\dungchung\models\HinhAnh;
 
 /**
  * HinhAnhSearch represents the model behind the search form about `app\modules\dungchung\models\HinhAnh`.

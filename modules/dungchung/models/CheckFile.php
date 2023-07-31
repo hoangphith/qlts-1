@@ -9,7 +9,7 @@ class CheckFile
     public $isNumber;
     public $minLeng;
     public $maxLeng;
-    public $error = '';
+    public $error = '';//save error message to return
     public $isCompare;//1
     public $valueCompare = array();//1
     public $isDuplicate;//2
@@ -18,12 +18,15 @@ class CheckFile
     public $modelExist;//3
     
     public function checkVal($custom, $value=NULL){
+       
+        //kiem tra gia tri co cho phep null khong
         if($this->allowNull == false){
             if($value==null){
                 $this->error = $custom . ' không được để trống!';
             }
         }
         
+        //kiem tra gia tri thuoc kieu so
         if($this->isNumber == true){
             
             if(!is_numeric($value)){
@@ -37,6 +40,7 @@ class CheckFile
             }
         }
         
+        //kiem tra gia tri trong db co nam trong mag dang (1,2,3), ('A','B','C') khong
         if($this->isCompare == true){
             if(!in_array($value, $this->valueCompare)){
                 if($this->allowNull == true){
@@ -49,12 +53,14 @@ class CheckFile
             }
         } 
         
+        //kiem tra gia tri co ton tai chua, neu ton tai thi thong bao loi
         if($this->isDuplicate == true){
             if($this->modelDuplicate->count() > 0){
                 $this->error = $custom . ' đã tồn tại!';
             }
         }
         
+        //kiem tra gia tri co ton tai trong db chua, neu khong co thi thong bao loi
         if($this->isExist == true){
             if($this->modelExist->count() == 0 ){
                 if($this->allowNull == true ){

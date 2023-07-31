@@ -13,13 +13,17 @@ class ImportNhanVien
     CONST START_ROW = 3;
     CONST START_COL = 'B';
     
+    /**
+     * kiem tra file upload
+     * @param string $type
+     * @param string $file : filename
+     * @return array[]
+     */
     public static function checkFile($type, $file){
         $xls_data = Import::readExcelToArr($file);
         
         $errors = array();
         $errorByRow = array();
-        
-        $listExist = array();
         
         foreach ($xls_data as $index=>$row){
             $errorByRow = array();
@@ -86,6 +90,11 @@ class ImportNhanVien
         return $errors;
     }
     
+    /**
+     * import file đã kiểm tra vào csdl
+     * @param string $file: ten file
+     * @return number[]|string[][]
+     */
     public static function importFile($file){
         $xls_data = Import::readExcelToArr($file);
         $errorByRow = array();
