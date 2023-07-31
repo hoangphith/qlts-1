@@ -65,7 +65,6 @@ class ImportController extends Controller
                         return [
                             'title'=> "Kiểm tra file dữ liệu",
                             'content'=>$this->renderAjax('checkSuccess'),
-                            //'tcontent'=>'Upload thành công! Vui lòng kiểm tra dữ liệu',
                             'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
                             Html::a('Tiến hành upload',['import?type='.$type.'&file=' . $fileName],['class'=>'btn btn-primary','role'=>'modal-remote'])
                             
@@ -75,7 +74,6 @@ class ImportController extends Controller
                         return [
                             'title'=> "Test file dữ liệu",
                             'content'=>$this->renderAjax('error', compact('rt')),
-                            //'content'=>'<span class="text-success">File lỗi! ' .print_r($rt). '</span>',
                             'tcontent'=>'File có lỗi! Vui lòng kiểm tra dữ liệu',
                             'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"])
                             
@@ -119,7 +117,6 @@ class ImportController extends Controller
                             'error'=>$result['error'],
                             'errorArr'=>$result['errorArr']
                         ]),
-                        //'tcontent'=>'Upload thành công! Vui lòng kiểm tra dữ liệu',
                         'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"])
                         
                     ];

@@ -53,14 +53,14 @@ class CheckFile
             }
         } 
         
-        //kiem tra gia tri co ton tai chua, neu ton tai thi thong bao loi
+        //kiem tra gia tri co ton tai trong db chua, neu co thi thong bao loi
         if($this->isDuplicate == true){
             if($this->modelDuplicate->count() > 0){
                 $this->error = $custom . ' đã tồn tại!';
             }
         }
         
-        //kiem tra gia tri co ton tai trong db chua, neu khong co thi thong bao loi
+        //nguoc lai voi isDuplicate, kiem tra gia tri co ton tai trong db chua, neu khong co thi thong bao loi
         if($this->isExist == true){
             if($this->modelExist->count() == 0 ){
                 if($this->allowNull == true ){
