@@ -25,6 +25,7 @@ return [
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'id_nhom_doi_tac',
+        'value'=>'tenNhomDoiTac'
     ],
     [
         'class'=>'\kartik\grid\DataColumn',

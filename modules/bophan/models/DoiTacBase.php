@@ -3,9 +3,12 @@
 namespace app\modules\bophan\models;
 
 use Yii;
+use app\modules\dungchung\models\History;
 
 class DoiTacBase extends \app\models\TsDoiTac
 {
+    //set id cho model (dung de luu dung chung)
+    const MODEL_ID = 'doitac';
     /**
      * {@inheritdoc}
      */
@@ -30,18 +33,18 @@ class DoiTacBase extends \app\models\TsDoiTac
     {
         return [
             'id' => 'ID',
-            'ma_doi_tac' => 'Ma Doi Tac',
-            'ten_doi_tac' => 'Ten Doi Tac',
-            'id_nhom_doi_tac' => 'Id Nhom Doi Tac',
-            'dia_chi' => 'Dia Chi',
-            'dien_thoai' => 'Dien Thoai',
+            'ma_doi_tac' => 'Mã đối tác',
+            'ten_doi_tac' => 'Tên đối tác',
+            'id_nhom_doi_tac' => 'Nhóm đối tác',
+            'dia_chi' => 'Địa chỉ',
+            'dien_thoai' => 'Điện thoại',
             'email' => 'Email',
-            'tai_khoan_ngan_hang' => 'Tai Khoan Ngan Hang',
-            'ma_so_thue' => 'Ma So Thue',
-            'la_nha_cung_cap' => 'La Nha Cung Cap',
-            'la_khach_hang' => 'La Khach Hang',
-            'thoi_gian_tao' => 'Thoi Gian Tao',
-            'nguoi_tao' => 'Nguoi Tao',
+            'tai_khoan_ngan_hang' => 'Tài khoản ngân hàng',
+            'ma_so_thue' => 'Mã số thuế',
+            'la_nha_cung_cap' => 'Là nhà cung cấp',
+            'la_khach_hang' => 'Là khách hàng',
+            'thoi_gian_tao' => 'Thời gian tạo',
+            'nguoi_tao' => 'Người tạo',
         ];
     }
 
@@ -64,5 +67,13 @@ class DoiTacBase extends \app\models\TsDoiTac
             $this->nguoi_tao = Yii::$app->user->isGuest ? '' : Yii::$app->user->id;
         }
         return parent::beforeSave($insert);
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function afterSave( $insert, $changedAttributes ){
+        parent::afterSave($insert, $changedAttributes);
+        History::addHistory($this::MODEL_ID, $changedAttributes, $this, $insert);
     }
 }

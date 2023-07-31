@@ -15,6 +15,8 @@ use yii\helpers\Html;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\web\UploadedFile;
+use app\modules\bophan\models\DoiTac;
+use app\modules\dungchung\models\imports\ImportDoiTac;
 
 /**
  * Default controller for the `dungchung` module
@@ -55,6 +57,8 @@ class ImportController extends Controller
                         $rt = ImportBoPhan::checkFile($type, $fileName);
                     } else if ($type == NhanVien::MODEL_ID){
                         $rt = ImportNhanVien::checkFile($type, $fileName);
+                    } else if ($type == DoiTac::MODEL_ID){
+                        $rt = ImportDoiTac::checkFile($type, $fileName);
                     }
                     
                     $status = false;
@@ -106,6 +110,8 @@ class ImportController extends Controller
                         $result = ImportBoPhan::importFile($file);
                     } else if ($type == NhanVien::MODEL_ID){
                         $result = ImportNhanVien::importFile($file);
+                    } else if ($type == DoiTac::MODEL_ID){
+                        $result = ImportDoiTac::importFile($file);
                     }
                     
                     Import::deleteFileTemp($file);

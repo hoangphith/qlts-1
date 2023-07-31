@@ -7,18 +7,22 @@ use cangak\ajaxcrud\CrudAsset;
 use cangak\ajaxcrud\BulkButtonWidget;
 use yii\widgets\Pjax;
 use app\widgets\FilterFormWidget;
+use app\modules\bophan\models\DoiTac;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\bophan\models\DoiTacSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Doi Tacs';
+$this->title = 'Đối tác';
 $this->params['breadcrumbs'][] = $this->title;
 
 CrudAsset::register($this);
 
 Yii::$app->params['showSearch'] = true;
 Yii::$app->params['showExport'] = true;
+Yii::$app->params['showImport'] = true;
+Yii::$app->params['showImportDownload'] = Yii::getAlias('@web/uploads/excel/down/mau_import_doi_tac.xlsx');
+Yii::$app->params['showImportModel'] = DoiTac::MODEL_ID;
 
 ?>
 
@@ -39,7 +43,7 @@ Yii::$app->params['showExport'] = true;
             'toolbar'=> [
                 ['content'=>
                     Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i> Thêm mới', ['create'],
-                    ['role'=>'modal-remote','title'=> 'Thêm mới Doi Tacs','class'=>'btn btn-outline-primary']).
+                    ['role'=>'modal-remote','title'=> 'Thêm mới Đối tác','class'=>'btn btn-outline-primary']).
                     Html::a('<i class="fas fa fa-sync" aria-hidden="true"></i> Tải lại', [''],
                     ['data-pjax'=>1, 'class'=>'btn btn-outline-primary', 'title'=>'Tải lại']).
                     //'{toggleData}'.
@@ -55,7 +59,7 @@ Yii::$app->params['showExport'] = true;
             'panel' => [
                 //'type' => 'primary', 
                 'heading' => '<i class="fas fa fa-list" aria-hidden="true"></i> Danh sách',
-                'before'=>'<em>* Danh sách Doi Tacs</em>',
+                'before'=>'<em>* Danh sách Đối tác</em>',
                 'after'=>BulkButtonWidget::widget([
                             'buttons'=>Html::a('<i class="fas fa fa-trash" aria-hidden="true"></i>&nbsp; Xóa đã chọn',
                                 ["bulkdelete"] ,
@@ -81,7 +85,7 @@ Yii::$app->params['showExport'] = true;
         'id'=>'ajaxCrudModal',
         'tabindex' => false // important for Select2 to work properly
    ],
-   'dialogOptions'=>['class'=>'modal-lg'],
+   'dialogOptions'=>['class'=>'modal-xl'],
    'closeButton'=>['label'=>'<span aria-hidden=\'true\'>×</span>'],
    'id'=>'ajaxCrudModal',
     'footer'=>'',// always need it for jquery plugin

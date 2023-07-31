@@ -21,10 +21,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'ten_nhom')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'thoi_gian_tao')->textInput() ?>
-
-    <?= $form->field($model, 'nguoi_tao')->textInput() ?>
-
   
 	<?php if (!Yii::$app->request->isAjax){ ?>
 	  	<div class="form-group">
