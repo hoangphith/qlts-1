@@ -51,7 +51,7 @@ class NhanVienBase extends NhanVienModel
             [['ma_nhan_vien', 'dien_thoai'], 'string', 'max' => 20],
             [['ten_nhan_vien'], 'string', 'max' => 100],
             [['ngay_sinh'], 'string', 'max' => 10],
-            [['ten_truy_cap', 'email'], 'string', 'max' => 200],
+            [['chuc_vu', 'ten_truy_cap', 'email'], 'string', 'max' => 200],
             [['ma_nhan_vien'], 'unique'],
             [['id_bo_phan'], 'exist', 'skipOnError' => true, 'targetClass' => BoPhan::class, 'targetAttribute' => ['id_bo_phan' => 'id']],
         ];
@@ -69,6 +69,7 @@ class NhanVienBase extends NhanVienModel
             'ten_nhan_vien' => 'Tên nhân viên',
             'ngay_sinh' => 'Ngày sinh',
             'gioi_tinh' => 'Giới tính',
+            'chuc_vu' => 'Chức vụ',
             'ten_truy_cap' => 'Tên truy cập',
             'ngay_vao_lam' => 'Ngày vào làm',
             'da_thoi_viec' => 'Đã thôi việc',

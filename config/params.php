@@ -7,6 +7,9 @@ return [
     'bsVersion' => '5.x',
     'showSearch' => false,
     'showExport' => false,
+    'showImport' => false,//imp
+    'linkDownload'=>'',//imp
+    'modelUpload'=>'',//imp
     'moduleID' => '',
     'modelID' =>'',
     'siteUrl'=>'http://localhost:8888'

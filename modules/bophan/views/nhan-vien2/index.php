@@ -6,6 +6,7 @@ use cangak\ajaxcrud\CrudAsset;
 use cangak\ajaxcrud\BulkButtonWidget;
 use yii\widgets\Pjax;
 use app\widgets\FilterFormWidget;
+use app\modules\bophan\models\NhanVien;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\bophan\models\NhanVien2Search */
@@ -18,6 +19,9 @@ CrudAsset::register($this);
 
 Yii::$app->params['showSearch'] = true;
 Yii::$app->params['showExport'] = true;
+Yii::$app->params['showImport'] = true;
+Yii::$app->params['showImportDownload'] = Yii::getAlias('@web/uploads/excel/down/mau_import_nhan_vien.xlsx');
+Yii::$app->params['showImportModel'] = NhanVien::MODEL_ID;
 
 ?>
 

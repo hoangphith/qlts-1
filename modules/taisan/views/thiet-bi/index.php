@@ -7,6 +7,7 @@ use cangak\ajaxcrud\CrudAsset;
 use cangak\ajaxcrud\BulkButtonWidget;
 use app\widgets\FilterFormWidget;
 use yii\widgets\Pjax;
+use app\modules\taisan\models\ThietBi;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TsThietBiSearch */
@@ -18,6 +19,9 @@ $this->params['breadcrumbs'][] = $this->title;
 CrudAsset::register($this);
 Yii::$app->params['showSearch'] = true;
 Yii::$app->params['showExport'] = true;
+Yii::$app->params['showImport'] = true;
+Yii::$app->params['showImportDownload'] = Yii::getAlias('@web/uploads/excel/down/mau_import_tai_san.xlsx');
+Yii::$app->params['showImportModel'] = ThietBi::MODEL_ID;
 
 $btns = '<a style="margin-left:10px" class="btn ripple btn-primary dropdown-toggle mb-0" href="javascript:void(0);"
 		data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

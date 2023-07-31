@@ -13,6 +13,7 @@ use Yii;
  * @property string $ten_nhan_vien
  * @property string|null $ngay_sinh
  * @property int|null $gioi_tinh
+ * @property string|null $chuc_vu
  * @property string|null $ten_truy_cap
  * @property string|null $ngay_vao_lam
  * @property int|null $da_thoi_viec
@@ -51,7 +52,7 @@ class TsNhanVien extends \yii\db\ActiveRecord
             [['ma_nhan_vien', 'dien_thoai'], 'string', 'max' => 20],
             [['ten_nhan_vien'], 'string', 'max' => 100],
             [['ngay_sinh'], 'string', 'max' => 10],
-            [['ten_truy_cap', 'email'], 'string', 'max' => 255],
+            [['chuc_vu', 'ten_truy_cap', 'email'], 'string', 'max' => 255],
             [['id_bo_phan'], 'exist', 'skipOnError' => true, 'targetClass' => TsBoPhan::class, 'targetAttribute' => ['id_bo_phan' => 'id']],
         ];
     }
@@ -68,6 +69,7 @@ class TsNhanVien extends \yii\db\ActiveRecord
             'ten_nhan_vien' => 'Ten Nhan Vien',
             'ngay_sinh' => 'Ngay Sinh',
             'gioi_tinh' => 'Gioi Tinh',
+            'chuc_vu' => 'Chuc Vu',
             'ten_truy_cap' => 'Ten Truy Cap',
             'ngay_vao_lam' => 'Ngay Vao Lam',
             'da_thoi_viec' => 'Da Thoi Viec',

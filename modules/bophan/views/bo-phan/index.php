@@ -7,6 +7,7 @@ use cangak\ajaxcrud\CrudAsset;
 use cangak\ajaxcrud\BulkButtonWidget;
 use yii\widgets\Pjax;
 use app\widgets\FilterFormWidget;
+use app\modules\bophan\models\BoPhan;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\bophan\models\BoPhanSearch */
@@ -19,6 +20,9 @@ CrudAsset::register($this);
 
 Yii::$app->params['showSearch'] = true;
 Yii::$app->params['showExport'] = true;
+Yii::$app->params['showImport'] = true;
+Yii::$app->params['showImportDownload'] = Yii::getAlias('@web/uploads/excel/down/mau_import_bo_phan.xlsx');
+Yii::$app->params['showImportModel'] = BoPhan::MODEL_ID;
 
 ?>
 

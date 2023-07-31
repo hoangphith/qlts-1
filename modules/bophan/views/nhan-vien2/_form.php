@@ -102,7 +102,9 @@ if($model->ngay_thoi_viec != null){
                         		         'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'), 
                         		     ],
                         		 ]);
-                        	 ?>                           
+                        	 ?> 
+                        	 
+                        	 <?= $form->field($model, 'chuc_vu')->textInput(['maxlength' => true]) ?>                          
                         
                              <?= $form->field($model, 'ten_truy_cap')->widget(Select2::classname(), [
                                      'data' => (new User())->getListUnused($model->ten_truy_cap),

@@ -77,6 +77,22 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             					</div>
             					<?php }*/ ?>
             					
+            					<?php if(Yii::$app->params['showImport'] == true):?>
+            					<div class="me-2">
+            						<a class="btn ripple btn-primary dropdown-toggle mb-0" href="javascript:void(0);"
+            							data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            							<i class="fe fe-upload"></i> Import <i class="fa fa-caret-down ms-1"></i>
+            						</a>
+            						<div class="dropdown-menu tx-13" style="min-width:200px">
+            							<a class="dropdown-item" href="<?= Yii::$app->params['showImportDownload'] ?>" target="_blank"><i
+            									class="fe fe-download-cloud me-2"></i>Download file mẫu          								Pdf</a>
+            							<a class="dropdown-item" href="<?= Yii::getAlias('@web/dungchung/import/upload?type='.Yii::$app->params['showImportModel']) ?>" role="modal-remote"><i
+            									class="fe fe-upload-cloud me-2"></i>Upload file dữ liệu</a>
+            							
+            						</div>
+            					</div>
+            					<?php endif; ?>
+            					
             					<?php if(Yii::$app->params['showSearch'] == true) {?>
             					<div>            						
             						<a id="btnFilter" href="javascript:void(0);"

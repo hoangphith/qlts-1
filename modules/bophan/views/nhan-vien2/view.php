@@ -55,6 +55,7 @@ use app\widgets\views\DocumentListWidget;
                                 'list'=>[0=>'Nam', 1=>'Nữ']
                             ])
                         ],
+                        'chuc_vu',
                         'ten_truy_cap',
                         'ngay_vao_lam'=>[
                             'attribute' => 'ngay_vao_lam',
