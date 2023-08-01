@@ -44,7 +44,17 @@ if($model->ngay_ngung_hoat_dong != null)
 </style>
 
 <div class="ts-thiet-bi-form container-fluid formInput">
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'id'=>'frm-ts',
+        //'layout' => 'vertical',
+        'options' => [
+         //   'class' => 'form-vertical',
+        ],
+        'fieldConfig' => [
+            //'template' => '<div class="col-sm-3">{label}</div><div class="col-sm-9">{input}{error}</div>',
+           // 'labelOptions' => ['class' => 'col-md-12 control-label'],
+        ],
+    ]); ?>
 
     <div class="row"><!-- row 1 -->
     	<div class="col-md-12">
