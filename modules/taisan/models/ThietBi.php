@@ -3,6 +3,8 @@
 namespace app\modules\taisan\models;
 
 use Yii;
+use app\modules\dungchung\models\CustomFunc;
+use app\widgets\views\StatusWithIconWidget;
 
 class ThietBi extends ThietBiBase{
     /**
@@ -22,6 +24,22 @@ class ThietBi extends ThietBiBase{
     }
     
     /**
+     * lay ten bo phan bao tri tu relation boPhanQuanLy
+     * @return string
+     */
+    public function getTenBoPhanBaoTri(){
+        return $this->boPhanBaoTri != NULL ? $this->boPhanBaoTri->ten_bo_phan : '';
+    }
+    
+    /**
+     * lay ten trung tam chi phi tu relation trungTamChiPhi
+     * @return string
+     */
+    public function getTenTrungTamChiPhi(){
+        return $this->trungTamChiPhi != NULL ? $this->trungTamChiPhi->ten_bo_phan : '';
+    }
+    
+    /**
      * lay ten nhan vien tu relation nguoiQuanLy
      * @return string
      */
@@ -35,6 +53,14 @@ class ThietBi extends ThietBiBase{
      */
     public function getTenLoaiThietBi(){
         return $this->loaiThietBi != NULL ? $this->loaiThietBi->ten_loai : '';
+    }
+    
+    /**
+     * lay ten hang bao hanh tu relation hangBaoHanh
+     * @return string
+     */
+    public function getTenHangBaoHanh(){
+        return $this->hangBaoHanh != NULL ? $this->hangBaoHanh->ten_doi_tac : '';
     }
     
     /**
@@ -59,5 +85,86 @@ class ThietBi extends ThietBiBase{
      */
     public function getTenThietBiCha(){
         return $this->thietBiCha != NULL ? $this->thietBiCha->ten_thiet_bi : '';
+    }
+    
+    /**
+     * hien thi ngay ngung hoat dong dd/mm/yyyy
+     * @return string
+     */
+    public function getNgayNgungHoatDong(){
+        $cus = new CustomFunc();
+        return $cus->convertYMDToDMY($this->ngay_ngung_hoat_dong);
+    }
+    
+    /**
+     * hien thi han bao hanh dd/mm/yyyy
+     * @return string
+     */
+    public function getHanBaoHanh(){
+        $cus = new CustomFunc();
+        return $cus->convertYMDToDMY($this->han_bao_hanh);
+    }
+    
+    /**
+     * hien thi ngay mua dd/mm/yyyy
+     * @return string
+     */
+    public function getNgayMua(){
+        $cus = new CustomFunc();
+        return $cus->convertYMDToDMY($this->ngay_mua);
+    }
+    
+    /**
+     * hien thi ngay dua vao su dung dd/mm/yyyy
+     * @return string
+     */
+    public function getNgayDuaVaoSuDung(){
+        $cus = new CustomFunc();
+        return $cus->convertYMDToDMY($this->ngay_dua_vao_su_dung);
+    }
+    
+    /**
+     * Danh muc trang thai label with Badge & Icon
+     * @param int $val
+     * @return string
+     */
+    public function getTenTrangThaiWithBadge($val=NULL){
+        if($val==NULL){
+            $val = $this->trang_thai;
+        }
+        switch ($val){
+            case "HOATDONG":
+                $label = "Đang hoạt động";
+                $icon = 'fe fe-check';
+                $type = 'primary';
+                break;
+            case "SUACHUA":
+                $label = "Đang sửa chữa";
+                $icon = 'ion-wrench';
+                $type = 'info';
+                break;
+            case "HONG":
+                $label = "Đã hỏng";
+                $icon = 'fe fe-power';
+                $type = 'warning';
+                break;
+            case "MAT":
+                $label = "Đã mất/Thất lạc";
+                $icon = 'fe fe-x';
+                $type = 'danger';
+                break;
+            case "THANHLY":
+                $label = "Đã thanh lý";
+                $icon = 'fe fe-log-out';
+                $type = 'default';
+                break;
+            default:
+                $label = '';
+        }
+        return $label != '' ? StatusWithIconWidget::widget([
+            'label'=>$label,
+            'icon'=>$icon,
+            'type'=>$type
+        ]) : '';
     }
 }

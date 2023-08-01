@@ -2,6 +2,7 @@
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use app\modules\taisan\models\LoaiThietBi;
+use app\widgets\views\StatusWithIconWidget;
 return [
     [
         'class' => 'kartik\grid\CheckboxColumn',
@@ -53,6 +54,12 @@ return [
         'attribute'=>'id_bo_phan_quan_ly',
         'value'=>'boPhanQuanLy.ten_bo_phan',
         
+    ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'trang_thai',
+        'format'=>'raw',
+        'value'=>'tenTrangThaiWithBadge'
     ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',
@@ -119,10 +126,7 @@ return [
         // 'class'=>'\kartik\grid\DataColumn',
         // 'attribute'=>'ngay_dua_vao_su_dung',
     // ],
-    // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'trang_thai',
-    // ],
+    
     // [
         // 'class'=>'\kartik\grid\DataColumn',
         // 'attribute'=>'ngay_ngung_hoat_dong',

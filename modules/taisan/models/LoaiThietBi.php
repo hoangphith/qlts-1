@@ -18,14 +18,6 @@ class LoaiThietBi extends LoaiThietBiBase{
     }
     
     /**
-     * hien thi label loai thiet bi
-     * @return string
-     */
-    public function getTenLoaiThietBi(){
-        return $this::getLoaiThietBiLabel($this->loai_thiet_bi);
-    }
-    
-    /**
      * lay thong tin loai thiet bi truc thuoc
      * @return string
      */

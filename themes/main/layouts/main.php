@@ -85,7 +85,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             						</a>
             						<div class="dropdown-menu tx-13" style="min-width:200px">
             							<a class="dropdown-item" href="<?= Yii::$app->params['showImportDownload'] ?>" target="_blank"><i
-            									class="fe fe-download-cloud me-2"></i>Download file mẫu          								Pdf</a>
+            									class="fe fe-download-cloud me-2"></i>Download file mẫu</a>
             							<a class="dropdown-item" href="<?= Yii::getAlias('@web/dungchung/import/upload?type='.Yii::$app->params['showImportModel']) ?>" role="modal-remote"><i
             									class="fe fe-upload-cloud me-2"></i>Upload file dữ liệu</a>
             							

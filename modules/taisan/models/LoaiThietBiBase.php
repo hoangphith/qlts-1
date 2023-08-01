@@ -25,14 +25,22 @@ class LoaiThietBiBase extends \app\models\TsLoaiThietBi {
      * @param int $val
      * @return string
      */
-    public static function getLoaiThietBiLabel($val){
-        $label = '';
-        if($val == 'THIETBI'){
-            $label = 'Thiết bị/Máy móc';
-        }else if($val == 'COGIOI'){
-            $label = 'Xe cơ giới';
-        }else if($val == 'VANCHUYEN'){
-            $label = 'Xe vận chuyển';
+    public function getTenLoaiThietBi($val=NULL){   
+        if($val==NULL){
+            $val = $this->loai_thiet_bi;
+        }
+        switch ($val){
+            case "THIETBI": 
+                $label = "Thiết bị/Máy móc"; 
+                break;
+            case "COGIOI": 
+                $label = "Xe cơ giới "; 
+                break;
+            case "VANCHUYEN": 
+                $label = "Xe vận chuyển"; 
+                break;
+            default: 
+                $label = '';
         }
         return $label;
     }
