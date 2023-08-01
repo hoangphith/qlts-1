@@ -2,15 +2,14 @@
 
 namespace app\modules\taisan\controllers;
 
-use Yii;
 use app\modules\taisan\models\HeThong;
 use app\modules\taisan\models\HeThongSearch;
+use Yii;
+use yii\filters\VerbFilter;
+use yii\helpers\Html;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use \yii\web\Response;
-use yii\helpers\Html;
-use yii\filters\AccessControl;
+use yii\web\Response;
 
 /**
  * HeThongController implements the CRUD actions for HeThong model.

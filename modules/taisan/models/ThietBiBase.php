@@ -76,7 +76,7 @@ class ThietBiBase extends \app\models\TsThietBi
      */
     public function getBoPhanQuanLy()
     {
-        return $this->hasOne(BoPhan::class, ['id' => 'id_bo_phan_quan_ly']);
+        return $this->id_bo_phan_quan_ly !=NULL ? $this->hasOne(BoPhan::class, ['id' => 'id_bo_phan_quan_ly']) : '';
     }
 
      /**
@@ -86,7 +86,7 @@ class ThietBiBase extends \app\models\TsThietBi
      */
     public function getHeThong()
     {
-        return $this->hasOne(HeThong::class, ['id' => 'id_he_thong']);
+        return $this->id_he_thong != NULL ? $this->hasOne(HeThong::class, ['id' => 'id_he_thong']) : NULL;
     }
 
     /**
@@ -96,7 +96,7 @@ class ThietBiBase extends \app\models\TsThietBi
      */
     public function getLoaiThietBi()
     {
-        return $this->hasOne(LoaiThietBi::class, ['id' => 'id_loai_thiet_bi']);
+        return $this->id_loai_thiet_bi != NULL ? $this->hasOne(LoaiThietBi::class, ['id' => 'id_loai_thiet_bi']) : NULL;
     }
      /**
      * Gets query for [[ViTri]].
@@ -105,7 +105,7 @@ class ThietBiBase extends \app\models\TsThietBi
      */
     public function getViTri()
     {
-        return $this->hasOne(ViTri::class, ['id' => 'id_vi_tri']);
+        return $this->id_vi_tri !=NULL ? $this->hasOne(ViTri::class, ['id' => 'id_vi_tri']) : NULL;
     }
 
     /**
@@ -115,7 +115,7 @@ class ThietBiBase extends \app\models\TsThietBi
      */
     public function getNguoiQuanLy()
     {
-        return $this->hasOne(NhanVien::class, ['id' => 'id_nguoi_quan_ly']);
+        return $this->id_nguoi_quan_ly !=NULL ? $this->hasOne(NhanVien::class, ['id' => 'id_nguoi_quan_ly']) : NULL;
     }
 
     /**
@@ -130,7 +130,7 @@ class ThietBiBase extends \app\models\TsThietBi
     
     public function getThietBiCha()
     {
-        return $this->hasOne(ThietBi::class, ['id' => 'id_thiet_bi_cha']);
+        return $this->id_thiet_bi_cha != NULL ? $this->hasOne(ThietBi::class, ['id' => 'id_thiet_bi_cha']) : '';
     }
 
     /**

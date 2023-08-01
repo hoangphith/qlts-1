@@ -12,6 +12,12 @@ use app\modules\taisan\models\LoaiThietBi;
 /* @var $model app\modules\bophan\models\BoPhan */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+<style>
+/*fixed select2 search conflict select2 form*/
+.select2-container--krajee-bs5 .select2-selection--single {
+    padding: 5px 1rem 5px 5px !important;
+}
+</style>
 
 <div class="thiet-bi-search">
 
@@ -42,16 +48,16 @@ use app\modules\taisan\models\LoaiThietBi;
             ],
             
         ]);?>
+        
         <?= $form->field($model, 'id_bo_phan_quan_ly')->widget(Select2::classname(), [
-            'data' => ArrayHelper::map(BoPhan::find()->all(), 'id', 'ten_bo_phan'),
-            'language' => 'vi',
-            'options' => ['placeholder' => '---Chọn---'],
-            'pluginOptions' => [
-                'allowClear' => true,
-                //'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'),
-            ],
-            
-        ]);?>
+                'data' => (new BoPhan())->getListTree(),
+    		     'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('id_bo_phan_quan_ly') .'...'],
+    		     'pluginOptions' => [
+    		         'allowClear' => true,
+    		         //'dropdownParent' => new yii\web\JsExpression('$("#offcanvasRight")'), 
+    		     ],
+    		 ]);
+    	?>
   
 	<?php if (!Yii::$app->request->isAjax){ ?>
 	  	<div class="form-group">

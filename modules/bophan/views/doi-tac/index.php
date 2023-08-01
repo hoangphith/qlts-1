@@ -54,7 +54,7 @@ Yii::$app->params['showImportModel'] = DoiTac::MODEL_ID;
             'condensed' => true,
             'responsive' => true,
             'panelHeadingTemplate'=>'{title}',
-            'panelFooterTemplate'=>'{summary}',
+            'panelFooterTemplate'=>'<div class="row"><div class="col-md-8">{pager}</div><div class="col-md-4">{summary}</div></div>',
             'summary'=>'Hiển thị dữ liệu {count}/{totalCount}, Trang {page}/{pageCount}',          
             'panel' => [
                 //'type' => 'primary', 

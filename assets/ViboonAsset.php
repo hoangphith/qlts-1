@@ -54,5 +54,6 @@ class ViboonAsset extends AssetBundle
         'yii\bootstrap5\BootstrapAsset',
         'yii\bootstrap5\BootstrapPluginAsset',
         'kartik\grid\GridViewAsset',
+        'kartik\select2\Select2Asset'
     ];
 }

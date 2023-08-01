@@ -37,7 +37,7 @@ class ImportThietBi
                 //check B <ma_thiet_bi> is not null and not duplicate                
                 $mod = new CheckFile();
                 $mod->isDuplicate = true;
-                //$mod->allowNull = true;
+                $mod->allowNull = false;
                 $mod->modelDuplicate = ThietBi::find()->where(['ma_thiet_bi'=>$row['B']]);
                 $err = $mod->checkVal('B'.$index, $row['B']);
                 if(!empty($err)){

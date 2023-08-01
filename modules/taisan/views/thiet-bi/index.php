@@ -69,10 +69,9 @@ $btns = '<a style="margin-left:10px" class="btn ripple btn-primary dropdown-togg
                     Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i> Thêm mới', ['create'],
                     ['role'=>'modal-remote','title'=> 'Thêm thiết bị/tài sản','class'=>'btn btn-outline-primary']).
                     Html::a('<i class="fas fa fa-sync" aria-hidden="true"></i> Tải lại', [''],
-                    ['data-pjax'=>1, 'class'=>'btn btn-outline-primary', 'title'=>'Reset Grid']).
+                    ['data-pjax'=>1, 'class'=>'btn btn-outline-primary', 'title'=>'Tải lại']).
                     Html::a('<i class="fa fa-qrcode" aria-hidden="true"></i> Quét mã QR', ['qr-scan'],
                         ['role'=>'modal-remote','title'=> 'Quét QRcode','class'=>'btn btn-outline-primary']).
-                    '{toggleData}'.
                     '{export}'
                 ],
             ], 

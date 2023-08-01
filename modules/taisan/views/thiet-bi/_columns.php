@@ -26,27 +26,27 @@ return [
         'attribute'=>'ten_thiet_bi',
         'width'=> '30%',
     ],
-    [
+    /* [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'id_vi_tri',
         'value'=>'viTri.ten_vi_tri',
         'width'=> '20%',
         
         
-    ],
+    ], */
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'id_loai_thiet_bi',
-        'value'=>'loaiThietBi.ten_loai',
+        'value'=>'tenLoaiThietBi',
         'width'=> '20%',
         //'filter'=>ArrayHelper::map(LoaiThietBi::find()->asArray()->all(), 'id', 'ten_loai'),
     ],
-    [
+    /* [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'id_he_thong',
         'value'=>'heThong.ten_he_thong',
         'width'=> '20%',
-    ],
+    ], */
   
     [
         'class'=>'\kartik\grid\DataColumn',
@@ -106,10 +106,7 @@ return [
         // 'class'=>'\kartik\grid\DataColumn',
         // 'attribute'=>'id_don_vi_bao_tri',
     // ],
-    // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'id_nguoi_quan_ly',
-    // ],
+    
     // [
         // 'class'=>'\kartik\grid\DataColumn',
         // 'attribute'=>'ngay_mua',
@@ -149,26 +146,30 @@ return [
         'urlCreator' => function($action, $model, $key, $index) { 
                 return Url::to([$action,'id'=>$key]);
         },
-        'viewOptions'=>['role'=>'modal-remote','title'=>'Xem chi tiết',
-        'data-toggle'=>'tooltip', 
-        'class'=>'btn ripple btn-primary btn-sm',
-        'data-bs-placement'=>'top',
-        'data-bs-toggle'=>'tooltip-primary'],
-        'updateOptions'=>['role'=>'modal-remote','title'=>'Cập nhật', 'data-toggle'=>'tooltip',
-        'class'=>'btn ripple btn-info btn-sm',
-        'data-bs-placement'=>'top',
-        'data-bs-toggle'=>'tooltip-info'
+        'viewOptions'=>[
+            'role'=>'modal-remote','title'=>'Xem chi tiết',
+            'data-toggle'=>'tooltip', 
+            'class'=>'btn ripple btn-primary btn-sm',
+            'data-bs-placement'=>'top',
+            'data-bs-toggle'=>'tooltip-primary'
         ],
-        'deleteOptions'=>['role'=>'modal-remote','title'=>'Xoá', 
-                          'data-confirm'=>false, 'data-method'=>false,// for overide yii data api
-                          'data-request-method'=>'post',
-                          'data-toggle'=>'tooltip',
-                          'data-confirm-title'=>'Thông báo',
-                          'data-confirm-message'=>'Bạn có chắc xoá dòng chọn không',
-                          'class'=>'btn ripple btn-secondary btn-sm',
-                          'data-bs-placement'=>'top',
-                          'data-bs-toggle'=>'tooltip-secondary'
-                        ], 
+        'updateOptions'=>[
+            'role'=>'modal-remote','title'=>'Cập nhật', 'data-toggle'=>'tooltip',
+            'class'=>'btn ripple btn-info btn-sm',
+            'data-bs-placement'=>'top',
+            'data-bs-toggle'=>'tooltip-info'
+        ],
+        'deleteOptions'=>[
+              'role'=>'modal-remote','title'=>'Xoá', 
+              'data-confirm'=>false, 'data-method'=>false,// for overide yii data api
+              'data-request-method'=>'post',
+              'data-toggle'=>'tooltip',
+              'data-confirm-title'=>'Thông báo',
+              'data-confirm-message'=>'Bạn có chắc xoá dòng chọn không',
+              'class'=>'btn ripple btn-secondary btn-sm',
+              'data-bs-placement'=>'top',
+              'data-bs-toggle'=>'tooltip-secondary'
+         ], 
     ],
 
 ];   

@@ -27,7 +27,6 @@ use app\widgets\views\ImageWithButtonWidget;
 				<li><a href="#tab2" data-bs-toggle="tab" aria-selected="true" role="tab">
 					Lịch sử thay đổi
 				</a></li>
-				<!-- <li><a href="#tab28" data-bs-toggle="tab" aria-selected="false" role="tab" class="" tabindex="-1">Tab 4</a></li> -->
 			</ul>
 		</div>
 	</div>
@@ -39,16 +38,27 @@ use app\widgets\views\ImageWithButtonWidget;
                 <?= DetailView::widget([
                     'model' => $model,
                     'attributes' => [
-                       // 'id',
                         'ma_thiet_bi',
-                        'viTri.ten_vi_tri',
-                        'heThong.ten_he_thong',
-                        'loaiThietBi.ten_loai',
-                        'boPhanQuanLy.ten_bo_phan',
+                        [
+                            'attribute'=>'id_vi_tri',
+                            'value'=>$model->tenViTri
+                        ],
+                        [
+                            'attribute'=>'id_he_thong',
+                            'value'=>$model->tenHeThong
+                        ],
+                        [
+                            'attribute'=>'id_loai_thiet_bi',
+                            'value'=>$model->tenLoaiThietBi
+                        ],
+                        [
+                            'attribute'=>'id_bo_phan_quan_ly',
+                            'value'=>$model->tenBoPhanQuanLy
+                        ],
                         'ten_thiet_bi',
                         [
-                            'label'=>'Thiết bị cha ',
-                            'value'=>$model->thietBiCha!=null ? $model->thietBiCha->ten_thiet_bi : '',
+                            'attribute'=>'id_thiet_bi_cha',
+                            'value'=>$model->tenThietBiCha
                         ],
                         'id_layout',
                         'nam_san_xuat',
@@ -61,7 +71,10 @@ use app\widgets\views\ImageWithButtonWidget;
                         //'id_lop_hu_hong',
                         'id_trung_tam_chi_phi',
                         'id_don_vi_bao_tri',
-                        'id_nguoi_quan_ly',
+                        [
+                            'attribute'=>'id_nguoi_quan_ly',
+                            'value'=>$model->tenNguoiQuanLy
+                        ],
                         'ngay_mua',
                         'han_bao_hanh',
                         'ngay_dua_vao_su_dung',

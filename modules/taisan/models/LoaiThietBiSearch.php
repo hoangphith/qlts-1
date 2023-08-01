@@ -39,7 +39,7 @@ class LoaiThietBiSearch extends LoaiThietBi
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $cusomSearch=NULL)
     {
         $query = LoaiThietBi::find();
 
@@ -54,20 +54,30 @@ class LoaiThietBiSearch extends LoaiThietBi
             // $query->where('0=1');
             return $dataProvider;
         }
-
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'truc_thuoc' => $this->truc_thuoc,
-            'thoi_gian_tao' => $this->thoi_gian_tao,
-            'nguoi_tao' => $this->nguoi_tao,
-        ]);
-
-        $query->andFilterWhere(['like', 'ma_loai', $this->ma_loai])
-            ->andFilterWhere(['like', 'ten_loai', $this->ten_loai])
-            ->andFilterWhere(['like', 'don_vi_tinh', $this->don_vi_tinh])
-            ->andFilterWhere(['like', 'loai_thiet_bi', $this->loai_thiet_bi])
-            ->andFilterWhere(['like', 'ghi_chu', $this->ghi_chu]);
-
+        
+        if($cusomSearch != NULL){
+            $query->andFilterWhere ( [ 'OR' ,                
+                ['like', 'ma_loai', $cusomSearch],
+                ['like', 'ten_loai', $cusomSearch],
+                ['like', 'don_vi_tinh', $cusomSearch],
+                ['like', 'loai_thiet_bi', $cusomSearch],
+                ['like', 'ghi_chu', $cusomSearch]
+            ]);
+            
+        } else {
+            $query->andFilterWhere([
+                'id' => $this->id,
+                'truc_thuoc' => $this->truc_thuoc,
+                'thoi_gian_tao' => $this->thoi_gian_tao,
+                'nguoi_tao' => $this->nguoi_tao,
+            ]);
+    
+            $query->andFilterWhere(['like', 'ma_loai', $this->ma_loai])
+                ->andFilterWhere(['like', 'ten_loai', $this->ten_loai])
+                ->andFilterWhere(['like', 'don_vi_tinh', $this->don_vi_tinh])
+                ->andFilterWhere(['like', 'loai_thiet_bi', $this->loai_thiet_bi])
+                ->andFilterWhere(['like', 'ghi_chu', $this->ghi_chu]);
+        }
         return $dataProvider;
     }
 }
