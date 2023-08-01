@@ -7,6 +7,7 @@ use kartik\grid\GridView;
 use app\widgets\FilterFormWidget;
 use cangak\ajaxcrud\CrudAsset; 
 use cangak\ajaxcrud\BulkButtonWidget;
+use app\modules\taisan\models\LoaiThietBi;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\taisan\models\LoaiThietBiSearch */
@@ -18,6 +19,9 @@ $this->params['breadcrumbs'][] = $this->title;
 CrudAsset::register($this);
 Yii::$app->params['showSearch'] = true;
 Yii::$app->params['showExport'] = true;
+Yii::$app->params['showImport'] = true;
+Yii::$app->params['showImportDownload'] = Yii::getAlias('@web/uploads/excel/down/mau_import_loai_thiet_bi.xlsx');
+Yii::$app->params['showImportModel'] = LoaiThietBi::MODEL_ID;
 ?>
 
 <?php Pjax::begin([

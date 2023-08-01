@@ -2,15 +2,14 @@
 
 namespace app\modules\taisan\controllers;
 
-use Yii;
 use app\modules\taisan\models\ViTri;
 use app\modules\taisan\models\ViTriSearch;
+use Yii;
+use yii\filters\VerbFilter;
+use yii\helpers\Html;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use \yii\web\Response;
-use yii\helpers\Html;
-use yii\filters\AccessControl;
+use yii\web\Response;
 
 /**
  * ViTriController implements the CRUD actions for ViTri model.
@@ -21,24 +20,24 @@ class ViTriController extends Controller
      * @inheritdoc
      */
     public function behaviors() {
-		return [
-			// 'access' => [
-			// 	'class' => AccessControl::className(),
-			// 	'rules' => [
-			// 		[
-			// 			'actions' => ['index', 'view', 'update','create','delete','bulkdelete'],
-			// 			'allow' => true,
-			// 			'roles' => ['admin'],
-			// 		],
-			// 	],
-			// ],
-			'verbs' => [
-				'class' => VerbFilter::className(),
-				'actions' => [
-					'delete' => ['POST'],
-				],
-			],
+    		return [
+    			'ghost-access'=> [
+    			'class' => 'webvimark\modules\UserManagement\components\GhostAccessControl',
+        		],
+    			'verbs' => [
+    				'class' => VerbFilter::className(),
+    				'actions' => [
+    					'delete' => ['POST'],
+    				],
+    			],
 		];
+	}
+	
+	public function beforeAction($action)
+	{
+	    Yii::$app->params['moduleID'] = 'Module Quản lý tài sản';
+	    Yii::$app->params['modelID'] = 'Quản lý Vị trí';
+	    return parent::beforeAction($action);
 	}
 
     /**
@@ -48,8 +47,14 @@ class ViTriController extends Controller
     public function actionIndex()
     {    
         $searchModel = new ViTriSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+  		if(isset($_POST['search']) && $_POST['search'] != null){
+            $dataProvider = $searchModel->search(Yii::$app->request->post(), $_POST['search']);
+        } else if ($searchModel->load(Yii::$app->request->post())) {
+            $searchModel = new ViTriSearch(); // "reset"
+            $dataProvider = $searchModel->search(Yii::$app->request->post());
+        } else {
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        }    
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -68,11 +73,11 @@ class ViTriController extends Controller
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "ViTri #".$id,
+                    'title'=> "Vị trí",
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
-                    'footer'=> Html::button('Đongs',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
                             Html::a('Sửa',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
                 ];    
         }else{
@@ -100,21 +105,23 @@ class ViTriController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Thêm mới vị trí",
+                    'title'=> "Thêm mới Vị trí",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                                Html::button('Lưu',['class'=>'btn btn-primary','type'=>"submit"])
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                                Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
         
                 ];         
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
                     'title'=> "Thêm mới vị trí",
-                    'content'=>'<span class="text-success">Create ViTri success</span>',
-                    'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                            Html::a('Thêm tiếp',['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                    'content'=>'<span class="text-success">Thêm mới thành công</span>',
+                    'tcontent'=>'Thêm mới thành công!',
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                            Html::a('Tiếp tục thêm',['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
+        
                 ];         
             }else{           
                 return [
@@ -122,8 +129,8 @@ class ViTriController extends Controller
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                                Html::button('Lưu',['class'=>'btn btn-primary','type'=>"submit"])
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                                Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
         
                 ];         
             }
@@ -161,31 +168,32 @@ class ViTriController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Cập nhật vị trí #".$id,
+                    'title'=> "Cập nhật vị trí",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                                Html::button('Lưu',['class'=>'btn btn-primary','type'=>"submit"])
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                                Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
                 ];         
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Vị trí #".$id,
+                    'title'=> "Vị trí",
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                    'tcontent'=>'Cập nhật thành công!',
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
                             Html::a('Sửa',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
                 ];    
             }else{
                  return [
-                    'title'=> "Cập nhật vị trí #".$id,
+                    'title'=> "Cập nhật ViTri",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                                Html::button('Lưu',['class'=>'btn btn-primary','type'=>"submit"])
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                                Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
                 ];        
             }
         }else{
@@ -241,9 +249,16 @@ class ViTriController extends Controller
     {        
         $request = Yii::$app->request;
         $pks = explode(',', $request->post( 'pks' )); // Array or selected records primary keys
+        $delOk = true;
+        $fList = array();
         foreach ( $pks as $pk ) {
             $model = $this->findModel($pk);
-            $model->delete();
+            try{
+            	$model->delete();
+            }catch(\Exception $e) {
+            	$delOk = false;
+            	$fList[] = $model->id;
+            }
         }
 
         if($request->isAjax){
@@ -251,7 +266,9 @@ class ViTriController extends Controller
             *   Process for ajax request
             */
             Yii::$app->response->format = Response::FORMAT_JSON;
-            return ['forceClose'=>true,'forceReload'=>'#crud-datatable-pjax'];
+            return ['forceClose'=>true,'forceReload'=>'#crud-datatable-pjax',
+            			'tcontent'=>$delOk==true?'Xóa thành công!':('Không thể xóa:'.implode('</br>', $fList)),
+            ];
         }else{
             /*
             *   Process for non-ajax request

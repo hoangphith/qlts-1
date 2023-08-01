@@ -29,7 +29,7 @@ class KhoLuuTru extends KhoLuuTruBase
      * @return string
      */
     public function getTenNguoiQuanLy(){
-        return $this->nguoiQuanLy->ten_nhan_vien;
+        return $this->nguoiQuanLy!=NULL?$this->nguoiQuanLy->ten_nhan_vien:'';
     }
     
     /**
@@ -37,6 +37,6 @@ class KhoLuuTru extends KhoLuuTruBase
      * @return string
      */
     public function getTenBoPhanQuanLy(){
-        return $this->boPhanQuanLy->ten_bo_phan;
+        return $this->boPhanQuanLy!=NULL?$this->boPhanQuanLy->ten_bo_phan:'';
     }
 }

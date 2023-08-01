@@ -39,7 +39,7 @@ class HeThongSearch extends HeThong
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $cusomSearch=NULL)
     {
         $query = HeThong::find();
 
@@ -54,8 +54,13 @@ class HeThongSearch extends HeThong
             // $query->where('0=1');
             return $dataProvider;
         }
-
-        $query->andFilterWhere([
+		if($cusomSearch != NULL){
+			$query->andFilterWhere ( [ 'OR' ,['like', 'ma_he_thong', $cusomSearch],
+            ['like', 'ten_he_thong', $cusomSearch],
+            ['like', 'mo_ta', $cusomSearch]] );
+ 
+		} else {
+        	$query->andFilterWhere([
             'id' => $this->id,
             'truc_thuoc' => $this->truc_thuoc,
             'thoi_gian_tao' => $this->thoi_gian_tao,
@@ -65,7 +70,7 @@ class HeThongSearch extends HeThong
         $query->andFilterWhere(['like', 'ma_he_thong', $this->ma_he_thong])
             ->andFilterWhere(['like', 'ten_he_thong', $this->ten_he_thong])
             ->andFilterWhere(['like', 'mo_ta', $this->mo_ta]);
-
+		}
         return $dataProvider;
     }
 }

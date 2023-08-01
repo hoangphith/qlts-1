@@ -76,6 +76,7 @@ use app\widgets\views\ImageWithButtonWidget;
                         'dac_tinh_ky_thuat:ntext',
                         'ghi_chu:ntext',
                     ],
+                    'template' => "<tr><th style='width: 40%;'>{label}</th><td>{value}</td></tr>"
                 ]) ?>
                 </div>
                 <div class="col-md-4">
@@ -149,6 +150,7 @@ use app\widgets\views\ImageWithButtonWidget;
                                 'value'=>$model->ngayNgungHoatDong
                             ],
                         ],
+                         'template' => "<tr><th style='width: 40%;'>{label}</th><td>{value}</td></tr>"
                     ]) ?>
             	</div>
 			</div>

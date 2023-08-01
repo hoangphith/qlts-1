@@ -113,7 +113,7 @@ if($model->ngay_dua_vao_su_dung != null)
                     ],
                 ]);?>
                 </div>
-                 <div class="col">
+                 <!-- <div class="col">
                     <?= $form->field($model, 'id_vi_tri')->widget(Select2::classname(), [
                         'data' => ArrayHelper::map(ViTri::find()->all(), 'id', 'ten_vi_tri'),
                         'language' => 'vi',
@@ -123,7 +123,7 @@ if($model->ngay_dua_vao_su_dung != null)
                             'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'),
                         ],
                     ]);?>
-                </div>
+                </div> -->
             </div>
             <!-- <div class="row">
                 <div class="col">

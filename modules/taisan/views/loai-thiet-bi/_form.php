@@ -1,10 +1,8 @@
 <?php
-use yii\bootstrap5\Html;
-use yii\widgets\ActiveForm;
-use kartik\select2\Select2;
-use yii\helpers\ArrayHelper;
 use app\modules\taisan\models\LoaiThietBi;
 use app\widgets\forms\RadioWidget;
+use kartik\select2\Select2;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\taisan\models\LoaiThietBi */
@@ -46,15 +44,6 @@ use app\widgets\forms\RadioWidget;
     </div>
     <div class="row">
         <div class="col">
-            <?php /* $form->field($model, 'truc_thuoc')->widget(Select2::classname(), [
-                'data' => ArrayHelper::map(LoaiThietBi::find()->all(), 'id', 'ten_loai'),
-                'language' => 'vi',
-                'options' => ['placeholder' => 'Chọn trực thuộc...'],
-                'pluginOptions' => [
-                    'allowClear' => true,
-                    'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'),
-                ],
-            ]); */ ?>
             <?= $form->field($model, 'truc_thuoc')->widget(Select2::classname(), [
                      'data' => (new LoaiThietBi())->getListTree(),
         		     'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('truc_thuoc') .'...'],
@@ -76,21 +65,6 @@ use app\widgets\forms\RadioWidget;
             <?= $form->field($model, 'ghi_chu')->textarea(['rows' => 3]) ?>
         </div>
     </div>
-   
-
-    
-    
-
-    <!-- <?= $form->field($model, 'thoi_gian_tao')->textInput() ?>
-
-    <?= $form->field($model, 'nguoi_tao')->textInput() ?> -->
-
-  
-	<?php if (!Yii::$app->request->isAjax){ ?>
-	  	<div class="form-group">
-	        <?= Html::submitButton($model->isNewRecord ? 'Tạo' : 'Cập nhật', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-	    </div>
-	<?php } ?>
 
     <?php ActiveForm::end(); ?>
     

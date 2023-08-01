@@ -28,7 +28,9 @@
 							<li><a href="/taisan/loai-thiet-bi?menu=ts2" class="slide-item" data-menu="ts2">Loại thiết bị/tài sản</a></li>
 							<li><a href="/taisan/he-thong?menu=ts3" class="slide-item" data-menu="ts3" >Hệ thống</a></li>
 							<li><a href="/taisan/vi-tri?menu=ts4" class="slide-item" data-menu="ts4">Vị trí </a></li>
+							<!-- 
 							<li><a href="/taisan/lop-hu-hong?menu=ts5" class="slide-item" data-menu="ts5">Lớp hư hỏng</a></li>
+							 -->
 						</ul>
 						<div class="menutabs-content px-0">
 						  <!-- menu tab here -->

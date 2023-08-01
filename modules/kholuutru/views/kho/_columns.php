@@ -1,6 +1,6 @@
 <?php
-use yii\helpers\Url;
 use app\widgets\LinkToModalWidget;
+use yii\helpers\Url;
 
 return [
     [
@@ -34,11 +34,11 @@ return [
         //'value'=>'tenNguoiQuanLy',
         'format'=>'raw',
         'value'=>function($model){
-            return LinkToModalWidget::widget([
-                'label'=>$model->tenNguoiQuanLy, 
-                'link'=>$model->nguoiQuanLy->showLink
-            ]);
-        }
+            return $model->nguoiQuanLy != NULL ? LinkToModalWidget::widget([
+                    'label'=>$model->tenNguoiQuanLy, 
+                    'link'=>$model->nguoiQuanLy->showLink
+                ]) : '';
+            }
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
@@ -46,11 +46,11 @@ return [
         //'value'=>'tenBoPhanQuanLy',
         'format'=>'raw',
         'value'=>function($model){
-            return LinkToModalWidget::widget([
-                'label'=>$model->tenBoPhanQuanLy,
-                'link'=>$model->boPhanQuanLy->showLink
-            ]);
-        }
+            return $model->boPhanQuanLy != NULL ? LinkToModalWidget::widget([
+                    'label'=>$model->tenBoPhanQuanLy,
+                    'link'=>$model->boPhanQuanLy->showLink
+                ]):'';
+            }
     ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',
