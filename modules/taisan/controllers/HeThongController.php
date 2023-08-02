@@ -5,6 +5,7 @@ namespace app\modules\taisan\controllers;
 use Yii;
 use app\modules\taisan\models\HeThong;
 use app\modules\taisan\models\HeThongSearch;
+use app\modules\taisan\models\ThietBi;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -275,6 +276,21 @@ class HeThongController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+    public function actionListThietBi($id){
+        $thietBis= ThietBi::find()->where(['id_he_thong'=>$id])->all();
+        //var_dump($thietBis);
+        if(count($thietBis) > 0){
+            $option="<option value=''>--Chọn--</option>";
+            foreach($thietBis as $thietBi){
+                $option.='<option value="'.$thietBi->id.'">'.$thietBi->ten_thiet_bi.'</option>';
+            }
+            echo $option;
+        }
+        else{
+            echo '<option></option>';
         }
     }
 }
