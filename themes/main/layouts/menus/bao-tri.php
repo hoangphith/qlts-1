@@ -24,7 +24,6 @@
 						<ul class="sidemenu-list">
 							<li class="side-menu__label1"><a href="javascript:void(0)">Danh mục chức năng</a>
 							</li>
-							<li><a href="#?menu=btbd1" class="slide-item" data-menu="btbd1">Kế hoạch bảo trì #</a>
 							<li><a href="/baotri/ke-hoach-bao-tri?menu=btbd2" class="slide-item" data-menu="btbd2">Phiếu bảo trì</a>
 							<li><a href="/baotri/loai-bao-tri?menu=btbd3" class="slide-item" data-menu="btbd3">Danh mục loại bảo trì</a>
 							</li>

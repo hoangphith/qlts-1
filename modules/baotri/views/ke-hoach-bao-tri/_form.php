@@ -244,6 +244,7 @@ use app\modules\baotri\models\KeHoachBaoTri;
 
     <?php ActiveForm::end(); ?>
 </div>
+</div>
 <script>
 $('input[name="KeHoachBaoTri[da_het_hieu_luc]"]').change(function () {
     if(this.checked){

@@ -21,6 +21,8 @@ use app\modules\taisan\models\LoaiThietBi;
 use app\modules\dungchung\models\imports\ImportLoaiThietBi;
 use app\modules\taisan\models\HeThong;
 use app\modules\dungchung\models\imports\ImportHeThong;
+use app\modules\dungchung\models\imports\ImportViTri;
+use app\modules\taisan\models\ViTri;
 
 /**
  * Default controller for the `dungchung` module
@@ -67,6 +69,8 @@ class ImportController extends Controller
                         $rt = ImportLoaiThietBi::checkFile($type, $fileName);
                     } else if ($type == HeThong::MODEL_ID){
                         $rt = ImportHeThong::checkFile($type, $fileName);
+                    } else if ($type == ViTri::MODEL_ID){
+                        $rt = ImportViTri::checkFile($type, $fileName);
                     }
                     
                     $status = false;
@@ -124,6 +128,8 @@ class ImportController extends Controller
                         $result = ImportLoaiThietBi::importFile($file);
                     } else if ($type == HeThong::MODEL_ID){
                         $result = ImportHeThong::importFile($file);
+                    } else if ($type == ViTri::MODEL_ID){
+                        $result = ImportViTri::importFile($file);
                     }
                     
                     Import::deleteFileTemp($file);
