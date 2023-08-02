@@ -74,8 +74,8 @@ class ThietBiController extends Controller
                 return [
                     'title'=> "QR Scan",
                     'content'=>$this->renderAjax('qr-scan', compact('model')),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                    Html::button('Tìm thiết bị',['class'=>'btn btn-primary','type'=>"submit", 'id'=>'btnLuu'])
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                    Html::button('Tìm thiết bị',['class'=>'btn btn-primary','type'=>"submit", 'id'=>'btnQrScan'])
                 ];
             }else{
                 $model->load($request->post());
@@ -84,15 +84,17 @@ class ThietBiController extends Controller
                     return [
                         'title'=> "Thiết bị #".$model2->id,
                         'content'=>$this->renderAjax('view', ['model'=>$model2]),
-                        'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                        Html::a('Edit',['update','id'=>$model2->id],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                        'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                        Html::a('Sửa',['update','id'=>$model2->id],['class'=>'btn btn-primary','role'=>'modal-remote']).
+                        Html::a('<i class="fa fa-qrcode" aria-hidden="true"></i> Tiếp tục Scan',['qr-scan'],['class'=>'btn btn-info','role'=>'modal-remote'])
                     ];
                 } else {
+                    $model->autoid = '';//set lai textbox
                     return [
                         'title'=> "QR Scan",
                         'content'=>$this->renderAjax('qr-scan',compact('model')),
                         'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                        Html::button('Tìm thiết bị',['class'=>'btn btn-primary','type'=>"submit", 'id'=>'btnLuu'])
+                        Html::button('Tìm thiết bị',['class'=>'btn btn-primary','type'=>"submit", 'id'=>'btnQrScan'])
                     ];
                 }
             }
@@ -111,7 +113,7 @@ class ThietBiController extends Controller
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "Thiết bị/tài sản #".$id,
+                    'title'=> "Thiết bị/tài sản",
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
@@ -179,14 +181,7 @@ class ThietBiController extends Controller
                                 Html::a('Tiếp tục thêm',['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
             
                     ];
-                }
-                // return [
-                //     'forceReload'=>'#crud-datatable-pjax',
-                //     'title'=> "Thêm mới tài sản/thiết bị",
-                //     'content'=>'<span class="text-success">Thêm tài sản/thiết bị thành công</span>',
-                //     'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                //             Html::a('Thêm tiếp',['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
-                // ];         
+                }        
             }else{           
                 return [
                     'title'=> "Thêm mới thiết bị",
@@ -194,7 +189,7 @@ class ThietBiController extends Controller
                         'model' => $model,
                     ]),
                     'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                                Html::button('Lưu',['class'=>'btn btn-primary','type'=>"submit"])
+                                Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
         
                 ];         
             }
@@ -232,22 +227,22 @@ class ThietBiController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Cập nhật thiết bị ".$id,
+                    'title'=> "Cập nhật Tài sản/Thiết bị",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
                     'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                                Html::button('Lưu',['class'=>'btn btn-primary','type'=>"submit"])
+                                Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
                 ];         
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "ThietBi #".$id,
+                    'title'=> "Tài sản/Thiết bị",
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
                     'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                            Html::a('Edit',['Cập nhật','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                            Html::a('Sửa',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
                 ];    
             }else{
                  return [
@@ -256,7 +251,7 @@ class ThietBiController extends Controller
                         'model' => $model,
                     ]),
                     'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                                Html::button('Lưu',['class'=>'btn btn-primary','type'=>"submit"])
+                                Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
                 ];        
             }
         }else{

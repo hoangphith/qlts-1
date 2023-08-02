@@ -27,10 +27,10 @@ class NhomDoiTacBase extends \app\models\TsNhomDoiTac
     {
         return [
             'id' => 'ID',
-            'ma_nhom' => 'Ma Nhom',
-            'ten_nhom' => 'Ten Nhom',
-            'thoi_gian_tao' => 'Thoi Gian Tao',
-            'nguoi_tao' => 'Nguoi Tao',
+            'ma_nhom' => 'Mã nhóm',
+            'ten_nhom' => 'Tên nhóm',
+            'thoi_gian_tao' => 'Thời gian tạo',
+            'nguoi_tao' => 'Người tạo',
         ];
     }
 

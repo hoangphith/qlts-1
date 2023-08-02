@@ -3,25 +3,12 @@
 namespace app\modules\taisan\models;
 use app\modules\dungchung\models\History;
 use Yii;
+use app\modules\dungchung\models\CustomFunc;
 
-/**
- * This is the model class for table "ts_vi_tri".
- *
- * @property int $id
- * @property string $ma_vi_tri
- * @property string $ten_vi_tri
- * @property string|null $mo_ta
- * @property int|null $truc_thuoc
- * @property int|null $da_ngung_hoat_dong
- * @property string|null $ngay_ngung_hoat_dong
- * @property int|null $id_layout
- * @property string|null $toa_do_x
- * @property string|null $toa_do_y
- * @property string|null $thoi_gian_tao
- * @property int|null $nguoi_tao
- */
 class ViTriBase extends \app\models\TsViTri{
-    const MODEL_ID = "vitri";
+    
+    const MODEL_ID = 'vitri';
+    
     public function rules()
     {
         return [
@@ -51,13 +38,13 @@ class ViTriBase extends \app\models\TsViTri{
             'id_layout' => 'Layout',
             'toa_do_x' => 'Toạ độ X',
             'toa_do_y' => 'Toạ độ Y',
-            'thoi_gian_tao' => 'Thoi Gian Tao',
-            'nguoi_tao' => 'Nguoi Tao',
+            'thoi_gian_tao' => 'Thời gian tạo',
+            'nguoi_tao' => 'Người tạo',
         ];
     }
-    public function getViTriCha()
+    public function getViTriTrucThuoc()
     {
-        return $this->hasOne(ViTri::class, ['id' => 'truc_thuoc']);
+        return $this->truc_thuoc!=NULL?$this->hasOne(ViTri::class, ['id' => 'truc_thuoc']):NULL;
     }
         /**
      * {@inheritdoc}
@@ -66,7 +53,12 @@ class ViTriBase extends \app\models\TsViTri{
         if ($this->isNewRecord) {
             $this->thoi_gian_tao = date('Y-m-d H:i:s');
             $this->nguoi_tao = Yii::$app->user->isGuest ? '' : Yii::$app->user->id;
+            if($this->truc_thuoc == null)
+                $this->truc_thuoc = 0;
         }
+        $cus = new CustomFunc();
+        if($this->ngay_ngung_hoat_dong != null)
+            $this->ngay_ngung_hoat_dong = $cus->convertDMYToYMD($this->ngay_ngung_hoat_dong);
         return parent::beforeSave($insert);
     }
     

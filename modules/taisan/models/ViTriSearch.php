@@ -39,7 +39,7 @@ class ViTriSearch extends ViTri
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $cusomSearch=NULL)
     {
         $query = ViTri::find();
 
@@ -54,8 +54,16 @@ class ViTriSearch extends ViTri
             // $query->where('0=1');
             return $dataProvider;
         }
-
-        $query->andFilterWhere([
+		if($cusomSearch != NULL){
+			$query->andFilterWhere ( [ 'OR' ,['like', 'ma_vi_tri', $cusomSearch],
+            ['like', 'ten_vi_tri', $cusomSearch],
+            ['like', 'mo_ta', $cusomSearch],
+            ['like', 'da_ngung_hoat_dong', $cusomSearch],
+            ['like', 'toa_do_x', $cusomSearch],
+            ['like', 'toa_do_y', $cusomSearch]] );
+ 
+		} else {
+        	$query->andFilterWhere([
             'id' => $this->id,
             'truc_thuoc' => $this->truc_thuoc,
             'ngay_ngung_hoat_dong' => $this->ngay_ngung_hoat_dong,
@@ -70,7 +78,7 @@ class ViTriSearch extends ViTri
             ->andFilterWhere(['like', 'da_ngung_hoat_dong', $this->da_ngung_hoat_dong])
             ->andFilterWhere(['like', 'toa_do_x', $this->toa_do_x])
             ->andFilterWhere(['like', 'toa_do_y', $this->toa_do_y]);
-
+		}
         return $dataProvider;
     }
 }

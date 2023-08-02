@@ -7,6 +7,7 @@ use kartik\grid\GridView;
 use app\widgets\FilterFormWidget;
 use cangak\ajaxcrud\CrudAsset; 
 use cangak\ajaxcrud\BulkButtonWidget;
+use app\modules\taisan\models\LoaiThietBi;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\taisan\models\LoaiThietBiSearch */
@@ -18,12 +19,17 @@ $this->params['breadcrumbs'][] = $this->title;
 CrudAsset::register($this);
 Yii::$app->params['showSearch'] = true;
 Yii::$app->params['showExport'] = true;
+Yii::$app->params['showImport'] = true;
+Yii::$app->params['showImportDownload'] = Yii::getAlias('@web/uploads/excel/down/mau_import_loai_thiet_bi.xlsx');
+Yii::$app->params['showImportModel'] = LoaiThietBi::MODEL_ID;
 ?>
+
 <?php Pjax::begin([
     'id'=>'myGrid',
     'timeout' => 10000,
     'formSelector' => '.myFilterForm'
 ]); ?>
+
 <div class="loai-thiet-bi-index">
     <div id="ajaxCrudDatatable">
         <?=GridView::widget([
@@ -35,20 +41,22 @@ Yii::$app->params['showExport'] = true;
             'toolbar'=> [
                 ['content'=>
                     Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i> Thêm mới', ['create'],
-                    ['role'=>'modal-remote','title'=> 'Loại thiết bị','class'=>'btn btn-primary']).
+                    ['role'=>'modal-remote','title'=> 'Loại thiết bị','class'=>'btn btn-outline-primary']).
                     Html::a('<i class="fas fa fa-sync" aria-hidden="true"></i> Tải lại', [''],
-                    ['data-pjax'=>1, 'class'=>'btn btn-info', 'title'=>'Tải danh sách']).
-                    '{toggleData}'.
+                    ['data-pjax'=>1, 'class'=>'btn btn-outline-primary', 'title'=>'Tải danh sách']).
                     '{export}'
                 ],
             ],          
-            'striped' => true,
+            'striped' => false,
             'condensed' => true,
-            'responsive' => true,          
+            'responsive' => true,  
+            'panelHeadingTemplate'=>'{title}',
+            'panelFooterTemplate'=>'<div class="row"><div class="col-md-8">{pager}</div><div class="col-md-4">{summary}</div></div>',
+            'summary'=>'Hiển thị dữ liệu {count}/{totalCount}, Trang {page}/{pageCount}',      
             'panel' => [
-                'type' => 'primary', 
-                'heading' => '',
-                'before'=>'',
+                //'type' => 'primary', 
+                'heading' => '<i class="fas fa fa-list" aria-hidden="true"></i> Loại Tài sản/Thiết bị',
+                'before'=>'Danh sách loại Tài sản/Thiết bị',
                 'after'=>BulkButtonWidget::widget([
                             'buttons'=>Html::a('<i class="fas fa fa-trash" aria-hidden="true"></i>&nbsp; Xoá dòng chọn',
                                 ["bulkdelete"] ,

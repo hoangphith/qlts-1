@@ -24,6 +24,13 @@ if($model->isNewRecord){
 
 ?>
 
+<style>
+/*fixed select2 search conflict select2 form*/
+.select2-container--krajee-bs5 .select2-selection--single {
+    padding: 5px 1rem 5px 5px !important;
+}
+</style>
+
 <div class="kho-luu-tru-search">
 
     <?php $form = ActiveForm::begin([

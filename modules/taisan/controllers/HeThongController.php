@@ -22,24 +22,24 @@ class HeThongController extends Controller
      * @inheritdoc
      */
     public function behaviors() {
-		return [
-			// 'access' => [
-			// 	'class' => AccessControl::className(),
-			// 	'rules' => [
-			// 		[
-			// 			'actions' => ['index', 'view', 'update','create','delete','bulkdelete'],
-			// 			'allow' => true,
-			// 			'roles' => ['admin'],
-			// 		],
-			// 	],
-			// ],
-			'verbs' => [
-				'class' => VerbFilter::className(),
-				'actions' => [
-					'delete' => ['POST'],
-				],
-			],
+    		return [
+    			'ghost-access'=> [
+    			'class' => 'webvimark\modules\UserManagement\components\GhostAccessControl',
+        		],
+    			'verbs' => [
+    				'class' => VerbFilter::className(),
+    				'actions' => [
+    					'delete' => ['POST'],
+    				],
+    			],
 		];
+	}
+	
+	public function beforeAction($action)
+	{
+	    Yii::$app->params['moduleID'] = 'Module Quản lý tài sản';
+	    Yii::$app->params['modelID'] = 'Quản lý hệ thống thiết bị';
+	    return parent::beforeAction($action);
 	}
 
     /**
@@ -49,8 +49,14 @@ class HeThongController extends Controller
     public function actionIndex()
     {    
         $searchModel = new HeThongSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+  		if(isset($_POST['search']) && $_POST['search'] != null){
+            $dataProvider = $searchModel->search(Yii::$app->request->post(), $_POST['search']);
+        } else if ($searchModel->load(Yii::$app->request->post())) {
+            $searchModel = new HeThongSearch(); // "reset"
+            $dataProvider = $searchModel->search(Yii::$app->request->post());
+        } else {
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        }    
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -69,12 +75,12 @@ class HeThongController extends Controller
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "HeThong #".$id,
+                    'title'=> "Hệ thống",
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                            Html::a('Edit',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                            Html::a('Sửa',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
                 ];    
         }else{
             return $this->render('view', [
@@ -101,12 +107,12 @@ class HeThongController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Thêm mới hệ thống",
+                    'title'=> "Thêm mới Hệ thống",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                                Html::button('Lưu',['class'=>'btn btn-primary','type'=>"submit"])
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                                Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
         
                 ];         
             }else if($model->load($request->post()) && $model->save()){
@@ -114,8 +120,9 @@ class HeThongController extends Controller
                     'forceReload'=>'#crud-datatable-pjax',
                     'title'=> "Thêm mới hệ thống",
                     'content'=>'<span class="text-success">Thêm mới thành công</span>',
-                    'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                            Html::a('Tiếp tục thêm',['Tạo'],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                    'tcontent'=>'Thêm mới thành công!',
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                            Html::a('Tiếp tục thêm',['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
         
                 ];         
             }else{           
@@ -124,8 +131,8 @@ class HeThongController extends Controller
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                                Html::button('Lưu',['class'=>'btn btn-primary','type'=>"submit"])
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                                Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
         
                 ];         
             }
@@ -163,31 +170,32 @@ class HeThongController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Cập nhật hệ thống #".$id,
+                    'title'=> "Cập nhật hệ thống",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                                Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                                Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
                 ];         
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "HeThong #".$id,
+                    'title'=> "Hệ thống",
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                            Html::a('Edit',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                    'tcontent'=>'Cập nhật thành công!',
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                            Html::a('Sửa',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
                 ];    
             }else{
                  return [
-                    'title'=> "Cập nhật hệ thống #".$id,
+                    'title'=> "Cập nhật hệ thống",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                                Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
+                    'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                                Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
                 ];        
             }
         }else{
@@ -243,9 +251,16 @@ class HeThongController extends Controller
     {        
         $request = Yii::$app->request;
         $pks = explode(',', $request->post( 'pks' )); // Array or selected records primary keys
+        $delOk = true;
+        $fList = array();
         foreach ( $pks as $pk ) {
             $model = $this->findModel($pk);
-            $model->delete();
+            try{
+            	$model->delete();
+            }catch(\Exception $e) {
+            	$delOk = false;
+            	$fList[] = $model->id;
+            }
         }
 
         if($request->isAjax){
@@ -253,7 +268,9 @@ class HeThongController extends Controller
             *   Process for ajax request
             */
             Yii::$app->response->format = Response::FORMAT_JSON;
-            return ['forceClose'=>true,'forceReload'=>'#crud-datatable-pjax'];
+            return ['forceClose'=>true,'forceReload'=>'#crud-datatable-pjax',
+            			'tcontent'=>$delOk==true?'Xóa thành công!':('Không thể xóa:'.implode('</br>', $fList)),
+            ];
         }else{
             /*
             *   Process for non-ajax request

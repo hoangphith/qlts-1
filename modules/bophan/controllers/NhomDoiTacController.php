@@ -2,15 +2,14 @@
 
 namespace app\modules\bophan\controllers;
 
-use Yii;
 use app\modules\bophan\models\NhomDoiTac;
 use app\modules\bophan\models\NhomDoiTacSearch;
+use Yii;
+use yii\filters\VerbFilter;
+use yii\helpers\Html;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use \yii\web\Response;
-use yii\helpers\Html;
-use yii\filters\AccessControl;
+use yii\web\Response;
 
 /**
  * NhomDoiTacController implements the CRUD actions for NhomDoiTac model.
@@ -32,6 +31,13 @@ class NhomDoiTacController extends Controller
     				],
     			],
 		];
+	}
+	
+	public function beforeAction($action)
+	{
+	    Yii::$app->params['moduleID'] = 'Module Quản lý bộ phận';
+	    Yii::$app->params['modelID'] = 'Quản lý Nhóm Đối tác';
+	    return parent::beforeAction($action);
 	}
 
     /**
@@ -67,7 +73,7 @@ class NhomDoiTacController extends Controller
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "NhomDoiTac",
+                    'title'=> "Nhóm đối tác",
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
@@ -99,7 +105,7 @@ class NhomDoiTacController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Thêm mới NhomDoiTac",
+                    'title'=> "Thêm mới Nhóm đối tác",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -110,7 +116,7 @@ class NhomDoiTacController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Thêm mới NhomDoiTac",
+                    'title'=> "Thêm mới Nhóm đối tác",
                     'content'=>'<span class="text-success">Thêm mới thành công</span>',
                     'tcontent'=>'Thêm mới thành công!',
                     'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
@@ -119,7 +125,7 @@ class NhomDoiTacController extends Controller
                 ];         
             }else{           
                 return [
-                    'title'=> "Thêm mới NhomDoiTac",
+                    'title'=> "Thêm mới Nhóm đối tác",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -162,7 +168,7 @@ class NhomDoiTacController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Cập nhật NhomDoiTac",
+                    'title'=> "Cập nhật Nhóm đối tác",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -172,7 +178,7 @@ class NhomDoiTacController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "NhomDoiTac",
+                    'title'=> "Nhóm đối tác",
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
@@ -182,7 +188,7 @@ class NhomDoiTacController extends Controller
                 ];    
             }else{
                  return [
-                    'title'=> "Cập nhật NhomDoiTac",
+                    'title'=> "Cập nhật Nhóm đối tác",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),

@@ -16,6 +16,11 @@ return [
     // ],
     [
         'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'loai_thiet_bi',
+        'value'=>'tenLoaiThietBi'
+    ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'ma_loai',
     ],
     [
@@ -29,24 +34,9 @@ return [
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'truc_thuoc',
-        'value'=>'loaiThietBi.ten_loai',
+        'value'=>'tenTrucThuoc'
     ],
-    // [
-    //     'class'=>'\kartik\grid\DataColumn',
-    //     'attribute'=>'loai_thiet_bi',
-    // ],
-    // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'ghi_chu',
-    // ],
-    // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'thoi_gian_tao',
-    // ],
-    // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'nguoi_tao',
-    // ],
+    
     [
         'class' => 'kartik\grid\ActionColumn',
         'dropdown' => false,
@@ -54,14 +44,14 @@ return [
         'urlCreator' => function($action, $model, $key, $index) { 
                 return Url::to([$action,'id'=>$key]);
         },
-        'viewOptions'=>['role'=>'modal-remote','title'=>'Lihat','data-toggle'=>'tooltip'],
-        'updateOptions'=>['role'=>'modal-remote','title'=>'Update', 'data-toggle'=>'tooltip'],
-        'deleteOptions'=>['role'=>'modal-remote','title'=>'Hapus', 
+        'viewOptions'=>['role'=>'modal-remote','title'=>'Xem','data-toggle'=>'tooltip','class'=>'btn ripple btn-primary btn-sm'],
+        'updateOptions'=>['role'=>'modal-remote','title'=>'Sửa', 'data-toggle'=>'tooltip','class'=>'btn ripple btn-info btn-sm'],
+        'deleteOptions'=>['role'=>'modal-remote','title'=>'Xóa', 'class'=>'btn ripple btn-secondary btn-sm',
                           'data-confirm'=>false, 'data-method'=>false,// for overide yii data api
                           'data-request-method'=>'post',
                           'data-toggle'=>'tooltip',
-                          'data-confirm-title'=>'Anda Yakin?',
-                          'data-confirm-message'=>'Apakah Anda yakin akan menghapus data ini?'], 
+                          'data-confirm-title'=>'Thông báo?',
+                          'data-confirm-message'=>'Bạn có chắc xoá dòng chọn không?'], 
     ],
 
 ];   

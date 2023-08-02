@@ -22,16 +22,9 @@ class LoaiThietBiController extends Controller
      */
     public function behaviors() {
 		return [
-			// 'access' => [
-			// 	'class' => AccessControl::className(),
-			// 	'rules' => [
-			// 		[
-			// 			'actions' => ['index', 'view', 'update','create','delete','bulkdelete'],
-			// 			'allow' => true,
-			// 			'roles' => ['admin'],
-			// 		],
-			// 	],
-			// ],
+		    'ghost-access'=> [
+		        'class' => 'webvimark\modules\UserManagement\components\GhostAccessControl',
+		    ],
 			'verbs' => [
 				'class' => VerbFilter::className(),
 				'actions' => [
@@ -40,16 +33,29 @@ class LoaiThietBiController extends Controller
 			],
 		];
 	}
+	
+	public function beforeAction($action)
+	{
+	    Yii::$app->params['moduleID'] = 'Module Quản lý tài sản';
+	    Yii::$app->params['modelID'] = 'Quản lý Loại thiết bị/Tài sản';
+	    return parent::beforeAction($action);
+	}
 
     /**
      * Lists all LoaiThietBi models.
      * @return mixed
      */
     public function actionIndex()
-    {    
+    {            
         $searchModel = new LoaiThietBiSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        if(isset($_POST['search']) && $_POST['search'] != null){
+            $dataProvider = $searchModel->search(Yii::$app->request->post(), $_POST['search']);
+        } else if ($searchModel->load(Yii::$app->request->post())) {
+            $searchModel = new LoaiThietBiSearch(); // "reset"
+            $dataProvider = $searchModel->search(Yii::$app->request->post());
+        } else {
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        }
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -68,7 +74,7 @@ class LoaiThietBiController extends Controller
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "Loại thiết bị #".$id,
+                    'title'=> "Loại thiết bị",
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
@@ -100,7 +106,7 @@ class LoaiThietBiController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Tạo mới thiết bị",
+                    'title'=> "Tạo mới Loại thiết bị",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -111,20 +117,20 @@ class LoaiThietBiController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Tạo mới thiết bị",
-                    'content'=>'<span class="text-success">Thêm mới thiết bị thành công</span>',
+                    'title'=> "Tạo mới Loại thiết bị",
+                    'content'=>'<span class="text-success">Thêm mới Loại thiết bị thành công</span>',
                     'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                            Html::a('THêm tiếp',['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                            Html::a('Tiếp tục thêm',['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
         
                 ];         
             }else{           
                 return [
-                    'title'=> "Tạo mới thiết bị",
+                    'title'=> "Tạo mới Loại thiết bị",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
                     'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                                Html::button('Lưu',['class'=>'btn btn-primary','type'=>"submit"])
+                                Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
         
                 ];         
             }
@@ -162,31 +168,31 @@ class LoaiThietBiController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Cập nhật loại thiết bị #".$id,
+                    'title'=> "Cập nhật Loại thiết bị",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
                     'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                                Html::button('Lưu',['class'=>'btn btn-primary','type'=>"submit"])
+                                Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
                 ];         
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Loại thiết bị #".$id,
+                    'title'=> "Loại thiết bị",
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
                     'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                            Html::a('Edit',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                            Html::a('Sửa',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
                 ];    
             }else{
                  return [
-                    'title'=> "Update LoaiThietBi #".$id,
+                    'title'=> "Cập nhật Loại thiết bị",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
                     'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                                Html::button('Lưu',['class'=>'btn btn-primary','type'=>"submit"])
+                                Html::button('Lưu lại',['class'=>'btn btn-primary','type'=>"submit"])
                 ];        
             }
         }else{

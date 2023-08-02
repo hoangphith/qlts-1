@@ -8,6 +8,7 @@ class RadioWidget extends Widget{
     public $attr;
     public $type;
     public $list;
+    public $isNew=false;
     public $disabled=false;
     public $showHelpBlock=true;
     public $showInline=false;
@@ -30,12 +31,15 @@ class RadioWidget extends Widget{
         $maHtml = '';
         $maHtml .= ($this->showHelpBlock==true?'<div class="form-group field-'.strtolower($modelName).'-' . $attr . '">':'');
         
+        $fistElement = true;
         foreach ($this->list as $val=>$lab){         
             $maHtml .= '<label class="custom-control custom-radio' . ($this->showInline==true?' custom-inline-radio' : '') . '">';
             $maHtml .= '<input type="radio" name="'.$modelName.'['.$this->attr.']" class="custom-control-input" value="'. $val .'"'
         		
-        		    . ($this->model->$attr==$val?" checked":"")
-        		    
+                . ($this->isNew==true?
+                    ($fistElement==true?" checked":"")
+                    :($this->model->$attr==$val?" checked":"")
+        		  )  
         		    . ($this->disabled==true?" disabled":"")
         		    
         		    . '>';
@@ -44,6 +48,8 @@ class RadioWidget extends Widget{
         	$maHtml .=	'</span>';
             
         	$maHtml .= '</label>';
+        	
+        	$fistElement = false;
         }
         $maHtml .= ($this->showHelpBlock==true?'<div class="help-block"></div>':'');
         

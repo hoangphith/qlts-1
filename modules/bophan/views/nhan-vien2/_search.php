@@ -9,6 +9,12 @@ use app\widgets\forms\SwitchWidget;
 /* @var $model app\modules\bophan\models\NhanVien */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+<style>
+/*fixed select2 search conflict select2 form*/
+.select2-container--krajee-bs5 .select2-selection--single {
+    padding: 5px 1rem 5px 5px !important;
+}
+</style>
 
 <div class="nhan-vien-search">
 

@@ -12,7 +12,7 @@ use app\widgets\FilterFormWidget;
 /* @var $searchModel app\modules\bophan\models\NhomDoiTacSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Nhom Doi Tacs';
+$this->title = 'Nhóm đối tác';
 $this->params['breadcrumbs'][] = $this->title;
 
 CrudAsset::register($this);
@@ -39,7 +39,7 @@ Yii::$app->params['showExport'] = true;
             'toolbar'=> [
                 ['content'=>
                     Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i> Thêm mới', ['create'],
-                    ['role'=>'modal-remote','title'=> 'Thêm mới Nhom Doi Tacs','class'=>'btn btn-outline-primary']).
+                    ['role'=>'modal-remote','title'=> 'Thêm mới Nhóm đối tác','class'=>'btn btn-outline-primary']).
                     Html::a('<i class="fas fa fa-sync" aria-hidden="true"></i> Tải lại', [''],
                     ['data-pjax'=>1, 'class'=>'btn btn-outline-primary', 'title'=>'Tải lại']).
                     //'{toggleData}'.
@@ -50,12 +50,12 @@ Yii::$app->params['showExport'] = true;
             'condensed' => true,
             'responsive' => true,
             'panelHeadingTemplate'=>'{title}',
-            'panelFooterTemplate'=>'{summary}',
+            'panelFooterTemplate'=>'<div class="row"><div class="col-md-8">{pager}</div><div class="col-md-4">{summary}</div></div>',
             'summary'=>'Hiển thị dữ liệu {count}/{totalCount}, Trang {page}/{pageCount}',          
             'panel' => [
                 //'type' => 'primary', 
                 'heading' => '<i class="fas fa fa-list" aria-hidden="true"></i> Danh sách',
-                'before'=>'<em>* Danh sách Nhom Doi Tacs</em>',
+                'before'=>'<em>* Danh sách Nhóm đối tác</em>',
                 'after'=>BulkButtonWidget::widget([
                             'buttons'=>Html::a('<i class="fas fa fa-trash" aria-hidden="true"></i>&nbsp; Xóa đã chọn',
                                 ["bulkdelete"] ,
@@ -81,7 +81,7 @@ Yii::$app->params['showExport'] = true;
         'id'=>'ajaxCrudModal',
         'tabindex' => false // important for Select2 to work properly
    ],
-   'dialogOptions'=>['class'=>'modal-lg'],
+   'dialogOptions'=>['class'=>'modal-sm'],
    'closeButton'=>['label'=>'<span aria-hidden=\'true\'>×</span>'],
    'id'=>'ajaxCrudModal',
     'footer'=>'',// always need it for jquery plugin

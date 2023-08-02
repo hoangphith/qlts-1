@@ -5,7 +5,49 @@ use app\modules\dungchung\models\History;
 use Yii;
 
 class LoaiThietBiBase extends \app\models\TsLoaiThietBi { 
+    
     const MODEL_ID = 'loaithietbi';
+    
+    /**
+     * Danh muc loai thiet bi
+     * @return string[]
+     */
+    public static function getDmLoaiThietBi(){
+        return [
+            'THIETBI'=>'Thiết bị/Máy móc',
+            'COGIOI'=>'Xe cơ giới',
+            'VANCHUYEN'=>'Xe vận chuyển',
+        ];
+    }
+    
+    /**
+     * Danh muc loai thiet bi label
+     * @param int $val
+     * @return string
+     */
+    public function getTenLoaiThietBi($val=NULL){   
+        if($val==NULL){
+            $val = $this->loai_thiet_bi;
+        }
+        switch ($val){
+            case "THIETBI": 
+                $label = "Thiết bị/Máy móc"; 
+                break;
+            case "COGIOI": 
+                $label = "Xe cơ giới "; 
+                break;
+            case "VANCHUYEN": 
+                $label = "Xe vận chuyển"; 
+                break;
+            default: 
+                $label = '';
+        }
+        return $label;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
     public function rules()
     {
         return [
@@ -45,9 +87,14 @@ class LoaiThietBiBase extends \app\models\TsLoaiThietBi {
     {
         return $this->hasMany(ThietBi::class, ['id_loai_thiet_bi' => 'id']);
     }
-    public function getLoaiThietBi()
+    
+    /**
+     * Gets query for [[trucThuoc]].
+     * @return NULL|\yii\db\ActiveQuery
+     */
+    public function getLoaiThietBiTrucThuoc()
     {
-        return $this->hasOne(LoaiThietBi::class, ['id' => 'truc_thuoc']);
+        return $this->truc_thuoc!=NULL?$this->hasOne(LoaiThietBi::class, ['id' => 'truc_thuoc']):NULL;
     }
 
     /**
@@ -57,6 +104,8 @@ class LoaiThietBiBase extends \app\models\TsLoaiThietBi {
         if ($this->isNewRecord) {
             $this->thoi_gian_tao = date('Y-m-d H:i:s');
             $this->nguoi_tao = Yii::$app->user->isGuest ? '' : Yii::$app->user->id;
+            if($this->truc_thuoc == null)
+                $this->truc_thuoc = 0;
         }
         return parent::beforeSave($insert);
     }

@@ -7,12 +7,58 @@ use app\modules\bophan\models\NhanVien;
 use app\modules\dungchung\models\History;
 use app\modules\dungchung\models\DungChung;
 use Yii;
+use app\modules\bophan\models\DoiTac;
+use app\modules\dungchung\models\CustomFunc;
 
 class ThietBiBase extends \app\models\TsThietBi
 {
     const MODEL_ID = 'thietbi';
-    
     const QR_FOLDER = '/uploads/qrlibs/';
+    
+    /**
+     * Danh muc trang thai
+     * @return string[]
+     */
+    public static function getDmTrangThai(){
+        return [
+            'HOATDONG'=>'Đang hoạt động',
+            'SUACHUA'=>'Đang sửa chữa',
+            'HONG'=>'Đã hỏng',
+            'MAT'=>'Đã mất/Thất lạc',
+            'THANHLY'=>'Đã thanh lý'
+        ];
+    }
+    
+    /**
+     * Danh muc trang thai label
+     * @param int $val
+     * @return string
+     */
+    public function getTenTrangThai($val=NULL){
+        if($val==NULL){
+            $val = $this->trang_thai;
+        }
+        switch ($val){
+            case "HOATDONG":
+                $label = "Đang hoạt động";
+                break;
+            case "SUACHUA":
+                $label = "Đang sửa chữa";
+                break;
+            case "HONG":
+                $label = "Đã hỏng";
+                break;
+            case "MAT":
+                $label = "Đã mất/Thất lạc";
+                break;
+            case "THANHLY":
+                $label = "Đã thanh lý";
+                break;
+            default:
+                $label = '';
+        }
+        return $label;
+    }
     
     public function rules()
     {
@@ -76,7 +122,27 @@ class ThietBiBase extends \app\models\TsThietBi
      */
     public function getBoPhanQuanLy()
     {
-        return $this->hasOne(BoPhan::class, ['id' => 'id_bo_phan_quan_ly']);
+        return $this->id_bo_phan_quan_ly !=NULL ? $this->hasOne(BoPhan::class, ['id' => 'id_bo_phan_quan_ly']) : '';
+    }
+    
+    /**
+     * Gets query for [[BoPhanBaoTri]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBoPhanBaoTri()
+    {
+        return $this->id_don_vi_bao_tri !=NULL ? $this->hasOne(BoPhan::class, ['id' => 'id_don_vi_bao_tri']) : '';
+    }
+    
+    /**
+     * Gets query for [[TrungTamChiPhi]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTrungTamChiPhi()
+    {
+        return $this->id_trung_tam_chi_phi !=NULL ? $this->hasOne(BoPhan::class, ['id' => 'id_trung_tam_chi_phi']) : '';
     }
 
      /**
@@ -86,7 +152,7 @@ class ThietBiBase extends \app\models\TsThietBi
      */
     public function getHeThong()
     {
-        return $this->hasOne(HeThong::class, ['id' => 'id_he_thong']);
+        return $this->id_he_thong != NULL ? $this->hasOne(HeThong::class, ['id' => 'id_he_thong']) : NULL;
     }
 
     /**
@@ -96,7 +162,17 @@ class ThietBiBase extends \app\models\TsThietBi
      */
     public function getLoaiThietBi()
     {
-        return $this->hasOne(LoaiThietBi::class, ['id' => 'id_loai_thiet_bi']);
+        return $this->id_loai_thiet_bi != NULL ? $this->hasOne(LoaiThietBi::class, ['id' => 'id_loai_thiet_bi']) : NULL;
+    }
+    
+    /**
+     * Gets query for [[HangBaoHanh]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getHangBaoHanh()
+    {
+        return $this->id_hang_bao_hanh != NULL ? $this->hasOne(DoiTac::class, ['id' => 'id_hang_bao_hanh']) : NULL;
     }
      /**
      * Gets query for [[ViTri]].
@@ -105,7 +181,7 @@ class ThietBiBase extends \app\models\TsThietBi
      */
     public function getViTri()
     {
-        return $this->hasOne(ViTri::class, ['id' => 'id_vi_tri']);
+        return $this->id_vi_tri !=NULL ? $this->hasOne(ViTri::class, ['id' => 'id_vi_tri']) : NULL;
     }
 
     /**
@@ -115,7 +191,7 @@ class ThietBiBase extends \app\models\TsThietBi
      */
     public function getNguoiQuanLy()
     {
-        return $this->hasOne(NhanVien::class, ['id' => 'id_nguoi_quan_ly']);
+        return $this->id_nguoi_quan_ly !=NULL ? $this->hasOne(NhanVien::class, ['id' => 'id_nguoi_quan_ly']) : NULL;
     }
 
     /**
@@ -130,7 +206,7 @@ class ThietBiBase extends \app\models\TsThietBi
     
     public function getThietBiCha()
     {
-        return $this->hasOne(ThietBi::class, ['id' => 'id_thiet_bi_cha']);
+        return $this->id_thiet_bi_cha != NULL ? $this->hasOne(ThietBi::class, ['id' => 'id_thiet_bi_cha']) : '';
     }
 
     /**
@@ -146,6 +222,17 @@ class ThietBiBase extends \app\models\TsThietBi
             //$this->autoid = md5(Yii::$app->user->id . date('Y-m-d H:i:s'));
             $this->autoid = chr(rand(97,122)) . Yii::$app->user->id . strtotime(date('Y-m-d H:i:s'));
         }
+        //ngaythangnam
+        $cus = new CustomFunc();
+        if($this->ngay_ngung_hoat_dong != null)
+            $this->ngay_ngung_hoat_dong = $cus->convertDMYToYMD($this->ngay_ngung_hoat_dong);
+        if($this->han_bao_hanh != null)
+            $this->han_bao_hanh = $cus->convertDMYToYMD($this->han_bao_hanh);
+        if($this->ngay_mua != null)
+            $this->ngay_mua = $cus->convertDMYToYMD($this->ngay_mua);
+        if($this->ngay_dua_vao_su_dung != null)
+            $this->ngay_dua_vao_su_dung = $cus->convertDMYToYMD($this->ngay_dua_vao_su_dung);
+        
         return parent::beforeSave($insert);
     }
     

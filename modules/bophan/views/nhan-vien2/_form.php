@@ -119,9 +119,9 @@ if($model->ngay_thoi_viec != null){
                         	<div class="mb-3 row field-nhanvien-ma_nhan_vien">
                             	<div class="col-sm-4"><label class="col-md-12 control-label" for="nhanvien-da_thoi_viec"></label></div>
                             	<div class="col-sm-8"><?= SwitchWidget::widget([
-                        	    'model'=>$model,
-                        	    'attr'=>'da_thoi_viec'
-                        	]) ?><div class="invalid-feedback "></div></div>
+                            	    'model'=>$model,
+                            	    'attr'=>'da_thoi_viec'
+                            	]) ?><div class="invalid-feedback "></div></div>
                             </div>
                             
                             <div id="dNgayThoiViec" <?= $model->da_thoi_viec==0?' style="display:none"': '' ?> >

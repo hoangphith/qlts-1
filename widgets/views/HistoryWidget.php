@@ -13,7 +13,7 @@ class HistoryWidget extends Widget{
     
     public function run(){
         $custom = new CustomFunc();
-        $maHtml = '
+        $maHtml = '<div data-bs-spy="scroll" data-bs-target="#navbar-example3" class="scrollspy-example-2" style="height:400px" data-bs-offset="0" tabindex="0">
         <div class="table-responsive border-top-0">
 	       <table class="table  text-nowrap border-0 border-top-0 mb-0 ">
 		      <tbody>';
@@ -27,7 +27,7 @@ class HistoryWidget extends Widget{
          
        $maHtml=$maHtml.'</tbody>
         	</table>
-        </div>';
+        </div></div>';
        return $maHtml;
     }
 }

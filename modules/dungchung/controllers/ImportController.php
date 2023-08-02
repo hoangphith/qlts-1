@@ -15,6 +15,12 @@ use yii\helpers\Html;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\web\UploadedFile;
+use app\modules\bophan\models\DoiTac;
+use app\modules\dungchung\models\imports\ImportDoiTac;
+use app\modules\taisan\models\LoaiThietBi;
+use app\modules\dungchung\models\imports\ImportLoaiThietBi;
+use app\modules\taisan\models\HeThong;
+use app\modules\dungchung\models\imports\ImportHeThong;
 
 /**
  * Default controller for the `dungchung` module
@@ -55,6 +61,12 @@ class ImportController extends Controller
                         $rt = ImportBoPhan::checkFile($type, $fileName);
                     } else if ($type == NhanVien::MODEL_ID){
                         $rt = ImportNhanVien::checkFile($type, $fileName);
+                    } else if ($type == DoiTac::MODEL_ID){
+                        $rt = ImportDoiTac::checkFile($type, $fileName);
+                    } else if ($type == LoaiThietBi::MODEL_ID){
+                        $rt = ImportLoaiThietBi::checkFile($type, $fileName);
+                    } else if ($type == HeThong::MODEL_ID){
+                        $rt = ImportHeThong::checkFile($type, $fileName);
                     }
                     
                     $status = false;
@@ -106,6 +118,12 @@ class ImportController extends Controller
                         $result = ImportBoPhan::importFile($file);
                     } else if ($type == NhanVien::MODEL_ID){
                         $result = ImportNhanVien::importFile($file);
+                    } else if ($type == DoiTac::MODEL_ID){
+                        $result = ImportDoiTac::importFile($file);
+                    } else if ($type == LoaiThietBi::MODEL_ID){
+                        $result = ImportLoaiThietBi::importFile($file);
+                    } else if ($type == HeThong::MODEL_ID){
+                        $result = ImportHeThong::importFile($file);
                     }
                     
                     Import::deleteFileTemp($file);

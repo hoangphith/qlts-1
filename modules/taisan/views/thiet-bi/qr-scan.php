@@ -19,16 +19,8 @@ use yii\helpers\Html;
 
 <script>
 $("#txtQrcode").keyup(function(event) {
-	//alert('kkkkkkkkkkkkk');
     if (event.keyCode === 13) {
-      $("#btnLuu").click();
+      $("#btnQrScan").click();
     }
-});
-
-/* function handle(e){
-        e.preventDefault(); // Otherwise the form will be submitted
-
-        $("#btnLuu").click();
-    } */
-    
+});    
 </script>
