@@ -5,6 +5,7 @@ return [
     'senderEmail' => 'noreply@example.com',
     'senderName' => 'Example.com mailer',
     'bsVersion' => '5.x',
+    'showTopSearch' =>true,
     'showSearch' => false,
     'showExport' => false,
     'showImport' => false,//imp

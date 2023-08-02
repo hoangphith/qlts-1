@@ -24,9 +24,9 @@
 			<ul class="side-menu">
 				<li class="side-item side-item-category">Dashboard</li>
 				<li>
-					<a class="side-menu__item" data-bs-toggle="slide" href="#">
+					<a class="side-menu__item" data-bs-toggle="slide" href="<?= Yii::getAlias('@web/') ?>">
 						<span class="side-menu__icon"><i class="bi bi-house-door side_menu_img"></i></span>
-						<span class="side-menu__label">Dashboard #</span>
+						<span class="side-menu__label">Dashboard</span>
 					</a>
 				</li>
 				

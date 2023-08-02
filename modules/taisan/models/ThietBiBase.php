@@ -9,6 +9,7 @@ use app\modules\dungchung\models\DungChung;
 use Yii;
 use app\modules\bophan\models\DoiTac;
 use app\modules\dungchung\models\CustomFunc;
+use app\modules\bophan\models\BoPhan;
 
 class ThietBiBase extends \app\models\TsThietBi
 {
