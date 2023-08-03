@@ -2,15 +2,14 @@
 
 namespace app\modules\baotri\controllers;
 
-use Yii;
 use app\modules\baotri\models\KeHoachBaoTri;
 use app\modules\baotri\models\KeHoachBaoTriSearch;
+use Yii;
+use yii\filters\VerbFilter;
+use yii\helpers\Html;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use \yii\web\Response;
-use yii\helpers\Html;
-use yii\filters\AccessControl;
+use yii\web\Response;
 
 /**
  * KeHoachBaoTriController implements the CRUD actions for KeHoachBaoTri model.
@@ -33,6 +32,13 @@ class KeHoachBaoTriController extends Controller
     				],
     			],
 		];
+	}
+	
+	public function beforeAction($action)
+	{
+	    Yii::$app->params['moduleID'] = 'Module Quản lý Bảo trì-Bảo dưỡng';
+	    Yii::$app->params['modelID'] = 'Quản lý Kế hoạch bảo trì';
+	    return parent::beforeAction($action);
 	}
 
     /**
@@ -68,7 +74,7 @@ class KeHoachBaoTriController extends Controller
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "KeHoachBaoTri",
+                    'title'=> "Kế hoạch bảo trì",
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
@@ -100,7 +106,7 @@ class KeHoachBaoTriController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Thêm mới KeHoachBaoTri",
+                    'title'=> "Thêm mới Kế hoạch bảo trì",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -111,7 +117,7 @@ class KeHoachBaoTriController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Thêm mới KeHoachBaoTri",
+                    'title'=> "Thêm mới Kế hoạch bảo trì",
                     'content'=>'<span class="text-success">Thêm mới thành công</span>',
                     'tcontent'=>'Thêm mới thành công!',
                     'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
@@ -120,7 +126,7 @@ class KeHoachBaoTriController extends Controller
                 ];         
             }else{           
                 return [
-                    'title'=> "Thêm mới KeHoachBaoTri",
+                    'title'=> "Thêm mới Kế hoạch bảo trì",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -163,7 +169,7 @@ class KeHoachBaoTriController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Cập nhật KeHoachBaoTri",
+                    'title'=> "Cập nhật Kế hoạch bảo trì",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -173,7 +179,7 @@ class KeHoachBaoTriController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "KeHoachBaoTri",
+                    'title'=> "Kế hoạch bảo trì",
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
@@ -183,7 +189,7 @@ class KeHoachBaoTriController extends Controller
                 ];    
             }else{
                  return [
-                    'title'=> "Cập nhật KeHoachBaoTri",
+                    'title'=> "Cập nhật Kế hoạch bảo trì",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),

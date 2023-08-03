@@ -3,11 +3,12 @@
 namespace app\modules\dungchung\models\imports;
 
 use app\modules\dungchung\models\CheckFile;
+use app\modules\dungchung\models\CustomFunc;
 use app\modules\dungchung\models\Import;
-use app\modules\taisan\models\LoaiThietBi;
+use app\modules\taisan\models\ViTri;
 
-class ImportLoaiThietBi
-{    
+class ImportViTri
+{
     CONST START_ROW = 3;
     CONST START_COL = 'B';
     
@@ -25,18 +26,18 @@ class ImportLoaiThietBi
         
         foreach ($xls_data as $index=>$row){
             $errorByRow = array();
-            if($index>=ImportLoaiThietBi::START_ROW){
+            if($index>=ImportViTri::START_ROW){
                 
-                //check B <ma_loai> not null and not duplicate
+                //check B <ma_vi_tri> not null and not duplicate
                 $mod = new CheckFile();
                 $mod->isDuplicate = true;
                 $mod->allowNull = false;
-                $mod->modelDuplicate = LoaiThietBi::find()->where(['ma_loai'=>$row['B']]);
+                $mod->modelDuplicate = ViTri::find()->where(['ma_vi_tri'=>$row['B']]);
                 $err = $mod->checkVal('B'.$index, $row['B']);
                 if(!empty($err)){
                     array_push($errorByRow, $err);
                 } else {
-                    $bArr = Import::readExcelColsToArr($file, 'B'. ImportLoaiThietBi::START_ROW .':B'.($index-1));
+                    $bArr = Import::readExcelColsToArr($file, 'B'. ImportViTri::START_ROW .':B'.($index-1));
                     if(!empty($bArr)){
                         $bArrSimple = Import::convertColsToSimpleArr($bArr);
                         if(in_array($row['B'], $bArrSimple)){
@@ -44,13 +45,14 @@ class ImportLoaiThietBi
                         }
                     }
                 }
-                //check C <ten_loai> not null
+                //check C <ten_vi_tri> not null
                 $mod = new CheckFile();
                 $mod->allowNull = false;
                 $err = $mod->checkVal('C'.$index, $row['C']);
                 if(!empty($err)){
                     array_push($errorByRow, $err);
                 }
+                
                 //check D x or X or NULL
                 $mod = new CheckFile();
                 $mod->isCompare = true;
@@ -62,7 +64,7 @@ class ImportLoaiThietBi
                 //check E <truc_thuoc> exist or NULL
                 $doCheckE = true;
                 if($row['E'] != null){
-                    $iArr = Import::readExcelColsToArr($file, 'B'. ImportLoaiThietBi::START_ROW .':B'.($index-1));
+                    $iArr = Import::readExcelColsToArr($file, 'B'. ImportViTri::START_ROW .':B'.($index-1));
                     if(!empty($iArr)){
                         $iArrSimple = Import::convertColsToSimpleArr($iArr);
                         if(in_array($row['E'], $iArrSimple)){
@@ -74,28 +76,31 @@ class ImportLoaiThietBi
                     $mod = new CheckFile();
                     $mod->isExist = true;
                     $mod->allowNull = true;
-                    $mod->modelExist = LoaiThietBi::find()->where(['ma_loai'=>$row['E']]);
+                    $mod->modelExist = ViTri::find()->where(['ma_vi_tri'=>$row['E']]);
                     $err = $mod->checkVal('E'.$index, $row['E']);
                     if(!empty($err)){
                         array_push($errorByRow, $err);
                     }
                 }
-                //check F <loai_thiet_bi> not null and in list
+                //check F x or X or NULL
                 $mod = new CheckFile();
                 $mod->isCompare = true;
-                $mod->valueCompare = array_keys(LoaiThietBi::getDmLoaiThietBi());
+                $mod->valueCompare = ['x', 'X'];
                 $err = $mod->checkVal('F'.$index, $row['F']);
                 if(!empty($err)){
                     array_push($errorByRow, $err);
                 }
-                //check G <ghi_chu>
-
+                //check G <ngay_ngung_hoat_dong>
+                //chek H <toa_do_X>
+                //check I <toa_do_Y>
+                //check J <ghi_chu>
+                
             }
             if($errorByRow != null){
                 //array_push($errors, $errorByRow);
                 $errors[$index] = $errorByRow;
             }
-        }        
+        }
         return $errors;
     }
     
@@ -110,15 +115,19 @@ class ImportLoaiThietBi
         $successCount = 0;
         $errorCount = 0;
         foreach ($xls_data as $index=>$row){
-            if($index>=ImportLoaiThietBi::START_ROW){
-                $model = new LoaiThietBi();
-                $model->ma_loai = $row['B'];
-                $model->ten_loai = $row['C'];
+            if($index>=ImportViTri::START_ROW){
+                $model = new ViTri();
+                $model->ma_vi_tri = $row['B'];
+                $model->ten_vi_tri = $row['C'];
                 if($row['E']!=NULL){
-                    $model->truc_thuoc = LoaiThietBi::findOne(['ma_loai'=>$row['E']])!=null?LoaiThietBi::findOne(['ma_loai'=>$row['E']])->id:'';
+                    $model->truc_thuoc = ViTri::findOne(['ma_vi_tri'=>$row['E']])!=null?ViTri::findOne(['ma_vi_tri'=>$row['E']])->id:'';
                 }
-                $model->loai_thiet_bi = $row['F'];
-                $model->ghi_chu = $row['G'];
+                $model->da_ngung_hoat_dong = strtolower($row['F'])=='x'?1:0;
+                $cus = new CustomFunc();
+                if($row['G'] != null)
+                    $model->ngay_ngung_hoat_dong = $cus->convertDMYToYMD($row['G']);
+                
+                $model->mo_ta = $row['J'];
                 
                 if($model->save()){
                     $successCount++;

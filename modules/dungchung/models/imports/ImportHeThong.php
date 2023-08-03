@@ -2,12 +2,8 @@
 
 namespace app\modules\dungchung\models\imports;
 
-use app\modules\bophan\models\BoPhan;
 use app\modules\dungchung\models\CheckFile;
 use app\modules\dungchung\models\Import;
-use app\modules\bophan\models\NhomDoiTac;
-use app\modules\bophan\models\DoiTac;
-use app\modules\taisan\models\LoaiThietBi;
 use app\modules\taisan\models\HeThong;
 
 class ImportHeThong

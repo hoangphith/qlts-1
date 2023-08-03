@@ -2,11 +2,10 @@
 
 namespace app\modules\dungchung\models\imports;
 
-use app\modules\bophan\models\BoPhan;
+use app\modules\bophan\models\DoiTac;
+use app\modules\bophan\models\NhomDoiTac;
 use app\modules\dungchung\models\CheckFile;
 use app\modules\dungchung\models\Import;
-use app\modules\bophan\models\NhomDoiTac;
-use app\modules\bophan\models\DoiTac;
 
 class ImportDoiTac
 {    

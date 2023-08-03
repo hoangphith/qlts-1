@@ -70,9 +70,9 @@ use app\modules\baotri\models\KeHoachBaoTri;
                             </div>
                         </div>
                          <div class="row">
-                         	<div class="col">
+                         	<!-- <div class="col">
                          		 <?= $form->field($model, 'id_chi_tiet')->textInput() ?>
-                            </div>
+                            </div>  -->
                             <div class="col">
                                 <?= $form->field($model, 'id_loai_bao_tri')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map(LoaiBaoTri::find()->all(), 'id', 'ten'),
@@ -220,6 +220,7 @@ use app\modules\baotri\models\KeHoachBaoTri;
                          	
                          	</div>
                          </div>
+                         </fieldset>
                 	</div>
                 	<div class="col-2">
                 		  <?= '<label class="form-label" style="font-weight:bold">Tài liệu</label>';?>
@@ -243,6 +244,7 @@ use app\modules\baotri\models\KeHoachBaoTri;
 	<?php } ?>
 
     <?php ActiveForm::end(); ?>
+</div>
 </div>
 <script>
 $('input[name="KeHoachBaoTri[da_het_hieu_luc]"]').change(function () {

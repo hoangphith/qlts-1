@@ -4,7 +4,7 @@ namespace app\modules\taisan\models;
 
 use app\modules\dungchung\models\History;
 use Yii;
-class BoPhanBase extends \app\models\TsBoPhan
+class BoPhanBase1111 extends \app\models\TsBoPhan
 {
   
     public function rules()

@@ -12,7 +12,7 @@ use app\widgets\FilterFormWidget;
 /* @var $searchModel app\modules\baotri\models\KeHoachBaoTriSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Phiếu bảo trì';
+$this->title = 'Kế hoạch bảo trì';
 $this->params['breadcrumbs'][] = $this->title;
 
 CrudAsset::register($this);
@@ -39,9 +39,13 @@ Yii::$app->params['showExport'] = true;
             'toolbar'=> [
                 ['content'=>
                     Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i> Thêm mới', ['create'],
+<<<<<<< HEAD
                     ['role'=>'modal-remote','title'=> 'Thêm mới Ke Hoach Bao Tris','class'=>'btn btn-outline-primary']).
                     Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i> Thống kê', ['thongke'],
                         ['role'=>'modal-remote','title'=> 'Thống kê bảo trì','class'=>'btn btn-outline-primary']).
+=======
+                    ['role'=>'modal-remote','title'=> 'Thêm mới Kế hoạch bảo trì','class'=>'btn btn-outline-primary']).
+>>>>>>> refs/remotes/origin/main
                     Html::a('<i class="fas fa fa-sync" aria-hidden="true"></i> Tải lại', [''],
                     ['data-pjax'=>1, 'class'=>'btn btn-outline-primary', 'title'=>'Tải lại']).
                     //'{toggleData}'.
@@ -57,7 +61,7 @@ Yii::$app->params['showExport'] = true;
             'panel' => [
                 //'type' => 'primary', 
                 'heading' => '<i class="fas fa fa-list" aria-hidden="true"></i> Danh sách',
-                'before'=>'<em>* Danh sách Ke Hoach Bao Tris</em>',
+                'before'=>'<em>* Danh sách Kế hoạch bảo trì</em>',
                 'after'=>BulkButtonWidget::widget([
                             'buttons'=>Html::a('<i class="fas fa fa-trash" aria-hidden="true"></i>&nbsp; Xóa đã chọn',
                                 ["bulkdelete"] ,

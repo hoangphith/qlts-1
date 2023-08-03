@@ -1,12 +1,15 @@
 <?php
-
 namespace app\modules\taisan\models;
+
 use app\modules\dungchung\models\History;
 use Yii;
 
 class LoaiThietBiBase extends \app\models\TsLoaiThietBi { 
     
     const MODEL_ID = 'loaithietbi';
+    const TYPE_THIETBI = 'THIETBI';
+    const TYPE_COGIOI = 'COGIOI';
+    const TYPE_VANCHUYEN = 'VANCHUYEN';
     
     /**
      * Danh muc loai thiet bi
@@ -14,9 +17,9 @@ class LoaiThietBiBase extends \app\models\TsLoaiThietBi {
      */
     public static function getDmLoaiThietBi(){
         return [
-            'THIETBI'=>'Thiết bị/Máy móc',
-            'COGIOI'=>'Xe cơ giới',
-            'VANCHUYEN'=>'Xe vận chuyển',
+            LoaiThietBiBase::TYPE_THIETBI=>'Thiết bị/Máy móc',
+            LoaiThietBiBase::TYPE_COGIOI=>'Xe cơ giới',
+            LoaiThietBiBase::TYPE_VANCHUYEN=>'Xe vận chuyển',
         ];
     }
     
@@ -30,13 +33,13 @@ class LoaiThietBiBase extends \app\models\TsLoaiThietBi {
             $val = $this->loai_thiet_bi;
         }
         switch ($val){
-            case "THIETBI": 
+            case LoaiThietBiBase::TYPE_THIETBI: 
                 $label = "Thiết bị/Máy móc"; 
                 break;
-            case "COGIOI": 
+            case LoaiThietBiBase::TYPE_COGIOI: 
                 $label = "Xe cơ giới "; 
                 break;
-            case "VANCHUYEN": 
+            case LoaiThietBiBase::TYPE_VANCHUYEN: 
                 $label = "Xe vận chuyển"; 
                 break;
             default: 

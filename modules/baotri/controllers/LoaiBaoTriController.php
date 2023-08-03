@@ -33,6 +33,13 @@ class LoaiBaoTriController extends Controller
     			],
 		];
 	}
+	
+	public function beforeAction($action)
+	{
+	    Yii::$app->params['moduleID'] = 'Module Quản lý Bảo trì-Bảo dưỡng';
+	    Yii::$app->params['modelID'] = 'Quản lý Danh mục loại bảo trì';
+	    return parent::beforeAction($action);
+	}
 
     /**
      * Lists all LoaiBaoTri models.
@@ -67,7 +74,7 @@ class LoaiBaoTriController extends Controller
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "LoaiBaoTri",
+                    'title'=> "Loại bảo trì",
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
@@ -99,7 +106,7 @@ class LoaiBaoTriController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Thêm mới LoaiBaoTri",
+                    'title'=> "Thêm mới Loại bảo trì",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -110,7 +117,7 @@ class LoaiBaoTriController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Thêm mới LoaiBaoTri",
+                    'title'=> "Thêm mới Loại bảo trì",
                     'content'=>'<span class="text-success">Thêm mới thành công</span>',
                     'tcontent'=>'Thêm mới thành công!',
                     'footer'=> Html::button('Đóng lại',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
@@ -119,7 +126,7 @@ class LoaiBaoTriController extends Controller
                 ];         
             }else{           
                 return [
-                    'title'=> "Thêm mới LoaiBaoTri",
+                    'title'=> "Thêm mới Loại bảo trì",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -162,7 +169,7 @@ class LoaiBaoTriController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Cập nhật LoaiBaoTri",
+                    'title'=> "Cập nhật Loại bảo trì",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -172,7 +179,7 @@ class LoaiBaoTriController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "LoaiBaoTri",
+                    'title'=> "Loại bảo trì",
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
@@ -182,7 +189,7 @@ class LoaiBaoTriController extends Controller
                 ];    
             }else{
                  return [
-                    'title'=> "Cập nhật LoaiBaoTri",
+                    'title'=> "Cập nhật Loại bảo trì",
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),

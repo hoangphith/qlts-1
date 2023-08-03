@@ -37,14 +37,20 @@ class ViboonAsset extends AssetBundle
         'assets/js/sticky.js',
         'assets/plugins/notify/js/jquery.growl.js',
         'assets/plugins/notify/js/notifIt.js',
+        
+        //'assets/plugins/fullcalendar/moment.min.js',
+        //'assets/plugins/fullcalendar/fullcalendar.min.js',
+        //'assets/js/fullcalendar.js',
+        
         'assets/js/custom.js',
-        'assets/js/custom-switcher.js',
-        'assets/switcher/js/switcher.js',        
+        //'assets/js/custom-switcher.js',
+        //'assets/switcher/js/switcher.js',        
         'assets/js/tooltip.js',
         'assets/plugins/owl-carousel/owl.carousel.js',
         'assets/plugins/multislider/multislider.js',
         'assets/js/carousel.js',
         'js/print-this/printThis.js',
+
         'js/custom.js',
         //'assets/plugins/tabs/jquery.multipurpose_tabcontent.js',
         //'assets/plugins/tabs/tab-content.js'

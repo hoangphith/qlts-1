@@ -6,6 +6,7 @@ use kartik\select2\Select2;
 use yii\helpers\ArrayHelper;
 use app\modules\bophan\models\BoPhan;
 use app\modules\taisan\models\LoaiThietBi;
+use app\modules\taisan\models\ThietBi;
 //use kartik\form\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -58,6 +59,8 @@ use app\modules\taisan\models\LoaiThietBi;
     		     ],
     		 ]);
     	?>
+    	
+    	<?= $form->field($model, 'trang_thai')->dropDownList(ThietBi::getDmTrangThai(), ['prompt'=>'--Chọn--']) ?>
   
 	<?php if (!Yii::$app->request->isAjax){ ?>
 	  	<div class="form-group">
