@@ -7,6 +7,7 @@ use Yii;
 use app\modules\user\models\User;
 use webvimark\modules\UserManagement\models\search\UserSearch;
 use yii\web\NotFoundHttpException;
+use app\modules\dungchung\models\HistorySearch;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -61,6 +62,24 @@ class UserController extends AdminDefaultController
 		}
 
 		return $this->renderIsAjax('changePassword', compact('model'));
+	}
+	
+	public function actionActivity(){
+	    Yii::$app->params['moduleID'] = 'Tài khoản';
+	    Yii::$app->params['modelID'] = 'Lịch sử hoạt động';
+	    $searchModel = new HistorySearch();
+	    if ($searchModel->load(Yii::$app->request->post())) {
+	        $searchModel = new HistorySearch(); // "reset"
+	        $searchModel->nguoi_tao = Yii::$app->user->id;
+	        $dataProvider = $searchModel->search(Yii::$app->request->post());
+	    } else {
+	        $searchModel->nguoi_tao = Yii::$app->user->id;
+	        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+	    }
+	    return $this->render('activity', [
+	        'searchModel' => $searchModel,
+	        'dataProvider' => $dataProvider,
+	    ]);
 	}
 
 }

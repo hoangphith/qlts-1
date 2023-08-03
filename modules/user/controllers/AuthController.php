@@ -4,7 +4,6 @@ namespace app\modules\user\controllers;
 
 use webvimark\components\BaseController;
 use webvimark\modules\UserManagement\components\UserAuthEvent;
-use webvimark\modules\UserManagement\models\forms\ChangeOwnPasswordForm;
 use webvimark\modules\UserManagement\models\forms\ConfirmEmailForm;
 use webvimark\modules\UserManagement\models\forms\LoginForm;
 use webvimark\modules\UserManagement\models\forms\PasswordRecoveryForm;
@@ -15,6 +14,7 @@ use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
+use app\modules\user\models\ChangeUserPasswordForm;
 
 class AuthController extends BaseController
 {
@@ -80,6 +80,9 @@ class AuthController extends BaseController
 	 */
 	public function actionChangeOwnPassword()
 	{
+	    Yii::$app->params['moduleID'] = 'Quản lý tài khoản';
+	    Yii::$app->params['modelID'] = 'Thay đổi mật khẩu';
+	    
 		if ( Yii::$app->user->isGuest )
 		{
 			return $this->goHome();
@@ -92,7 +95,7 @@ class AuthController extends BaseController
 			throw new ForbiddenHttpException();
 		}
 
-		$model = new ChangeOwnPasswordForm(['user'=>$user]);
+		$model = new ChangeUserPasswordForm(['user'=>$user]);
 
 
 		if ( Yii::$app->request->isAjax AND $model->load(Yii::$app->request->post()) )

@@ -1,5 +1,6 @@
 <?php
 use yii\widgets\ActiveForm;
+use app\modules\user\models\User;
 ?>
 <!--Main Header -->
 <div class="main-header side-header sticky">
@@ -39,7 +40,7 @@ use yii\widgets\ActiveForm;
 				<div class="collapse navbar-collapse" id="navbarSupportedContent-4">
 					<ul class="nav nav-item header-icons navbar-nav-right ms-auto">
 						<!-- Country-selector-->
-						<li class="dropdown header-language-selection">
+						<!-- <li class="dropdown header-language-selection">
 							<a href="javascript:void(0);" class="nav-link icon" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
 								<i class="bi bi-translate"></i>
 							</a>
@@ -77,7 +78,7 @@ use yii\widgets\ActiveForm;
 									</li>
 								</ul>
 							</div>
-						</li>
+						</li>-->
 						<!-- Country-selector-->
 						<!-- Theme-Layout -->
 						<li class="dropdown main-header-notification d-md-flex">
@@ -103,15 +104,16 @@ use yii\widgets\ActiveForm;
 						<li class="dropdown  d-flex shopping-cart main-header-notification">
 							<a class="nav-link icon" data-bs-toggle="dropdown" data-bs-auto-close="outside">
 								<i class="bi bi-cart-check"></i>
-								<span class="badge bg-warning header-badge">4</span>
+								<span class="badge bg-warning header-badge">0</span>
 
 							</a>
 							<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
 								<div class="header-navheading d-flex border-bottom mb-0 align-items-center">
-									<h5 class="fw-semibold mb-0">My Cart(4)</h5>
-									<a class="btn ripple btn-primary btn-sm ms-auto" href="#">View all</a>
+									<h5 class="fw-semibold mb-0">Yêu cầu mua sắm (0)</h5>
+									<a class="btn ripple btn-primary btn-sm ms-auto" href="#">Xem tất cả</a>
 								</div>
 								<div class="header-dropdown-list cart-list">
+								    <!-- 
 									<div class="dropdown-item d-flex border-bottom pb-1 align-items-center">
 										<a href="product-cart.html" class="cart-link"></a>
 										<div>
@@ -204,14 +206,14 @@ use yii\widgets\ActiveForm;
 												<i class="fe fe-trash-2 text-danger fs-16"></i>
 											</a>
 										</div>
-									</div>
+									</div>-->
 								</div>
 								<div class="dropdown-footer d-flex align-items-center justify-content-between">
-									<span class="fs-16 fw-semibold ms-2">Total :$186,046</span>
+									<!-- <span class="fs-16 fw-semibold ms-2">Total :</span>
 									<a class="btn ripple btn-info btn-sm float-end"
 										href="product-checkout.html">
 										<i class="fe fe-check-circle mx-1"></i>Checkout
-									</a>
+									</a> -->
 								</div>
 							</div>
 						</li>
@@ -231,11 +233,12 @@ use yii\widgets\ActiveForm;
 							</a>
 							<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
 								<div class="header-navheading d-flex border-bottom mb-0">
-									<h6 class="fw-semibold mb-0 mt-1">Notifications(3)</h6>
+									<h6 class="fw-semibold mb-0 mt-1">Thông báo(0)</h6>
 									<a class="btn ripple btn-primary btn-sm ms-auto"
-										href="javascript:void(0);">Mark all as Read</a>
+										href="javascript:void(0);">Đánh dấu đã đọc</a>
 								</div>
 								<div class="header-dropdown-list notification-list">
+									<!-- 
 									<a href="view-mail.html" class="dropdown-item d-flex border-bottom pb-1">
 										<div class="main-img-user online"><img alt="avatar"
 												src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/5.jpg">
@@ -285,15 +288,16 @@ use yii\widgets\ActiveForm;
 												of<br> the printing</p>
 											<span>Nov 14 12:40pm</span>
 										</div>
-									</a>
+									</a>-->
 								</div>
 								<div class="dropdown-footer">
 									<a class="btn ripple btn-success btn-sm btn-block"
-										href="mail-inbox.html">View All Notifications</a>
+										href="#">Xem tất cả thông báo</a>
 								</div>
 							</div>
 						</li>
 						<!-- SHORTCUTS -->
+						<!-- 
 						<li class="dropdown main-header-notification shortcuts d-flex">
 							<a class="nav-link icon" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside">
 								<i class="bi bi-card-heading"></i>
@@ -341,39 +345,43 @@ use yii\widgets\ActiveForm;
 									</li>
 								</ul>
 							</div>
-						</li>
+						</li>-->
+						<!-- notification -->
+						<!-- 
 						<li class="dropdown header-settings">
 							<a href="javascript:void(0);" class="nav-link icon" data-bs-toggle="sidebar-right"
 								data-bs-target=".sidebar-right">
 								<i class="bi bi-text-indent-right"></i>
 							</a>
 						</li>
+						 -->
 						<li class="dropdown d-flex main-profile-menu">
 
 							<a class="main-img-user d-flex" href="javascript:void(0);"
 								data-bs-toggle="dropdown">
-								<img alt="avatar" src="<?= Yii::getAlias('@web') ?>/assets/images/users/female/1.jpg">
+								<img alt="avatar" src="<?= Yii::getAlias('@web') ?>/uploads/icons/user.png">
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-arrow">
 								<div class="header-navheading">
-									<h6 class="main-notification-title mb-1">George Kelein</h6>
-									<span class="tx-13 text-muted">Web Developer</span>
+									<h6 class="main-notification-title mb-1"><?= User::getCurrentUser()->username ?></h6>
+									<span class="tx-13 text-muted"><?= User::getCurrentUser()->tenNhanVien ?></span>
+									<!-- <br/><span class="tx-13 text-muted"><?= User::getCurrentUser()->chucVu ?></span>-->
 								</div>
-								<a class="dropdown-item border-top text-wrap" href="profile.html">
-									<i class="fe fe-user"></i> <span class="lh-1">My Profile</span>
-								</a>
-								<a class="dropdown-item text-wrap" href="profile.html">
+								<!-- <a class="dropdown-item border-top text-wrap" href="<?= Yii::getAlias('@web') ?>/user/info">
+									<i class="fe fe-user"></i> <span class="lh-1">Thông tin</span>
+								</a> -->
+								<!-- <a class="dropdown-item text-wrap" href="<?= Yii::getAlias('@web') ?>/user/info-edit">
 									<i class="fe fe-edit"></i> <span class="lh-1">Edit Profile</span>
+								</a> -->
+								<a class="dropdown-item text-wrap" href="<?= Yii::getAlias('@web') ?>/user/auth/change-own-password">
+									<i class="fe fe-lock "></i> <span class="lh-1">Thay đổi mật khẩu</span>
 								</a>
-								<a class="dropdown-item text-wrap" href="settings.html">
-									<i class="fe fe-settings "></i> <span class="lh-1">Settings</span>
+								<a class="dropdown-item text-wrap" href="<?= Yii::getAlias('@web') ?>/user/user/activity">
+									<i class="fe fe-activity"></i> <span class="lh-1">Hoạt động gần đây</span>
 								</a>
-								<a class="dropdown-item text-wrap" href="timeline.html">
-									<i class="fe fe-activity"></i> <span class="lh-1">Activity</span>
-								</a>
-								<a class="dropdown-item text-wrap" href="signin.html">
-									<i class="fe fe-power"></i> <span class="lh-1">Sign Out</span>
+								<a class="dropdown-item text-wrap" href="<?= Yii::getAlias('@web') ?>/user/auth/logout">
+									<i class="fe fe-power"></i> <span class="lh-1">Đăng xuất</span>
 								</a>
 							</div>
 

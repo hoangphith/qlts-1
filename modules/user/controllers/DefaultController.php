@@ -10,6 +10,16 @@ use yii\web\Controller;
 class DefaultController extends Controller
 {
     /**
+     * @inheritdoc
+     */
+    public function behaviors() {
+        return [
+            'ghost-access'=> [
+                'class' => 'webvimark\modules\UserManagement\components\GhostAccessControl',
+            ],
+        ];
+    }
+    /**
      * Renders the index view for the module
      * @return string
      */

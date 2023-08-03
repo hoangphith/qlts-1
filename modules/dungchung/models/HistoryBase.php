@@ -27,11 +27,11 @@ class HistoryBase extends \app\models\TsHistory
     {
         return [
             'id' => 'ID',
-            'loai' => 'Loai',
-            'id_tham_chieu' => 'Id Tham Chieu',
-            'noi_dung' => 'Noi Dung',
-            'thoi_gian_tao' => 'Thoi Gian Tao',
-            'nguoi_tao' => 'Nguoi Tao',
+            'loai' => 'Loại',
+            'id_tham_chieu' => 'Tham chiếu',
+            'noi_dung' => 'Nội dung',
+            'thoi_gian_tao' => 'Thời gian',
+            'nguoi_tao' => 'Người thực hiện',
         ];
     }
     

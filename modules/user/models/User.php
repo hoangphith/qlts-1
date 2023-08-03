@@ -42,6 +42,14 @@ class User extends UserBase{
     }
     
     /**
+     * hien thi chuc vu nhan vien duoc lien ket voi tai khoan
+     * @return string
+     */
+    public function getChucVu(){
+        return $this->nhanVien != null ? $this->nhanVien->chuc_vu : '';
+    }
+    
+    /**
      * hien thi link den bang nhan vien
      * @return string
      */

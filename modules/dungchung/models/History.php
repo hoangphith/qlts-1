@@ -4,6 +4,16 @@ namespace app\modules\dungchung\models;
 
 use Yii;
 use app\widgets\views\HistoryWidget;
+use app\modules\bophan\models\NhanVien;
+use app\modules\bophan\models\BoPhan;
+use app\modules\bophan\models\DoiTac;
+use app\modules\kholuutru\models\KhoLuuTru;
+use app\modules\taisan\models\HeThong;
+use app\modules\taisan\models\LoaiThietBi;
+use app\modules\taisan\models\ThietBi;
+use app\modules\taisan\models\ViTri;
+use app\modules\user\models\User;
+use app\modules\baotri\models\LoaiBaoTri;
 
 class History extends HistoryBase
 {
@@ -42,6 +52,112 @@ class History extends HistoryBase
         foreach ($models as $indexMod=>$model){
             $model->delete();
         }
+    }
+    
+    public function getShowLink(){
+        switch ($this->loai){
+            case NhanVien::MODEL_ID:
+                $module = 'bophan';
+                $control = 'nhan-vien2';
+                break;
+            case BoPhan::MODEL_ID:
+                $module = 'bophan';
+                $control = 'bo-phan';
+                break;
+            case DoiTac::MODEL_ID:
+                $module = 'bophan';
+                $control = 'doi-tac';
+                break;
+            case KhoLuuTru::MODEL_ID:
+                $module = 'kholuutru';
+                $control = 'kho';
+                break;
+            case HeThong::MODEL_ID:
+                $module = 'taisan';
+                $control = 'he-thong';
+                break;
+            case LoaiThietBi::MODEL_ID:
+                $module = 'taisan';
+                $control = 'loai-thiet-bi';
+                break;
+            case ThietBi::MODEL_ID:
+                $module = 'taisan';
+                $control = 'thiet-bi';
+                break;
+            case ViTri::MODEL_ID:
+                $module = 'taisan';
+                $control = 'vi-tri';
+                break;
+            case LoaiBaoTri::MODEL_ID:
+                $module = 'baotri';
+                $control = 'loai-bao-tri';
+                break;
+            case User::MODEL_ID:
+                $module = 'user';
+                $control = 'user-ajax';
+                break;
+            default:
+                $module = 'module';
+                $control = 'control';
+        }
+
+        $link = '/' . $module . '/' . $control;
+        return Yii::getAlias('@web') . $link . '/view?id=' . $this->id_tham_chieu;
+    }
+    
+    public function getShowName(){
+        $name = '';
+        switch ($this->loai){
+            case NhanVien::MODEL_ID:
+                $query = NhanVien::findOne($this->id_tham_chieu);
+                $name = $query != null ? $query->ten_nhan_vien : '';
+                break;
+            case BoPhan::MODEL_ID:
+                $query = BoPhan::findOne($this->id_tham_chieu);
+                $name = $query != null ? $query->ten_bo_phan : '';
+                break;
+            case DoiTac::MODEL_ID:
+                $query = DoiTac::findOne($this->id_tham_chieu);
+                $name = $query != null ? $query->ten_doi_tac : '';
+                break;
+            case KhoLuuTru::MODEL_ID:
+                $query = KhoLuuTru::findOne($this->id_tham_chieu);
+                $name = $query != null ? $query->ten_kho : '';
+                break;
+            case HeThong::MODEL_ID:
+                $query = HeThong::findOne($this->id_tham_chieu);
+                $name = $query != null ? $query->ten_he_thong : '';
+                break;
+            case LoaiThietBi::MODEL_ID:
+                $query = LoaiThietBi::findOne($this->id_tham_chieu);
+                $name = $query != null ? $query->ten_loai: '';
+                break;
+            case ThietBi::MODEL_ID:
+                $query = ThietBi::findOne($this->id_tham_chieu);
+                $name = $query != null ? $query->ten_thiet_bi : '';
+                break;
+            case ViTri::MODEL_ID:
+                $query = ViTri::findOne($this->id_tham_chieu);
+                $name = $query != null ? $query->ten_vi_tri : '';
+                break;
+            case LoaiBaoTri::MODEL_ID:
+                $query = LoaiBaoTri::findOne($this->id_tham_chieu);
+                $name = $query != null ? $query->ten : '';
+                break;
+            case User::MODEL_ID:
+                $query = User::findOne($this->id_tham_chieu);
+                $name = $query != null ? $query->username : '';
+                break;
+            default:
+                $name = '';
+        }
+        
+        return $name;
+    }
+    
+    public function getThoiGianTao(){
+        $cus = new CustomFunc();
+        return $cus->convertYMDHISToDMYHID($this->thoi_gian_tao);
     }
     
 }

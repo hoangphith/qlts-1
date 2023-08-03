@@ -1,7 +1,7 @@
 <?php
 
 use webvimark\modules\UserManagement\UserManagementModule;
-use yii\bootstrap\ActiveForm;
+use yii\bootstrap5\ActiveForm;
 use yii\helpers\Html;
 
 /**
@@ -9,12 +9,12 @@ use yii\helpers\Html;
  * @var webvimark\modules\UserManagement\models\forms\ChangeOwnPasswordForm $model
  */
 
-$this->title = UserManagementModule::t('back', 'Change own password');
+$this->title = 'Thay đổi mật khẩu';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="change-own-password">
 
-	<h2 class="lte-hide-title"><?= $this->title ?></h2>
+	<h2 class="lte-hide-title">Nhập mật khẩu mới</h2>
 
 	<div class="panel panel-default">
 		<div class="panel-body">
@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				<div class="form-group">
 					<div class="col-sm-offset-3 col-sm-9">
 						<?= Html::submitButton(
-							'<span class="glyphicon glyphicon-ok"></span> ' . UserManagementModule::t('back', 'Save'),
+							'<span class="glyphicon glyphicon-ok"></span> ' . UserManagementModule::t('back', 'Lưu lại'),
 							['class' => 'btn btn-primary']
 						) ?>
 					</div>
