@@ -1,6 +1,24 @@
 <?php 
 $this->title = 'Tùy chỉnh giao diện';
 ?>
+
+<?php 
+$this->registerJsFile("@web/assets/js/custom-switcher.js",[
+    'depends' => [
+        \yii\web\JqueryAsset::className()
+    ]
+]);
+$this->registerJsFile("@web/assets/switcher/js/switcher.js",[
+    'depends' => [
+        \yii\web\JqueryAsset::className()
+    ]
+]);
+?>
+
+<!-- <script src="<?= Yii::getAlias('@web') ?>/assets/js/custom-switcher.js"></script>
+<script src="<?= Yii::getAlias('@web') ?>/assets/switcher/js/switcher.js"></script>
+ -->
+ 
 <!--Row-->
 <div class="container">
 	<div class="row row-sm">
@@ -384,7 +402,7 @@ $this->title = 'Tùy chỉnh giao diện';
 									<div class="skin-body mb-0">
 										<div class="switch_section my-2">
 											<div class="d-grid">
-												<button id="resetbtn" class="btn btn-danger"
+												<button id="resetbtn" class="btn btn-primary"
 													onclick="localStorage.clear();
 														document.querySelector('html').style = '';
 														names() ;

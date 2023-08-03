@@ -14,7 +14,7 @@ class StatusWithIconWidget extends Widget{
     
     public function run(){
         return '
-        <span class="badge bg-'. $this->type .'" style="font-size:12px"><i class="fe fe-check"></i>'. $this->label .'</span>
+        <span class="badge bg-'. $this->type .'" style="font-size:12px"><i class="'. $this->icon .'"></i> '. $this->label .'</span>
         ';
     }
 }

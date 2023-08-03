@@ -15,6 +15,11 @@ class ThietBiBase extends \app\models\TsThietBi
 {
     const MODEL_ID = 'thietbi';
     const QR_FOLDER = '/uploads/qrlibs/';
+    const STATUS_HOATDONG = 'HOATDONG';
+    const STATUS_SUACHUA = 'SUACHUA';
+    const STATUS_HONG = 'HONG';
+    const STATUS_MAT = 'MAT';
+    const STATUS_THANHLY = 'THANHLY';
     
     /**
      * Danh muc trang thai
@@ -22,11 +27,11 @@ class ThietBiBase extends \app\models\TsThietBi
      */
     public static function getDmTrangThai(){
         return [
-            'HOATDONG'=>'Đang hoạt động',
-            'SUACHUA'=>'Đang sửa chữa',
-            'HONG'=>'Đã hỏng',
-            'MAT'=>'Đã mất/Thất lạc',
-            'THANHLY'=>'Đã thanh lý'
+            ThietBiBase::STATUS_HOATDONG=>'Đang hoạt động',
+            ThietBiBase::STATUS_SUACHUA=>'Đang sửa chữa',
+            ThietBiBase::STATUS_HONG=>'Đã hỏng',
+            ThietBiBase::STATUS_MAT=>'Đã mất/Thất lạc',
+            ThietBiBase::STATUS_THANHLY=>'Đã thanh lý'
         ];
     }
     
@@ -40,19 +45,19 @@ class ThietBiBase extends \app\models\TsThietBi
             $val = $this->trang_thai;
         }
         switch ($val){
-            case "HOATDONG":
+            case ThietBiBase::STATUS_HOATDONG:
                 $label = "Đang hoạt động";
                 break;
-            case "SUACHUA":
+            case ThietBiBase::STATUS_SUACHUA:
                 $label = "Đang sửa chữa";
                 break;
-            case "HONG":
+            case ThietBiBase::STATUS_HONG:
                 $label = "Đã hỏng";
                 break;
-            case "MAT":
+            case ThietBiBase::STATUS_MAT:
                 $label = "Đã mất/Thất lạc";
                 break;
-            case "THANHLY":
+            case ThietBiBase::STATUS_THANHLY:
                 $label = "Đã thanh lý";
                 break;
             default:
@@ -163,7 +168,8 @@ class ThietBiBase extends \app\models\TsThietBi
      */
     public function getLoaiThietBi()
     {
-        return $this->id_loai_thiet_bi != NULL ? $this->hasOne(LoaiThietBi::class, ['id' => 'id_loai_thiet_bi']) : NULL;
+        return $this->hasOne(LoaiThietBi::class, ['id' => 'id_loai_thiet_bi']);
+        //return $this->id_loai_thiet_bi != NULL ? $this->hasOne(LoaiThietBi::class, ['id' => 'id_loai_thiet_bi']) : NULL;
     }
     
     /**
