@@ -17,6 +17,7 @@ use yii\filters\AccessControl;
  */
 class KeHoachBaoTriController extends Controller
 {
+    var $dataProvider= null;
     /**
      * @inheritdoc
      */
