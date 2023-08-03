@@ -16,6 +16,7 @@ use yii\web\Response;
  */
 class KeHoachBaoTriController extends Controller
 {
+    var $dataProvider= null;
     /**
      * @inheritdoc
      */

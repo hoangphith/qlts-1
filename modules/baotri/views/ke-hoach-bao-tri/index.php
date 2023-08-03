@@ -39,7 +39,9 @@ Yii::$app->params['showExport'] = true;
             'toolbar'=> [
                 ['content'=>
                     Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i> Thêm mới', ['create'],
-                    ['role'=>'modal-remote','title'=> 'Thêm mới Kế hoạch bảo trì','class'=>'btn btn-outline-primary']).
+                    ['role'=>'modal-remote','title'=> 'Thêm mới Ke Hoach Bao Tris','class'=>'btn btn-outline-primary']).
+                    Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i> Thống kê', ['thongke'],
+                        ['role'=>'modal-remote','title'=> 'Thống kê bảo trì','class'=>'btn btn-outline-primary']).
                     Html::a('<i class="fas fa fa-sync" aria-hidden="true"></i> Tải lại', [''],
                     ['data-pjax'=>1, 'class'=>'btn btn-outline-primary', 'title'=>'Tải lại']).
                     //'{toggleData}'.
