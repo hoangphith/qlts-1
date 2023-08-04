@@ -19,6 +19,32 @@ use yii\web\View;
 				<canvas class="w-100" id="chartDonut"></canvas>
 			</div>
 		</div>
+		
+		<?php 
+		  foreach ($dash->getListTaiSanPercent() as $index=>$item):
+		?>
+		
+		<div class="d-flex mg-b-15">
+			<div class="me-3">
+				<span class="avatar avatar-sm tx-fixed-white rounded-circle bg-primary"><i class="fe fe-smartphone"></i></span>
+			</div>
+			<div class="flex-1">
+				<div class="flex-between  d-flex justify-content-between align-items-end mb-2">
+					<h6 class="mg-b-0 d-inline-flex"><span class="pe-2 border-end"><?= $item['label'] ?></span>
+						<span class="ms-1"><?= $item['sum'] ?></span>
+					</h6>
+					<span class="badge badge-sm bg-primary"><?= $item['percent'] ?></span>
+				</div>
+				<div class="progress">
+					<div class="progress-bar progress-bar-striped progress-bar-animated ht-5 bg-primary" style="width: <?= $item['sum'] ?>%"></div>
+				</div>
+			</div>
+		</div>
+		
+		<?php endforeach; ?>
+		
+		
+		<!-- 
 		<div class="d-flex mg-b-15">
 			<div class="me-3">
 				<span class="avatar avatar-sm tx-fixed-white rounded-circle bg-primary"><i class="fe fe-smartphone"></i></span>
@@ -68,16 +94,10 @@ use yii\web\View;
 				</div>
 			</div>
 		</div>
+		-->
+		
 	</div>
 </div>
-
-
-
-
-<?php 
-print_r($dash->getListTaiSanPercent());
-
-?>
 
 
 <?php 
@@ -100,9 +120,11 @@ $this->registerJsFile(Yii::getAlias('@web') . 'assets/js/chart.chartjs.js',[
         type: 'doughnut',
         data: {
             //labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+            labels:['". implode("', '", array_map(function ($ar) {return $ar['label'];}, $dash->getListTaiSanPercent()) ) ."'],
             datasets: [{
-                data: [20, 20, 30, 5, 25],
-                backgroundColor:  ['#17b794', '#eb6f33', '#01b8ff', '#ff473d', '#03c895']
+                data: [". implode(',', array_map(function ($ar) {return $ar['sum'];}, $dash->getListTaiSanPercent()) ) ."],
+                //backgroundColor:  ['#17b794', '#eb6f33', '#01b8ff', '#ff473d', '#03c895']
+                backgroundColor:  ['#17b794', '#eb6f33', '#01b8ff']
             }]
         },
         options: {

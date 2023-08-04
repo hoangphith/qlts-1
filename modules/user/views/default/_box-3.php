@@ -1,10 +1,10 @@
 <div class="card">
 	<div class="card-header">
-		<h3 class="card-title">Analytics Performance</h3>
+		<h3 class="card-title">Lịch sử hoạt động</h3>
 	</div>
-	<div class="card-body">
+	<div class="card-body" style="height:400px">
 
-		<div class="d-flex ">
+	<!-- 	<div class="d-flex ">
 			<div class="d-flex">
 				<div class=""><i class="fe fe-user avatar tx-fixed-white bg-primary rounded-circle fs-20"></i>
 				</div>
@@ -70,6 +70,6 @@
 				<h6 class="mb-0 ms-3">50%</h6>
 				<small class="text-muted text-end">This Month</small>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </div>

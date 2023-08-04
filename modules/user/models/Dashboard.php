@@ -35,6 +35,9 @@ class Dashboard{
      */
     public function getListTaiSanPercent(){
         $arr = array();
+        
+        
+        
         return [
             ['label'=>'Đang hoạt động', 'sum'=>50, 'percent'=>50/100*100 . '%'],
             ['label'=>'Đang sửa chữa', 'sum'=>25, 'percent'=>25/100*100 . '%'],

@@ -1,10 +1,10 @@
 <div class="card">
 	<div class="card-header">
-		<h3 class="card-title">Browser Usuage</h3>
+		<h3 class="card-title">Danh sách đến hạn bảo trì</h3>
 	</div>
-	<div class="card-body">
+	<div class="card-body" style="height:400px">
 		<div class="table-responsive border-top-0">
-			<table class="table border table-bordered text-nowrap mb-0">
+			<!-- <table class="table border table-bordered text-nowrap mb-0">
 				<tbody>
 					<tr>
 						<th class="border-top-0">Browser</th>
@@ -100,7 +100,7 @@
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</table> -->
 		</div>
 	</div>
 
