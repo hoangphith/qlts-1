@@ -50,14 +50,28 @@
 						</span>
 						<span class="side-menu__label">Giao diện thiết bị</span></a>
 				</li>
-				<li class="side-item side-item-category">Trợ giúp</li>
+				<li>
+					<a class="side-menu__item help-support" href="<?= Yii::getAlias('@web/user/user/activity?menu=gdtb2') ?>" data-menu="gdtb2">
+						<span class="side-menu__icon">
+							<i class="fe fe-activity side_menu_img"></i>
+						</span>
+						<span class="side-menu__label">Lịch sử hoạt động</span></a>
+				</li>
+				<li>
+					<a class="side-menu__item help-support" href="<?= Yii::getAlias('@web/user/auth/logout?menu=gdtb3') ?>" data-menu="gdtb3">
+						<span class="side-menu__icon">
+							<i class="fe fe-power side_menu_img"></i>
+						</span>
+						<span class="side-menu__label">Đăng xuất</span></a>
+				</li>
+				<!-- <li class="side-item side-item-category">Trợ giúp</li>
 				<li>
 					<a class="side-menu__item help-support" href="#">
 						<span class="side-menu__icon">
 							<i class="bi bi-question-octagon side_menu_img"></i>
 						</span>
 						<span class="side-menu__label">Trợ giúp #</span></a>
-				</li>
+				</li> -->
 			</ul>
 			<div class="slide-right" id="slide-right">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24"

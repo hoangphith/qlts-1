@@ -155,6 +155,46 @@ class History extends HistoryBase
         return $name;
     }
     
+    public function getShowLoai(){
+        $name = '';
+        switch ($this->loai){
+            case NhanVien::MODEL_ID:
+                $name = 'Dữ liệu nhân viên';
+                break;
+            case BoPhan::MODEL_ID:
+                $name = 'Dữ liệu phòng ban - bộ phận';
+                break;
+            case DoiTac::MODEL_ID:
+                $name = 'Dữ liệu đối tác - khách hàng';
+                break;
+            case KhoLuuTru::MODEL_ID:
+                $name = 'Dữ liệu danh mục kho lưu trữ';
+                break;
+            case HeThong::MODEL_ID:
+                $name = 'Dữ liệu hệ thống thiết bị';
+                break;
+            case LoaiThietBi::MODEL_ID:
+                $name = 'Dữ liệu loại thiết bị';
+                break;
+            case ThietBi::MODEL_ID:
+                $name = 'Dữ liệu thiết bị';
+                break;
+            case ViTri::MODEL_ID:
+                $name = 'Dữ liệu vị trí';
+                break;
+            case LoaiBaoTri::MODEL_ID:
+                $name = 'Dữ liệu loại bảo trì';
+                break;
+            case User::MODEL_ID:
+                $name = 'Dữ liệu tài khoản';
+                break;
+            default:
+                $name = '';
+        }
+        
+        return $name;
+    }
+    
     public function getThoiGianTao(){
         $cus = new CustomFunc();
         return $cus->convertYMDHISToDMYHID($this->thoi_gian_tao);

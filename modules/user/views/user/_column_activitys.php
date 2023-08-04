@@ -18,6 +18,7 @@ return [
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'loai',
+        'value'=>'showLoai'
     ],
     [
         'class'=>'\kartik\grid\DataColumn',

@@ -64,6 +64,10 @@ class UserController extends AdminDefaultController
 		return $this->renderIsAjax('changePassword', compact('model'));
 	}
 	
+	/** 
+	 * Xem lich su hoat dong ca nhan
+	 * @return string
+	 */
 	public function actionActivity(){
 	    Yii::$app->params['moduleID'] = 'Tài khoản';
 	    Yii::$app->params['modelID'] = 'Lịch sử hoạt động';

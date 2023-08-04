@@ -117,6 +117,7 @@ class UserAjaxController extends Controller
         
                 ];         
             }else if($model->load($request->post()) && $model->save()){
+                User::assignRole($model->id, 'macDinh');
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
                     'title'=> "Thêm mới User",
