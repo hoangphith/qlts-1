@@ -259,8 +259,11 @@ class ImportThietBi
                 if($row['T'] != null)
                     $model->ngay_dua_vao_su_dung = $cus->convertDMYToYMD($row['T']);
                 //trang_thai row U
-                if($row['U'] != null)
+                if($row['U'] != null){
                     $model->trang_thai = $row['U'];
+                } else {
+                    $model->trang_thai = ThietBi::STATUS_HOATDONG;
+                }
                 //ngay_ngung_hoat_dong row V
                 if($row['V'] != null)
                     $model->ngay_ngung_hoat_dong = $cus->convertDMYToYMD($row['V']);

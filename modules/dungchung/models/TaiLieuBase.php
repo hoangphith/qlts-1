@@ -64,9 +64,11 @@ class TaiLieuBase extends \app\models\TsTaiLieu
      */
     public function beforeDelete()
     {
-        $filePath = Yii::getAlias('@webroot') . $this::FOLDER_DOCUMENTS . $this->duong_dan;
-        if(file_exists($filePath)){
-            unlink($filePath);
+        if($this->duong_dan != NULL){
+            $filePath = Yii::getAlias('@webroot') . $this::FOLDER_DOCUMENTS . $this->duong_dan;
+            if(file_exists($filePath)){
+                unlink($filePath);
+            }
         }
         return parent::beforeDelete();
     }
