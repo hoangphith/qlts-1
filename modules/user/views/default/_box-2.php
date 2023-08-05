@@ -26,17 +26,17 @@ use yii\web\View;
 		
 		<div class="d-flex mg-b-15">
 			<div class="me-3">
-				<span class="avatar avatar-sm tx-fixed-white rounded-circle bg-primary"><i class="fe fe-smartphone"></i></span>
+				<span class="avatar avatar-sm tx-fixed-white rounded-circle" style="background-color:<?= $item['color'] ?>"><i class="icon-chart"></i></span>
 			</div>
 			<div class="flex-1">
 				<div class="flex-between  d-flex justify-content-between align-items-end mb-2">
 					<h6 class="mg-b-0 d-inline-flex"><span class="pe-2 border-end"><?= $item['label'] ?></span>
 						<span class="ms-1"><?= $item['sum'] ?></span>
 					</h6>
-					<span class="badge badge-sm bg-primary"><?= $item['percent'] ?></span>
+					<span class="badge badge-sm" style="background-color:<?= $item['color'] ?>"><?= $item['percent'] ?></span>
 				</div>
 				<div class="progress">
-					<div class="progress-bar progress-bar-striped progress-bar-animated ht-5 bg-primary" style="width: <?= $item['sum'] ?>%"></div>
+					<div class="progress-bar progress-bar-striped progress-bar-animated ht-5" style="width: <?= $item['percent'] ?>;background-color:<?= $item['color'] ?>"></div>
 				</div>
 			</div>
 		</div>
@@ -113,8 +113,7 @@ $this->registerJsFile(Yii::getAlias('@web') . 'assets/js/chart.chartjs.js',[
         \yii\web\JqueryAsset::className()
     ]
     ]);
-
-     $this->registerJs("
+$this->registerJs("
     var ctx6 = document.getElementById('chartDonut');
     var myPieChart6 = new Chart(ctx6, {
         type: 'doughnut',
@@ -124,7 +123,8 @@ $this->registerJsFile(Yii::getAlias('@web') . 'assets/js/chart.chartjs.js',[
             datasets: [{
                 data: [". implode(',', array_map(function ($ar) {return $ar['sum'];}, $dash->getListTaiSanPercent()) ) ."],
                 //backgroundColor:  ['#17b794', '#eb6f33', '#01b8ff', '#ff473d', '#03c895']
-                backgroundColor:  ['#17b794', '#eb6f33', '#01b8ff']
+                //backgroundColor:  ['#17b794', '#eb6f33', '#01b8ff']
+                backgroundColor: ['". implode("', '", array_map(function ($ar) {return $ar['color'];}, $dash->getListTaiSanPercent()) ) ."']
             }]
         },
         options: {
