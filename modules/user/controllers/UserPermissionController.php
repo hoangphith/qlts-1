@@ -21,11 +21,14 @@ class UserPermissionController extends BaseController
 	 * @throws \yii\web\NotFoundHttpException
 	 * @return string
 	 */
-	public function actionSet($id)
+	public function actionSet($id, $createUserRole=NULL)
 	{
 	    $request = Yii::$app->request;
 		$user = User::findOne($id);
 		if($request->isAjax){
+		    if($createUserRole=='create'){
+		        $user->createUserRoleName();
+		    }
 		    /*
 		     *   Process for ajax request
 		     */

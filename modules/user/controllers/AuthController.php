@@ -15,6 +15,7 @@ use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 use app\modules\user\models\ChangeUserPasswordForm;
+use webvimark\modules\UserManagement\models\forms\ChangeOwnPasswordForm;
 
 class AuthController extends BaseController
 {

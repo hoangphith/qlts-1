@@ -7,16 +7,13 @@
 
 use webvimark\modules\UserManagement\components\GhostHtml;
 use webvimark\modules\UserManagement\models\rbacDB\Role;
-use app\modules\user\UserModule;
 use yii\bootstrap5\BootstrapPluginAsset;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 BootstrapPluginAsset::register($this);
-$this->title = UserModule::t('back', 'Phân quyền cho tài khoản:') . ' ' . $user->username;
-
-$this->params['breadcrumbs'][] = ['label' => UserModule::t('back', 'Users'), 'url' => ['/user/user/index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Phân quyền cho tài khoản: '. $user->username;
+$checkRoleName = false;
 ?>
 
 <div class="user-permission-form container-fluid formInput">    
@@ -40,6 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
     				<?= Html::beginForm(['set-roles', 'id'=>$user->id]) ?>
     
     				<?php foreach (Role::getAvailableRoles() as $aRole): ?>
+    					<?php if( $aRole['name']==$user->userRoleName){$checkRoleName = true;}?>
+    					<?php if( $aRole['name']==$user->userRoleName || !str_starts_with($aRole['name'], 'user_') ):?>
     					<label>
     						<?php $isChecked = in_array($aRole['name'], ArrayHelper::map(Role::getUserRoles($user->id), 'name', 'name')) ? 'checked' : '' ?>
     
@@ -60,9 +59,20 @@ $this->params['breadcrumbs'][] = $this->title;
     						['target'=>'_blank']
     					) ?>
     					<br/>
+    					<?php endif;?>
     				<?php endforeach ?>
     
     				<br/>
+    				
+    				<?php if($checkRoleName==false):?>
+    				
+    				<?= Html::a(
+    						'<span class="glyphicon glyphicon-edit"></span> Tạo phân quyền tùy chỉnh cho tài khoản',
+    						[Yii::getAlias('@web/user/user-permission/set'), 'id'=>$user->id, 'createUserRole'=>'create'],
+    						['data-pjax'=>1, 'role'=>'modal-remote']
+    					) ?>
+    				
+    				<?php endif;?>
     
     				<?php /*if ( Yii::$app->user->isSuperadmin OR Yii::$app->user->id != $user->id ): ?>
     

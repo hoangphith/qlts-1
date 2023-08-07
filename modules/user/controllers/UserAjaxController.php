@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use \yii\web\Response;
 use yii\helpers\Html;
 use yii\filters\AccessControl;
+use webvimark\modules\UserManagement\models\rbacDB\Role;
 
 /**
  * UserAjaxController implements the CRUD actions for User model.
@@ -119,6 +120,16 @@ class UserAjaxController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 //add default role macDinh cho tai khoan moi
                 User::assignRole($model->id, 'macDinh');
+                //create role for user
+                $rol = new Role();
+                $rol->type = 1;
+                $rol->name = $model->userRoleName;// dang user_9_
+                $rol->description = 'Quyền tùy chỉnh cho user '. $model->username;
+                if($rol->save()){
+                    User::assignRole($model->id, $rol->name);
+                }
+
+                
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
                     'title'=> "Thêm mới User",
@@ -277,7 +288,13 @@ class UserAjaxController extends Controller
     public function actionDelete($id)
     {
         $request = Yii::$app->request;
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        if($model->delete()){
+            $rol = Role::find()->where(['name'=>$model->userRoleName])->one();
+            if($rol != NULL){
+                $rol->delete();
+            }
+        }
 
         if($request->isAjax){
             /*
@@ -311,7 +328,12 @@ class UserAjaxController extends Controller
         foreach ( $pks as $pk ) {
             $model = $this->findModel($pk);
             try{
-            	$model->delete();
+                if($model->delete()){
+                    $rol = Role::find()->where(['name'=>$model->userRoleName])->one();
+                    if($rol != NULL){
+                        $rol->delete();
+                    }
+                }
             }catch(\Exception $e) {
             	$delOk = false;
             	$fList[] = $model->id;

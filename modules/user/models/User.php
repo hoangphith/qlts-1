@@ -7,6 +7,7 @@ use PhpParser\Node\Stmt\Expression;
 use app\modules\bophan\models\NhanVien;
 
 class User extends UserBase{
+    
     /**
      * lay danh sach tai khoan chua duoc lien ket voi nhan vien
      * @param string $tenMacDinh
@@ -56,4 +57,5 @@ class User extends UserBase{
     public function getShowLinkNhanVien(){
         return $this->nhanVien != null ? $this->nhanVien->showLink : '';
     }
+    
 }
