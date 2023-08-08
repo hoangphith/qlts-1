@@ -1,79 +1,75 @@
 <?php
+use yii\bootstrap5\Html;
+use yii\bootstrap5\ActiveForm;
+use kartik\select2\Select2;
+use app\modules\bophan\models\BoPhan;
+use app\widgets\forms\SwitchWidget;
 
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-
-/** @var yii\web\View $this */
-/** @var app\modules\bophan\models\NhanVien2Search $model */
-/** @var yii\widgets\ActiveForm $form */
+/* @var $this yii\web\View */
+/* @var $model app\modules\bophan\models\NhanVien */
+/* @var $form yii\widgets\ActiveForm */
 ?>
+<style>
+/*fixed select2 search conflict select2 form*/
+.select2-container--krajee-bs5 .select2-selection--single {
+    padding: 5px 1rem 5px 5px !important;
+}
+</style>
 
-<div class="nhan-vien-search container-fluid">
-	<div class="row">
-		<div class="col-12">
-			<!-- card custom -->
-    		<div class="card custom-card">
-                <div class="card-body h-100">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search ...">
-                                <span>
-                                    <button class="btn ripple btn-primary rounded-start-0" type="button">Search</button>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- card custom -->
-		</div>
-		<div class="col-12">
-		<!-- card custom -->
-    		<div class="card custom-card">
-                <div class="card-body h-100">
-                    <?php $form = ActiveForm::begin([
-                        'id'=>'myFilterForm',
-                        //'action' => ['index'],
-                        'method' => 'post',
-                        'options' => [
-                            'class' => 'myFilterForm'
-                        ]
-                    ]); ?>
-                
-                    <?= $form->field($model, 'id') ?>
-                
-                    <?= $form->field($model, 'ma_nhan_vien') ?>
-                
-                    <?= $form->field($model, 'ten_nhan_vien') ?>
-                
-                    <?= $form->field($model, 'ngay_sinh') ?>
-                
-                    <?= $form->field($model, 'gioi_tinh') ?>
-                
-                    <?php // echo $form->field($model, 'ten_truy_cap') ?>
-                
-                    <?php // echo $form->field($model, 'da_thoi_viec') ?>
-                
-                    <?php // echo $form->field($model, 'dien_thoai') ?>
-                
-                    <?php // echo $form->field($model, 'email') ?>
-                
-                    <?php // echo $form->field($model, 'dia_chi') ?>
-                
-                    <?php // echo $form->field($model, 'thoi_gian_tao') ?>
-                
-                    <?php // echo $form->field($model, 'nguoi_tao') ?>
-                
-                    <div class="form-group">
-                        <?= Html::submitButton('Tìm kiếm', ['class' => 'btn btn-primary']) ?>
-                        <?= Html::resetButton('Xóa tìm kiếm', ['class' => 'btn btn-outline-secondary']) ?>
-                    </div>
-                
-                    <?php ActiveForm::end(); ?>
-                </div>
-            </div>
-        </div>
-	</div>
+<div class="nhan-vien-search">
 
+    <?php $form = ActiveForm::begin([
+            'id'=>'myFilterForm',
+            'method' => 'post',
+            'options' => [
+                'class' => 'myFilterForm form-horizontal'
+            ],
+            'layout' => 'horizontal',
+            'fieldConfig' => [
+                'template' => '<div class="col-sm-4">{label}</div><div class="col-sm-8">{input}{error}</div>',
+                'labelOptions' => ['class' => 'col-md-12 control-label'],
+            ],
+      	]); ?>
+
+    <?= $form->field($model, 'id_bo_phan')->widget(Select2::classname(), [
+                'data' => (new BoPhan())->getListTree(),
+    		     'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('id_bo_phan') .'...'],
+    		     'pluginOptions' => [
+    		         'allowClear' => true,
+    		         //'dropdownParent' => new yii\web\JsExpression('$("#offcanvasRight")'), 
+    		     ],
+    		 ]);
+    	 ?>
+
+    <?= $form->field($model, 'ma_nhan_vien')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'ten_nhan_vien')->textInput(['maxlength' => true]) ?>
+
+    <?php // $form->field($model, 'ngay_sinh')->textInput(['maxlength' => true]) ?>
+
+    <?php // $form->field($model, 'gioi_tinh')->textInput() ?>
+
+    <?= $form->field($model, 'ten_truy_cap')->textInput(['maxlength' => true]) ?>
+
+    <?= SwitchWidget::widget([
+	    'model'=>$model,
+	    'attr'=>'da_thoi_viec',
+	    'inForm'=>false
+	]) ?>
+	
+    <?= $form->field($model, 'dien_thoai')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+
+    <?php // $form->field($model, 'dia_chi')->textarea(['rows' => 6]) ?>
+    
+	<?php if (!Yii::$app->request->isAjax){ ?>
+	  	<div class="form-group">
+	        <?= Html::submitButton('Tìm kiếm',['class' => 'btn btn-primary']) ?>
+	        <?= Html::resetButton('Xóa tìm kiếm', ['class' => 'btn btn-outline-secondary']) ?>
+	    </div>
+	<?php } ?>
+
+    <?php ActiveForm::end(); ?>
+    
 </div>
