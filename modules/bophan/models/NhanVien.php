@@ -64,7 +64,7 @@ class NhanVien extends \app\modules\bophan\models\NhanVienBase
      * @return string
      */
     public function getShowLink(){
-        return Yii::getAlias('@web/bophan/nhan-vien2/view?id=' . $this->id);
+        return Yii::getAlias('@web/bophan/nhan-vien/view?id=' . $this->id);
     }
   
 }
