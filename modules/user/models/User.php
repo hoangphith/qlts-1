@@ -43,6 +43,22 @@ class User extends UserBase{
     }
     
     /**
+     * lay id nhan vien duoc lien ket voi tai khoan
+     * @return string
+     */
+    public function getIdNhanVien(){
+        return $this->nhanVien != null ? $this->nhanVien->id : '';
+    }
+    
+    /**
+     * lay id bo phan duoc lien ket voi tai khoan
+     * @return string
+     */
+    public function getIdBoPhan(){
+        return $this->nhanVien != null ? $this->nhanVien->id_bo_phan : '';
+    }
+    
+    /**
      * hien thi chuc vu nhan vien duoc lien ket voi tai khoan
      * @return string
      */

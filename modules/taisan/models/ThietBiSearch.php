@@ -39,7 +39,7 @@ class ThietBiSearch extends ThietBi
      *
      * @return ActiveDataProvider
      */
-    public function search($params, $cusomSearch=NULL)
+    public function search($params, $cusomSearch=NULL, $forUser=NULL, $forBoPhan=NULL)
     {
         $query = ThietBi::find();
 
@@ -65,9 +65,6 @@ class ThietBiSearch extends ThietBi
                 ['like', 'dac_tinh_ky_thuat', $cusomSearch],
                 ['like', 'trang_thai', $cusomSearch],
                 ['like', 'ghi_chu', $cusomSearch] ]);
-            
-            
-            
         } else {
             $query->andFilterWhere([
                 'id' => $this->id,
@@ -100,6 +97,20 @@ class ThietBiSearch extends ThietBi
                 ->andFilterWhere(['like', 'dac_tinh_ky_thuat', $this->dac_tinh_ky_thuat])
                 ->andFilterWhere(['like', 'trang_thai', $this->trang_thai])
                 ->andFilterWhere(['like', 'ghi_chu', $this->ghi_chu]);
+        }
+        
+        //for user
+        if($forUser != NULL){
+            $query->andFilterWhere([
+                'id_nguoi_quan_ly' => $forUser,
+            ]);
+        }
+        
+        //for bo phan quan ly
+        if($forBoPhan != NULL){
+            $query->andFilterWhere([
+                'id_bo_phan_quan_ly' => $forBoPhan,
+            ]);
         }
 
         return $dataProvider;

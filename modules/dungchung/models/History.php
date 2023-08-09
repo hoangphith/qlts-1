@@ -54,11 +54,15 @@ class History extends HistoryBase
         }
     }
     
+    /**
+     * lay link lien ket den id tham chieu (view action)
+     * @return string
+     */
     public function getShowLink(){
         switch ($this->loai){
             case NhanVien::MODEL_ID:
                 $module = 'bophan';
-                $control = 'nhan-vien2';
+                $control = 'nhan-vien';
                 break;
             case BoPhan::MODEL_ID:
                 $module = 'bophan';
@@ -105,6 +109,10 @@ class History extends HistoryBase
         return Yii::getAlias('@web') . $link . '/view?id=' . $this->id_tham_chieu;
     }
     
+    /**
+     * hien thi ten cua id tham chieu de hien thi trong lich su hoat dong
+     * @return string
+     */
     public function getShowName(){
         $name = '';
         switch ($this->loai){
@@ -155,6 +163,10 @@ class History extends HistoryBase
         return $name;
     }
     
+    /**
+     * hien thi ten loai tham chieu de hien thi trong lich su hoat dong
+     * @return string
+     */
     public function getShowLoai(){
         $name = '';
         switch ($this->loai){
@@ -195,6 +207,10 @@ class History extends HistoryBase
         return $name;
     }
     
+    /**
+     * hien thi thoi gian tao d/m/y H:i:s
+     * @return string
+     */
     public function getThoiGianTao(){
         $cus = new CustomFunc();
         return $cus->convertYMDHISToDMYHID($this->thoi_gian_tao);

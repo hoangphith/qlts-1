@@ -100,7 +100,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             							data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
             							aria-expanded="false"
             							aria-label="Toggle navigation">
-            							<i class="fe fe-filter me-1"></i> Tìm kiếm nâng cao
+            							<i class="fe fe-filter me-1"></i> <?= (Yii::$app->params['searchLabel'] !=null ? Yii::$app->params['searchLabel'] : 'Tìm kiếm nâng cao') ?>
             						</a>
             					</div>
             					<?php } ?>

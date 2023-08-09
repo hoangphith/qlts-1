@@ -10,6 +10,7 @@ use yii\helpers\Html;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
+use app\modules\user\models\User;
 
 /**
  * ThietBiController implements the CRUD actions for ThietBi model.
@@ -48,7 +49,7 @@ class ThietBiController extends Controller
     {    
         $searchModel = new ThietBiSearch();
         if(isset($_POST['search']) && $_POST['search'] != null){
-            $dataProvider = $searchModel->search(Yii::$app->request->post(), $_POST['search']);
+            $dataProvider = $searchModel->search(Yii::$app->request->post(), $_POST['search'], NULL, NULL);
         } else if ($searchModel->load(Yii::$app->request->post())) {
             $searchModel = new ThietBiSearch(); // "reset"
             $dataProvider = $searchModel->search(Yii::$app->request->post());
@@ -62,6 +63,54 @@ class ThietBiController extends Controller
         ]);
     }
     
+    /**
+     * Lists all ThietBi models for user.
+     * @return mixed
+     */
+    public function actionIndexUser()
+    {
+        $searchModel = new ThietBiSearch();
+        $user = User::findOne(Yii::$app->user->id);
+        $idUser = ($user->idNhanVien != NULL) ? $user->idNhanVien : '0';//khong co tai khoan thi ko load
+        if(isset($_POST['search']) && $_POST['search'] != null){
+            $dataProvider = $searchModel->search(Yii::$app->request->post(), $_POST['search'], $idUser, NULL);
+        } else if ($searchModel->load(Yii::$app->request->post())) {
+            $searchModel = new ThietBiSearch(); // "reset"
+            $dataProvider = $searchModel->search(Yii::$app->request->post(), NULL, $idUser, NULL);
+        } else {
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams, NULL, $idUser, NULL);
+        }
+        
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    
+    /**
+     * Lists all ThietBi models for bo phan.
+     * @return mixed
+     */
+    public function actionIndexBoPhan()
+    {
+        $searchModel = new ThietBiSearch();
+        $user = User::findOne(Yii::$app->user->id);
+        $idBoPhan = ($user->idBoPhan != NULL) ? $user->idBoPhan : '0';//khong co tai khoan thi ko load
+        if(isset($_POST['search']) && $_POST['search'] != null){
+            $dataProvider = $searchModel->search(Yii::$app->request->post(), $_POST['search'], NULL, $idBoPhan);
+        } else if ($searchModel->load(Yii::$app->request->post())) {
+            $searchModel = new ThietBiSearch(); // "reset"
+            $dataProvider = $searchModel->search(Yii::$app->request->post(), NULL, NULL, $idBoPhan);
+        } else {
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams, NULL, NULL, $idBoPhan);
+        }
+        
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+     
     /**
      * quet qrcode in thiet bi index page
      */
