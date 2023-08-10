@@ -2,16 +2,15 @@
 
 namespace app\modules\user\controllers;
 
-use Yii;
 use app\modules\user\models\User;
 use app\modules\user\models\UserAjaxSearch;
+use Yii;
+use webvimark\modules\UserManagement\models\rbacDB\Role;
+use yii\filters\VerbFilter;
+use yii\helpers\Html;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use \yii\web\Response;
-use yii\helpers\Html;
-use yii\filters\AccessControl;
-use webvimark\modules\UserManagement\models\rbacDB\Role;
+use yii\web\Response;
 
 /**
  * UserAjaxController implements the CRUD actions for User model.
