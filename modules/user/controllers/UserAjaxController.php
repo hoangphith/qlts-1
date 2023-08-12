@@ -128,7 +128,6 @@ class UserAjaxController extends Controller
                     User::assignRole($model->id, $rol->name);
                 }
 
-                
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
                     'title'=> "Thêm mới User",

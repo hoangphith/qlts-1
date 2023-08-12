@@ -16,6 +16,8 @@ use app\modules\bophan\models\BoPhan;
 .select2-container--krajee-bs5 .select2-selection--single {
     padding: 5px 1rem 5px 5px !important;
 }
+
+/* .select2-container--open { z-index: 999999 !important; width:100% !important; } */
 </style> 
 
 <div class="bo-phan-search">
@@ -42,7 +44,9 @@ use app\modules\bophan\models\BoPhan;
                 'data' => (new BoPhan())->getListTree(),
     		     'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('truc_thuoc') .'...'],
     		     'pluginOptions' => [
-    		         'allowClear' => true
+    		         'allowClear' => true,
+    		         //'dropdownParent' => new yii\web\JsExpression('$("#offcanvasRight")'), 
+    		         //'dropdownParent' => new yii\web\JsExpression('$(this).parent()'),
     		     ],
     		 ]);
     	 ?>
