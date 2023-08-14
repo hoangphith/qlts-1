@@ -29,6 +29,7 @@ class ThietBiController extends Controller
 				'class' => VerbFilter::className(),
 				'actions' => [
 					'delete' => ['POST'],
+				    'copy' => ['POST'],
 				],
 			],
 		];
@@ -39,6 +40,18 @@ class ThietBiController extends Controller
 	    Yii::$app->params['moduleID'] = 'Module Quản lý tài sản';
 	    Yii::$app->params['modelID'] = 'Quản lý Thiết bị';
 	    return parent::beforeAction($action);
+	}
+	
+	public function actionTest(){
+	    $model = ThietBi::findOne(40);
+	    $data = $model->attributes;
+	    $model2 = new ThietBi();
+	    $model2->setAttributes($data);
+	    $model2->autoid = null;
+	    $model2->ma_thiet_bi = $model->ma_thiet_bi . '-copy';
+	    $model2->thoi_gian_tao = null;
+	    $model2->nguoi_tao = null;
+	    $model2->save();
 	}
 
     /**
@@ -166,13 +179,48 @@ class ThietBiController extends Controller
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
-                    'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
-                            Html::a('Sửa',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                            Html::a('Edit',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote']).
+                        Html::a('Copy',['copy','id'=>$id],[
+                            'class'=>'btn btn-warning',
+                            'role'=>'modal-remote',
+                            'data-confirm'=>false, 'data-method'=>false,// for overide yii data api
+                            'data-request-method'=>'post',
+                            'data-toggle'=>'tooltip',
+                            'data-confirm-title'=>'Thông báo',
+                            'data-confirm-message'=>'Dữ liệu sẽ được nhân đôi ngoại trừ mã thiết bị. Bạn có chắc chắn thực hiện không?',
+                        ])
                 ];    
         }else{
             return $this->render('view', [
                 'model' => $this->findModel($id),
             ]);
+        }
+    }
+    
+    public function actionCopy($id){
+        $request = Yii::$app->request;
+        if($request->isAjax){
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            $model = ThietBi::findOne($id);
+            $data = $model->attributes;
+            $model2 = new ThietBi();
+            $model2->setAttributes($data);
+            $model2->autoid = null;
+            $model2->ma_thiet_bi = $model->ma_thiet_bi . '-copy';
+            $model2->thoi_gian_tao = null;
+            $model2->nguoi_tao = null;
+            if($model2->save()){
+                return [
+                    'title'=> "Thiết bị/tài sản",
+                    'forceReload'=>'#crud-datatable-pjax',
+                    'content'=>$this->renderAjax('view', [
+                        'model' => $this->findModel($model2->id),
+                    ]),
+                    'footer'=> Html::button('Đóng',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
+                    Html::a('Sửa',['update','id'=>$model2->id],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                ];
+            }
         }
     }
 
