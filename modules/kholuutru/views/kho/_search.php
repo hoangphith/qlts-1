@@ -52,7 +52,10 @@ if($model->isNewRecord){
 
     <?= $form->field($model, 'loai_kho')->widget(Select2::classname(), [
              'data' => KhoLuuTru::getDmLoaiKho(),
-    	     'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('loai_kho') .'...'],
+    	     'options' => [
+    	         'placeholder' => 'Chọn '. $model->getAttributeLabel('loai_kho') .'...',
+    	         'data-dropdown-parent'=>"#offcanvasRight"
+    	     ],
     	     'pluginOptions' => [
     	         'allowClear' => true,
     	         //'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'), 
@@ -64,7 +67,8 @@ if($model->isNewRecord){
              'data' => (new BoPhan())->getListTree(),
 		     'options' => [
 		         'id'=>'id-bo-phan-search',
-		         'placeholder' => 'Chọn '. $model->getAttributeLabel('id_bo_phan_quan_ly') .'...'
+		         'placeholder' => 'Chọn '. $model->getAttributeLabel('id_bo_phan_quan_ly') .'...',
+		         'data-dropdown-parent'=>"#offcanvasRight"
 		     ],
 		     'pluginOptions' => [
 		         'allowClear' => true,
@@ -79,7 +83,8 @@ if($model->isNewRecord){
             echo $form->field($model, 'id_nguoi_quan_ly')->widget(DepDrop::classname(), [
                 'options'=>[
                     'id'=>'id-nhan-vien-search',
-                    'placeholder' => 'Select ...'
+                    'placeholder' => 'Chọn...',
+                    'data-dropdown-parent'=>"#offcanvasRight"
                 ],
                 'data' => $model->isNewRecord?$newArr:[$model->id_nguoi_quan_ly=>$model->nguoiQuanLy->ten_nhan_vien],
                 //'data' => $model->isNewRecord?$newArr:NhanVien::getListThuocBoPhan($model->id_nguoi_quan_ly),

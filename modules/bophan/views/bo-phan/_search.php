@@ -42,7 +42,10 @@ use app\modules\bophan\models\BoPhan;
      <?= $form->field($model, 'truc_thuoc')->widget(Select2::classname(), [
     		    // 'data' => BoPhan::getList(),
                 'data' => (new BoPhan())->getListTree(),
-    		     'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('truc_thuoc') .'...'],
+    		     'options' => [
+    		         'placeholder' => 'Chọn '. $model->getAttributeLabel('truc_thuoc') .'...',
+    		         'data-dropdown-parent'=>"#offcanvasRight"
+    		     ],
     		     'pluginOptions' => [
     		         'allowClear' => true,
     		         //'dropdownParent' => new yii\web\JsExpression('$("#offcanvasRight")'), 

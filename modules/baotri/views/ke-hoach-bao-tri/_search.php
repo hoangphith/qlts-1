@@ -27,7 +27,10 @@ use yii\widgets\ActiveForm;
           <?= $form->field($model, 'id_he_thong')->widget(Select2::classname(), [
                     'data' => ArrayHelper::map(HeThong::find()->all(), 'id', 'ten_he_thong'),
                     'language' => 'vi',
-                    'options' => ['placeholder' => 'Chọn hệ thống...'],
+                    'options' => [
+                        'placeholder' => 'Chọn hệ thống...',
+                        'data-dropdown-parent'=>"#offcanvasRight"
+                    ],
                     'pluginOptions' => [
                         'allowClear' => true,
                        // 'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'),
@@ -38,7 +41,10 @@ use yii\widgets\ActiveForm;
 			  <?= $form->field($model, 'id_thiet_bi')->widget(Select2::classname(), [
                     'data' => ArrayHelper::map(ThietBi::find()->all(), 'id', 'ten_thiet_bi'),
                     'language' => 'vi',
-                    'options' => ['placeholder' => 'Chọn thiết bị...'],
+                    'options' => [
+                        'placeholder' => 'Chọn thiết bị...',
+                        'data-dropdown-parent'=>"#offcanvasRight"
+                    ],
                     'pluginOptions' => [
                         'allowClear' => true,
                         //'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'),
@@ -56,7 +62,10 @@ use yii\widgets\ActiveForm;
 			  <?= $form->field($model, 'id_loai_bao_tri')->widget(Select2::classname(), [
                     'data' => ArrayHelper::map(LoaiBaoTri::find()->all(), 'id', 'ten'),
                     'language' => 'vi',
-                    'options' => ['placeholder' => 'Loại bảo trì...'],
+                    'options' => [
+                        'placeholder' => 'Loại bảo trì...',
+                        'data-dropdown-parent'=>"#offcanvasRight"
+                    ],
                     'pluginOptions' => [
                         'allowClear' => true,
                         //'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'),
@@ -67,7 +76,10 @@ use yii\widgets\ActiveForm;
 			   <?= $form->field($model, 'muc_do_uu_tien')->widget(Select2::classname(), [
                         'data' => ["0"=> "Không ưu tiên", "1"=>"Ưu tiên", "2"=>"Xử lý gấp"],
                         'language' => 'vi',
-                        'options' => ['placeholder' => 'Chọn đơn mức độ ưu tiên...'],
+                        'options' => [
+                            'placeholder' => 'Chọn đơn mức độ ưu tiên...',
+                            'data-dropdown-parent'=>"#offcanvasRight"
+                        ],
                         'pluginOptions' => [
                             'allowClear' => true,
                            // 'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'),
@@ -97,7 +109,10 @@ use yii\widgets\ActiveForm;
 				<?= $form->field($model, 'id_nguoi_chiu_trach_nhiem')->widget(Select2::classname(), [
                 'data' => ArrayHelper::map(NhanVien::find()->all(), 'id', 'ten_nhan_vien'),
                 'language' => 'vi',
-                'options' => ['placeholder' => 'Chọn người chịu trách nhiệm ...'],
+                'options' => [
+                    'placeholder' => 'Chọn người chịu trách nhiệm ...',
+                    'data-dropdown-parent'=>"#offcanvasRight"
+                ],
                 'pluginOptions' => [
                     'allowClear' => true,
                 ],

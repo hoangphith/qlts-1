@@ -25,7 +25,10 @@ use kartik\select2\Select2;
 
     <?= $form->field($model, 'truc_thuoc')->widget(Select2::classname(), [
              'data' => (new HeThong())->getListTree(),
-		     'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('truc_thuoc') .'...'],
+		     'options' => [
+		         'placeholder' => 'Chọn '. $model->getAttributeLabel('truc_thuoc') .'...',
+		         'data-dropdown-parent'=>"#offcanvasRight"
+		     ],
 		     'pluginOptions' => [
 		         'allowClear' => true,
 		         //'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'), 

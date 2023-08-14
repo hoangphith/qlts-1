@@ -42,7 +42,10 @@ use app\modules\taisan\models\ThietBi;
 	<?= $form->field($model, 'id_loai_thiet_bi')->widget(Select2::classname(), [
             'data' => ArrayHelper::map(LoaiThietBi::find()->all(), 'id', 'ten_loai'),
             'language' => 'vi',
-            'options' => ['placeholder' => 'Chọn loại thiết bị...'],
+            'options' => [
+                'placeholder' => 'Chọn loại thiết bị...',
+                'data-dropdown-parent'=>"#offcanvasRight"
+            ],
             'pluginOptions' => [
                 'allowClear' => true,
                 //'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'),
@@ -52,7 +55,10 @@ use app\modules\taisan\models\ThietBi;
         
         <?= $form->field($model, 'id_bo_phan_quan_ly')->widget(Select2::classname(), [
                 'data' => (new BoPhan())->getListTree(),
-    		     'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('id_bo_phan_quan_ly') .'...'],
+    		     'options' => [
+    		         'placeholder' => 'Chọn '. $model->getAttributeLabel('id_bo_phan_quan_ly') .'...',
+    		         'data-dropdown-parent'=>"#offcanvasRight"
+    		     ],
     		     'pluginOptions' => [
     		         'allowClear' => true,
     		         //'dropdownParent' => new yii\web\JsExpression('$("#offcanvasRight")'), 

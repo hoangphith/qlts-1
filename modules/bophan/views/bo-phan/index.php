@@ -108,33 +108,7 @@ Yii::$app->params['showImportModel'] = BoPhan::MODEL_ID;
 
 <?php /* Modal::end(); */ ?>
 
-<?php
-   // $searchContent = $this->render("_search", ["model" => $searchModel]);
-   // echo $searchContent;
-echo FilterFormWidget::widget(["content"=>$this->render("_search", ["model" => $searchModel]), "description"=>"Nhập thông tin tìm kiếm."]) 
-?>
-
-<script>
-/* $('#bophansearch-truc_thuoc').select2({
-        dropdownParent: $('#offcanvasRight')
-}); */
-</script>
-
-<?php
-$script = <<< JS
-/*$('#bophansearch-truc_thuoc').select2({
-    dropdownParent: $('#offcanvasRight')
-});*/
-/* var myOffcanvas = document.getElementById('offcanvasRight')
-myOffcanvas.addEventListener('show.bs.offcanvas', function () {
-  alert('123');
-}) */
-/*$('.select2').each(function () {
-    $(this).select2({
-        //theme: 'bootstrap-5',
-        dropdownParent: $(this).parent(),
-    });
-});*/
-JS;
-$this->registerJs($script);
-?>
+<?= FilterFormWidget::widget([
+    "content"=>$this->render("_search", ["model" => $searchModel]), 
+    "description"=>"Nhập thông tin tìm kiếm."
+]) ?>

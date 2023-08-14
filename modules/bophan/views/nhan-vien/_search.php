@@ -33,7 +33,10 @@ use app\widgets\forms\SwitchWidget;
 
     <?= $form->field($model, 'id_bo_phan')->widget(Select2::classname(), [
                 'data' => (new BoPhan())->getListTree(),
-    		     'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('id_bo_phan') .'...'],
+    		     'options' => [
+    		         'placeholder' => 'Chọn '. $model->getAttributeLabel('id_bo_phan') .'...',
+    		         'data-dropdown-parent'=>"#offcanvasRight"
+    		     ],
     		     'pluginOptions' => [
     		         'allowClear' => true,
     		         //'dropdownParent' => new yii\web\JsExpression('$("#offcanvasRight")'), 

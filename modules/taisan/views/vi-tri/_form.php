@@ -32,7 +32,10 @@ if($model->ngay_ngung_hoat_dong != null)
         <div class="col-6">
         	<?= $form->field($model, 'truc_thuoc')->widget(Select2::classname(), [
                      'data' => (new ViTri())->getListTree(),
-        		     'options' => ['placeholder' => 'Chọn '. $model->getAttributeLabel('truc_thuoc') .'...'],
+        		     'options' => [
+        		         'placeholder' => 'Chọn '. $model->getAttributeLabel('truc_thuoc') .'...',
+        		         'data-dropdown-parent'=>"#offcanvasRight"
+        		     ],
         		     'pluginOptions' => [
         		         'allowClear' => true,
         		         'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'), 
