@@ -39,7 +39,7 @@ return [
         'value'=>function($model){
             return $model->da_ngung_hoat_dong ==1 ? StatusWithIconWidget::widget([
                 'label' => 'Ngưng HĐ',
-                'icon'=>'ti-close',
+                'icon'=>'fe fe-x',
                 'type'=>'warning'
             ]) : '';
         }
