@@ -11,6 +11,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use app\modules\user\models\User;
+use app\modules\taisan\models\HeThong;
 
 /**
  * ThietBiController implements the CRUD actions for ThietBi model.
@@ -41,24 +42,12 @@ class ThietBiController extends Controller
 	    Yii::$app->params['modelID'] = 'Quản lý Thiết bị';
 	    return parent::beforeAction($action);
 	}
-	
-	public function actionTest(){
-	    $model = ThietBi::findOne(40);
-	    $data = $model->attributes;
-	    $model2 = new ThietBi();
-	    $model2->setAttributes($data);
-	    $model2->autoid = null;
-	    $model2->ma_thiet_bi = $model->ma_thiet_bi . '-copy';
-	    $model2->thoi_gian_tao = null;
-	    $model2->nguoi_tao = null;
-	    $model2->save();
-	}
 
     /**
      * Lists all ThietBi models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($layout=NULL)
     {    
         $searchModel = new ThietBiSearch();
         if(isset($_POST['search']) && $_POST['search'] != null){
@@ -69,10 +58,11 @@ class ThietBiController extends Controller
         } else {
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         }    
-
+        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'tsLayout' => $layout
         ]);
     }
     

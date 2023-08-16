@@ -48,8 +48,16 @@ $btns = '<a style="margin-left:10px" class="btn ripple btn-primary dropdown-togg
 			        'role'=>'modal-remote',
 			    ]
 			).'</div>';
+
+	$tree = $this->render('_tree', ["model" => $searchModel]);
 ?>
 
+<div class="row">
+    <div class="col-md-4">
+    	<?= $tree ?>
+    </div>
+	<div class="col-md-8">
+	
 <?php Pjax::begin([
     'id'=>'myGrid',
     'timeout' => 10000,
@@ -57,6 +65,8 @@ $btns = '<a style="margin-left:10px" class="btn ripple btn-primary dropdown-togg
 ]); ?>
 
 <div class="ts-thiet-bi-index">
+	
+	
     <div id="ajaxCrudDatatable">
         <?=GridView::widget([
             'id'=>'crud-datatable',
@@ -68,7 +78,7 @@ $btns = '<a style="margin-left:10px" class="btn ripple btn-primary dropdown-togg
                 ['content'=>
                     Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i> Thêm mới', ['create'],
                     ['role'=>'modal-remote','title'=> 'Thêm thiết bị/tài sản','class'=>'btn btn-outline-primary']).
-                    Html::a('<i class="fas fa fa-sync" aria-hidden="true"></i> Tải lại', [''],
+                    Html::a('<i class="fas fa fa-sync" aria-hidden="true"></i> Tải lại', ['?layout='.$tsLayout],
                     ['data-pjax'=>1, 'class'=>'btn btn-outline-primary', 'title'=>'Tải lại']).
                     Html::a('<i class="fa fa-qrcode" aria-hidden="true"></i> Quét mã QR', ['qr-scan'],
                         ['role'=>'modal-remote','title'=> 'Quét QRcode','class'=>'btn btn-outline-primary']).
@@ -80,7 +90,18 @@ $btns = '<a style="margin-left:10px" class="btn ripple btn-primary dropdown-togg
             'responsive' => true,   
             'panelHeadingTemplate'=>'{title}',
             'panelFooterTemplate'=>'<div class="row"><div class="col-md-8">{pager}</div><div class="col-md-4">{summary}</div></div>',
-            'summary'=>'Hiển thị dữ liệu {count}/{totalCount}, Trang {page}/{pageCount}',          
+            'summary'=>'Hiển thị dữ liệu {count}/{totalCount}, Trang {page}/{pageCount}',  
+            /* 'panelTemplate'=>'<div class="panel {type}">
+                {panelHeading}
+                {panelBefore}
+                ' . 
+                    ($tsLayout == null ?
+                        '{items}'
+                        : '<div class="row"><div class="col-md-3">'.$tree.'</div><div class="col-md-9">{items}</div></div>'
+                    )
+                .'{panelAfter}
+                {panelFooter}
+            </div>', */
             'panel' => [
                 //'type' => 'primary', 
                 'heading' => '<i class="fas fa fa-list" aria-hidden="true"></i> Tài sản/Thiết bị',
@@ -99,8 +120,13 @@ $btns = '<a style="margin-left:10px" class="btn ripple btn-primary dropdown-togg
                 ]). $btns . '<div class="clearfix"></div>',
             ]
         ])?>
-    </div>
+    </div><!-- #ajaxCrudDatatable -->
+    
 </div>
+
+</div> <!-- col-md-8 -->
+
+</div> <!-- row -->
 <?php Pjax::end(); ?>
 <?php Modal::begin([
    "options" => [
@@ -129,4 +155,14 @@ $btns = '<a style="margin-left:10px" class="btn ripple btn-primary dropdown-togg
 <?php
     $searchContent = $this->render("_search", ["model" => $searchModel]);
     echo FilterFormWidget::widget(["content"=>$searchContent, "description"=>"Nhập thông tin tìm kiếm."]) 
+?>
+
+<?php 
+$this->registerJsFile("@web/assets/plugins/treeview/treeview.js",[
+/*     'depends' => [
+        \yii\web\JqueryAsset::className()
+    ], */
+    'position' => \yii\web\View::POS_END
+    
+]);
 ?>
