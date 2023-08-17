@@ -1,6 +1,8 @@
 <?php 
 use app\assets\ViboonAsset;
 use yii\helpers\Html;
+use app\modules\taisan\models\ThietBi;
+use yii\bootstrap5\ActiveForm;
 
 ViboonAsset::register($this);
 
@@ -76,6 +78,62 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             						</div>
             					</div>
             					<?php }*/ ?>
+            					
+            					<?php if(Yii::$app->controller->id == ThietBi::MODEL_ID && Yii::$app->controller->action->id == 'index'): ?>
+            					<div class="me-2">
+            						<a class="btn ripple btn-primary dropdown-toggle mb-0" href="javascript:void(0);"
+            							data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            							<i class="fe fe-list"></i> Hiển thị cây thiết bị <i class="fa fa-caret-down ms-1"></i>
+            						</a>
+            						<div class="dropdown-menu tx-13" style="min-width:200px">
+            							<a class="dropdown-item" href="?layout=1"><i class="fe fe-layers"></i> Theo hệ thống</a>
+            							<a class="dropdown-item" href="?layout=2"><i class="fe fe-layers"></i> Theo loại thiết bị</a>            									
+            							<a class="dropdown-item" href="?layout=3"><i class="fe fe-layers"></i> Theo đơn vị quản lý</a>
+            							<a class="dropdown-item" href="?layout=0"><i class="fe fe-x"></i> Tắt hiển thị cây thiết bị</a>
+            						</div>
+            					</div>
+            					
+            					<!-- 
+            					<div class="dropdown">
+                                  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                    Dropdown form
+                                  </button>
+                                  <?php $form = ActiveForm::begin([
+                            	        'id'=>'frmTree',
+                                        'method' => 'post',
+                                        'options' => [
+                                            'class' => 'selectTreeForm dropdown-menu mb-4'
+                                        ],
+                                        'layout' => 'horizontal',
+                                        'fieldConfig' => [
+                                            'template' => '<div class="col-sm-4">{label}</div><div class="col-sm-8">{input}{error}</div>',
+                                            'labelOptions' => ['class' => 'col-md-12 control-label'],
+                                        ],
+                                  	]); ?>	
+                             
+                                    <div class="mb-3">
+                                      <label for="exampleDropdownFormEmail2" class="form-label">Email address</label>
+                                      <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="exampleDropdownFormPassword2" class="form-label">Password</label>
+                                      <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
+                                    </div>
+                                    <div class="mb-3">
+                                      <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="dropdownCheck2">
+                                        <label class="form-check-label" for="dropdownCheck2">
+                                          Remember me
+                                        </label>
+                                      </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Sign in</button>
+                                 
+                                  <?php ActiveForm::end(); ?>
+                                  
+                                </div>
+                                 -->
+            					<?php endif;?>
             					
             					<?php if(Yii::$app->params['showImport'] == true):?>
             					<div class="me-2">

@@ -47,7 +47,7 @@ class ThietBiController extends Controller
      * Lists all ThietBi models.
      * @return mixed
      */
-    public function actionIndex($layout=NULL)
+    public function actionIndex($layout=0)
     {    
         $searchModel = new ThietBiSearch();
         if(isset($_POST['search']) && $_POST['search'] != null){
@@ -57,7 +57,7 @@ class ThietBiController extends Controller
             $dataProvider = $searchModel->search(Yii::$app->request->post());
         } else {
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        }    
+        } 
         
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -70,7 +70,7 @@ class ThietBiController extends Controller
      * Lists all ThietBi models for user.
      * @return mixed
      */
-    public function actionIndexUser()
+    public function actionIndexUser($layout=0)
     {
         $searchModel = new ThietBiSearch();
         $user = User::findOne(Yii::$app->user->id);
@@ -87,6 +87,7 @@ class ThietBiController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'tsLayout' => $layout
         ]);
     }
     
@@ -94,7 +95,7 @@ class ThietBiController extends Controller
      * Lists all ThietBi models for bo phan.
      * @return mixed
      */
-    public function actionIndexBoPhan()
+    public function actionIndexBoPhan($layout=0)
     {
         $searchModel = new ThietBiSearch();
         $user = User::findOne(Yii::$app->user->id);
@@ -111,6 +112,7 @@ class ThietBiController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'tsLayout' => $layout
         ]);
     }
      
