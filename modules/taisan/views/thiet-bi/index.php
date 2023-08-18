@@ -49,14 +49,16 @@ $btns = '<a style="margin-left:10px" class="btn ripple btn-primary dropdown-togg
 			    ]
 			).'</div>';
 
-	$tree = $this->render('_tree', ["model" => $searchModel]);
+	$tree = ($tsLayout>0 && $tsLayout<=3) ? $this->render('_tree', ["model" => $searchModel, 'tsLayout'=>$tsLayout]):0;
 ?>
 
 <div class="row">
+	<?php if($tsLayout>0 && $tsLayout<=3):?>
     <div class="col-md-4">
     	<?= $tree ?>
     </div>
-	<div class="col-md-8">
+    <?php endif; ?>
+	<div class="col-md-<?= ($tsLayout>0 && $tsLayout<=3)?'8':'12'?>">
 	
 <?php Pjax::begin([
     'id'=>'myGrid',
@@ -78,7 +80,7 @@ $btns = '<a style="margin-left:10px" class="btn ripple btn-primary dropdown-togg
                 ['content'=>
                     Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i> Thêm mới', ['create'],
                     ['role'=>'modal-remote','title'=> 'Thêm thiết bị/tài sản','class'=>'btn btn-outline-primary']).
-                    Html::a('<i class="fas fa fa-sync" aria-hidden="true"></i> Tải lại', ['?layout='.$tsLayout],
+                    Html::a('<i class="fas fa fa-sync" aria-hidden="true"></i> Tải lại', [Yii::$app->controller->action->id . '?layout='.$tsLayout],
                     ['data-pjax'=>1, 'class'=>'btn btn-outline-primary', 'title'=>'Tải lại']).
                     Html::a('<i class="fa fa-qrcode" aria-hidden="true"></i> Quét mã QR', ['qr-scan'],
                         ['role'=>'modal-remote','title'=> 'Quét QRcode','class'=>'btn btn-outline-primary']).
@@ -165,4 +167,13 @@ $this->registerJsFile("@web/assets/plugins/treeview/treeview.js",[
     'position' => \yii\web\View::POS_END
     
 ]);
+?>
+
+<?php
+$script = <<< JS
+    function treeHeThong(){
+        
+    }
+JS;
+$this->registerJs($script);
 ?>

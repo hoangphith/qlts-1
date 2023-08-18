@@ -13,7 +13,7 @@ use app\modules\bophan\models\BoPhan;
 
 class ThietBiBase extends \app\models\TsThietBi
 {
-    const MODEL_ID = 'thietbi';
+    const MODEL_ID = 'thiet-bi';
     const QR_FOLDER = '/uploads/qrlibs/';
     const STATUS_HOATDONG = 'HOATDONG';
     const STATUS_SUACHUA = 'SUACHUA';
