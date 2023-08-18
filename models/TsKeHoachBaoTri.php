@@ -2,9 +2,6 @@
 
 namespace app\models;
 
-use app\modules\bophan\models\BoPhan;
-use app\modules\bophan\models\NhanVien;
-use app\modules\taisan\models\ThietBi;
 use Yii;
 
 /**
@@ -25,6 +22,7 @@ use Yii;
  * @property int $id_nguoi_chiu_trach_nhiem
  * @property string $muc_do_uu_tien
  * @property int|null $truc_thuoc
+ * @property string|null $ngay_thuc_hien
  * @property float|null $thoi_gian_thuc_hien
  * @property string|null $don_vi_thoi_gian
  * @property int|null $dung_may
@@ -57,14 +55,14 @@ class TsKeHoachBaoTri extends \yii\db\ActiveRecord
         return [
             [['id_he_thong', 'id_thiet_bi', 'id_chi_tiet', 'id_loai_bao_tri', 'bao_truoc', 'so_ky', 'id_don_vi_bao_tri', 'id_nguoi_chiu_trach_nhiem', 'truc_thuoc', 'dung_may', 'thue_ngoai', 'da_het_hieu_luc', 'nguoi_tao'], 'integer'],
             [['id_thiet_bi', 'ten_cong_viec', 'id_loai_bao_tri', 'bao_truoc', 'id_don_vi_bao_tri', 'id_nguoi_chiu_trach_nhiem', 'muc_do_uu_tien'], 'required'],
-            [['ngay_bao_tri_cuoi', 'ngay_het_hieu_luc', 'thoi_gian_tao'], 'safe'],
+            [['ngay_bao_tri_cuoi', 'ngay_thuc_hien', 'ngay_het_hieu_luc', 'thoi_gian_tao'], 'safe'],
             [['thoi_gian_thuc_hien'], 'number'],
             [['ten_cong_viec'], 'string', 'max' => 255],
             [['can_cu', 'ky_bao_tri', 'muc_do_uu_tien', 'don_vi_thoi_gian'], 'string', 'max' => 20],
-//             [['id_thiet_bi'], 'exist', 'skipOnError' => true, 'targetClass' => ThietBi::class, 'targetAttribute' => ['id_thiet_bi' => 'id']],
-//             [['id_loai_bao_tri'], 'exist', 'skipOnError' => true, 'targetClass' => LoaiBaoTri::class, 'targetAttribute' => ['id_loai_bao_tri' => 'id']],
-//             [['id_don_vi_bao_tri'], 'exist', 'skipOnError' => true, 'targetClass' => BoPhan::class, 'targetAttribute' => ['id_don_vi_bao_tri' => 'id']],
-//             [['id_nguoi_chiu_trach_nhiem'], 'exist', 'skipOnError' => true, 'targetClass' => NhanVien::class, 'targetAttribute' => ['id_nguoi_chiu_trach_nhiem' => 'id']],
+            [['id_thiet_bi'], 'exist', 'skipOnError' => true, 'targetClass' => TsThietBi::class, 'targetAttribute' => ['id_thiet_bi' => 'id']],
+            [['id_loai_bao_tri'], 'exist', 'skipOnError' => true, 'targetClass' => TsLoaiBaoTri::class, 'targetAttribute' => ['id_loai_bao_tri' => 'id']],
+            [['id_don_vi_bao_tri'], 'exist', 'skipOnError' => true, 'targetClass' => TsBoPhan::class, 'targetAttribute' => ['id_don_vi_bao_tri' => 'id']],
+            [['id_nguoi_chiu_trach_nhiem'], 'exist', 'skipOnError' => true, 'targetClass' => TsNhanVien::class, 'targetAttribute' => ['id_nguoi_chiu_trach_nhiem' => 'id']],
         ];
     }
 
@@ -89,6 +87,7 @@ class TsKeHoachBaoTri extends \yii\db\ActiveRecord
             'id_nguoi_chiu_trach_nhiem' => 'Id Nguoi Chiu Trach Nhiem',
             'muc_do_uu_tien' => 'Muc Do Uu Tien',
             'truc_thuoc' => 'Truc Thuoc',
+            'ngay_thuc_hien' => 'Ngay Thuc Hien',
             'thoi_gian_thuc_hien' => 'Thoi Gian Thuc Hien',
             'don_vi_thoi_gian' => 'Don Vi Thoi Gian',
             'dung_may' => 'Dung May',
@@ -107,7 +106,7 @@ class TsKeHoachBaoTri extends \yii\db\ActiveRecord
      */
     public function getDonViBaoTri()
     {
-        return $this->hasOne(BoPhan::class, ['id' => 'id_don_vi_bao_tri']);
+        return $this->hasOne(TsBoPhan::class, ['id' => 'id_don_vi_bao_tri']);
     }
 
     /**
@@ -117,7 +116,7 @@ class TsKeHoachBaoTri extends \yii\db\ActiveRecord
      */
     public function getLoaiBaoTri()
     {
-       // return $this->hasOne(TsLoaiBaoTri::class, ['id' => 'id_loai_bao_tri']);
+        return $this->hasOne(TsLoaiBaoTri::class, ['id' => 'id_loai_bao_tri']);
     }
 
     /**
@@ -127,7 +126,7 @@ class TsKeHoachBaoTri extends \yii\db\ActiveRecord
      */
     public function getNguoiChiuTrachNhiem()
     {
-        return $this->hasOne(NhanVien::class, ['id' => 'id_nguoi_chiu_trach_nhiem']);
+        return $this->hasOne(TsNhanVien::class, ['id' => 'id_nguoi_chiu_trach_nhiem']);
     }
 
     /**
@@ -137,6 +136,6 @@ class TsKeHoachBaoTri extends \yii\db\ActiveRecord
      */
     public function getThietBi()
     {
-        return $this->hasOne(ThietBi::class, ['id' => 'id_thiet_bi']);
+        return $this->hasOne(TsThietBi::class, ['id' => 'id_thiet_bi']);
     }
 }

@@ -12,10 +12,18 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
 use app\modules\baotri\models\KeHoachBaoTri;
+use app\modules\dungchung\models\CustomFunc;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\baotri\models\KeHoachBaoTri */
 /* @var $form yii\widgets\ActiveForm */
+$cus = new CustomFunc();
+if($model->ngay_thuc_hien != null)
+    $model->ngay_thuc_hien = $cus->convertYMDToDMY($model->ngay_thuc_hien);
+if($model->ngay_bao_tri_cuoi != null)
+    $model->ngay_bao_tri_cuoi = $cus->convertYMDToDMY($model->ngay_bao_tri_cuoi);
+if($model->ngay_het_hieu_luc != null)
+    $model->ngay_het_hieu_luc = $cus->convertYMDToDMY($model->ngay_het_hieu_luc);
 ?>
 <style>
     .legend{
@@ -33,6 +41,7 @@ use app\modules\baotri\models\KeHoachBaoTri;
                 'labelOptions' => ['class' => 'col-md-12 control-label'],
             ],
         ]); ?>
+        <?= $form->errorSummary($model) ?>
 	<div class="ts-thiet-bi-form">
         <div class="card custom-card">
         	<div class="card-body shadow-none">
@@ -87,18 +96,19 @@ use app\modules\baotri\models\KeHoachBaoTri;
                         </div>
                          <div class="row">
                          	<div class="col">
-                         		<?= '<label class="form-label">Ngày bảo trì cuối </label>';?>
-                                   <?=  DatePicker::widget([
-                                            'name' => 'ngay_bao_tri_cuoi', 
-                                            'value' => date('d-m-Y'),
-                                            'options' => ['placeholder' => 'Chọn ngày ....'],
-                                            'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                                  <div class="col">
+								  <?= $form->field($model, 'ngay_bao_tri_cuoi')->widget(DatePicker::classname(), [
+                                            'options' => [
+                                                'placeholder' => 'Chọn ngày...'
+                                            ],
                                             'pluginOptions' => [
-                                                'format' => 'dd-mm-yyyy',
+                                                'autoclose' => true,
+                                                'format' => 'dd/mm/yyyy',
                                                 'todayHighlight' => true
                                             ]
-                                        ]);
-                                    ?>
+                            	   ]);
+                	               ?>
+                            </div>
                             </div>
                             <div class="col">
                                    <?= $form->field($model, 'bao_truoc')->textInput() ?>
@@ -123,6 +133,19 @@ use app\modules\baotri\models\KeHoachBaoTri;
                                         'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal")'),
                                     ],
                                 ]);?>
+                            </div>
+                             <div class="col">
+								  <?= $form->field($model, 'ngay_thuc_hien')->widget(DatePicker::classname(), [
+                                            'options' => [
+                                                'placeholder' => 'Chọn ngày...'
+                                            ],
+                                            'pluginOptions' => [
+                                                'autoclose' => true,
+                                                'format' => 'dd/mm/yyyy',
+                                                'todayHighlight' => true
+                                            ]
+                            	   ]);
+                	               ?>
                             </div>
                         </div>
                 	</div>
@@ -189,20 +212,17 @@ use app\modules\baotri\models\KeHoachBaoTri;
                             </div>
                             <div class="col">
                             	 <div id="dNgayHetHieuLuc" <?= $model->da_het_hieu_luc==0?' style="display:none"': '' ?> >
-                            	<?= '<label class="form-label">Ngày hết hiệu lực</label>';?>
-                            	<?=  DatePicker::widget([
-                                            'name' => 'ngay_het_hieu_luc', 
-                                            'value' => date('d-m-Y'),
-                                            'options' => ['placeholder' => 'Chọn ngày ....'],
-                                            'type' => DatePicker::TYPE_COMPONENT_APPEND,
-                                            'pickerIcon' => '<i class="fas fa-calendar-alt text-infor"></i>',
-                                            'removeIcon' => '<i class="fas fa-trash text-danger"></i>',
+                            		  <?= $form->field($model, 'ngay_het_hieu_luc')->widget(DatePicker::classname(), [
+                                            'options' => [
+                                                'placeholder' => 'Chọn ngày...'
+                                            ],
                                             'pluginOptions' => [
-                                                'format' => 'dd-mm-yyyy',
+                                                'autoclose' => true,
+                                                'format' => 'dd/mm/yyyy',
                                                 'todayHighlight' => true
                                             ]
-                                        ]);
-                                    ?>
+                            	   ]);
+                	               ?>
                             	</div>
                             </div>
                         </div>
