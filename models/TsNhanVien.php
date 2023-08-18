@@ -109,7 +109,7 @@ class TsNhanVien extends \yii\db\ActiveRecord
      */
     public function getTsNhanVienKhos()
     {
-        return $this->hasMany(TsNhanVienKho::class, ['id_nhan_vien' => 'id']);
+        //return $this->hasMany(TsNhanVienKho::class, ['id_nhan_vien' => 'id']);
     }
 
     /**

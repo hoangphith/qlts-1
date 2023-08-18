@@ -32,7 +32,7 @@ class NhanVienBase extends NhanVienModel
         $label = '';
         if($val == 0){
             $label = 'Nam';
-        }else if($val == 1){
+        }else if($val == 1){    
             $label = 'Nữ';
         }
         return $label;            

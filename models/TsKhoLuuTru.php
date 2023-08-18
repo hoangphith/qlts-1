@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\modules\bophan\models\NhanVien;
 use Yii;
 
 /**
@@ -72,6 +73,6 @@ class TsKhoLuuTru extends \yii\db\ActiveRecord
      */
     public function getTsNhanVienKhos()
     {
-        return $this->hasMany(TsNhanVienKho::class, ['id_kho' => 'id']);
+        return $this->hasMany(NhanVien::class, ['id_kho' => 'id']);
     }
 }

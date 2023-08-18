@@ -62,7 +62,6 @@ class KeHoachBaoTriController extends Controller
         ]);
     }
 
-
     /**
      * Displays a single KeHoachBaoTri model.
      * @param integer $id
