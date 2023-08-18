@@ -25,35 +25,38 @@ return [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'id_thiet_bi',
         'value'=> 'thietBi.ten_thiet_bi',
-        'width' => '180px',
+        'width' => '150px',
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'id_loai_bao_tri',
         'value'=> 'loaiBaoTri.ten',
-        'width' => '180px',
+        'width' => '150px',
     ],
     
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'ten_cong_viec',
+        'width'=>'350px',
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'muc_do_uu_tien',
+        'format'=>'raw',
+        'value'=> 'MucDoUuTienWithBadge',
+        'width'=>'100px',
         //["0"=> "Không ưu tiên", "1"=>"Ưu tiên", "2"=>"Xử lý gấp"]
-        'value'=>function($data){
-            if($data["muc_do_uu_tien"]=="0") return "Không ưu tiên";   
-            else if($data["muc_do_uu_tien"]=="1") return "Ưu tiên";
-            else{ return "Xử lý gấp";};
-        }
+//         'value'=>function($data){
+//             if($data["muc_do_uu_tien"]=="0") return "Không ưu tiên";   
+//             else if($data["muc_do_uu_tien"]=="1") return "Ưu tiên";
+//             else{ return "Xử lý gấp";};
+//         }
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'thue_ngoai',
-        'value'=>function($data){
-            return  $data->thue_ngoai=="0"? "Không": "Có";
-        }
+        'value'=>'ThueNgoaiWithBadge',
+        'format'=>'raw',
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
