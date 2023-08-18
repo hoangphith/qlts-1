@@ -137,8 +137,8 @@ $btns = '<a style="margin-left:10px" class="btn ripple btn-primary dropdown-togg
 ],
    "id"=>"ajaxCrudModal",
    "dialogOptions"=>["class"=>"modal-xl"],
-   'closeButton'=>['label'=>'<span aria-hidden="true">×</span>'],
-    "footer"=>"",// always need it for jquery plugin
+   "closeButton"=>['label'=>'<span aria-hidden="true">×</span>'],
+   "footer"=>"",// always need it for jquery plugin
 ])?>
 <?php Modal::end(); ?>
 
@@ -165,7 +165,6 @@ $this->registerJsFile("@web/assets/plugins/treeview/treeview.js",[
         \yii\web\JqueryAsset::className()
     ], */
     'position' => \yii\web\View::POS_END
-    
 ]);
 ?>
 

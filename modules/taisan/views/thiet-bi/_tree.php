@@ -1,6 +1,7 @@
 <?php
 use yii\bootstrap5\ActiveForm;
 use yii\widgets\Pjax;
+use app\modules\taisan\models\HeThong;
 
 $arr1 = [
     [
@@ -64,7 +65,7 @@ $arr1 = [
 			<div data-bs-spy="scroll" data-bs-target="#navbar-example3" class="scrollspy-example-2 bd-x-0 bd-y-0 bg-white" style="height:600px;border-radius: 0px;" data-bs-offset="0" tabindex="0">
 				
 				<ul id="treeview1">
-    				<li><a href="javascript:void(0);">HỆ THỐNG</a>
+    				<li>HỆ THỐNG
     					<ul>
     						<li data-value="6">Company Maintenance -->6</li>
     						<li>Employees
@@ -75,6 +76,7 @@ $arr1 = [
     						<li>Human Resources</li>
     					</ul>
     				</li>
+    				
     				<li>XRP
     					<ul>
     						<li>Company Maintenance</li>
@@ -86,7 +88,13 @@ $arr1 = [
     						<li>Human Resources</li>
     					</ul>
     				</li>
+    				
     				<li data-value="1">Company Maintenance -->6</li>
+    				
+    				<?php 
+    				    echo (new HeThong())->getListCTB();
+    				?>
+    				
     			</ul>
     		</div>
 			<?php endif; ?>
@@ -162,7 +170,7 @@ $arr1 = [
 <?php
 $script = <<< JS
     $('#treeview1 li').on('click', function(){
-        //alert($(this).attr('data-value'));
+        alert($(this).attr('data-value'));
         var myVal = Number($(this).attr('data-value'));
         if(myVal > 0) {
             $('#txtHidden').val(myVal);
