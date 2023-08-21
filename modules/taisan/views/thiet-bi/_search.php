@@ -7,6 +7,8 @@ use yii\helpers\ArrayHelper;
 use app\modules\bophan\models\BoPhan;
 use app\modules\taisan\models\LoaiThietBi;
 use app\modules\taisan\models\ThietBi;
+use kartik\depdrop\DepDrop;
+use yii\helpers\Url;
 //use kartik\form\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -56,6 +58,7 @@ use app\modules\taisan\models\ThietBi;
         <?= $form->field($model, 'id_bo_phan_quan_ly')->widget(Select2::classname(), [
                 'data' => (new BoPhan())->getListTree(),
     		     'options' => [
+    		         'id'=>'id-bo-phan-search',
     		         'placeholder' => 'Chọn '. $model->getAttributeLabel('id_bo_phan_quan_ly') .'...',
     		         'data-dropdown-parent'=>"#offcanvasRight"
     		     ],
@@ -65,6 +68,27 @@ use app\modules\taisan\models\ThietBi;
     		     ],
     		 ]);
     	?>
+    	
+    	<?= $form->field($model, 'id_nguoi_quan_ly')->widget(DepDrop::classname(), [
+                            'options'=>[
+                                'id'=>'id-nhan-vien',
+                                'placeholder' => 'Chọn người quản lý ...',
+                                'data-dropdown-parent'=>"#offcanvasRight"
+                            ],
+                            'data' => [],
+                            'type'=>DepDrop::TYPE_SELECT2,
+                            'select2Options'=>[
+                                'pluginOptions' => [
+                                    'allowClear' => true,
+                                ],
+                            ],
+                            'pluginOptions'=>[
+                                'depends'=>['id-bo-phan-search'],
+                                //'initialize' => true,
+                                'url'=>Url::to(['/kholuutru/depdrop/get-nhan-vien']),
+                            ],
+                        ]);
+                   ?>
     	
     	<?= $form->field($model, 'trang_thai')->dropDownList(ThietBi::getDmTrangThai(), ['prompt'=>'--Chọn--']) ?>
   

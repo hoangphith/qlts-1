@@ -71,7 +71,7 @@ class ThietBiSearch extends ThietBi
                 'id_vi_tri' => $this->id_vi_tri,
                 'id_he_thong' => $this->id_he_thong,
                 'id_loai_thiet_bi' => $this->id_loai_thiet_bi,
-                'id_bo_phan_quan_ly' => $this->id_bo_phan_quan_ly,
+                //'id_bo_phan_quan_ly' => $this->id_bo_phan_quan_ly,
                 'id_thiet_bi_cha' => $this->id_thiet_bi_cha,
                 'id_layout' => $this->id_layout,
                 'id_hang_bao_hanh' => $this->id_hang_bao_hanh,
@@ -79,7 +79,7 @@ class ThietBiSearch extends ThietBi
                 'id_lop_hu_hong' => $this->id_lop_hu_hong,
                 'id_trung_tam_chi_phi' => $this->id_trung_tam_chi_phi,
                 'id_don_vi_bao_tri' => $this->id_don_vi_bao_tri,
-                'id_nguoi_quan_ly' => $this->id_nguoi_quan_ly,
+                //'id_nguoi_quan_ly' => $this->id_nguoi_quan_ly,
                 'ngay_mua' => $this->ngay_mua,
                 'han_bao_hanh' => $this->han_bao_hanh,
                 'ngay_dua_vao_su_dung' => $this->ngay_dua_vao_su_dung,
@@ -87,6 +87,17 @@ class ThietBiSearch extends ThietBi
                 'thoi_gian_tao' => $this->thoi_gian_tao,
                 'nguoi_tao' => $this->nguoi_tao,
             ]);
+            
+            //search người quản lý thì ko search bo phan
+            if($this->id_nguoi_quan_ly == null){
+                $query->andFilterWhere([
+                    'id_bo_phan_quan_ly' => $this->id_bo_phan_quan_ly,
+                ]);
+            } else {
+                $query->andFilterWhere([
+                    'id_nguoi_quan_ly' => $this->id_nguoi_quan_ly,
+                ]);
+            }
     
             $query->andFilterWhere(['like', 'ma_thiet_bi', $this->ma_thiet_bi])
                 ->andFilterWhere(['like', 'ten_thiet_bi', $this->ten_thiet_bi])
