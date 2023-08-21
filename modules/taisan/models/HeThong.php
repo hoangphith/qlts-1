@@ -66,7 +66,7 @@ class HeThong extends HeThongBase
     
     public $resultTree = '';
     /**
-     * ham de quy lay danh sach he thong con truc thuoc (xu ly cho getListTree)
+     * ham de quy lay danh sach he thong con truc thuoc (xu ly cho getListCTB)
      * @param array $arr
      * @param int $pid
      * @param int $level
@@ -77,16 +77,17 @@ class HeThong extends HeThongBase
         if($listChildCatalogs != null){
             $this->resultTree .= '<ul>';
             foreach ($listChildCatalogs as $j=>$catalog1){
-                $this->resultTree .= '<li data-value="' . $catalog1->id . '">' .$catalog1->ten_he_thong;
-                //$this->getChild($this->resultTree, $catalog1->id, $left);
-                $this->resultTree .= '</li>';
+                    $this->resultTree .= '<li data-value="' . $catalog1->id . '"><span class="data">' . $catalog1->ten_he_thong . '</span>';
+                    
+                    $this->getChildCTB($this->resultTree, $catalog1->id, $left);
+                    $this->resultTree .= '</li>';
             }
             $this->resultTree .= '</ul>';
         }
     }
     
     /**
-     * hien thi danh sach he thong theo phan cap cha-con
+     * hien thi danh sach he thong theo phan cap cha-con treeview
      * @param boolean $withGroup
      * @return array
      */
@@ -96,7 +97,7 @@ class HeThong extends HeThongBase
             //lay ds catalog parent
             $parentCatalogs = $this::find()->where('truc_thuoc IS NULL OR truc_thuoc = 0')->all();
             foreach ($parentCatalogs as $indexCatalog=>$catalog){
-                    $this->resultTree .= '<li data-value="' . $catalog->id . '">' . $catalog->ten_he_thong;
+                    $this->resultTree .= '<li data-value="' . $catalog->id . '"><span class="data">' . $catalog->ten_he_thong . '</span>';   
                     $this->getChildCTB($this->resultTree, $catalog->id, '');
                     $this->resultTree .= '</li>';
             }

@@ -2,23 +2,11 @@
 use yii\bootstrap5\ActiveForm;
 use yii\widgets\Pjax;
 use app\modules\taisan\models\HeThong;
+use app\modules\taisan\models\LoaiThietBi;
+use app\modules\bophan\models\BoPhan;
 
-$arr1 = [
-    [
-        'value'=>5,
-        'name'=>'Nút 1',
-        'con'=>[
-            'con1'
-        ]
-    ]
-];
 ?>
 
-<style>
-#treeview1 li{
-    cursor: pointer !important;
-}
-</style>
 <div class="card custom-card">
 	<div class="card-header rounded-bottom-0 card-header bg-light text-dark">
 		<h5 class="mt-2">
@@ -64,37 +52,10 @@ $arr1 = [
 			<input id="txtHidden" name="ThietBiSearch[id_he_thong]" type="hidden" value="" />
 			<div data-bs-spy="scroll" data-bs-target="#navbar-example3" class="scrollspy-example-2 bd-x-0 bd-y-0 bg-white" style="height:600px;border-radius: 0px;" data-bs-offset="0" tabindex="0">
 				
-				<ul id="treeview1">
-    				<li>HỆ THỐNG
-    					<ul>
-    						<li data-value="6">Company Maintenance -->6</li>
-    						<li>Employees
-    							<ul>
-    								<li data-value="50">Reports-->5</li>
-    							</ul>
-    						</li>
-    						<li>Human Resources</li>
-    					</ul>
-    				</li>
-    				
-    				<li>XRP
-    					<ul>
-    						<li>Company Maintenance</li>
-    						<li>Employees
-    							<ul>
-    								<li>Reports</li>
-    							</ul>
-    						</li>
-    						<li>Human Resources</li>
-    					</ul>
-    				</li>
-    				
-    				<li data-value="1">Company Maintenance -->6</li>
-    				
+				<ul id="treeview1">    				
     				<?php 
     				    echo (new HeThong())->getListCTB();
-    				?>
-    				
+    				?>    				
     			</ul>
     		</div>
 			<?php endif; ?>
@@ -104,28 +65,9 @@ $arr1 = [
 			<div data-bs-spy="scroll" data-bs-target="#navbar-example3" class="scrollspy-example-2 bd-x-0 bd-y-0 bg-white" style="height:600px;border-radius: 0px;" data-bs-offset="0" tabindex="0">
 				
 				<ul id="treeview1">
-    				<li><a href="javascript:void(0);">LOẠI THIẾT BỊ</a>
-    					<ul>
-    						<li data-value="5">Company Maintenance -->5</li>
-    						<li>Employees
-    							<ul>
-    								<li data-value="9">Reports-->9</li>
-    							</ul>
-    						</li>
-    						<li>Human Resources</li>
-    					</ul>
-    				</li>
-    				<li>XRP
-    					<ul>
-    						<li>Company Maintenance</li>
-    						<li>Employees
-    							<ul>
-    								<li>Reports</li>
-    							</ul>
-    						</li>
-    						<li>Human Resources</li>
-    					</ul>
-    				</li>
+    				<?php 
+    				    echo (new LoaiThietBi())->getListCTB();
+    				?> 
     			</ul>
     		</div>
 			<?php endif; ?>
@@ -135,28 +77,9 @@ $arr1 = [
 			<div data-bs-spy="scroll" data-bs-target="#navbar-example3" class="scrollspy-example-2 bd-x-0 bd-y-0 bg-white" style="height:600px;border-radius: 0px;" data-bs-offset="0" tabindex="0">
 				
 				<ul id="treeview1">
-    				<li><a href="javascript:void(0);">BỘ PHẬN QUẢN LÝ</a>
-    					<ul>
-    						<li data-value="1">Company Maintenance -->1</li>
-    						<li>Employees
-    							<ul>
-    								<li data-value="2">Reports-->2</li>
-    							</ul>
-    						</li>
-    						<li>Human Resources</li>
-    					</ul>
-    				</li>
-    				<li>XRP
-    					<ul>
-    						<li>Company Maintenance</li>
-    						<li>Employees
-    							<ul>
-    								<li>Reports</li>
-    							</ul>
-    						</li>
-    						<li>Human Resources</li>
-    					</ul>
-    				</li>
+    				<?php 
+    				    echo (new BoPhan())->getListCTB();
+    				?> 
     			</ul>
     		</div>
 			<?php endif; ?>
@@ -169,12 +92,14 @@ $arr1 = [
 
 <?php
 $script = <<< JS
-    $('#treeview1 li').on('click', function(){
-        alert($(this).attr('data-value'));
-        var myVal = Number($(this).attr('data-value'));
+    $('#treeview1 li span.data').on('click', function(){
+        //alert($(this).parent().attr('data-value'));
+        var myVal = Number($(this).parent().attr('data-value'));
         if(myVal > 0) {
             $('#txtHidden').val(myVal);
             $('#frmHeThong').submit();
+            $('#treeview1 li span.data').removeClass('hl-color');
+            $(this).addClass('hl-color');
         }
     });
 JS;

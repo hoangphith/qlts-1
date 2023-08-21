@@ -49,16 +49,17 @@ $btns = '<a style="margin-left:10px" class="btn ripple btn-primary dropdown-togg
 			    ]
 			).'</div>';
 
-	$tree = ($tsLayout>0 && $tsLayout<=3) ? $this->render('_tree', ["model" => $searchModel, 'tsLayout'=>$tsLayout]):0;
+	$conditionShowTree = ($tsLayout>0 && $tsLayout<=3);
+	$tree = $conditionShowTree==true ? $this->render('_tree', ["model" => $searchModel, 'tsLayout'=>$tsLayout]):0;
 ?>
 
 <div class="row">
-	<?php if($tsLayout>0 && $tsLayout<=3):?>
+	<?php if($conditionShowTree==true):?>
     <div class="col-md-4">
     	<?= $tree ?>
     </div>
     <?php endif; ?>
-	<div class="col-md-<?= ($tsLayout>0 && $tsLayout<=3)?'8':'12'?>">
+	<div class="col-md-<?= $conditionShowTree==true?'8':'12'?>">
 	
 <?php Pjax::begin([
     'id'=>'myGrid',
